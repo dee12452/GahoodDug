@@ -1,27 +1,35 @@
 #include "../headers/timer.h"
 
+#include <SDL2/SDL.h>
+
+typedef struct Timer {
+    uint32_t start;
+    uint32_t finish;
+    uint32_t targetMs;
+} Timer;
+
 Timer *
-gahood_timer_create(unsigned int timeMs) {
+gahood_timer_create(uint32_t timeMs) {
     Timer *timer = (Timer *) malloc(sizeof(Timer));
     timer->targetMs = timeMs;
-    gahood_timer_reset(timer);
+    gahood_timerReset(timer);
     return timer;
 }
 
 void
-gahood_timer_destroy(Timer *timer) {
+gahood_timerDestroy(Timer *timer) {
     free(timer);
 }
 
 bool
-gahood_timer_check(Timer *timer) {
+gahood_timerCheck(Timer *timer) {
    timer->finish = SDL_GetTicks();
    if(timer->finish < timer->start) {
-       gahood_timer_reset(timer);
+       gahood_timerReset(timer);
        return false;
    }
    else if(timer->finish - timer->start >= timer->targetMs) {
-       gahood_timer_reset(timer);
+       gahood_timerReset(timer);
        return true;
    }
    else {
@@ -30,7 +38,7 @@ gahood_timer_check(Timer *timer) {
 }
 
 void
-gahood_timer_reset(Timer *timer) {
+gahood_timerReset(Timer *timer) {
     timer->start = SDL_GetTicks();
     timer->finish = SDL_GetTicks();
 }

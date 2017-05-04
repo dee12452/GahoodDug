@@ -1,5 +1,17 @@
 #include "../headers/window.h"
+#include <SDL2/SDL.h>
+#include <pthread.h>
+#include "../headers/util.h"
 #include "../headers/input.h"
+
+typedef struct Window {
+    SDL_Window *win;
+    SDL_Renderer *winRenderer;
+    SDL_Texture *winTexture;
+    int w;
+    int h;
+    bool running;
+} Window;
 
 static Window *window;
 static pthread_t windowThread;

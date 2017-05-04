@@ -1,17 +1,14 @@
 #ifndef GAHOOD_TIMER_H
 #define GAHOOD_TIMER_H
 
-#include "util.h"
+#include <stdint.h>
+#include <stdbool.h>
 
-typedef struct Timer {
-    uint32_t start;
-    uint32_t finish;
-    unsigned int targetMs;
-} Timer;
+struct Timer;
 
-Timer * gahood_timer_create(unsigned int);
-void gahood_timer_destroy(Timer *);
-bool gahood_timer_check(Timer *);
-void gahood_timer_reset(Timer *);
+struct Timer * gahood_timerCreate(uint32_t);
+void gahood_timerDestroy(struct Timer *);
+bool gahood_timerCheck(struct Timer *);
+void gahood_timerReset(struct Timer *);
 
 #endif

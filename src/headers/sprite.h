@@ -1,15 +1,12 @@
 #ifndef GAHOOD_SPRITE_H
 #define GAHOOD_SPRITE_H
 
-#include "util.h"
+struct SDL_Texture; 
+struct SDL_Rect;
+struct SDL_Renderer;
+struct Sprite;
 
-typedef struct Sprite {
-    SDL_Texture *spr;
-    SDL_Rect src;
-    SDL_Rect dst;
-} Sprite;
-
-Sprite * gahood_createSprite(SDL_Renderer *, const char *);
-void gahood_destroySprite(Sprite *);
+struct Sprite * gahood_createSprite(struct SDL_Renderer *, const char *);
+void gahood_destroySprite(struct Sprite *);
 
 #endif

@@ -1,5 +1,8 @@
 #include "../headers/game.h"
+
+#include <SDL2/SDL_image.h>
 #include "../headers/window.h"
+#include "../headers/util.h"
 
 static void init();
 static void update();

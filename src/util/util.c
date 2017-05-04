@@ -1,5 +1,9 @@
 #include "../headers/util.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL2/SDL.h>
+
 const uint32_t WINDOW_FLAGS = SDL_WINDOW_OPENGL;
 
 void gahood_utilFatalError(const char *message) {

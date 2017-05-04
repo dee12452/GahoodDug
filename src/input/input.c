@@ -1,3 +1,4 @@
+#include <SDL2/SDL.h>
 #include "../headers/input.h"
 #include "../headers/game.h"
 
