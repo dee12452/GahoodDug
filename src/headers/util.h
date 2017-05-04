@@ -9,8 +9,9 @@
  */
 
 /* Delays in milliseconds */
-#define DELAY_GAME_LOOP 10
-#define DELAY_RENDER_LOOP 10
+#define DELAY_GAME_LOOP 5
+#define DELAY_RENDER_LOOP 5
+#define WINDOW_FPS 60
 
 /* Window information */
 #define WINDOW_X 0
@@ -27,6 +28,10 @@
  * Util consts and enums 
  * *************************
  */
+typedef enum GameState {
+    GAME_STATE_PLAY,
+    GAME_STATE_EXIT
+} GameState;
 
 /* The Window Flags */
 extern const uint32_t WINDOW_FLAGS;

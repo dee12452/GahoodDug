@@ -1,8 +1,11 @@
 #include "../headers/window.h"
+
 #include <SDL2/SDL.h>
 #include <pthread.h>
 #include "../headers/util.h"
+#include "../headers/timer.h"
 #include "../headers/input.h"
+#include "../headers/screen.h"
 
 typedef struct Window {
     SDL_Window *win;
@@ -13,15 +16,18 @@ typedef struct Window {
     bool running;
 } Window;
 
-static Window *window;
+static Window *window = NULL;
+static Timer *timer = NULL;
 static pthread_t windowThread;
 
 static void * runWindow(void *);
 static Window * createWindow();
 static void destroyWindow();
+static void drawWindow();
 
 void
 gahood_windowStart() {
+    timer = gahood_timerCreate(1000 / WINDOW_FPS);
     if(pthread_create(&windowThread, NULL, runWindow, NULL) != 0) {
         gahood_utilFatalError("Failed to create the window thread!");
     }
@@ -29,6 +35,10 @@ gahood_windowStart() {
 
 void
 gahood_windowClose() {
+    if(timer) {
+        gahood_timerDestroy(timer);
+        timer = NULL;
+    }
     if(window) {
         window->running = false;
         pthread_join(windowThread, NULL);
@@ -46,7 +56,13 @@ static void *
 runWindow(void *ptr) {
     window = createWindow();
     while(window->running) {
+        /* Poll events */
         gahood_inputHandleEvents();
+
+        /* Draw the screen */
+        drawWindow();
+
+        /* Delay to prevent this loop from using too much CPU */
         SDL_Delay(DELAY_RENDER_LOOP);
     }
     destroyWindow(window);
@@ -111,5 +127,17 @@ destroyWindow() {
         }
         free(window);
         window = NULL;
+    }
+}
+
+static void
+drawWindow() {
+    if(gahood_timerCheck(timer)) {
+        SDL_RenderClear(window->winRenderer);
+        SDL_SetRenderTarget(window->winRenderer, window->winTexture);
+        gahood_screenDraw(window->winRenderer);
+        SDL_SetRenderTarget(window->winRenderer, NULL);
+        SDL_RenderCopy(window->winRenderer, window->winTexture, NULL, NULL);
+        SDL_RenderPresent(window->winRenderer);
     }
 }

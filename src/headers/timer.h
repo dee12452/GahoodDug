@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-struct Timer;
+typedef struct Timer Timer;
 
 struct Timer * gahood_timerCreate(uint32_t);
 void gahood_timerDestroy(struct Timer *);

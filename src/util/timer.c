@@ -2,14 +2,14 @@
 
 #include <SDL2/SDL.h>
 
-typedef struct Timer {
+struct Timer {
     uint32_t start;
     uint32_t finish;
     uint32_t targetMs;
-} Timer;
+};
 
 Timer *
-gahood_timer_create(uint32_t timeMs) {
+gahood_timerCreate(uint32_t timeMs) {
     Timer *timer = (Timer *) malloc(sizeof(Timer));
     timer->targetMs = timeMs;
     gahood_timerReset(timer);

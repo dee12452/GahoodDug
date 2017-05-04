@@ -1,8 +1,11 @@
-#include <SDL2/SDL.h>
 #include "../headers/input.h"
+
+#include <SDL2/SDL.h>
+#include "../headers/util.h"
 #include "../headers/game.h"
 
-void gahood_inputHandleEvents() {
+void 
+gahood_inputHandleEvents() {
     switch(gahood_gameGetGameState()) {
         default: {
             SDL_Event e;
