@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL_image.h>
 #include "../headers/window.h"
+#include "../headers/screen.h"
 #include "../headers/util.h"
 
 static void init();
@@ -50,7 +51,9 @@ init() {
 }
 
 static void
-update() {}
+update() {
+    gahood_screenUpdate();
+}
 
 static void
 close() {

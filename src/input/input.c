@@ -13,6 +13,11 @@ gahood_inputHandleEvents() {
                 if(e.type == SDL_QUIT) {
                     gahood_gameSetGameState(GAME_STATE_EXIT);
                 }
+                if(e.type == SDL_KEYUP) {
+                    if(e.key.keysym.sym == SDLK_ESCAPE) {
+                        gahood_gameSetGameState(GAME_STATE_EXIT);
+                    }
+                }
             }
             break;
         }

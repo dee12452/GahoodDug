@@ -133,11 +133,35 @@ destroyWindow() {
 static void
 drawWindow() {
     if(gahood_timerCheck(timer)) {
-        SDL_RenderClear(window->winRenderer);
-        SDL_SetRenderTarget(window->winRenderer, window->winTexture);
+        /* Clear the window */
+        if(SDL_RenderClear(window->winRenderer) < 0) {
+            gahood_utilFatalSDLError("Failed to clear the renderer");
+        }
+
+        /* Set the target to the window texture */
+        if(SDL_SetRenderTarget(window->winRenderer, window->winTexture) < 0) {
+            gahood_utilFatalSDLError("Failed to set the render target to the window texture");
+        }
+
+        /* Clear the window texture */
+        if(SDL_RenderClear(window->winRenderer) < 0) {
+            gahood_utilFatalSDLError("Failed to clear the renderer");
+        }
+
+        /* Draw the screen to the window texture */
         gahood_screenDraw(window->winRenderer);
-        SDL_SetRenderTarget(window->winRenderer, NULL);
-        SDL_RenderCopy(window->winRenderer, window->winTexture, NULL, NULL);
+
+        /* Set the target back to the window */
+        if(SDL_SetRenderTarget(window->winRenderer, NULL) < 0) {
+            gahood_utilFatalSDLError("Failed to set the render target back to the window");
+        }
+
+        /* Copy the window texture to the window */
+        if(SDL_RenderCopy(window->winRenderer, window->winTexture, NULL, NULL) < 0) {
+            gahood_utilFatalSDLError("Failed to copy the window texture to the window");
+        }
+
+        /* Show the newest window */
         SDL_RenderPresent(window->winRenderer);
     }
 }

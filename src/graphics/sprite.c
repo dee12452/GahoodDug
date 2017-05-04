@@ -30,7 +30,9 @@ gahood_spriteDestroy(Sprite *sprite) {
 void 
 gahood_spriteDraw(SDL_Renderer *r, Sprite *sprite) {
     if(sprite) {
-        SDL_RenderCopy(r, sprite->spr, &sprite->src, &sprite->dst);
+        if(SDL_RenderCopy(r, sprite->spr, &sprite->src, &sprite->dst) < 0) {
+            gahood_utilFatalSDLError("Failed to render the sprite to the screen");
+        }
     }
 }
 
