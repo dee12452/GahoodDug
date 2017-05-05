@@ -30,6 +30,10 @@
  */
 typedef enum GameState {
     GAME_STATE_PLAY,
+    GAME_STATE_PLAY_2,
+    GAME_STATE_PLAY_3,
+    GAME_STATE_PLAY_4,
+    GAME_STATE_PLAY_5,
     GAME_STATE_EXIT
 } GameState;
 

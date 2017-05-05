@@ -19,7 +19,6 @@ gahood_gameRun(int argc, char **argv) {
             printf("%s\n", argv[i]);
             printf("No extra arguments are needed at this time\n");
         }
-        gahood_utilFatalError("Unecessary Arguments entered");
     }
     init();
     while(gameState != GAME_STATE_EXIT) {
@@ -52,11 +51,12 @@ init() {
 
 static void
 update() {
-    gahood_screenUpdate();
+    gahood_screenUpdate(gameState);
 }
 
 static void
 close() {
+    gahood_screenUpdate(gameState);
     gahood_windowClose();
     IMG_Quit();
     SDL_Quit();

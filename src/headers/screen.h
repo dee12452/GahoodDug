@@ -4,7 +4,7 @@
 struct SDL_Renderer;
 enum GameState;
 
-void gahood_screenUpdate();
+void gahood_screenUpdate(enum GameState);
 void gahood_screenDraw(struct SDL_Renderer *);
 
 #endif
