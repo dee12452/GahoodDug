@@ -9,7 +9,7 @@ static void init();
 static void update();
 static void close();
 
-static GameState gameState;
+static GameState gameState = GAME_STATE_PLAY;
 
 //Main game loop
 void 
@@ -46,6 +46,7 @@ init() {
     if(IMG_Init(IMG_INIT_PNG) < 0) {
         gahood_utilFatalSDLError("Failed to initialize SDL_image.");
     }
+    gahood_screenInit(gameState);
     gahood_windowStart();
 }
 
@@ -56,8 +57,9 @@ update() {
 
 static void
 close() {
-    gahood_screenUpdate(gameState);
+    /* Close the window before the screen to avoid mutex handling */
     gahood_windowClose();
+    gahood_screenClose();
     IMG_Quit();
     SDL_Quit();
 }

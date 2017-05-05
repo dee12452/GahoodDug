@@ -9,8 +9,8 @@
  */
 
 /* Delays in milliseconds */
-#define DELAY_GAME_LOOP 5
-#define DELAY_RENDER_LOOP 5
+#define DELAY_GAME_LOOP 8
+#define DELAY_RENDER_LOOP 8
 #define WINDOW_FPS 60
 
 /* Window information */
