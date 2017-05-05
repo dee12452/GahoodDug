@@ -1,2 +1,8 @@
 test/
-game.o
+lib/
+obj/
+bin/
+gen/
+SDL2/
+SDL2_image/
+*.mk
