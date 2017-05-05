@@ -85,13 +85,9 @@ gahood_screenUpdate(GameState state) {
     SDL_UnlockMutex(currentScreen.mutex);
     
     /* We are safe to update the sprites */
-    if(state == GAME_STATE_PLAY) {
-        static int sprX = 0;
-        if(sprX == WINDOW_WIDTH) {
-            sprX = 0;
-        }
-        sprX += 1;
-        gahood_spriteSetDestinationRect(currentScreen.sprites[0], sprX, 0, 50, 50);
+    switch(currentScreen.screenState) {
+        default:
+            break;
     }
 }
 
