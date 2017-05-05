@@ -15,12 +15,10 @@ typedef struct Screen {
 
 static Screen currentScreen;
 
+static void changeSprites(SDL_Renderer *, GameState);
+
 static void 
 gahood_screenChange(GameState state) {
-    while(SDL_LockMutex(currentScreen.mutex) < 0) {
-        printf("Trying to lock game thread\n");
-        SDL_Delay(DELAY_GAME_LOOP);
-    }
     currentScreen.screenState = state;
     currentScreen.newState = true;
     if(currentScreen.sprites) {
@@ -32,7 +30,6 @@ gahood_screenChange(GameState state) {
         free(currentScreen.sprites);
         currentScreen.sprites = NULL;
     }
-    SDL_UnlockMutex(currentScreen.mutex);
 }
 
 void
@@ -66,9 +63,35 @@ gahood_screenClose() {
 
 void 
 gahood_screenUpdate(GameState state) {
+    /* Lock the mutex */
+    while(SDL_LockMutex(currentScreen.mutex) < 0) {
+        printf("Trying to lock game thread\n");
+        SDL_Delay(DELAY_GAME_LOOP);
+    }
+
+    /* If we need to change the state of the screen
+     * do so and then unlock the mutex */
     if(state != currentScreen.screenState) {
         gahood_screenChange(state);
+        SDL_UnlockMutex(currentScreen.mutex);
         return;
+    }
+    /* If the renderer has not updated the sprites 
+     * do not continue */
+    if(currentScreen.newState) {
+        SDL_UnlockMutex(currentScreen.mutex);
+        return;
+    }
+    SDL_UnlockMutex(currentScreen.mutex);
+    
+    /* We are safe to update the sprites */
+    if(state == GAME_STATE_PLAY) {
+        static int sprX = 0;
+        if(sprX == WINDOW_WIDTH) {
+            sprX = 0;
+        }
+        sprX += 1;
+        gahood_spriteSetDestinationRect(currentScreen.sprites[0], sprX, 0, 50, 50);
     }
 }
 
@@ -80,18 +103,21 @@ gahood_screenDraw(SDL_Renderer *r) {
     }
     if(currentScreen.newState) {
         currentScreen.newState = false;
-        switch(currentScreen.screenState) {
-            default: {
-                         currentScreen.numberOfSprites = 1;
-                         currentScreen.sprites = (Sprite **) malloc(sizeof(Sprite *));
-                         currentScreen.sprites[0] = gahood_spriteCreate(r, "../res/gahooddug_dirt.png");
-                         gahood_spriteSetDestinationRect(currentScreen.sprites[0], 0, 0, 100, 100);
-                         gahood_spriteSetSourceRect(currentScreen.sprites[0], 16 * (int) currentScreen.screenState, 0, 16, 16);
-                     }
-        }
+        changeSprites(r, currentScreen.screenState);
     }
     if(currentScreen.sprites) {
         gahood_spriteDraw(r, currentScreen.sprites[0]);
     }
     SDL_UnlockMutex(currentScreen.mutex);
+}
+
+static void 
+changeSprites(SDL_Renderer *r, GameState state) {
+    if(state == GAME_STATE_PLAY) {
+        currentScreen.numberOfSprites = 1;
+        currentScreen.sprites = (Sprite **) malloc(sizeof(Sprite *));
+        currentScreen.sprites[0] = gahood_spriteCreate(r, RES_FILE_DIRT);
+        gahood_spriteSetSourceRect(currentScreen.sprites[0], 0, 0, 16, 16);
+        gahood_spriteSetDestinationRect(currentScreen.sprites[0], 0, 0, 50, 50);
+    }
 }

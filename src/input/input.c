@@ -18,19 +18,6 @@ gahood_inputHandleEvents() {
                         gahood_gameSetGameState(GAME_STATE_EXIT);
                     }
                 }
-                else if(e.type == SDL_KEYDOWN) {
-                    if(e.key.keysym.scancode == SDL_SCANCODE_A) {
-                        GameState temp = gahood_gameGetGameState();
-                        if(temp == GAME_STATE_PLAY_5) {
-                            temp = GAME_STATE_PLAY;
-                        }
-                        else {
-                            temp = (GameState) temp + 1;
-                        }
-                        gahood_gameSetGameState(temp);
-                    }
-
-                }
             }
             break;
         }

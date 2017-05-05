@@ -9,8 +9,8 @@
  */
 
 /* Delays in milliseconds */
-#define DELAY_GAME_LOOP 8
-#define DELAY_RENDER_LOOP 8
+#define DELAY_GAME_LOOP 5
+#define DELAY_RENDER_LOOP 5
 #define WINDOW_FPS 60
 
 /* Window information */
@@ -24,16 +24,15 @@
 #define FULL_ALPHA 255
 #define NO_ALPHA 0
 
+/* Resource Files */
+#define RES_FILE_DIRT "../res/gahooddug_dirt.png"
+
 /* *************************
  * Util consts and enums 
  * *************************
  */
 typedef enum GameState {
     GAME_STATE_PLAY,
-    GAME_STATE_PLAY_2,
-    GAME_STATE_PLAY_3,
-    GAME_STATE_PLAY_4,
-    GAME_STATE_PLAY_5,
     GAME_STATE_EXIT
 } GameState;
 
