@@ -1,8 +1,9 @@
 #ifndef GAHOOD_GAME_H
 #define GAHOOD_GAME_H
 
-void gahood_gameRun(int, char **);
-enum GameState gahood_gameGetGameState();
+enum GameState;
+
 void gahood_gameSetGameState(enum GameState);
+enum GameState gahood_gameGetGameState();
 
 #endif

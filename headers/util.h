@@ -25,7 +25,7 @@
 #define NO_ALPHA 0
 
 /* Resource Files */
-#define RES_FILE_DIRT "../res/gahooddug_dirt.png"
+#define RES_FILE_DIRT "res/gahooddug_dirt.png"
 
 /* *************************
  * Util consts and enums 
@@ -33,11 +33,15 @@
  */
 typedef enum GameState {
     GAME_STATE_PLAY,
+    GAME_STATE_PLAY_2,
+    GAME_STATE_NONE,
     GAME_STATE_EXIT
 } GameState;
 
 /* The Window Flags */
 extern const uint32_t WINDOW_FLAGS;
+extern const uint32_t SDL_INIT_FLAGS;
+extern const uint32_t IMG_INIT_FLAGS;
 
 /* *************************
  * Util methods 

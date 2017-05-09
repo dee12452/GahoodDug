@@ -1,31 +1,32 @@
 #include "../headers/game.h"
 
+#include <pthread.h>
+#include <SDL.h>
 #include <SDL_image.h>
+#include "../headers/util.h"
 #include "../headers/window.h"
 #include "../headers/screen.h"
-#include "../headers/util.h"
 
+static GameState gameState;
+static pthread_t gameThread;
+
+static void run(); 
 static void init();
-static void update();
 static void close();
+static void * update(void *);
 
-static GameState gameState = GAME_STATE_PLAY;
+int 
+main(int argc, char *argv[]) {
+    for(int i = 0; i < argc; i++) {
+        printf("%s\n", argv[i]);
+    }
+    run();
+    exit(EXIT_SUCCESS);
+}
 
-//Main game loop
-void 
-gahood_gameRun(int argc, char **argv) {
-    if(argc > 1) {
-        for(int i = 0; i < argc; i++) {
-            printf("%s\n", argv[i]);
-            printf("No extra arguments are needed at this time\n");
-        }
-    }
-    init();
-    while(gameState != GAME_STATE_EXIT) {
-        update();
-        SDL_Delay(DELAY_GAME_LOOP);
-    }
-    close();
+void
+gahood_gameSetGameState(GameState newGameState) {
+    gameState = newGameState;
 }
 
 GameState
@@ -34,32 +35,48 @@ gahood_gameGetGameState() {
 }
 
 void
-gahood_gameSetGameState(GameState state) {
-    gameState = state;
+run() {
+    init();
+    close();
 }
 
-static void 
+void
 init() {
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
-        gahood_utilFatalSDLError("Failed to initialize SDL.");
+    /* Init SDL and IMG with flags in util */
+    if(SDL_Init(SDL_INIT_FLAGS) < 0) {
+        gahood_utilFatalSDLError("Failed to init SDL");
     }
-    if(IMG_Init(IMG_INIT_PNG) < 0) {
-        gahood_utilFatalSDLError("Failed to initialize SDL_image.");
+    if(IMG_Init(IMG_INIT_FLAGS) < 0) {
+        gahood_utilFatalSDLError("Failed to init SDL IMG");
     }
-    gahood_screenInit(gameState);
+    gameState = GAME_STATE_PLAY;
+    if(pthread_create(&gameThread, NULL, update, NULL) < 0) {
+        gahood_utilFatalError("Failed to create the game thread");
+    }
+    gahood_screenInit();
     gahood_windowStart();
 }
 
-static void
-update() {
-    gahood_screenUpdate(gameState);
-}
-
-static void
+void
 close() {
-    /* Close the window before the screen to avoid mutex handling */
-    gahood_windowClose();
+    SDL_Log("****************** Joining the game thread *******************\n");
+    if(pthread_join(gameThread, NULL) < 0) {
+        gahood_utilFatalError("Failed to join the game thread");
+    }
+    SDL_Log("****************** Joined the game thread *******************\n");
+    SDL_Log("****************** Closing the screen *******************\n");
     gahood_screenClose();
+    SDL_Log("****************** Closed the screen *******************\n");
     IMG_Quit();
     SDL_Quit();
+}
+
+void *
+update(void *ptr) {
+    if(ptr) { pthread_exit(NULL); }
+    while(gameState != GAME_STATE_EXIT) {
+        gahood_screenUpdate(gameState); 
+        SDL_Delay(DELAY_GAME_LOOP);
+    }
+    pthread_exit(NULL);
 }

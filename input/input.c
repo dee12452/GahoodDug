@@ -4,23 +4,35 @@
 #include "../headers/util.h"
 #include "../headers/game.h"
 
-void 
-gahood_inputHandleEvents() {
-    switch(gahood_gameGetGameState()) {
-        default: {
-            SDL_Event e;
-            while(SDL_PollEvent(&e)) {
-                if(e.type == SDL_QUIT) {
-                    gahood_gameSetGameState(GAME_STATE_EXIT);
-                }
-                else if(e.type == SDL_WINDOWEVENT) {
-                    if(e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
-                        //orientation change
+bool
+gahood_inputPollEvents() {
+    SDL_Event e;
+    while(SDL_PollEvent(&e)) {
+        switch(e.type) {
+            case SDL_KEYDOWN:
+                {
+                    switch(e.key.keysym.sym) {
+                        case SDLK_AC_BACK:
+                            {
+                                gahood_gameSetGameState(GAME_STATE_EXIT);
+                                return false;
+                            }
+                        default:
+                            break;
                     }
                 }
-            }
-            break;
+            case SDL_FINGERUP:
+                {
+                    GameState currState = gahood_gameGetGameState();
+                    if(currState == GAME_STATE_PLAY)
+                        currState = GAME_STATE_PLAY_2;
+                    else if(currState == GAME_STATE_PLAY_2)
+                        currState = GAME_STATE_PLAY;
+                    gahood_gameSetGameState(currState);
+                }
+            default:
+                break;
         }
     }
+    return true;
 }
-
