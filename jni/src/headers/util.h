@@ -16,8 +16,10 @@
 /* Window information */
 #define WINDOW_X 0
 #define WINDOW_Y 0
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1080
+#define WINDOW_HEIGHT 720
+#define GAME_WIDTH 720
+#define GAME_HEIGHT 720
 #define WINDOW_NAME "GahoodDug"
 
 /* Colors and Alpha */

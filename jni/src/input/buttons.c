@@ -4,10 +4,10 @@
 #include "../headers/sprite.h"
 #include "../headers/util.h"
 
-#define STICK_WIDTH 100
-#define STICK_HEIGHT 100
-#define STICK_BG_WIDTH 200
-#define STICK_BG_HEIGHT 200
+#define STICK_WIDTH 75
+#define STICK_HEIGHT 75
+#define STICK_BG_WIDTH 125
+#define STICK_BG_HEIGHT 125
 
 struct ControlStick {
     Sprite *stick;
@@ -21,6 +21,17 @@ gahood_controlStickCreate(SDL_Renderer *r, int x, int y) {
     controller->stick = gahood_spriteCreate(r, RES_FILE_CONTROL_STICK);
     controller->stickBG = gahood_spriteCreate(r, RES_FILE_CONTROL_STICK_BG);
     controller->direction = 0;
+    SDL_Rect stickRect, stickBGRect;
+    stickRect.w = STICK_WIDTH;
+    stickRect.h = STICK_HEIGHT;
+    stickBGRect.w = STICK_BG_WIDTH;
+    stickBGRect.h = STICK_BG_HEIGHT;
+    stickBGRect.x = x;
+    stickBGRect.y = y;
+    stickRect.x = stickBGRect.x + (STICK_BG_WIDTH / 2 - stickRect.w / 2);
+    stickRect.y = stickBGRect.y + (STICK_BG_HEIGHT / 2 - stickRect.h / 2);
+    gahood_spriteSetDstDimensions(controller->stickBG, stickBGRect);
+    gahood_spriteSetDstDimensions(controller->stick, stickRect);
     return controller;
 }
 

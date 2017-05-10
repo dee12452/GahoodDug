@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "../headers/util.h"
 #include "../headers/sprite.h"
+#include "../headers/buttons.h"
 
 typedef struct Screen {
     Sprite **sprites;
@@ -13,53 +14,54 @@ typedef struct Screen {
     bool needsNewSprites;
 } Screen;
 
-Screen *screen = NULL;
+static Screen *screen = NULL;
+static ControlStick *controller = NULL;
 
 static void deleteScreenSprites();
 
 void
 gahood_screenDraw(SDL_Renderer *r) {
-    while(SDL_LockMutex(screen->mutex) < 0) {
-        /* Log this */
-        SDL_Log("Waiting to lock the drawing thread\n");
-    }
     if(screen->needsNewSprites) {
-        SDL_Log("***************** CREATING NEW SPRITES *******************\n");
-        switch(screen->screenState) {
-            default:
-                deleteScreenSprites();
-                break;
+        while(SDL_LockMutex(screen->mutex) < 0) {
+            /* Log this */
+            SDL_Log("Waiting to lock the drawing thread\n");
         }
-        SDL_Log("***************** DONE CREATING NEW SPRITES *******************\n");
+        switch(screen->screenState) {
+            default: {
+                deleteScreenSprites();
+                controller = gahood_controlStickCreate(r, 400, 350);
+                screen->needsNewSprites = false;
+                break;
+            }
+        }
+        SDL_UnlockMutex(screen->mutex);
     }
     else {
-        SDL_Log("***************** DRAWING THE SPRITES *******************\n");
+        if(controller) {
+            gahood_controlStickDraw(r, controller);
+        }
         for(int i = 0; i < screen->numOfSprites; i++) {
             gahood_spriteDraw(r, screen->sprites[i]);
         }
-        SDL_Log("***************** FINISHED DRAWING THE SPRITES *******************\n");
     }
-    SDL_UnlockMutex(screen->mutex);
 }
 
 void
 gahood_screenUpdate(GameState state) {
-    SDL_Log("***************** UPDATING THE SCREEN *******************\n");
-    while(SDL_LockMutex(screen->mutex) < 0) {
-        SDL_Log("Waiting to lock the game thread\n");
-    }
     if(state != screen->screenState) {
         screen->needsNewSprites = true;
         screen->screenState = state;
     }
     else if(!screen->needsNewSprites) {
+        while(SDL_LockMutex(screen->mutex) < 0) {
+            SDL_Log("Waiting to lock the game thread\n");
+        }
         switch(state) {
             default:
                 break;
         }
+        SDL_UnlockMutex(screen->mutex);
     }
-    SDL_UnlockMutex(screen->mutex);
-    SDL_Log("***************** FINISHED UPDATING THE SCREEN *******************\n");
 }
 
 void
@@ -95,5 +97,9 @@ deleteScreenSprites() {
         }
         free(screen->sprites);
         screen->sprites = NULL;
+    }
+    if(controller) {
+        gahood_controlStickDestroy(controller);
+        controller = NULL;
     }
 }
