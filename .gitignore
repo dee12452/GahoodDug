@@ -1,8 +1,7 @@
 test/
-lib/
+libs/
 obj/
 bin/
 gen/
 SDL2/
 SDL2_image/
-*.mk
