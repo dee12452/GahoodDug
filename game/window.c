@@ -47,6 +47,9 @@ runWindow(Window *w) {
 void
 render(Window *w) {
     /* Clear the current window */
+    if(SDL_SetRenderDrawColor(w->winRenderer, 0, 0, 0, FULL_ALPHA) < 0) {
+        gahood_utilFatalSDLError("Failed to change render color");
+    }
     if(SDL_RenderClear(w->winRenderer) < 0) {
         gahood_utilFatalSDLError("Failed to clear the renderer");
     }
@@ -57,6 +60,9 @@ render(Window *w) {
     }
     
     /* Clear the window texture */
+    if(SDL_SetRenderDrawColor(w->winRenderer, 100, 200, 20, FULL_ALPHA) < 0) {
+        gahood_utilFatalSDLError("Failed to change render color");
+    }
     if(SDL_RenderClear(w->winRenderer) < 0) {
         gahood_utilFatalSDLError("Failed to clear the renderer");
     }
@@ -96,8 +102,10 @@ createWindow() {
     if(!window->winRenderer) {
         gahood_utilFatalSDLError("Failed to create the window renderer");
     }
-    if(SDL_SetRenderDrawColor(window->winRenderer, 0, 0, 0, FULL_ALPHA) < 0) {
-        gahood_utilFatalSDLError("Failed to change render color");
+    if(SDL_RenderSetLogicalSize(window->winRenderer,
+            window->width,
+            window->height) < 0) {
+        gahood_utilFatalSDLError("Failed to set the logical rendering size");
     }
 
     window->winTexture = SDL_CreateTexture(window->winRenderer, 

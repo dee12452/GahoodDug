@@ -6,15 +6,13 @@
 
 struct Sprite {
     SDL_Texture *spriteSheet;
-    SDL_Rect src;
-    SDL_Rect dst;
+    SDL_Rect *src;
+    SDL_Rect *dst;
 };
 
 Sprite * 
 gahood_spriteCreate(SDL_Renderer *r, 
-        const char *file, 
-        SDL_Rect srcDimensions, 
-        SDL_Rect dstDimensions) {
+        const char *file) {
     Sprite *sprite = malloc(sizeof(Sprite));
     sprite->spriteSheet = IMG_LoadTexture(r, file);
     if(!sprite->spriteSheet) {
@@ -23,8 +21,8 @@ gahood_spriteCreate(SDL_Renderer *r,
         strcat(buffer, file);
         gahood_utilFatalSDLError(buffer);
     }
-    sprite->src = srcDimensions;
-    sprite->dst = dstDimensions;
+    sprite->src = NULL;
+    sprite->dst = NULL;
     return sprite;
 }
 
@@ -35,6 +33,7 @@ gahood_spriteDestroy(Sprite *sprite) {
             SDL_DestroyTexture(sprite->spriteSheet);
             sprite->spriteSheet = NULL;
         }
+        gahood_spriteClearDimensions(sprite);
         free(sprite);
     }
 }
@@ -44,27 +43,51 @@ gahood_spriteDraw(SDL_Renderer *r, Sprite *sprite) {
     if(sprite && sprite->spriteSheet) {
         SDL_RenderCopy(r,
                 sprite->spriteSheet,
-                &sprite->src,
-                &sprite->dst);
+                sprite->src,
+                sprite->dst);
     }
 }
 
 void
 gahood_spriteSetSrcDimensions(Sprite *sprite, const SDL_Rect srcRect) {
-    sprite->src = srcRect;
+    if(!sprite->src) {
+        sprite->src = malloc(sizeof(SDL_Rect));
+    }
+    sprite->src->x = srcRect.x;
+    sprite->src->y = srcRect.y;
+    sprite->src->w = srcRect.w;
+    sprite->src->h = srcRect.h;
 }
 
 void
 gahood_spriteSetDstDimensions(Sprite *sprite, const SDL_Rect dstRect) {
-    sprite->dst = dstRect;
+    if(!sprite->dst) {
+        sprite->dst = malloc(sizeof(SDL_Rect));
+    }
+    sprite->dst->x = dstRect.x;
+    sprite->dst->y = dstRect.y;
+    sprite->dst->w = dstRect.w;
+    sprite->dst->h = dstRect.h;
 }
 
 SDL_Rect
 gahood_spriteGetSrcDimensions(Sprite *sprite) {
-    return sprite->src;
+    return *sprite->src;
 }
 
 SDL_Rect
 gahood_spriteGetDstDimensions(Sprite *sprite) {
-    return sprite->dst;
+    return *sprite->dst;
 }
+
+void
+gahood_spriteClearDimensions(Sprite *sprite) {
+    if(sprite->src) {
+        free(sprite->src);
+        sprite->src = NULL;
+    }
+    if(sprite->dst) {
+        free(sprite->dst);
+        sprite->dst = NULL;
+    }
+} 

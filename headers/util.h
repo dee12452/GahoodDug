@@ -26,6 +26,9 @@
 
 /* Resource Files */
 #define RES_FILE_DIRT "res/gahooddug_dirt.png"
+#define RES_FILE_SPRITES "res/gahooddug_sprites.png"
+#define RES_FILE_CONTROL_STICK_BG "res/gahooddug_control_stick_bg.png"
+#define RES_FILE_CONTROL_STICK "res/gahooddug_control_stick.png"
 
 /* *************************
  * Util consts and enums 
@@ -33,7 +36,6 @@
  */
 typedef enum GameState {
     GAME_STATE_PLAY,
-    GAME_STATE_PLAY_2,
     GAME_STATE_NONE,
     GAME_STATE_EXIT
 } GameState;

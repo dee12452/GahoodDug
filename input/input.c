@@ -21,15 +21,6 @@ gahood_inputPollEvents() {
                             break;
                     }
                 }
-            case SDL_FINGERUP:
-                {
-                    GameState currState = gahood_gameGetGameState();
-                    if(currState == GAME_STATE_PLAY)
-                        currState = GAME_STATE_PLAY_2;
-                    else if(currState == GAME_STATE_PLAY_2)
-                        currState = GAME_STATE_PLAY;
-                    gahood_gameSetGameState(currState);
-                }
             default:
                 break;
         }

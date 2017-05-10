@@ -25,22 +25,10 @@ gahood_screenDraw(SDL_Renderer *r) {
     }
     if(screen->needsNewSprites) {
         SDL_Log("***************** CREATING NEW SPRITES *******************\n");
-        if(screen->screenState != GAME_STATE_EXIT) {
-            deleteScreenSprites();
-            screen->sprites = malloc(sizeof(Sprite *) * 2);
-            SDL_Rect rect;
-            rect.x = 0; rect.y = 0; rect.w = 16; rect.h = 16;
-            screen->sprites[0] = gahood_spriteCreate(r,
-                    RES_FILE_DIRT,
-                    rect,
-                    rect);
-            rect.x = 16;
-            screen->sprites[1] = gahood_spriteCreate(r,
-                    RES_FILE_DIRT,
-                    rect,
-                    rect);
-            screen->numOfSprites = 2;
-            screen->needsNewSprites = false;
+        switch(screen->screenState) {
+            default:
+                deleteScreenSprites();
+                break;
         }
         SDL_Log("***************** DONE CREATING NEW SPRITES *******************\n");
     }
@@ -65,15 +53,9 @@ gahood_screenUpdate(GameState state) {
         screen->screenState = state;
     }
     else if(!screen->needsNewSprites) {
-        if(screen->screenState != GAME_STATE_EXIT) {
-            for(int i = 0; i < screen->numOfSprites; i++) {
-                SDL_Rect rect = gahood_spriteGetDstDimensions(screen->sprites[i]);
-                if(rect.x > WINDOW_WIDTH) {
-                    rect.x = 0;
-                }
-                rect.x += 1;
-                gahood_spriteSetDstDimensions(screen->sprites[i], rect);
-            }
+        switch(state) {
+            default:
+                break;
         }
     }
     SDL_UnlockMutex(screen->mutex);
@@ -105,13 +87,13 @@ gahood_screenClose() {
 
 void
 deleteScreenSprites() {
-    if(!screen->sprites)
-        return;
-    int tempNum = screen->numOfSprites;
-    screen->numOfSprites = 0;
-    for(int i = 0; i < tempNum; i++) {
-        gahood_spriteDestroy(screen->sprites[i]);
+    if(screen->sprites) {
+        int tempNum = screen->numOfSprites;
+        screen->numOfSprites = 0;
+        for(int i = 0; i < tempNum; i++) {
+            gahood_spriteDestroy(screen->sprites[i]);
+        }
+        free(screen->sprites);
+        screen->sprites = NULL;
     }
-    free(screen->sprites);
-    screen->sprites = NULL;
 }
