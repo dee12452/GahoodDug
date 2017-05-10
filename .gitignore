@@ -3,5 +3,6 @@ libs/
 obj/
 bin/
 gen/
+src/org/
 SDL2/
 SDL2_image/
