@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include "../headers/util.h"
+#include "../headers/sprite.h"
 
 #define DISPLAY_INDEX 0
 
@@ -31,4 +32,27 @@ gahood_displayOnScreenChange() {
 void
 gahood_displaySetWindowDimensions(SDL_Window *win, int w, int h) {
     SDL_SetWindowSize(win, w, h);
+}
+
+SDL_Rect
+gahood_displayGetSpriteLogicalPosition(Sprite *sprite) {
+    SDL_Rect touchLoc = gahood_spriteGetDstDimensions(sprite);
+    int screenWidth = gahood_displayGetScreenWidth();
+    int screenHeight = gahood_displayGetScreenHeight();
+    touchLoc.x += (screenWidth - WINDOW_WIDTH) / 2;
+    touchLoc.y += (screenHeight - WINDOW_HEIGHT) / 2;
+    touchLoc.w = (touchLoc.w * screenWidth) / WINDOW_WIDTH;
+    touchLoc.h = (touchLoc.h * screenHeight) / WINDOW_HEIGHT;
+    return touchLoc;
+}
+
+bool
+gahood_displayCheckCollision(int x, int y, Sprite *sprite) {
+    SDL_Rect touchLoc = gahood_displayGetSpriteLogicalPosition(sprite);
+    if(x >= touchLoc.x && x <= touchLoc.x + touchLoc.w) {
+        if(y >= touchLoc.y && y <= touchLoc.y + touchLoc.w) {
+            return true;
+        }
+    }
+    return false;
 }

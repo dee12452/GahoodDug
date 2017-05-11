@@ -2,12 +2,15 @@
 
 #include <SDL.h>
 #include "../headers/util.h"
+#include "../headers/displayUtil.h"
 #include "../headers/game.h"
+#include "../headers/screen.h"
+#include "../headers/buttons.h"
 
 /* Game state based handling of finger actions*/
-static void handleFingerDownPlay(SDL_TouchFingerEvent);
-static void handleFingerUpPlay(SDL_TouchFingerEvent);
-static void handleFingerMotionPlay(SDL_TouchFingerEvent);
+static bool handleFingerDownPlay(SDL_TouchFingerEvent);
+static bool handleFingerUpPlay(SDL_TouchFingerEvent);
+static bool handleFingerMotionPlay(SDL_TouchFingerEvent);
 
 bool
 gahood_inputPollEvents() {
@@ -31,7 +34,10 @@ gahood_inputPollEvents() {
                     switch(gahood_gameGetGameState()) {
                         case GAME_STATE_PLAY:
                             {
-                                handleFingerDownPlay(e.tfinger);
+                                if(!handleFingerDownPlay(e.tfinger)) {
+                                    gahood_gameSetGameState(GAME_STATE_EXIT);
+                                    return false;
+                                }
                                 break;
                             }
                         default:
@@ -44,7 +50,10 @@ gahood_inputPollEvents() {
                     switch(gahood_gameGetGameState()) {
                         case GAME_STATE_PLAY:
                             {
-                                handleFingerUpPlay(e.tfinger);
+                                if(!handleFingerUpPlay(e.tfinger)) {
+                                    gahood_gameSetGameState(GAME_STATE_EXIT);
+                                    return false;
+                                }
                                 break;
                             }
                         default:
@@ -57,7 +66,10 @@ gahood_inputPollEvents() {
                     switch(gahood_gameGetGameState()) {
                         case GAME_STATE_PLAY:
                             {
-                                handleFingerMotionPlay(e.tfinger);
+                                if(!handleFingerMotionPlay(e.tfinger)) {
+                                    gahood_gameSetGameState(GAME_STATE_EXIT);
+                                    return false;
+                                }
                                 break;
                             }
                         default:
@@ -75,17 +87,22 @@ gahood_inputPollEvents() {
 /**************************/
 /* FINGER EVENTS FOR PLAY */
 /**************************/
-void
+bool
 handleFingerDownPlay(SDL_TouchFingerEvent e) {
-
+    int touchX = (int) (e.x * gahood_displayGetScreenWidth());
+    int touchY = (int) (e.y * gahood_displayGetScreenHeight());
+    if(gahood_controlStickCheckCollision(touchX, touchY, gahood_screenGetControlStick())) {
+        return false;
+    }
+    return true;
 }
 
-void
+bool
 handleFingerUpPlay(SDL_TouchFingerEvent e) {
-
+    return true;
 } 
 
-void
+bool
 handleFingerMotionPlay(SDL_TouchFingerEvent e) {
-
+    return true;
 }

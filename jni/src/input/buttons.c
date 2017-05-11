@@ -1,8 +1,10 @@
 #include "../headers/buttons.h"
 
 #include <SDL.h>
+#include <stdbool.h>
 #include "../headers/sprite.h"
 #include "../headers/util.h"
+#include "../headers/displayUtil.h"
 
 #define STICK_WIDTH 75
 #define STICK_HEIGHT 75
@@ -13,6 +15,7 @@ struct ControlStick {
     Sprite *stick;
     Sprite *stickBG;
     uint8_t direction;
+    bool move;
 };
 
 ControlStick *
@@ -54,4 +57,25 @@ void
 gahood_controlStickDraw(SDL_Renderer *r, ControlStick *controller) {
     gahood_spriteDraw(r, controller->stickBG);
     gahood_spriteDraw(r, controller->stick);
+}
+
+void
+gahood_controlStickTouch(ControlStick *controller, SDL_TouchFingerEvent e) {
+}
+
+bool
+gahood_controlStickCheckCollision(int x, int y, ControlStick *controller) {
+    return gahood_displayCheckCollision(x, y, controller->stickBG);
+}
+
+void
+gahood_controlStickRelease(ControlStick *controller) {
+    if(controller->move) {
+        controller->move = false;
+    }
+}
+
+SDL_Rect
+gahood_controlStickGetRect(ControlStick *controller) {
+    return gahood_displayGetSpriteLogicalPosition(controller->stickBG);
 }

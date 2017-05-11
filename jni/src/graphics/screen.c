@@ -103,3 +103,8 @@ deleteScreenSprites() {
         controller = NULL;
     }
 }
+
+ControlStick *
+gahood_screenGetControlStick() {
+    return controller;
+}

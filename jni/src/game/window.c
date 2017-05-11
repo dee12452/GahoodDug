@@ -23,12 +23,8 @@ static void render(Window *);
 
 void 
 gahood_windowStart() {
-    SDL_Log("*************** CREATE THE WINDOW **************\n");
     Window *window = createWindow();
-    
-    SDL_Log("*************** RUN WINDOW **************\n");
     runWindow(window);
-    SDL_Log("*************** WINDOW FINISHED RUNNING **************\n");
     destroyWindow(window);
     window = NULL;
 }
@@ -102,6 +98,7 @@ createWindow() {
     if(!window->winRenderer) {
         gahood_utilFatalSDLError("Failed to create the window renderer");
     }
+    /* Determine screen resolution */
     if(SDL_RenderSetLogicalSize(window->winRenderer,
             window->width,
             window->height) < 0) {
