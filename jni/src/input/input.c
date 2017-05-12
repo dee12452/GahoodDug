@@ -101,6 +101,6 @@ handleFingerUpPlay(SDL_TouchFingerEvent e) {
 
 bool
 handleFingerMotionPlay(SDL_TouchFingerEvent e) {
-    gahood_controlStickTouch(gahood_screenGetControlStick(), e);
+    gahood_controlStickMove(gahood_screenGetControlStick(), e);
     return true;
 }

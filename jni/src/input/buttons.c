@@ -62,11 +62,22 @@ gahood_controlStickDraw(SDL_Renderer *r, ControlStick *controller) {
 }
 
 void
-gahood_controlStickTouch(ControlStick *controller, SDL_TouchFingerEvent e) {
-    int touchX = e.x * gahood_displayGetScreenWidth();
-    int touchY = e.y * gahood_displayGetScreenHeight();
-    gahood_spriteSetLogicalPosition(controller->stick, touchX, touchY);
-    controller->move = true;
+gahood_controlStickTouch(ControlStick *controller, const SDL_TouchFingerEvent e) {
+    if(gahood_spriteCheckTouch(e, controller->stickBG)) {
+        int touchX = e.x * gahood_displayGetScreenWidth();
+        int touchY = e.y * gahood_displayGetScreenHeight();
+        gahood_spriteSetLogicalPosition(controller->stick, touchX, touchY);
+        controller->move = true;
+    }
+}
+
+void
+gahood_controlStickMove(ControlStick *controller, const SDL_TouchFingerEvent e) {
+    if(controller->move) {
+        int touchX = e.x * gahood_displayGetScreenWidth();
+        int touchY = e.y * gahood_displayGetScreenHeight();
+        gahood_spriteSetLogicalPosition(controller->stick, touchX, touchY);
+    }
 }
 
 bool
