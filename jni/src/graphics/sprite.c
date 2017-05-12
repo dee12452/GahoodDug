@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "../headers/util.h"
+#include "../headers/displayUtil.h"
 
 struct Sprite {
     SDL_Texture *spriteSheet;
@@ -106,4 +107,41 @@ gahood_spriteClearDimensions(Sprite *sprite) {
         free(sprite->dst);
         sprite->dst = NULL;
     }
-} 
+}
+
+/* Logical Rendering Functions */
+SDL_Rect
+gahood_spriteGetLogicalDstDimensions(Sprite *sprite) {
+    SDL_Rect logDst = gahood_spriteGetDstDimensions(sprite);
+    logDst.x = (gahood_displayGetScreenWidth() - gahood_displayGetRenderWidth()) / 2 + (logDst.x * gahood_displayGetRenderWidth()) / WINDOW_WIDTH;
+    logDst.y = (logDst.y * gahood_displayGetRenderHeight()) / WINDOW_HEIGHT;
+    logDst.w = (logDst.w * gahood_displayGetRenderWidth()) / WINDOW_WIDTH;
+    logDst.h = (logDst.h * gahood_displayGetRenderHeight()) / WINDOW_HEIGHT;
+    return logDst;
+}
+
+bool
+gahood_spriteCheckTouch(const SDL_TouchFingerEvent e, Sprite *sprite) {
+    int touchX = e.x * gahood_displayGetScreenWidth();
+    int touchY = e.y * gahood_displayGetScreenHeight();
+    SDL_Rect sprPos = gahood_spriteGetLogicalDstDimensions(sprite);
+    if(touchX >= sprPos.x && touchX <= sprPos.x + sprPos.w) {
+        if(touchY >= sprPos.y && touchY <= sprPos.y + sprPos.h) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void
+gahood_spriteSetLogicalPosition(Sprite *sprite, int x, int y) {
+    SDL_Rect locRect = gahood_spriteGetDstDimensions(sprite);
+    int logX = ((x - (gahood_displayGetScreenWidth() - gahood_displayGetRenderWidth()) / 2) * WINDOW_WIDTH) / gahood_displayGetRenderWidth();
+    int logY = (y * WINDOW_HEIGHT) / gahood_displayGetRenderHeight();
+    locRect.x = logX - locRect.w / 2;
+    locRect.y = logY - locRect.h / 2;
+    SDL_Log("********************** %d, %d\n",
+            logX,
+            logY);
+    gahood_spriteSetDstDimensions(sprite, locRect);
+}

@@ -63,19 +63,15 @@ gahood_controlStickDraw(SDL_Renderer *r, ControlStick *controller) {
 
 void
 gahood_controlStickTouch(ControlStick *controller, SDL_TouchFingerEvent e) {
-    SDL_Rect dst = gahood_spriteGetDstDimensions(controller->stick);
-    dst.x = 100;
-    dst.y = 100;
     int touchX = e.x * gahood_displayGetScreenWidth();
     int touchY = e.y * gahood_displayGetScreenHeight();
-    if(gahood_displayCheckCollision(touchX, touchY, controller->stickBG))
-        gahood_spriteSetDstDimensions(controller->stick, dst);
+    gahood_spriteSetLogicalPosition(controller->stick, touchX, touchY);
     controller->move = true;
 }
 
 bool
 gahood_controlStickCheckCollision(int x, int y, ControlStick *controller) {
-    return gahood_displayCheckCollision(x, y, controller->stickBG);
+    return true;
 }
 
 void
