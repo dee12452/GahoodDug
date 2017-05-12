@@ -140,8 +140,5 @@ gahood_spriteSetLogicalPosition(Sprite *sprite, int x, int y) {
     int logY = (y * WINDOW_HEIGHT) / gahood_displayGetRenderHeight();
     locRect.x = logX - locRect.w / 2;
     locRect.y = logY - locRect.h / 2;
-    SDL_Log("********************** %d, %d\n",
-            logX,
-            logY);
     gahood_spriteSetDstDimensions(sprite, locRect);
 }

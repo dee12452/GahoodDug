@@ -42,6 +42,14 @@ typedef enum GameState {
     GAME_STATE_EXIT
 } GameState;
 
+typedef enum Direction {
+    DIRECTION_NONE,
+    DIRECTION_UP,
+    DIRECTION_DOWN,
+    DIRECTION_LEFT,
+    DIRECTION_RIGHT
+} Direction;
+
 /* The Window Flags */
 extern const uint32_t WINDOW_FLAGS;
 extern const uint32_t SDL_INIT_FLAGS;
