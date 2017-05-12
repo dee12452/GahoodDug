@@ -72,11 +72,27 @@ gahood_spriteSetDstDimensions(Sprite *sprite, const SDL_Rect dstRect) {
 
 SDL_Rect
 gahood_spriteGetSrcDimensions(Sprite *sprite) {
+    if(!sprite || !sprite->src) {
+        SDL_Rect na;
+        na.x = 0;
+        na.y = 0;
+        na.w = 0;
+        na.h = 0;
+        return na;
+    }
     return *sprite->src;
 }
 
 SDL_Rect
 gahood_spriteGetDstDimensions(Sprite *sprite) {
+    if(!sprite || !sprite->dst) {
+        SDL_Rect na;
+        na.x = 0;
+        na.y = 0;
+        na.w = 0;
+        na.h = 0;
+        return na;
+    }
     return *sprite->dst;
 }
 

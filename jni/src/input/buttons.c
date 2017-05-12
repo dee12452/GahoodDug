@@ -15,6 +15,7 @@ struct ControlStick {
     Sprite *stick;
     Sprite *stickBG;
     uint8_t direction;
+    SDL_Rect origin;
     bool move;
 };
 
@@ -33,6 +34,7 @@ gahood_controlStickCreate(SDL_Renderer *r, int x, int y) {
     stickBGRect.y = y;
     stickRect.x = stickBGRect.x + (STICK_BG_WIDTH / 2 - stickRect.w / 2);
     stickRect.y = stickBGRect.y + (STICK_BG_HEIGHT / 2 - stickRect.h / 2);
+    controller->origin = stickRect;
     gahood_spriteSetDstDimensions(controller->stickBG, stickBGRect);
     gahood_spriteSetDstDimensions(controller->stick, stickRect);
     return controller;
@@ -61,6 +63,14 @@ gahood_controlStickDraw(SDL_Renderer *r, ControlStick *controller) {
 
 void
 gahood_controlStickTouch(ControlStick *controller, SDL_TouchFingerEvent e) {
+    SDL_Rect dst = gahood_spriteGetDstDimensions(controller->stick);
+    dst.x = 100;
+    dst.y = 100;
+    int touchX = gahood_displayGetTouchX(e);
+    int touchY = gahood_displayGetTouchY(e);
+    if(gahood_displayCheckCollision(touchX, touchY, controller->stickBG))
+        gahood_spriteSetDstDimensions(controller->stick, dst);
+    controller->move = true;
 }
 
 bool
@@ -71,6 +81,7 @@ gahood_controlStickCheckCollision(int x, int y, ControlStick *controller) {
 void
 gahood_controlStickRelease(ControlStick *controller) {
     if(controller->move) {
+        gahood_spriteSetDstDimensions(controller->stick, controller->origin);
         controller->move = false;
     }
 }

@@ -89,16 +89,13 @@ gahood_inputPollEvents() {
 /**************************/
 bool
 handleFingerDownPlay(SDL_TouchFingerEvent e) {
-    int touchX = (int) (e.x * gahood_displayGetScreenWidth());
-    int touchY = (int) (e.y * gahood_displayGetScreenHeight());
-    if(gahood_controlStickCheckCollision(touchX, touchY, gahood_screenGetControlStick())) {
-        return false;
-    }
+    gahood_controlStickTouch(gahood_screenGetControlStick(), e);
     return true;
 }
 
 bool
 handleFingerUpPlay(SDL_TouchFingerEvent e) {
+    gahood_controlStickRelease(gahood_screenGetControlStick());
     return true;
 } 
 

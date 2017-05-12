@@ -12,6 +12,7 @@ gahood_displayGetScreenWidth() {
     if(SDL_GetCurrentDisplayMode(DISPLAY_INDEX, &display) < 0) {
         gahood_utilFatalSDLError("Failed to get the current display mode");
     }
+    /* Since screen is rotated, the width is the height and vice versa */
     return display.w;
 }
 
@@ -21,6 +22,7 @@ gahood_displayGetScreenHeight() {
     if(SDL_GetCurrentDisplayMode(DISPLAY_INDEX, &display) < 0) {
         gahood_utilFatalSDLError("Failed to get the current display mode");
     }
+    /* Since screen is rotated, the width is the height and vice versa */
     return display.h;
 }
 
@@ -41,14 +43,28 @@ gahood_displayGetSpriteLogicalPosition(Sprite *sprite) {
     int screenHeight = gahood_displayGetScreenHeight();
     touchLoc.x += (screenWidth - WINDOW_WIDTH) / 2;
     touchLoc.y += (screenHeight - WINDOW_HEIGHT) / 2;
-    touchLoc.w = (touchLoc.w * screenWidth) / WINDOW_WIDTH;
-    touchLoc.h = (touchLoc.h * screenHeight) / WINDOW_HEIGHT;
     return touchLoc;
+}
+
+int
+gahood_displayGetTouchX(SDL_TouchFingerEvent e) {
+    int w = gahood_displayGetScreenWidth();
+    return (w * e.x);
+}
+
+int
+gahood_displayGetTouchY(SDL_TouchFingerEvent e) {
+    int h = gahood_displayGetScreenHeight();
+    return (h * e.y);
 }
 
 bool
 gahood_displayCheckCollision(int x, int y, Sprite *sprite) {
     SDL_Rect touchLoc = gahood_displayGetSpriteLogicalPosition(sprite);
+    SDL_Log("******************** Touched %d, %d but needed %d, %d w: %d h %d\n",
+            x, y,
+            touchLoc.x, touchLoc.y,
+            touchLoc.w, touchLoc.h);
     if(x >= touchLoc.x && x <= touchLoc.x + touchLoc.w) {
         if(y >= touchLoc.y && y <= touchLoc.y + touchLoc.w) {
             return true;
