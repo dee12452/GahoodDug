@@ -39,23 +39,19 @@ gahood_displaySetWindowDimensions(SDL_Window *win, int w, int h) {
 SDL_Rect
 gahood_displayGetSpriteLogicalPosition(Sprite *sprite) {
     SDL_Rect touchLoc = gahood_spriteGetDstDimensions(sprite);
-    int screenWidth = gahood_displayGetScreenWidth();
-    int screenHeight = gahood_displayGetScreenHeight();
-    touchLoc.x += (screenWidth - WINDOW_WIDTH) / 2;
-    touchLoc.y += (screenHeight - WINDOW_HEIGHT) / 2;
     return touchLoc;
 }
 
 int
 gahood_displayGetTouchX(SDL_TouchFingerEvent e) {
     int w = gahood_displayGetScreenWidth();
-    return (w * e.x);
+    return w * e.x - (w - WINDOW_WIDTH) / 2;
 }
 
 int
 gahood_displayGetTouchY(SDL_TouchFingerEvent e) {
     int h = gahood_displayGetScreenHeight();
-    return (h * e.y);
+    return h * e.y - (h - WINDOW_HEIGHT) / 2;
 }
 
 bool
@@ -66,7 +62,7 @@ gahood_displayCheckCollision(int x, int y, Sprite *sprite) {
             touchLoc.x, touchLoc.y,
             touchLoc.w, touchLoc.h);
     if(x >= touchLoc.x && x <= touchLoc.x + touchLoc.w) {
-        if(y >= touchLoc.y && y <= touchLoc.y + touchLoc.w) {
+        if(y >= touchLoc.y && y <= touchLoc.y + touchLoc.h) {
             return true;
         }
     }
