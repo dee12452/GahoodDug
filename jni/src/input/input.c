@@ -89,18 +89,24 @@ gahood_inputPollEvents() {
 /**************************/
 bool
 handleFingerDownPlay(SDL_TouchFingerEvent e) {
-    gahood_controlStickTouch(gahood_screenGetControlStick(), e);
+    if(gahood_screenGetControlStick()) {
+        gahood_controlStickTouch(gahood_screenGetControlStick(), e);
+    }
     return true;
 }
 
 bool
 handleFingerUpPlay(SDL_TouchFingerEvent e) {
-    gahood_controlStickRelease(gahood_screenGetControlStick());
+    if(gahood_screenGetControlStick()) {
+        gahood_controlStickRelease(gahood_screenGetControlStick());
+    }
     return true;
 } 
 
 bool
 handleFingerMotionPlay(SDL_TouchFingerEvent e) {
-    gahood_controlStickMove(gahood_screenGetControlStick(), e);
+    if(gahood_screenGetControlStick()) {
+        gahood_controlStickMove(gahood_screenGetControlStick(), e);
+    }
     return true;
 }

@@ -12,12 +12,22 @@ typedef struct Screen {
     SDL_mutex *mutex;
     GameState screenState;
     bool needsNewSprites;
+    ControlStick *controller;
 } Screen;
 
 static Screen *screen = NULL;
-static ControlStick *controller = NULL;
 
 static void deleteScreenSprites();
+
+void
+gahood_screenCreate(int numOfSprites, Sprite **sprites, ControlStick *controller) {
+    if(screen) {
+        deleteScreenSprites();
+        screen->numOfSprites = numOfSprites;
+        screen->sprites = sprites;
+        screen->controller = controller;
+    }
+}
 
 void
 gahood_screenDraw(SDL_Renderer *r) {
@@ -28,8 +38,6 @@ gahood_screenDraw(SDL_Renderer *r) {
         }
         switch(screen->screenState) {
             default: {
-                deleteScreenSprites();
-                controller = gahood_controlStickCreate(r, 400, 350);
                 screen->needsNewSprites = false;
                 break;
             }
@@ -37,11 +45,11 @@ gahood_screenDraw(SDL_Renderer *r) {
         SDL_UnlockMutex(screen->mutex);
     }
     else {
-        if(controller) {
-            gahood_controlStickDraw(r, controller);
-        }
         for(int i = 0; i < screen->numOfSprites; i++) {
             gahood_spriteDraw(r, screen->sprites[i]);
+        }
+        if(screen->controller) {
+            gahood_controlStickDraw(r, screen->controller);
         }
     }
 }
@@ -73,6 +81,7 @@ gahood_screenInit() {
         screen->sprites = NULL;
         screen->screenState = GAME_STATE_NONE;
         screen->needsNewSprites = true;
+        screen->controller = NULL;
     }
 }
 
@@ -98,13 +107,13 @@ deleteScreenSprites() {
         free(screen->sprites);
         screen->sprites = NULL;
     }
-    if(controller) {
-        gahood_controlStickDestroy(controller);
-        controller = NULL;
+    if(screen->controller) {
+        gahood_controlStickDestroy(screen->controller);
+        screen->controller = NULL;
     }
 }
 
 ControlStick *
 gahood_screenGetControlStick() {
-    return controller;
+    return screen->controller;
 }
