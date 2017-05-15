@@ -39,15 +39,15 @@ void gahood_fileUtilLoadScreen(const char *file) {
         strcat(line, buffer);
         if(line[currentChar] == '\n') {
             /* Parse the line! */
+            LineObject obj = parseLine(line);
+            switch(obj.type) {
+                default:
+                    break;
+            }
             memset(line, 0, maxLineSize + 1);
         }
         memset(buffer, 0, 1);
     }
-    if(currentChar < maxLineSize) {
-        strcat(line, "\n");
-    }
-    /* Parse the last line! */
-    memset(line, 0, maxLineSize + 1);
     SDL_RWclose(in);
     in = NULL;
 }
