@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include "../headers/util.h"
 
+/* FILE UTIL
+ * Purpose: Parse files to create what's on the screen
+ * Current Structure of text file (possible lines):
+ * Sprite ... <properties>
+ * ControlStick ... <properties>
+ * */
+
 typedef enum LineParse {
     LINE_NONE,
     LINE_SPRITE,
