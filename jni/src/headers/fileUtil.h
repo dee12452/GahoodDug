@@ -1,6 +1,9 @@
 #ifndef GAHOOD_FILE_UTIL_H
 #define GAHOOD_FILE_UTIL_H
 
-void gahood_fileUtilLoadScreen(const char *);
+struct SDL_RWops;
+
+struct SDL_RWops * gahood_fileUtilOpenFile(const char *);
+char * gahood_fileUtilReadLine(struct SDL_RWops *);
 
 #endif
