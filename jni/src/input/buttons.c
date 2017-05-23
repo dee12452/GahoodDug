@@ -23,10 +23,12 @@ struct ControlStick {
 static void determineControlStickDirection(ControlStick *);
 
 ControlStick *
-gahood_controlStickCreate(SDL_Renderer *r, int x, int y) {
+gahood_controlStickCreate(int x, int y) {
+    const uint8_t stickResId = 3;
+    const uint8_t stickBGResId = 2;
     ControlStick *controller = (ControlStick *) malloc(sizeof(ControlStick));
-    controller->stick = gahood_spriteCreate(r, RES_FILE_CONTROL_STICK);
-    controller->stickBG = gahood_spriteCreate(r, RES_FILE_CONTROL_STICK_BG);
+    controller->stick = gahood_spriteCreate(stickResId);
+    controller->stickBG = gahood_spriteCreate(stickBGResId);
     controller->direction = DIRECTION_NONE;
     SDL_Rect stickRect, stickBGRect;
     stickRect.w = STICK_WIDTH;

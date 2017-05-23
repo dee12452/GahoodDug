@@ -28,7 +28,7 @@ gahood_screenDraw(SDL_Renderer *r) {
             /* Log this */
             SDL_Log("Waiting to lock the drawing thread\n");
         }
-        
+        gahood_screenSpritesCreate();
         SDL_UnlockMutex(screen->mutex);
     }
     else {
@@ -106,9 +106,9 @@ gahood_screenSpritesCreate() {
         deleteScreenSprites();
         SDL_RWops *in = NULL;
         if(screen->screenState == GAME_STATE_PLAY) {
-            in = gahood_fileUtilOpenFile("screens/PlayScreenInfo.txt");
+            //in = gahood_fileUtilOpenFile("screens/PlayScreenInfo.txt");
         }
-        else {
+        if(!in) {
             return;
         }
         char *line = gahood_fileUtilReadLine(in);

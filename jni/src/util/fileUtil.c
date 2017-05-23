@@ -29,6 +29,8 @@ gahood_fileUtilReadLine(SDL_RWops *in) {
             continue;
         }
         strcat(line, buffer);
+        memset(buffer, 0, 1);
+        SDL_RWread(in, buffer, 1, 1);
     }
     return line;
 }

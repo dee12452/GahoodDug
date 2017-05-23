@@ -6,22 +6,37 @@
 #include "../headers/displayUtil.h"
 
 struct Sprite {
-    SDL_Texture *spriteSheet;
     SDL_Rect *src;
     SDL_Rect *dst;
+    int spriteSheet;
 };
 
-Sprite * 
-gahood_spriteCreate(SDL_Renderer *r, 
-        const char *file) {
-    Sprite *sprite = malloc(sizeof(Sprite));
-    sprite->spriteSheet = IMG_LoadTexture(r, file);
-    if(!sprite->spriteSheet) {
-        char buffer[500];
-        strcpy(buffer, "Failed to load sprite texture");
-        strcat(buffer, file);
-        gahood_utilFatalSDLError(buffer);
+typedef struct SpriteSheet {
+    SDL_Texture *sheet;
+    const char *fileName;
+} SpriteSheet;
+
+static SpriteSheet *sheets;
+
+void
+gahood_spriteLoadSpriteSheets(SDL_Renderer *r) {
+    sheets = malloc(sizeof(SpriteSheet) * RES_FILES_SIZE);
+    for(int i = 0; i < RES_FILES_SIZE; i++) {
+        sheets[i].fileName = RES_FILES[i];
+        sheets[i].sheet = IMG_LoadTexture(r, sheets[i].fileName);
+        if(!sheets[i].sheet) {
+            char buffer[500];
+            strcpy(buffer, "Failed to load sprite texture");
+            strcat(buffer, sheets[i].fileName);
+            gahood_utilFatalSDLError(buffer);
+        }
     }
+}
+
+Sprite * 
+gahood_spriteCreate(uint8_t resId) {
+    Sprite *sprite = malloc(sizeof(Sprite));
+    sprite->spriteSheet = resId;
     sprite->src = NULL;
     sprite->dst = NULL;
     return sprite;
@@ -30,10 +45,6 @@ gahood_spriteCreate(SDL_Renderer *r,
 void
 gahood_spriteDestroy(Sprite *sprite) {
     if(sprite) {
-        if(sprite->spriteSheet) {
-            SDL_DestroyTexture(sprite->spriteSheet);
-            sprite->spriteSheet = NULL;
-        }
         gahood_spriteClearDimensions(sprite);
         free(sprite);
     }
@@ -43,7 +54,7 @@ void
 gahood_spriteDraw(SDL_Renderer *r, Sprite *sprite) {
     if(sprite && sprite->spriteSheet) {
         SDL_RenderCopy(r,
-                sprite->spriteSheet,
+                sheets[sprite->spriteSheet].sheet,
                 sprite->src,
                 sprite->dst);
     }

@@ -2,13 +2,15 @@
 #define GAHOOD_SPRITE_H
 
 #include <stdbool.h>
+#include <stdint.h>
 
 struct SDL_Renderer;
 struct SDL_Rect;
 struct SDL_TouchFingerEvent;
 typedef struct Sprite Sprite;
 
-struct Sprite * gahood_spriteCreate(struct SDL_Renderer *, const char *);
+Sprite * gahood_spriteCreate(uint8_t);
+void gahood_spriteLoadSpriteSheets(struct SDL_Renderer *);
 void gahood_spriteDestroy(struct Sprite *);
 void gahood_spriteDraw(struct SDL_Renderer *, struct Sprite *);
 void gahood_spriteSetSrcDimensions(struct Sprite *, const struct SDL_Rect);

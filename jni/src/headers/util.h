@@ -27,10 +27,8 @@
 #define NO_ALPHA 0
 
 /* Resource Files */
-#define RES_FILE_DIRT "res/gahooddug_dirt.png"
-#define RES_FILE_SPRITES "res/gahooddug_sprites.png"
-#define RES_FILE_CONTROL_STICK_BG "res/gahooddug_control_stick_bg.png"
-#define RES_FILE_CONTROL_STICK "res/gahooddug_control_stick.png"
+extern const uint8_t RES_FILES_SIZE;
+extern const char * RES_FILES[];
 
 /* *************************
  * Util consts and enums 

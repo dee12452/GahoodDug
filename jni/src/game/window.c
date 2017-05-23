@@ -5,6 +5,7 @@
 #include "../headers/util.h"
 #include "../headers/input.h"
 #include "../headers/screen.h"
+#include "../headers/sprite.h"
 
 typedef struct Window {
     SDL_Window *win;
@@ -20,6 +21,7 @@ static Window * createWindow();
 static void destroyWindow(Window *);
 static void runWindow(Window *);
 static void render(Window *);
+static void loadTextures(Window *);
 
 void 
 gahood_windowStart() {
@@ -116,6 +118,7 @@ createWindow() {
     
     window->running = true;
     window->fpsTimer = gahood_timerCreate(1000 / WINDOW_FPS);
+    loadTextures(window);
 
     return window;
 }
@@ -141,4 +144,9 @@ destroyWindow(Window *w) {
         }
         free(w);
     }
+}
+
+void 
+loadTextures(Window *w) {
+    gahood_spriteLoadSpriteSheets(w->winRenderer);
 }

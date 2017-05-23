@@ -9,7 +9,7 @@ struct SDL_Renderer;
 struct SDL_Rect;
 struct SDL_TouchFingerEvent;
 
-ControlStick * gahood_controlStickCreate(struct SDL_Renderer *, int, int);
+ControlStick * gahood_controlStickCreate(int, int);
 void gahood_controlStickDestroy(ControlStick *);
 void gahood_controlStickDraw(struct SDL_Renderer *, ControlStick *);
 void gahood_controlStickTouch(ControlStick *, const struct SDL_TouchFingerEvent);
