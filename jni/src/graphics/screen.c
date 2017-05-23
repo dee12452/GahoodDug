@@ -5,6 +5,7 @@
 #include "../headers/util.h"
 #include "../headers/sprite.h"
 #include "../headers/buttons.h"
+#include "../headers/fileUtil.h"
 
 typedef struct Screen {
     Sprite **sprites;
@@ -18,16 +19,7 @@ typedef struct Screen {
 static Screen *screen = NULL;
 
 static void deleteScreenSprites();
-
-void
-gahood_screenCreate(int numOfSprites, Sprite **sprites, ControlStick *controller) {
-    if(screen) {
-        deleteScreenSprites();
-        screen->numOfSprites = numOfSprites;
-        screen->sprites = sprites;
-        screen->controller = controller;
-    }
-}
+static void gahood_screenSpritesCreate();
 
 void
 gahood_screenDraw(SDL_Renderer *r) {
@@ -36,12 +28,7 @@ gahood_screenDraw(SDL_Renderer *r) {
             /* Log this */
             SDL_Log("Waiting to lock the drawing thread\n");
         }
-        switch(screen->screenState) {
-            default: {
-                screen->needsNewSprites = false;
-                break;
-            }
-        }
+        
         SDL_UnlockMutex(screen->mutex);
     }
     else {
@@ -75,7 +62,7 @@ gahood_screenUpdate(GameState state) {
 void
 gahood_screenInit() {
     if(!screen) {
-        screen = malloc(sizeof(Screen));
+        screen = (Screen *) malloc(sizeof(Screen));
         screen->mutex = SDL_CreateMutex();
         screen->numOfSprites = 0;
         screen->sprites = NULL;
@@ -110,6 +97,27 @@ deleteScreenSprites() {
     if(screen->controller) {
         gahood_controlStickDestroy(screen->controller);
         screen->controller = NULL;
+    }
+}
+
+void
+gahood_screenSpritesCreate() {
+    if(screen) {
+        deleteScreenSprites();
+        SDL_RWops *in = NULL;
+        if(screen->screenState == GAME_STATE_PLAY) {
+            in = gahood_fileUtilOpenFile("screens/PlayScreenInfo.txt");
+        }
+        else {
+            return;
+        }
+        char *line = gahood_fileUtilReadLine(in);
+        while(line != NULL) {
+            free(line);
+            line = gahood_fileUtilReadLine(in);
+        }
+        SDL_FreeRW(in);
+        in = NULL;
     }
 }
 

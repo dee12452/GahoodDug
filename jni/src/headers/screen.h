@@ -6,7 +6,6 @@ struct SDL_Renderer;
 struct Sprite;
 enum GameState;
 
-void gahood_screenCreate(int, struct Sprite **, struct ControlStick *);
 void gahood_screenInit();
 void gahood_screenDraw(struct SDL_Renderer *);
 void gahood_screenUpdate(enum GameState);

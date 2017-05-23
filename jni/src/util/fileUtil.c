@@ -18,7 +18,17 @@ gahood_fileUtilOpenFile(const char *file) {
 
 char *
 gahood_fileUtilReadLine(SDL_RWops *in) {
-    char *line;
+    char *line = NULL;
     const uint8_t maxLineSize = 250;
+    char buffer[1];
+    SDL_RWread(in, buffer, 1, 1);
+    while(buffer[0] != '\n' && buffer[0] != '\0') {
+        if(line == NULL) {
+            line = (char *) malloc(sizeof(char) * maxLineSize);
+            strcpy(line, buffer);
+            continue;
+        }
+        strcat(line, buffer);
+    }
     return line;
 }
