@@ -29,6 +29,7 @@ gahood_screenDraw(SDL_Renderer *r) {
             SDL_Log("Waiting to lock the drawing thread\n");
         }
         gahood_screenSpritesCreate();
+        screen->needsNewSprites = false;
         SDL_UnlockMutex(screen->mutex);
     }
     else {
@@ -105,18 +106,29 @@ gahood_screenSpritesCreate() {
     if(screen) {
         deleteScreenSprites();
         SDL_RWops *in = NULL;
-        if(screen->screenState == GAME_STATE_PLAY) {
-            //in = gahood_fileUtilOpenFile("screens/PlayScreenInfo.txt");
+        if(screen->screenState == GAME_STATE_MENU) {
+            in = gahood_fileUtilOpenFile("screen/MenuScreen.txt");
         }
         if(!in) {
             return;
         }
+        /* FOR TESTING PURPOSES
         char *line = gahood_fileUtilReadLine(in);
         while(line != NULL) {
+            int i = 0;
+            char *word = gahood_fileUtilGetWordFromLine(line, i);
+            while(word != NULL) {
+                int val = gahood_utilStringToInt(word);
+                SDL_Log("********** IT'S AN INT! %d *********\n", val);
+                free(word);
+                i++;
+                word = gahood_fileUtilGetWordFromLine(line, i);
+            }
             free(line);
             line = gahood_fileUtilReadLine(in);
         }
-        SDL_FreeRW(in);
+        * END TEST */ 
+        SDL_RWclose(in);
         in = NULL;
     }
 }

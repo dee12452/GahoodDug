@@ -49,7 +49,7 @@ init() {
     if(IMG_Init(IMG_INIT_FLAGS) < 0) {
         gahood_utilFatalSDLError("Failed to init SDL IMG");
     }
-    gameState = GAME_STATE_PLAY;
+    gameState = GAME_STATE_MENU;
     if(pthread_create(&gameThread, NULL, update, NULL) < 0) {
         gahood_utilFatalError("Failed to create the game thread");
     }

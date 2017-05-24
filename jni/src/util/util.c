@@ -28,3 +28,27 @@ gahood_utilFatalSDLError(const char *message) {
     printf("%s\n", SDL_GetError());
     gahood_utilFatalError(message);
 }
+
+int
+gahood_utilStringToInt(char *str) {
+    if(!str) {
+        return -1;
+    }
+    unsigned int i = 0;
+    const unsigned int ASCII_MIN = 48;
+    const unsigned int ASCII_MAX = 57;
+    while(str[i] != '\0') {
+        if((unsigned int) str[i] < ASCII_MIN || (unsigned int) str[i] > ASCII_MAX) {
+            return -1;
+        }
+        i++;
+    }
+    int ret = 0;
+    i = 0;
+    while(str[i] != '\0') {
+        ret *= 10;
+        ret += (int) (str[i] - '0');
+        i++;
+    }
+    return ret;
+}

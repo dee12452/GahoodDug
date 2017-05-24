@@ -35,6 +35,7 @@ extern const char * RES_FILES[];
  * *************************
  */
 typedef enum GameState {
+    GAME_STATE_MENU,
     GAME_STATE_PLAY,
     GAME_STATE_NONE,
     GAME_STATE_EXIT
@@ -59,5 +60,7 @@ extern const uint32_t IMG_INIT_FLAGS;
  */
 void gahood_utilFatalError(const char *);
 void gahood_utilFatalSDLError(const char *);
+
+int gahood_utilStringToInt(char *);
 
 #endif
