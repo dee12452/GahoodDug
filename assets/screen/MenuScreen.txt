@@ -1,2 +1,2 @@
-Sprite 0 None None
+Sprite 0 None
 Sprite 1 100 100 100 100 100 100 100 100

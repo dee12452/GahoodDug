@@ -121,56 +121,12 @@ gahood_screenSpritesCreate() {
             return;
         }
         
-        /* Number of sprites to make */
-        int spriteNum = 0;
-        
         /* Read the given file line by line */
         char *line = gahood_fileUtilReadLine(in);
         while(line != NULL) {
-
-            /* Read each line word by word */
-            char *word = gahood_fileUtilGetWordFromLine(line, 0);
-            for(int i = 1; word != NULL; i++) {
-                if(gahood_utilStringEquals(word, WORD_SPRITE)) {
-                    spriteNum++;
-                }
-                else if(gahood_utilStringEquals(word, WORD_NONE)) {
-
-                }
-                else if(gahood_utilStringToInt(word) != -1) {
-
-                }
-                else {
-                    char message[255];
-                    strcpy(message, "******************* FAILED TO PARSE FILE: ");
-                    strcat(message, "screen/MenuScreen.txt ********************");
-                    gahood_utilFatalError(message);
-                }
-                free(word);
-                word = gahood_fileUtilGetWordFromLine(line, i);
-            }
-            
             free(line);
             line = gahood_fileUtilReadLine(in);
         }
-
-        /* FOR FileUtil.c TESTING PURPOSES *
-        char *line = gahood_fileUtilReadLine(in);
-        while(line != NULL) {
-            int i = 0;
-            char *word = gahood_fileUtilGetWordFromLine(line, i);
-            while(word != NULL) {
-                int val = gahood_utilStringToInt(word);
-                SDL_Log("********** IT'S AN INT! %d *********\n", val);
-                free(word);
-                i++;
-                word = gahood_fileUtilGetWordFromLine(line, i);
-            }
-            free(line);
-            line = gahood_fileUtilReadLine(in);
-        }
-        * END TEST */ 
-
         SDL_RWclose(in);
         in = NULL;
     }
