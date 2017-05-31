@@ -2,6 +2,7 @@
 #define GAHOOD_UTIL_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /* *************************
  * Util macros
@@ -62,5 +63,6 @@ void gahood_utilFatalError(const char *);
 void gahood_utilFatalSDLError(const char *);
 
 int gahood_utilStringToInt(char *);
+bool gahood_utilStringEquals(const char *, const char *);
 
 #endif

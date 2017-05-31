@@ -7,6 +7,9 @@
 #include "../headers/buttons.h"
 #include "../headers/fileUtil.h"
 
+#define WORD_SPRITE "Sprite"
+#define WORD_NONE "None"
+
 typedef struct Screen {
     Sprite **sprites;
     int numOfSprites;
@@ -104,6 +107,11 @@ deleteScreenSprites() {
 void
 gahood_screenSpritesCreate() {
     if(screen) {
+
+        /*
+         * Open a file that describes how sprites are loaded 
+         * into the screen based upon the new game state
+         */
         deleteScreenSprites();
         SDL_RWops *in = NULL;
         if(screen->screenState == GAME_STATE_MENU) {
@@ -112,7 +120,41 @@ gahood_screenSpritesCreate() {
         if(!in) {
             return;
         }
-        /* FOR TESTING PURPOSES
+        
+        /* Number of sprites to make */
+        int spriteNum = 0;
+        
+        /* Read the given file line by line */
+        char *line = gahood_fileUtilReadLine(in);
+        while(line != NULL) {
+
+            /* Read each line word by word */
+            char *word = gahood_fileUtilGetWordFromLine(line, 0);
+            for(int i = 1; word != NULL; i++) {
+                if(gahood_utilStringEquals(word, WORD_SPRITE)) {
+                    spriteNum++;
+                }
+                else if(gahood_utilStringEquals(word, WORD_NONE)) {
+
+                }
+                else if(gahood_utilStringToInt(word) != -1) {
+
+                }
+                else {
+                    char message[255];
+                    strcpy(message, "******************* FAILED TO PARSE FILE: ");
+                    strcat(message, "screen/MenuScreen.txt ********************");
+                    gahood_utilFatalError(message);
+                }
+                free(word);
+                word = gahood_fileUtilGetWordFromLine(line, i);
+            }
+            
+            free(line);
+            line = gahood_fileUtilReadLine(in);
+        }
+
+        /* FOR FileUtil.c TESTING PURPOSES *
         char *line = gahood_fileUtilReadLine(in);
         while(line != NULL) {
             int i = 0;
@@ -128,6 +170,7 @@ gahood_screenSpritesCreate() {
             line = gahood_fileUtilReadLine(in);
         }
         * END TEST */ 
+
         SDL_RWclose(in);
         in = NULL;
     }

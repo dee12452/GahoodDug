@@ -52,3 +52,10 @@ gahood_utilStringToInt(char *str) {
     }
     return ret;
 }
+
+bool
+gahood_utilStringEquals(const char *str1, const char *str2) {
+    if(strcmp(str1, str2) == 0)
+        return true;
+    return false;
+}

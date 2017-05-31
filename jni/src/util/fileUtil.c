@@ -23,7 +23,7 @@ gahood_fileUtilReadLine(SDL_RWops *in) {
     const uint8_t maxLineSize = 250;
     char buffer[2];
     memset(buffer, 0, 1);
-    SDL_RWread(in, buffer, sizeof(buffer), 1);
+    SDL_RWread(in, buffer, sizeof(buffer) / 2, 1);
     buffer[1] = '\0';
     int read = 1;
     while(read != 0 && buffer[0] != '\n' && buffer[0] != '\0' && buffer[0] != EOF) {
