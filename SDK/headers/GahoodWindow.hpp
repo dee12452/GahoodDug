@@ -15,6 +15,13 @@ class GahoodWindow {
 public:
     GahoodWindow(const char *, int, int, uint32_t, int);
     ~GahoodWindow();
+    
+    void setFramesPerSecond(int) const;
+    bool shouldRender() const;
+    void render() const;
+    SDL_Renderer * getRenderer() const;
+    SDL_Window * getWindow() const;
+    SDL_Texture * getTexture() const;
 private:
     GahoodTimer *fpsTimer;
     SDL_Window *win;

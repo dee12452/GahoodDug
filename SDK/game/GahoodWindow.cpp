@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "../headers/GahoodTimer.hpp"
+#include "../headers/GahoodUtil.hpp"
 
 GahoodWindow::GahoodWindow(const char *title, int width, int height, uint32_t flags, int fps) {
     
@@ -18,6 +19,7 @@ GahoodWindow::GahoodWindow(const char *title, int width, int height, uint32_t fl
             flags);
     if(win == NULL) {
         //Error
+        GahoodUtil::fatalSDLError("Failed to create the window");
     }
 
     //Create the renderer
@@ -26,6 +28,11 @@ GahoodWindow::GahoodWindow(const char *title, int width, int height, uint32_t fl
             SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
     if(winRenderer == NULL) {
         //Error
+        GahoodUtil::fatalSDLError("Failed to create the window renderer");
+    }
+    //Set draw color to black
+    if(SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, 255) < 0) {
+        GahoodUtil::fatalSDLError("Failed to set renderer color");
     }
 
     //Create the texture
@@ -36,6 +43,7 @@ GahoodWindow::GahoodWindow(const char *title, int width, int height, uint32_t fl
             height);
     if(winTexture == NULL) {
         //Error
+        GahoodUtil::fatalSDLError("Failed to create the window texture");
     }
 }
 
@@ -55,5 +63,54 @@ GahoodWindow::~GahoodWindow() {
     if(win != NULL) {
         SDL_DestroyWindow(win);
         win = NULL;
+    }
+}
+
+bool GahoodWindow::shouldRender() const {
+    return fpsTimer->check();
+}
+
+void GahoodWindow::render() const {
+    if(SDL_RenderClear(winRenderer) < 0) {
+        GahoodUtil::fatalSDLError("Failed to clear the renderer");
+    }
+
+    if(SDL_SetRenderTarget(winRenderer, winTexture) < 0) {
+        GahoodUtil::fatalSDLError("Failed to change the render target");
+    }
+
+    if(SDL_RenderClear(winRenderer) < 0) {
+        GahoodUtil::fatalSDLError("Failed to clear the renderer");
+    }
+
+    /* Draw desired stuff here */
+
+    if(SDL_SetRenderTarget(winRenderer, NULL) < 0) {
+        GahoodUtil::fatalSDLError("Failed to change the render target");
+    }
+
+    if(SDL_RenderCopy(winRenderer, winTexture, NULL, NULL) < 0) {
+        GahoodUtil::fatalSDLError("Failed to draw texture to screen");
+    } 
+
+    SDL_RenderPresent(winRenderer);
+}
+
+SDL_Window * GahoodWindow::getWindow() const {
+    return win;
+}
+
+SDL_Renderer * GahoodWindow::getRenderer() const {
+    return winRenderer;
+}
+
+SDL_Texture * GahoodWindow::getTexture() const {
+    return winTexture;
+}
+
+void GahoodWindow::setFramesPerSecond(int fps) const {
+    if(fpsTimer != NULL) {
+        unsigned int fpsMs = 1000 / fps;
+        fpsTimer->setTargetMs(fpsMs);
     }
 }
