@@ -19,7 +19,7 @@ public:
     virtual void start(const char *, int, int, uint32_t);
 
     GahoodWindow * getGameWindow() const;
-    virtual void update() = 0;
+    void update();
     void setGameLoopDelayMs(uint32_t);
     void setRenderLoopDelayMs(uint32_t);
     uint32_t getGameLoopDelayMs() const;
@@ -28,8 +28,9 @@ public:
 
 protected:
     int gameState;
-    virtual void onRender(SDL_Renderer *) = 0;
+    virtual void onUpdate() = 0;
     virtual void onPollEvent(SDL_Event) = 0;
+    virtual void onDraw(SDL_Renderer *) = 0;
     virtual bool isRendering() const = 0;
 
 private:

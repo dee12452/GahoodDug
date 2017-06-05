@@ -1,6 +1,7 @@
 #include "../headers/BaseGahoodGame.hpp"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <pthread.h>
 #include "../headers/GahoodWindow.hpp"
 #include "../headers/GahoodUtil.hpp"
@@ -36,6 +37,8 @@ void BaseGahoodGame::init(const char *gameTitle,
         int width,
         int height,
         uint32_t settings) {
+    SDL_Init(settings);
+    IMG_Init(IMG_INIT_PNG);
     running = true;
     window = new GahoodWindow(gameTitle,
             width,
@@ -50,9 +53,6 @@ void BaseGahoodGame::init(const char *gameTitle,
 
 void BaseGahoodGame::run() {
     while(isRendering() && !didExit) {
-        if(window->shouldRender()) {
-            window->render();
-        }
         SDL_Event e;
         while(SDL_PollEvent(&e)) {
             if(e.type == SDL_QUIT) {
@@ -60,6 +60,11 @@ void BaseGahoodGame::run() {
                 break;
             }
             onPollEvent(e);
+        }
+        if(window->shouldRender()) {
+            window->initRender();
+            onDraw(window->getRenderer());
+            window->draw();
         }
         SDL_Delay(renderLoopDelay);
     }
@@ -75,6 +80,12 @@ void BaseGahoodGame::exit() {
         delete window;
         window = NULL;
     }
+    IMG_Quit();
+    SDL_Quit();
+}
+
+void BaseGahoodGame::update() {
+    onUpdate();
 }
 
 void * runGameThread(void *data) {

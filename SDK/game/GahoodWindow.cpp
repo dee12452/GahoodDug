@@ -70,7 +70,7 @@ bool GahoodWindow::shouldRender() const {
     return fpsTimer->check();
 }
 
-void GahoodWindow::render() const {
+void GahoodWindow::initRender() const {
     if(SDL_RenderClear(winRenderer) < 0) {
         GahoodUtil::fatalSDLError("Failed to clear the renderer");
     }
@@ -82,7 +82,9 @@ void GahoodWindow::render() const {
     if(SDL_RenderClear(winRenderer) < 0) {
         GahoodUtil::fatalSDLError("Failed to clear the renderer");
     }
+}
 
+void GahoodWindow::draw() const {
     /* Draw desired stuff here */
 
     if(SDL_SetRenderTarget(winRenderer, NULL) < 0) {

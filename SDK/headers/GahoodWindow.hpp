@@ -18,7 +18,8 @@ public:
     
     void setFramesPerSecond(int) const;
     bool shouldRender() const;
-    void render() const;
+    void initRender() const;
+    void draw() const;
     SDL_Renderer * getRenderer() const;
     SDL_Window * getWindow() const;
     SDL_Texture * getTexture() const;
