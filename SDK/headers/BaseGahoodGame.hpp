@@ -7,8 +7,7 @@
 class GahoodWindow;
 
 struct SDL_Renderer;
-struct SDL_Event;
-struct pthread_t;
+union SDL_Event;
 ////////////////////////
 
 class BaseGahoodGame {
@@ -39,7 +38,7 @@ private:
     void exit();
 
     bool running, didExit;
-    pthread_t *gameThread;
+    long unsigned int *gameThread;
     GahoodWindow *window;
     uint32_t gameLoopDelay;
     uint32_t renderLoopDelay;
