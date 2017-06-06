@@ -13,7 +13,7 @@ public:
     GahoodSprite(const std::string &);
     GahoodSprite(int, int, int, int, int, int, int, int);
     GahoodSprite(const std::string &, int, int, int, int, int, int, int, int);
-    ~GahoodSprite();
+    virtual ~GahoodSprite();
 
     void setTextureId(const std::string &);
     void setSourceDimensions(int, int, int, int);

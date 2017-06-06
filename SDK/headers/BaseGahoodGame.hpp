@@ -13,7 +13,7 @@ union SDL_Event;
 class BaseGahoodGame {
 public:
     BaseGahoodGame();
-    ~BaseGahoodGame();
+    virtual ~BaseGahoodGame();
     
     virtual void start(const char *, int, int, uint32_t);
 
