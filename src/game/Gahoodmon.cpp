@@ -6,6 +6,7 @@
 #include "../headers/Constants.hpp"
 #include "../headers/Timer.hpp"
 #include "../headers/Util.hpp"
+#include "../headers/ImageUtil.hpp"
 
 Gahoodmon::Gahoodmon() {
     window = NULL;
@@ -47,6 +48,7 @@ void Gahoodmon::update() {
 }
 
 void Gahoodmon::deinit() {
+    ImageUtil::deleteInstance();
     if(fpsTimer != NULL) {
         delete fpsTimer;
         fpsTimer = NULL;

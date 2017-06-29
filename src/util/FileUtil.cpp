@@ -2,6 +2,8 @@
 
 #include <SDL2/SDL.h>
 #include <sstream>
+#include <dirent.h>
+#include "../headers/Util.hpp"
 
 std::vector<std::string> FileUtil::readFile(const std::string &file) {
     std::vector<std::string> lines;
@@ -37,4 +39,24 @@ std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
         words.push_back(word);
     }
     return words;
+}
+
+std::vector<std::string> FileUtil::getImageFiles(const char *path) {
+    std::vector<std::string> files;
+    DIR *dir;
+    dir = opendir(path);
+    if(dir != NULL) {
+        dirent *fileName = readdir(dir);
+        while(fileName != NULL) {
+            files.push_back(std::string(fileName->d_name));
+            fileName = readdir(dir);
+        }
+        (void) closedir(dir);
+    }
+    else {
+        std::string message = "Failed to find images in path: ";
+        message += path;
+        Util::fatalError(message.c_str());
+    }
+    return files;
 }
