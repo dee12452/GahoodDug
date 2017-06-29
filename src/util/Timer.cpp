@@ -1,18 +1,18 @@
-#include "../headers/GahoodTimer.hpp"
+#include "../headers/Timer.hpp"
 
-GahoodTimer::GahoodTimer(unsigned int ms) {
+Timer::Timer(unsigned int ms) {
     setTargetMs(ms);
     reset();
 }
 
-GahoodTimer::~GahoodTimer() {}
+Timer::~Timer() {}
 
-void GahoodTimer::reset() {
+void Timer::reset() {
     start = getCurrentMs();
     finish = getCurrentMs();
 }
 
-bool GahoodTimer::check() {
+bool Timer::check() {
     finish = getCurrentMs();
     unsigned int startMs = start.count();
     unsigned int finishMs = finish.count();
@@ -23,14 +23,14 @@ bool GahoodTimer::check() {
     return false;
 }
 
-void GahoodTimer::setTargetMs(unsigned int ms) {
+void Timer::setTargetMs(unsigned int ms) {
     targetMs = ms;
 }
 
-unsigned int GahoodTimer::getTargetMs() const {
+unsigned int Timer::getTargetMs() const {
     return targetMs;
 }
 
-std::chrono::milliseconds GahoodTimer::getCurrentMs() const {
+std::chrono::milliseconds Timer::getCurrentMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
 }
