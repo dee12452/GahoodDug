@@ -46,6 +46,12 @@ void ImageUtil::setImageFolder(const char *path) {
     imagePath = path;
 }
 
+bool ImageUtil::hasLoadedAllImages() const {
+    if(currentImage == imageIds.size())
+        return true;
+    return false;
+}
+
 void ImageUtil::loadNextImage(SDL_Renderer *renderer) {
     if(currentImage == imageIds.size())
         return;
