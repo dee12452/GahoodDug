@@ -3,10 +3,10 @@
 
 #include <chrono>
 
-class Timer {
+class GahoodTimer {
 public:
-    Timer(unsigned int);
-    ~Timer();
+    GahoodTimer(unsigned int);
+    ~GahoodTimer();
 
     void reset();
     bool check();

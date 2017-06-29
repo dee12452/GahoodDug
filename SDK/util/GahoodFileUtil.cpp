@@ -1,9 +1,9 @@
-#include "../headers/FileUtil.hpp"
+#include "../headers/GahoodFileUtil.hpp"
 
 #include <SDL2/SDL.h>
 #include <sstream>
 
-std::vector<std::string> FileUtil::readFile(const std::string &file) {
+std::vector<std::string> GahoodFileUtil::readFile(const std::string &file) {
     std::vector<std::string> lines;
     SDL_RWops *ctx = SDL_RWFromFile(file.c_str(), "rb");
     if(ctx != NULL) {
@@ -29,7 +29,7 @@ std::vector<std::string> FileUtil::readFile(const std::string &file) {
     return lines;
 }
 
-std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
+std::vector<std::string> GahoodFileUtil::getWordsFromString(const std::string &line) {
     std::vector<std::string> words;
     std::string word;
     std::istringstream stream(line);
