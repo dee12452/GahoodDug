@@ -1,8 +1,10 @@
 #ifndef GAHOODMON_HPP
 #define GAHOODMON_HPP
 
+struct SDL_Thread;
 class Window;
 class Timer;
+class BaseScreen;
 
 class Gahoodmon {
 public:
@@ -10,6 +12,7 @@ public:
     ~Gahoodmon();
 
     void run();
+    void runInBackground();
     bool isRunning() const;
 
 private:
@@ -17,6 +20,8 @@ private:
     bool running;
     Window *window;
     Timer *fpsTimer;
+    SDL_Thread *backgroundThread;
+    BaseScreen *currentScreen;
 
     //Member functions//
     void init();

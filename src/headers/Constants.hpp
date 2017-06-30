@@ -26,6 +26,7 @@ public:
     static const uint8_t GAME_LOOP_DELAY;
     static const uint8_t RENDER_LOOP_DELAY;
     static const uint8_t TARGET_FPS;
+    static const char * const GAME_THREAD_NAME;
     /******************
      ******************/
 
