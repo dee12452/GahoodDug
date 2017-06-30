@@ -4,13 +4,14 @@
 struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Texture;
+class BaseScreen;
 
 class Window {
 public:
     Window();
     ~Window();
 
-    void render();
+    void render(BaseScreen *);
 private:
     bool loadImages;
     SDL_Window *win;

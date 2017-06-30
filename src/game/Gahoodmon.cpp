@@ -57,11 +57,11 @@ void Gahoodmon::update() {
             running = false;
         }
     }
-    if(fpsTimer->check()) {
-        //Render to the window
-        window->render();
-    }
     if(currentScreen != NULL) {
+        if(fpsTimer->check()) {
+            //Render to the window
+            window->render(currentScreen);
+        }
         currentScreen->update();
     }
 }
