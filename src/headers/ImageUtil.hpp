@@ -15,6 +15,7 @@ public:
 
     void setImageFolder(const char *);
     void loadNextImage(SDL_Renderer *);
+    void loadImage(SDL_Renderer *, const std::string &);
     bool hasLoadedAllImages() const;
     SDL_Texture * getImage(const std::string &) const;
 

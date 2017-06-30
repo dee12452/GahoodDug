@@ -1,6 +1,7 @@
 #include "../headers/Window.hpp"
 
 #include <SDL2/SDL.h>
+#include "../headers/ImageUtil.hpp"
 #include "../headers/Constants.hpp"
 #include "../headers/Util.hpp"
 
@@ -21,6 +22,8 @@ Window::Window() {
     if(winTexture == NULL) {
         Util::fatalSDLError("Failed to initialize the window texture");
     }
+
+    loadImages = true;
 }
 
 Window::~Window() {
@@ -39,6 +42,16 @@ Window::~Window() {
 }
 
 void Window::render() {
+    //Check to see if any images need loading
+    if(loadImages) {
+        if(ImageUtil::getInstance()->hasLoadedAllImages()) {
+            loadImages = false;
+        }
+        else {
+            ImageUtil::getInstance()->loadNextImage(winRenderer);
+        }
+    }
+    
     //Clear the texture from previous rendering
     if(SDL_SetRenderTarget(winRenderer, winTexture) < 0) {
         Util::fatalSDLError("Failed to switch renderer to texture");

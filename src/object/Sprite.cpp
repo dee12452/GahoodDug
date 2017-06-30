@@ -1,17 +1,25 @@
 #include "../headers/Sprite.hpp"
 #include <SDL2/SDL.h>
+#include "../headers/ImageUtil.hpp"
+#include "../headers/Timer.hpp"
 
-Sprite::Sprite() {
-    src = NULL;
-    dst = NULL;
+Sprite::Sprite(const std::string &id) {
+    this->src = NULL;
+    this->dst = NULL;
+    this->timer = NULL;
+    setImageId(id);
 }
 
-Sprite::Sprite(int srcX, int srcY, int srcW, int srcH, int dstX, int dstY, int dstW, int dstH) {
+Sprite::Sprite(const std::string &id, 
+        int srcX, int srcY, int srcW, int srcH, 
+        int dstX, int dstY, int dstW, int dstH) : Sprite(id) {
     setSourceRect(srcX, srcY, srcW, srcH);
     setDestinationRect(dstX, dstY, dstW, dstH);
 }
 
-Sprite::Sprite(const SDL_Rect &srcR, const SDL_Rect &dstR) {
+Sprite::Sprite(const std::string &id, 
+        const SDL_Rect &srcR, 
+        const SDL_Rect &dstR) : Sprite(id) {
     setSourceRect(srcR);
     setDestinationRect(dstR);
 }
@@ -25,12 +33,36 @@ Sprite::~Sprite() {
         delete dst;
         dst = NULL;
     }
+    if(timer != NULL) {
+        delete timer;
+        timer = NULL;
+    }
 }
 
 void Sprite::draw(SDL_Renderer *renderer) {
-    //SDL_RenderCopy(renderer, /* Get texture here! */, src, dst);
+    SDL_Texture *texture = ImageUtil::getInstance()->getImage(id);
+    SDL_RenderCopy(renderer, texture, src, dst);
+    texture = NULL;
 }
 
+void Sprite::update() {
+    if(timer != NULL) {
+        if(timer->check()) {
+            onUpdate();
+        }
+    }
+    else {
+        onUpdate();
+    }
+}
+
+void Sprite::setUpdateTimer(unsigned int timerMs) {
+    timer = new Timer(timerMs);
+}
+
+void Sprite::setImageId(const std::string &id) {
+    this->id = id;
+}
 void Sprite::setX(int x) {
     if(dst == NULL) {
         setDestinationRect(x, 0, 0, 0);
@@ -64,6 +96,7 @@ void Sprite::setHeight(int h) {
     }
 }
 
+std::string Sprite::getImageId() const { return this->id; }
 int Sprite::getX() const { return dst == NULL ? 0 : dst->x; }
 int Sprite::getY() const { return dst == NULL ? 0 : dst->y; }
 int Sprite::getWidth() const { return dst == NULL ? 0 : dst->w; }

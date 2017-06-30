@@ -52,12 +52,29 @@ bool ImageUtil::hasLoadedAllImages() const {
     return false;
 }
 
+void ImageUtil::loadImage(SDL_Renderer *renderer, const std::string &id) {
+    std::map<std::string, SDL_Texture *>::iterator it = images.find(id);
+    if(it == images.end()) {
+        Util::fatalError(("Failed to load image: " + id).c_str());
+    }
+    else {
+        if(it->second == NULL) {
+            it->second = IMG_LoadTexture(renderer, (imagePath + it->first).c_str());
+        }
+        else
+            Util::log("Warning: Tried to load an image that was already loaded.");
+    }
+}
+
 void ImageUtil::loadNextImage(SDL_Renderer *renderer) {
     if(currentImage == imageIds.size())
         return;
     std::map<std::string, SDL_Texture *>::iterator it = images.find(imageIds[currentImage]);
     if(it != images.end()) {
-        it->second = IMG_LoadTexture(renderer, (imagePath + it->first).c_str());
+        if(it->second == NULL)
+            it->second = IMG_LoadTexture(renderer, (imagePath + it->first).c_str());
+        else
+            Util::log("Warning: Tried to load an image that was already loaded.");
     }
     else {
         Util::fatalError(("Failed to load image: " + imageIds[currentImage]).c_str());

@@ -12,6 +12,7 @@ public:
 
     void render();
 private:
+    bool loadImages;
     SDL_Window *win;
     SDL_Renderer *winRenderer;
     SDL_Texture *winTexture;
