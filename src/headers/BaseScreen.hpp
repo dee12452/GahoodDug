@@ -11,10 +11,12 @@ public:
     BaseScreen();
     virtual ~BaseScreen();
     void update();
+    void updateInBackground();
     std::vector<Sprite *> getSprites() const;
 
 protected:
-    virtual void onUpdate();
+    virtual void onUpdate() = 0;
+    virtual void onUpdateInBackground() = 0;
 
     std::vector<Sprite *> sprites;
 };

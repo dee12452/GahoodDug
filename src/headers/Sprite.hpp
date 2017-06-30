@@ -17,6 +17,7 @@ public:
 
     virtual void draw(SDL_Renderer *);
     void update();
+    virtual void updateInBackground() {};
 
     SDL_Rect * getSourceRect() const;
     SDL_Rect * getDestinationRect() const;

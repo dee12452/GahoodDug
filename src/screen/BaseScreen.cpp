@@ -22,6 +22,15 @@ void BaseScreen::update() {
     onUpdate();
 }
 
+void BaseScreen::updateInBackground() { 
+    for(unsigned int i = 0; i < sprites.size(); i++) {
+        if(sprites[i] != NULL) {
+            sprites[i]->updateInBackground();
+        }
+    }
+    onUpdateInBackground();
+}
+
 std::vector<Sprite *> BaseScreen::getSprites() const {
     return sprites;
 }
