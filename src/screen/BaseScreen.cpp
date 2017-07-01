@@ -1,4 +1,6 @@
 #include "../headers/BaseScreen.hpp"
+#include <SDL2/SDL.h>
+#include "../headers/Gahoodmon.hpp"
 #include "../headers/Sprite.hpp"
 
 BaseScreen::BaseScreen() {}
@@ -29,6 +31,11 @@ void BaseScreen::updateInBackground() {
         }
     }
     onUpdateInBackground();
+}
+
+void BaseScreen::handleInput(Gahoodmon *game, const SDL_Event &e) {
+    //Gahoodmon handles quit event//
+    onInput(game, e);
 }
 
 std::vector<Sprite *> BaseScreen::getSprites() const {

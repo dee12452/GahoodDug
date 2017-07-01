@@ -14,10 +14,13 @@ public:
     void run();
     void runInBackground();
     bool isRunning() const;
+    void quit();
+    void requestNewScreen(BaseScreen *);
 
 private:
     //Member variables//
     bool running;
+    bool newScreen;
     Window *window;
     Timer *fpsTimer;
     SDL_Thread *backgroundThread;

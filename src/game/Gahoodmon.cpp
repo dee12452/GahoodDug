@@ -7,7 +7,7 @@
 #include "../headers/Timer.hpp"
 #include "../headers/Util.hpp"
 #include "../headers/ImageUtil.hpp"
-#include "../headers/BaseScreen.hpp"
+#include "../headers/IntroScreen.hpp"
 
 static int runInBackgroundThread(void *);
 
@@ -42,12 +42,14 @@ void Gahoodmon::init() {
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
     window = new Window();
+    ImageUtil::getInstance()->setImageFolder(Constants::GAME_IMAGE_FOLDER);
     running = true;
 
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
     if(backgroundThread == NULL) {
         Util::fatalSDLError("Could not create the background thread");
     }
+    requestNewScreen(new IntroScreen());
 }
 
 void Gahoodmon::update() {
@@ -55,6 +57,9 @@ void Gahoodmon::update() {
     while(SDL_PollEvent(&e)) {
         if(e.type == SDL_QUIT) {
             running = false;
+        }
+        else if(currentScreen != NULL) {
+            currentScreen->handleInput(this, e);
         }
     }
     if(currentScreen != NULL) {
@@ -96,6 +101,19 @@ void Gahoodmon::deinit() {
     IMG_Quit();
     SDL_Quit();
 }
+
+void Gahoodmon::requestNewScreen(BaseScreen *screen) {
+    if(currentScreen == NULL) {
+        currentScreen = screen;
+    }
+    else {
+        currentScreen->stop();
+        delete currentScreen;
+        currentScreen = screen;
+    }
+}
+
+void Gahoodmon::quit() { running = false; }
 
 int runInBackgroundThread(void *data) {
     Gahoodmon *game = static_cast<Gahoodmon *> (data);

@@ -2,6 +2,7 @@
 #define CONSTANTS_HPP
 
 #include <stdint.h>
+#include <string>
 
 class Constants {
 public:
@@ -27,9 +28,17 @@ public:
     static const uint8_t RENDER_LOOP_DELAY;
     static const uint8_t TARGET_FPS;
     static const char * const GAME_THREAD_NAME;
+    static const char * const GAME_IMAGE_FOLDER;
     /******************
      ******************/
 
+    
+    /*
+     **********************************
+     * Image Ids
+     **********************************
+     */
+    static const std::string IMAGE_ID_TEST;
 private:
     Constants();
     ~Constants();
