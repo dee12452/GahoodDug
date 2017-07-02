@@ -78,17 +78,18 @@ bool Gahoodmon::isRunning() const {
 void Gahoodmon::deinit() {
     int threadRetVal;
     SDL_WaitThread(backgroundThread, &threadRetVal);
+    backgroundThread = NULL;
     if(threadRetVal != 0) {
         char val = '0' + threadRetVal;
         std::string message = "Warning: Background thread returned with an invalid value of ";
         message += val;
         Util::log(message);
     }
-    ImageUtil::deleteInstance();
     if(currentScreen != NULL) {
         delete currentScreen;
         currentScreen = NULL;
     }
+    ImageUtil::deleteInstance();
     if(fpsTimer != NULL) {
         delete fpsTimer;
         fpsTimer = NULL;
