@@ -34,3 +34,10 @@ unsigned int Timer::getTargetMs() const {
 std::chrono::milliseconds Timer::getCurrentMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
 }
+
+unsigned int Timer::getElapsedMs() {
+    finish = getCurrentMs();
+    unsigned int finishMs = finish.count();
+    unsigned int startMs = start.count();
+    return finishMs - startMs;
+};

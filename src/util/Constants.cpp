@@ -19,3 +19,8 @@ const char * const Constants::GAME_IMAGE_FOLDER = "../res/";
 /*
  * IMAGE IDS */
 const std::string Constants::IMAGE_ID_TEST = "test.png";
+
+/*
+ * SPRITE CONST */
+const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
+const uint8_t Constants::SPRITE_ALPHA_NONE = 0;

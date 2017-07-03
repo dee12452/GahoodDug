@@ -13,6 +13,7 @@ public:
     
     void setTargetMs(unsigned int);
     unsigned int getTargetMs() const;
+    unsigned int getElapsedMs();
 private:
     std::chrono::milliseconds getCurrentMs() const;
     std::chrono::milliseconds start;

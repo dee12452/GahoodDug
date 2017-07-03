@@ -8,6 +8,7 @@
 #include "../headers/Util.hpp"
 #include "../headers/ImageUtil.hpp"
 #include "../headers/IntroScreen.hpp"
+#include "../headers/Animator.hpp"
 
 static int runInBackgroundThread(void *);
 
@@ -89,6 +90,7 @@ void Gahoodmon::deinit() {
         delete currentScreen;
         currentScreen = NULL;
     }
+    Animator::deleteInstance();
     ImageUtil::deleteInstance();
     if(fpsTimer != NULL) {
         delete fpsTimer;

@@ -7,6 +7,7 @@ struct SDL_Texture;
 class Timer;
 
 #include <string>
+#include <stdint.h>
 
 class Sprite {
 public:
@@ -28,6 +29,7 @@ public:
 
     void setUpdateTimer(unsigned int);
     void setImageId(const std::string &);
+    void setAlpha(uint8_t);
     void setX(int);
     void setY(int);
     void setWidth(int);
@@ -47,6 +49,7 @@ private:
     std::string id;
     SDL_Rect *src;
     SDL_Rect *dst;
+    uint8_t alpha;
 };
 
 #endif

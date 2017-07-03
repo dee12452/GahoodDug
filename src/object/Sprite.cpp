@@ -2,11 +2,13 @@
 #include <SDL2/SDL.h>
 #include "../headers/ImageUtil.hpp"
 #include "../headers/Timer.hpp"
+#include "../headers/Constants.hpp"
 
 Sprite::Sprite(const std::string &id) {
     this->src = NULL;
     this->dst = NULL;
     this->timer = NULL;
+    this->alpha = Constants::SPRITE_ALPHA_FULL;
     setImageId(id);
 }
 
@@ -41,6 +43,7 @@ Sprite::~Sprite() {
 
 void Sprite::draw(SDL_Renderer *renderer) {
     SDL_Texture *texture = ImageUtil::getInstance()->getImage(id);
+    SDL_SetTextureAlphaMod(texture, alpha);
     SDL_RenderCopy(renderer, texture, src, dst);
     texture = NULL;
 }
@@ -94,6 +97,10 @@ void Sprite::setHeight(int h) {
     else {
         dst->h = h;
     }
+}
+
+void Sprite::setAlpha(uint8_t alpha) {
+    this->alpha = alpha;
 }
 
 std::string Sprite::getImageId() const { return this->id; }

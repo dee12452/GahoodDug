@@ -39,6 +39,14 @@ public:
      **********************************
      */
     static const std::string IMAGE_ID_TEST;
+    
+    /*
+     **********************************
+     * Sprite Constants
+     **********************************
+     */
+    static const uint8_t SPRITE_ALPHA_FULL;
+    static const uint8_t SPRITE_ALPHA_NONE;
 private:
     Constants();
     ~Constants();
