@@ -16,4 +16,5 @@ void IntroScreen::onUpdateInBackground() {}
 
 void IntroScreen::stop() {}
 
-void IntroScreen::onInput(Gahoodmon *, const SDL_Event &) {}
+void IntroScreen::onInput(Gahoodmon *, const SDL_Event &) {
+}

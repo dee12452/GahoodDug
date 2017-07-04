@@ -63,6 +63,7 @@ void Gahoodmon::update() {
             currentScreen->handleInput(this, e);
         }
     }
+    Animator::getInstance()->animateAnimations();
     if(currentScreen != NULL) {
         if(fpsTimer->check()) {
             //Render to the window
@@ -122,6 +123,7 @@ int runInBackgroundThread(void *data) {
     Gahoodmon *game = static_cast<Gahoodmon *> (data);
     while(game->isRunning()) {
         game->runInBackground();
+        SDL_Delay(Constants::GAME_LOOP_DELAY);
     }
     return 0;
 }
