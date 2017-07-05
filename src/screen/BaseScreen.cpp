@@ -15,6 +15,14 @@ BaseScreen::~BaseScreen() {
     sprites.clear();
 }
 
+void BaseScreen::start() {
+    onStart();
+}
+
+void BaseScreen::stop() {
+    onStop();
+}
+
 void BaseScreen::update() {
     for(unsigned int i = 0; i < sprites.size(); i++) {
         if(sprites[i] != NULL) {
@@ -36,6 +44,22 @@ void BaseScreen::updateInBackground() {
 void BaseScreen::handleInput(Gahoodmon *game, const SDL_Event &e) {
     //Gahoodmon handles quit event//
     onInput(game, e);
+}
+
+void BaseScreen::addSprite(Sprite *sprite) {
+    sprites.push_back(sprite);
+}
+
+void BaseScreen::removeSprite(Sprite *sprite) {
+    for(unsigned int i = 0; i < sprites.size(); i++) {
+        if(sprites[i] == sprite) {
+            delete sprites[i];
+            sprites[i] = NULL;
+            std::swap(sprites[i], sprites[sprites.size() - 1]);
+            sprites.pop_back();
+            break;
+        }
+    }
 }
 
 std::vector<Sprite *> BaseScreen::getSprites() const {

@@ -66,10 +66,8 @@ void Window::render(BaseScreen *screen) {
         Util::fatalSDLError("Failed to clear the texture renderer");
     }
 
-    //Draw the sprites to the texture here
-    for(unsigned int i = 0; i < screen->getSprites().size(); i++) {
-        screen->getSprites()[i]->draw(winRenderer);
-    }
+    //Draw the screen to the texture here
+    screen->drawScreen(winRenderer);
 
     //Clear the window from previous rendering and show the new frame
     if(SDL_SetRenderTarget(winRenderer, NULL) < 0) {

@@ -1,15 +1,14 @@
-#ifndef MAIN_MENU_SCREEN_HPP
-#define MAIN_MENU_SCREEN_HPP
+#ifndef MAP_SCREEN_HPP
+#define MAP_SCREEN_HPP
 
 #include "BaseScreen.hpp"
 
-class MainMenuScreen : public BaseScreen {
+class MapScreen : public BaseScreen {
 public:
-    MainMenuScreen();
-    ~MainMenuScreen() override;
+    MapScreen();
+    ~MapScreen() override;
 
     void drawScreen(SDL_Renderer *) override;
-
 protected:
     void onStart() override;
     void onStop() override;

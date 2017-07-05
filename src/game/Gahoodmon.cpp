@@ -115,6 +115,7 @@ void Gahoodmon::requestNewScreen(BaseScreen *screen) {
         delete currentScreen;
         currentScreen = screen;
     }
+    currentScreen->start();
 }
 
 void Gahoodmon::quit() { running = false; }

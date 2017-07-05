@@ -5,6 +5,12 @@ MainMenuScreen::MainMenuScreen() {}
 
 MainMenuScreen::~MainMenuScreen() {}
 
+void MainMenuScreen::drawScreen(SDL_Renderer *) {}
+
+void MainMenuScreen::onStart() {}
+
+void MainMenuScreen::onStop() {}
+
 void MainMenuScreen::onUpdate() {}
 
 void MainMenuScreen::onUpdateInBackground() {}
