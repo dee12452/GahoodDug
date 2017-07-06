@@ -47,6 +47,14 @@ public:
      */
     static const uint8_t SPRITE_ALPHA_FULL;
     static const uint8_t SPRITE_ALPHA_NONE;
+
+    /*
+     **********************************
+     * Sprite Constants
+     **********************************
+     */
+    static const int TILE_WIDTH;
+    static const int TILE_HEIGHT;
 private:
     Constants();
     ~Constants();

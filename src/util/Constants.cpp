@@ -24,3 +24,8 @@ const std::string Constants::IMAGE_ID_TEST = "test.png";
  * SPRITE CONST */
 const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
+
+/*
+ * TILE CONST */
+const int Constants::TILE_WIDTH = 32;
+const int Constants::TILE_HEIGHT = 32;

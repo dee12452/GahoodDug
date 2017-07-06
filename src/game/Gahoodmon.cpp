@@ -7,7 +7,7 @@
 #include "../headers/Timer.hpp"
 #include "../headers/Util.hpp"
 #include "../headers/ImageUtil.hpp"
-#include "../headers/IntroScreen.hpp"
+#include "../headers/MapScreen.hpp"
 #include "../headers/Animator.hpp"
 
 static int runInBackgroundThread(void *);
@@ -50,7 +50,7 @@ void Gahoodmon::init() {
     if(backgroundThread == NULL) {
         Util::fatalSDLError("Could not create the background thread");
     }
-    requestNewScreen(new IntroScreen());
+    requestNewScreen(new MapScreen());
 }
 
 void Gahoodmon::update() {
