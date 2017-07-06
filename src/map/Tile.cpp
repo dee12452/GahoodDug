@@ -5,15 +5,21 @@
 
 Tile::Tile(const std::string &id, 
         int x, 
-        int y) : Sprite (id) {
+        int y,
+        bool isWalkable) : Sprite (id) {
     setSourceRect(x, y, Constants::TILE_WIDTH, Constants::TILE_HEIGHT);
     animTimer = NULL;
     currentTexture = 0;
+    walkable = isWalkable;
 }
 
 Tile::Tile(const std::string &id,
         const std::vector<std::pair<int, int>> &coords,
-        unsigned int animTimeMs) : Tile(id, coords[0].first, coords[0].second) {
+        unsigned int animTimeMs,
+        bool isWalkable) : Tile(id, 
+            coords[0].first, 
+            coords[0].second,
+            isWalkable) {
     animTimer = new Timer(animTimeMs);
     textureCoordinates = coords;
 }

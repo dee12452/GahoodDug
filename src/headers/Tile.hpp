@@ -8,10 +8,11 @@ class Timer;
 
 class Tile : public Sprite {
 public:
-    Tile(const std::string &, int, int);
+    Tile(const std::string &, int, int, bool);
     Tile(const std::string &, 
             const std::vector<std::pair<int, int>> &, 
-            unsigned int);
+            unsigned int,
+            bool);
     ~Tile() override;
 
 protected:
@@ -21,6 +22,7 @@ private:
     Timer *animTimer;
     std::vector<std::pair<int, int>> textureCoordinates;
     int currentTexture;
+    bool walkable;
 };
 
 #endif
