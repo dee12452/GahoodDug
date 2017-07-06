@@ -24,7 +24,11 @@ Window::Window() {
     }
     SDL_RenderPresent(winRenderer);
 
-    winTexture = SDL_CreateTexture(winRenderer,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 100, 100);
+    winTexture = SDL_CreateTexture(winRenderer,
+            SDL_PIXELFORMAT_RGBA8888, 
+            SDL_TEXTUREACCESS_TARGET, 
+            Constants::WINDOW_WIDTH, 
+            Constants::WINDOW_HEIGHT);
     if(winTexture == NULL) {
         Util::fatalSDLError("Failed to initialize the window texture");
     }
