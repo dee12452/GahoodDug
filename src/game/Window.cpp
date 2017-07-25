@@ -6,9 +6,15 @@
 #include "../headers/Util.hpp"
 #include "../headers/BaseScreen.hpp"
 #include "../headers/Sprite.hpp"
+#include "../headers/DisplayUtil.hpp"
 
 Window::Window() {
-    win = SDL_CreateWindow(Constants::GAME_TITLE, 0, 0, Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT, Constants::WINDOW_FLAGS);
+    win = SDL_CreateWindow(Constants::GAME_TITLE, 
+		DisplayUtil::getScreenWidth() / 2 - Constants::WINDOW_WIDTH / 2,
+		DisplayUtil::getScreenHeight() / 2 - Constants::WINDOW_HEIGHT / 2, 
+		Constants::WINDOW_WIDTH, 
+		Constants::WINDOW_HEIGHT, Constants
+		::WINDOW_FLAGS);
     if(win == NULL) {
         Util::fatalSDLError("Failed to initialize the window");
     }

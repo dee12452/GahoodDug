@@ -1,1 +1,7 @@
 game.out
+Debug/
+Gahoodmon.vcxproj
+Gahoodmon.vcxproj.filters
+Gahoodmon.vcxproj.user
+*.dll
+*.lib
