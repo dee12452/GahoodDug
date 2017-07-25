@@ -5,6 +5,12 @@
 #include "../headers/Tileset.hpp"
 #include "../headers/Tile.hpp"
 
+Map::Map() {
+	this->width = 0;
+	this->height = 0;
+	this->tileset = NULL;
+}
+
 Map::Map(int w, int h, int **tileCoords, Tileset *tileset) {
 	this->width = w;
 	this->height = h;
@@ -23,10 +29,6 @@ Map::~Map() {
 	//Map loader will handle deletion of tilesets
 	tileset = NULL;
 }
-
-Tileset * Map::getTileset() const { return tileset; }
-int Map::getWidth() const { return width; }
-int Map::getHeight() const { return height; }
 
 void Map::draw(SDL_Renderer *r) {
 	for (int i = 0; i < width / Constants::TILE_WIDTH; i++) {
@@ -52,4 +54,13 @@ void Map::update() {
 		tile = tileset->getTile(i);
 	}
 }
+
+Tileset * Map::getTileset() const { return tileset; }
+int Map::getWidth() const { return width; }
+int Map::getHeight() const { return height; }
+
+void Map::setTileset(Tileset *ts) { this->tileset = ts; }
+void Map::setWidth(int w) { this->width = w; }
+void Map::setHeight(int h) { this->height = h; }
+void Map::setTiles(int **tiles) { this->mapTiles = tiles; }
 

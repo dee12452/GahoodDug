@@ -29,3 +29,7 @@ const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
  * TILE CONST */
 const int Constants::TILE_WIDTH = 32;
 const int Constants::TILE_HEIGHT = 32;
+
+/*
+ * MAP CONST */
+const char * const Constants::MAP_TEST = "../res/map/test_map.tmx";

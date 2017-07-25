@@ -55,9 +55,17 @@ public:
      */
     static const int TILE_WIDTH;
     static const int TILE_HEIGHT;
+
+	/*
+	**********************************
+	* Map Files
+	**********************************
+	*/
+	static const char * const MAP_TEST;
+
 private:
-    Constants();
-    ~Constants();
+	Constants() {}
+	~Constants() {}
 };
 
 #endif

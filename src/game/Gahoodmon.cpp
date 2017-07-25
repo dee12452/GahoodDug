@@ -7,6 +7,7 @@
 #include "../headers/Timer.hpp"
 #include "../headers/Util.hpp"
 #include "../headers/ImageUtil.hpp"
+#include "../headers/MapLoader.hpp"
 #include "../headers/MapScreen.hpp"
 #include "../headers/Animator.hpp"
 
@@ -87,12 +88,10 @@ void Gahoodmon::deinit() {
         message += val;
         Util::log(message);
     }
-    if(currentScreen != NULL) {
-        delete currentScreen;
-        currentScreen = NULL;
-    }
-    Animator::deleteInstance();
-    ImageUtil::deleteInstance();
+	if (currentScreen != NULL) {
+		delete currentScreen;
+		currentScreen = NULL;
+	}
     if(fpsTimer != NULL) {
         delete fpsTimer;
         fpsTimer = NULL;
@@ -101,6 +100,9 @@ void Gahoodmon::deinit() {
         delete window;
         window = NULL;
     }
+	Animator::deleteInstance();
+	ImageUtil::deleteInstance();
+	MapLoader::deleteInstance();
 
     IMG_Quit();
     SDL_Quit();
