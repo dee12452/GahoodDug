@@ -6,11 +6,7 @@ IntroScreen::IntroScreen() : BaseScreen() {}
 
 IntroScreen::~IntroScreen() {}
 
-void IntroScreen::drawScreen(SDL_Renderer *r) {
-    for(unsigned int i = 0; i < getSprites().size(); i++) {
-        getSprites()[i]->draw(r);
-    }
-}
+void IntroScreen::onDraw(SDL_Renderer *r) {}
 
 void IntroScreen::onStart() {
     addSprite(new Image(Constants::IMAGE_ID_TEST));

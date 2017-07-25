@@ -6,11 +6,10 @@
 class IntroScreen : public BaseScreen {
 public:
     IntroScreen();
-    ~IntroScreen() override;
-    
-    void drawScreen(SDL_Renderer *) override;
+	~IntroScreen() override;
 
 protected:
+	void onDraw(SDL_Renderer *) override;
     void onStart() override;
     void onStop() override;
     void onUpdate() override;

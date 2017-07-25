@@ -8,9 +8,8 @@ public:
     MainMenuScreen();
     ~MainMenuScreen() override;
 
-    void drawScreen(SDL_Renderer *) override;
-
 protected:
+	void onDraw(SDL_Renderer *) override;
     void onStart() override;
     void onStop() override;
     void onUpdate() override;

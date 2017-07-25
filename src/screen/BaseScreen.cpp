@@ -5,21 +5,20 @@
 
 BaseScreen::BaseScreen() {}
 
-BaseScreen::~BaseScreen() {
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] != NULL) {
-            delete sprites[i];
-            sprites[i] = NULL;
-        }
-    }
-    sprites.clear();
-}
+BaseScreen::~BaseScreen() {}
 
 void BaseScreen::start() {
     onStart();
 }
 
 void BaseScreen::stop() {
+	for (unsigned int i = 0; i < sprites.size(); i++) {
+		if (sprites[i] != NULL) {
+			delete sprites[i];
+			sprites[i] = NULL;
+		}
+	}
+	sprites.clear();
     onStop();
 }
 
@@ -64,4 +63,13 @@ void BaseScreen::removeSprite(Sprite *sprite) {
 
 std::vector<Sprite *> BaseScreen::getSprites() const {
     return sprites;
+}
+
+void BaseScreen::draw(SDL_Renderer *r) {
+	for (unsigned int i = 0; i < sprites.size(); i++) {
+		if (sprites[i] != NULL) {
+			sprites[i]->draw(r);
+		}
+	}
+	onDraw(r);
 }

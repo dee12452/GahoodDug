@@ -21,7 +21,6 @@ public:
 
 private:
     unsigned int currentImage;
-    std::string imagePath;
     std::vector<std::string> imageIds;
     std::map<std::string, SDL_Texture *> images;
 

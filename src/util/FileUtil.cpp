@@ -5,6 +5,12 @@
 #include <dirent.h>
 #include "../headers/Util.hpp"
 
+FileUtil::FileUtil() {}
+
+FileUtil::~FileUtil() {}
+
+const uint8_t FileUtil::MAX_PATH_LENGTH = 255;
+
 std::vector<std::string> FileUtil::readFile(const std::string &file) {
     std::vector<std::string> lines;
     SDL_RWops *ctx = SDL_RWFromFile(file.c_str(), "rb");
@@ -43,20 +49,60 @@ std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
 
 std::vector<std::string> FileUtil::getImageFiles(const char *path) {
     std::vector<std::string> files;
-    DIR *dir;
-    dir = opendir(path);
-    if(dir != NULL) {
-        dirent *fileName = readdir(dir);
-        while(fileName != NULL) {
-            files.push_back(std::string(fileName->d_name));
-            fileName = readdir(dir);
-        }
-        (void) closedir(dir);
-    }
-    else {
-        std::string message = "Failed to find images in path: ";
-        message += path;
-        Util::fatalError(message.c_str());
-    }
+	char *folderPath = new char[MAX_PATH_LENGTH];
+	strcpy(folderPath, path);
+	recursiveSearchImages(files, folderPath, "");
+	SDL_Log("Finished searching for images\n");
+	delete[] folderPath;
+	folderPath = NULL;
     return files;
+}
+
+void FileUtil::recursiveSearchImages(std::vector<std::string> &imageFiles, char *path, char *subDir) {
+	DIR *dir;
+	dir = opendir(path);
+	if (dir != NULL) {
+		dirent *fileName = readdir(dir);
+		while (fileName != NULL) {
+			if (isDirectory(fileName->d_name)) {
+				//Recursive search into the directory
+				char *folderPath = new char[MAX_PATH_LENGTH];
+				strcpy(folderPath, path);
+				strcat(folderPath, fileName->d_name);
+				strcat(folderPath, "/");
+				char newSubDir[MAX_PATH_LENGTH];
+				strcpy(newSubDir, subDir);
+				strcat(newSubDir, fileName->d_name);
+				strcat(newSubDir, "/");
+				recursiveSearchImages(imageFiles, folderPath, newSubDir);
+				delete[] folderPath;
+				folderPath = NULL;
+			}
+			else if(isFile(fileName->d_name)) {
+				//Found an image, push it into the files vector
+				SDL_Log("Found and pushed image: %s\n", fileName->d_name);
+				imageFiles.push_back(subDir + std::string(fileName->d_name));
+			}
+			fileName = readdir(dir);
+		}
+		(void)closedir(dir);
+	}
+	else {
+		std::string message = "Failed to find images in path: ";
+		message += path;
+		Util::fatalError(message.c_str());
+	}
+}
+
+bool FileUtil::isDirectory(const char *f) {
+	for (int i = 0; f[i] != '\0'; i++) {
+		if (f[i] == '.')
+			return false;
+	}
+	return true;
+}
+
+bool FileUtil::isFile(const char *f) {
+	if (f[0] == '\0' || f[0] == '.') return false;
+	return true;
 }

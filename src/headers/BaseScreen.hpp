@@ -16,11 +16,12 @@ public:
     void updateInBackground();
     void handleInput(Gahoodmon *, const SDL_Event &);
     std::vector<Sprite *> getSprites() const;
-    virtual void drawScreen(SDL_Renderer *) = 0;
+	void draw(SDL_Renderer *);
     void start();
     void stop();
 
 protected:
+	virtual void onDraw(SDL_Renderer *) = 0;
     virtual void onStart() = 0;
     virtual void onStop() = 0;
     virtual void onUpdate() = 0;

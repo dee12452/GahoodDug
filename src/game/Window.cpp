@@ -77,7 +77,9 @@ void Window::render(BaseScreen *screen) {
     }
 
     //Draw the screen to the texture here
-    screen->drawScreen(winRenderer);
+	if (screen != NULL) {
+		screen->draw(winRenderer);
+	}
 
     //Clear the window from previous rendering and show the new frame
     if(SDL_SetRenderTarget(winRenderer, NULL) < 0) {

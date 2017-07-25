@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "../headers/Constants.hpp"
 #include "../headers/FileUtil.hpp"
 #include "../headers/Util.hpp"
 
@@ -43,7 +44,6 @@ void ImageUtil::setImageFolder(const char *path) {
     for(unsigned int i = 0; i < imageIds.size(); i++) {
         images.insert(std::pair<std::string, SDL_Texture *> (imageIds[i], NULL));
     }
-    imagePath = path;
 }
 
 bool ImageUtil::hasLoadedAllImages() const {
@@ -59,7 +59,10 @@ void ImageUtil::loadImage(SDL_Renderer *renderer, const std::string &id) {
     }
     else {
         if(it->second == NULL) {
-            it->second = IMG_LoadTexture(renderer, (imagePath + it->first).c_str());
+            it->second = IMG_LoadTexture(renderer, (Constants::GAME_IMAGE_FOLDER + it->first).c_str());
+			if (it->second == NULL) {
+				Util::fatalSDLError("Failed to load image!");
+			}
         }
         else
             Util::log("Warning: Tried to load an image that was already loaded.");
@@ -71,8 +74,12 @@ void ImageUtil::loadNextImage(SDL_Renderer *renderer) {
         return;
     std::map<std::string, SDL_Texture *>::iterator it = images.find(imageIds[currentImage]);
     if(it != images.end()) {
-        if(it->second == NULL)
-            it->second = IMG_LoadTexture(renderer, (imagePath + it->first).c_str());
+		if (it->second == NULL) {
+			it->second = IMG_LoadTexture(renderer, (Constants::GAME_IMAGE_FOLDER + it->first).c_str());
+			if (it->second == NULL) {
+				Util::fatalSDLError("Failed to load image!");
+			}
+		}
         else
             Util::log("Warning: Tried to load an image that was already loaded.");
     }
