@@ -4,9 +4,13 @@
 #include "../headers/Timer.hpp"
 
 Tile::Tile(const std::string &id, 
+		const std::string &type,
+		int tId,
         int x, 
         int y,
         bool isWalkable) : Sprite (id) {
+	tileId = tId;
+	tileType = type;
     setSourceRect(x, y, Constants::TILE_WIDTH, Constants::TILE_HEIGHT);
     animTimer = NULL;
     currentTexture = 0;
@@ -14,9 +18,13 @@ Tile::Tile(const std::string &id,
 }
 
 Tile::Tile(const std::string &id,
+		const std::string &type,
+		int tId,
         const std::vector<std::pair<int, int>> &coords,
         unsigned int animTimeMs,
-        bool isWalkable) : Tile(id, 
+        bool isWalkable) : Tile(id,
+			type,
+			tId,
             coords[0].first, 
             coords[0].second,
             isWalkable) {
@@ -31,6 +39,10 @@ Tile::~Tile() {
     }
     textureCoordinates.clear();
 }
+
+int Tile::getTileId() const { return this->tileId; }
+
+std::string Tile::getTileType() const { return this->tileType; }
 
 void Tile::onUpdate() {
     if(animTimer != NULL && textureCoordinates.size() > 1) {
