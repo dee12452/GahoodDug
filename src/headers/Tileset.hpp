@@ -15,7 +15,7 @@ public:
 		const std::vector<Tile *> &);
 	~Tileset();
 
-	Tile * getTile(int) const;
+	Tile * getTile(unsigned int) const;
 	std::string getName() const;
 	std::string getImage() const;
 	int getWidth() const;

@@ -13,6 +13,7 @@
  */
 
 #include <vector>
+#include <string>
 
 typedef struct Tag {
 	std::vector<Tag *> subTags;

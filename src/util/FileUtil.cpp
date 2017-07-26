@@ -51,7 +51,9 @@ std::vector<std::string> FileUtil::getImageFiles(const char *path) {
     std::vector<std::string> files;
 	char *folderPath = new char[MAX_PATH_LENGTH];
 	strcpy(folderPath, path);
-	recursiveSearchImages(files, folderPath, "");
+    char emptySubDir[1];
+    emptySubDir[0] = '\0';
+	recursiveSearchImages(files, folderPath, emptySubDir);
 	SDL_Log("Finished searching for images\n");
 	delete[] folderPath;
 	folderPath = NULL;

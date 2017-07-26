@@ -1,5 +1,7 @@
 #include "../headers/Tileset.hpp"
 
+#include "../headers/Tile.hpp"
+
 Tileset::Tileset(const std::string &name,
 	const std::string &imageSource,
 	int w,
@@ -21,7 +23,7 @@ Tileset::~Tileset() {
 	tiles.clear();
 }
 
-Tile * Tileset::getTile(int index) const { return index >= tiles.size() ? NULL : tiles[index]; }
+Tile * Tileset::getTile(unsigned int index) const { return index >= tiles.size() ? NULL : tiles[index]; }
 int Tileset::getHeight() const { return height; }
 int Tileset::getWidth() const { return width; }
 std::string Tileset::getImage() const { return tilesetImageId; }
