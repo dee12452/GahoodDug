@@ -6,7 +6,7 @@
 #include "../headers/Constants.hpp"
 #include "../headers/Timer.hpp"
 #include "../headers/Util.hpp"
-#include "../headers/ImageUtil.hpp"
+#include "../headers/ImageLoader.hpp"
 #include "../headers/MapLoader.hpp"
 #include "../headers/MapScreen.hpp"
 #include "../headers/Animator.hpp"
@@ -44,7 +44,7 @@ void Gahoodmon::init() {
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
     window = new Window();
-    ImageUtil::getInstance()->setImageFolder(Constants::GAME_IMAGE_FOLDER);
+	ImageLoader::getInstance()->setImageFolder(Constants::GAME_IMAGE_FOLDER);
     running = true;
 
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
@@ -101,7 +101,7 @@ void Gahoodmon::deinit() {
         window = NULL;
     }
 	Animator::deleteInstance();
-	ImageUtil::deleteInstance();
+	ImageLoader::deleteInstance();
 	MapLoader::deleteInstance();
 
     IMG_Quit();

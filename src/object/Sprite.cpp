@@ -1,6 +1,6 @@
 #include "../headers/Sprite.hpp"
 #include <SDL2/SDL.h>
-#include "../headers/ImageUtil.hpp"
+#include "../headers/ImageLoader.hpp"
 #include "../headers/Timer.hpp"
 #include "../headers/Constants.hpp"
 
@@ -42,7 +42,7 @@ Sprite::~Sprite() {
 }
 
 void Sprite::draw(SDL_Renderer *renderer) {
-    SDL_Texture *texture = ImageUtil::getInstance()->getImage(id);
+    SDL_Texture *texture = ImageLoader::getInstance()->getImage(id);
     SDL_SetTextureAlphaMod(texture, alpha);
     SDL_RenderCopy(renderer, texture, src, dst);
     texture = NULL;

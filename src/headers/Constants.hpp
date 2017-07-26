@@ -58,10 +58,17 @@ public:
 
 	/*
 	**********************************
-	* Map Files
+	* Map File Constants
 	**********************************
 	*/
-	static const char * const MAP_TEST;
+	static const char * const MAP_FILE_TEST;
+	
+	/*
+	**********************************
+	* Map Constants
+	**********************************
+	*/
+	static const uint8_t MAP_MAX_LAYERS;
 
 private:
 	Constants() {}

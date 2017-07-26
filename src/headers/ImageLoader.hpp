@@ -1,5 +1,5 @@
-#ifndef IMAGE_UTIL_HPP
-#define IMAGE_UTIL_HPP
+#ifndef IMAGE_LOADER_HPP
+#define IMAGE_LOADER_HPP
 
 #include <string>
 #include <map>
@@ -8,9 +8,9 @@
 struct SDL_Texture;
 struct SDL_Renderer;
 
-class ImageUtil {
+class ImageLoader {
 public:
-    static ImageUtil * getInstance();
+    static ImageLoader * getInstance();
     static void deleteInstance();
 
     void setImageFolder(const char *);
@@ -24,9 +24,9 @@ private:
     std::vector<std::string> imageIds;
     std::map<std::string, SDL_Texture *> images;
 
-    static ImageUtil *instance;
-    ImageUtil();
-    ~ImageUtil();
+    static ImageLoader *instance;
+    ImageLoader();
+    ~ImageLoader();
 };
 
 #endif

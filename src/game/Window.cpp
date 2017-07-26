@@ -1,7 +1,7 @@
 #include "../headers/Window.hpp"
 
 #include <SDL2/SDL.h>
-#include "../headers/ImageUtil.hpp"
+#include "../headers/ImageLoader.hpp"
 #include "../headers/Constants.hpp"
 #include "../headers/Util.hpp"
 #include "../headers/BaseScreen.hpp"
@@ -60,11 +60,11 @@ Window::~Window() {
 void Window::render(BaseScreen *screen) {
     //Check to see if any images need loading
     if(loadImages) {
-        if(ImageUtil::getInstance()->hasLoadedAllImages()) {
+        if(ImageLoader::getInstance()->hasLoadedAllImages()) {
             loadImages = false;
         }
         else {
-            ImageUtil::getInstance()->loadNextImage(winRenderer);
+			ImageLoader::getInstance()->loadNextImage(winRenderer);
         }
     }
     

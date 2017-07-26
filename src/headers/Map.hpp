@@ -9,17 +9,18 @@ struct SDL_Renderer;
 class Map {
 public:
 	Map();
-	Map(int, int, int **, Tileset *);
+	Map(int, int, std::vector<int **>, Tileset *);
 	~Map();
 
 	Tileset * getTileset() const;
 	int getWidth() const;
 	int getHeight() const;
+	std::vector<int **> getLayers() const;
 
 	void setTileset(Tileset *);
 	void setWidth(int);
 	void setHeight(int);
-	void setTiles(int **);
+	void addLayer(int **);
 
 	void draw(SDL_Renderer *);
 	void update();
@@ -27,7 +28,7 @@ public:
 private:
 	int width;
 	int height;
-	int **mapTiles;
+	std::vector<int **> mapLayers;
 	Tileset *tileset;
 };
 

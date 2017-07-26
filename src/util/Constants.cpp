@@ -32,4 +32,5 @@ const int Constants::TILE_HEIGHT = 32;
 
 /*
  * MAP CONST */
-const char * const Constants::MAP_TEST = "../res/map/test_map.tmx";
+const char * const Constants::MAP_FILE_TEST = "../res/map/test_map.tmx";
+const uint8_t Constants::MAP_MAX_LAYERS = 5;
