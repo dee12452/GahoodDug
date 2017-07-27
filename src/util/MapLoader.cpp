@@ -5,6 +5,7 @@
 #include "../headers/Map.hpp"
 #include "../headers/Tileset.hpp"
 #include "../headers/Util.hpp"
+#include <SDL2/SDL_log.h>
 
 MapLoader * MapLoader::instance = NULL;
 
@@ -48,7 +49,11 @@ Map * MapLoader::loadMap(const char *path) {
 }
 
 void MapLoader::populateMapInfo(Tag *tag, Map *map) {
-	if (tag->id == "map") {
+    if(tag == NULL)
+        return;
+
+    //Get map width and height
+    if (tag->id == "map") {
 		for (unsigned int i = 0; i < tag->attributes.size(); i++) {
 			if (tag->attributes[i].first == "width") {
 				map->setWidth(std::stoi(tag->attributes[i].second));
@@ -58,11 +63,15 @@ void MapLoader::populateMapInfo(Tag *tag, Map *map) {
 			}
 		}
 	}
+    
+    //Find the corresponding tileset
 	else if (tag->id == "tileset") {
 
 	}
+
+    //Load width, height, and data for each layer
 	else if (tag->id == "layer") {
-		int **layer = NULL;
+        int **layer = NULL;
 		int lwidth = 0, lheight = 0;
 		for (unsigned int i = 0; i < tag->attributes.size(); i++) {
 			if (tag->attributes[i].first == "width") {
@@ -82,6 +91,32 @@ void MapLoader::populateMapInfo(Tag *tag, Map *map) {
 			&& tag->subTags[0] != NULL
 			&& tag->subTags[0]->id == "data") {
 			std::string tileData = tag->subTags[0]->data;
+            std::string nextInt = "";
+            int currRow = 0, currCol = 0;
+            for(unsigned int i = 0; i < tileData.size(); i++) {
+                //using ASCII, 
+                //check to see if the next char is a number
+                int nextChar = (int)tileData[i] - (int) '0';
+                if(nextChar < 10 && nextChar >= 0) {
+                    nextInt += (char) (nextChar + '0');
+                }
+                else if(nextInt != "") {
+                    layer[currRow][currCol] = std::stoi(nextInt);
+                    currRow++;
+                    if(currRow == lwidth) {
+                        currRow = 0;
+                        currCol++;
+                    }
+                    if(currCol == lheight)
+                        break;
+                    nextInt = "";
+                }
+            }
+            map->addLayer(layer);
 		}
 	}
+
+    for(unsigned int i = 0; i < tag->subTags.size(); i++) {
+        populateMapInfo(tag->subTags[i], map);
+    }
 }
