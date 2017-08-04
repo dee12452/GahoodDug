@@ -3,6 +3,8 @@
 
 #include "BaseScreen.hpp"
 
+class Map;
+
 class MapScreen : public BaseScreen {
 public:
     MapScreen();
@@ -15,6 +17,9 @@ protected:
     void onUpdate() override;
     void onInput(Gahoodmon *, const SDL_Event &) override;
     void onUpdateInBackground() override;
+
+private:
+	Map *test;
 };
 
 #endif

@@ -32,6 +32,9 @@ void Gahoodmon::run() {
 }
 
 void Gahoodmon::runInBackground() {
+	if (!MapLoader::getInstance()->hasLoadedAllTilesets()) {
+		MapLoader::getInstance()->loadNextTileset();
+	}
     if(currentScreen != NULL) {
         currentScreen->updateInBackground();
     }
@@ -45,6 +48,7 @@ void Gahoodmon::init() {
     fpsTimer = new Timer(msPerFrame);
     window = new Window();
 	ImageLoader::getInstance()->setImageFolder(Constants::GAME_IMAGE_FOLDER);
+	MapLoader::getInstance()->setTilesetFolder(Constants::GAME_TILESET_FOLDER);
     running = true;
 
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);

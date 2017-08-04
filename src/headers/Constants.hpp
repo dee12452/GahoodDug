@@ -29,6 +29,7 @@ public:
     static const uint8_t TARGET_FPS;
     static const char * const GAME_THREAD_NAME;
     static const char * const GAME_IMAGE_FOLDER;
+	static const char * const GAME_TILESET_FOLDER;
     /******************
      ******************/
 
@@ -39,6 +40,7 @@ public:
      **********************************
      */
     static const std::string IMAGE_ID_TEST;
+	static const std::string IMAGE_TILESET_UNDERWATER;
     
     /*
      **********************************

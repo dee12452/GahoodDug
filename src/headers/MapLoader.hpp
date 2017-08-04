@@ -14,6 +14,10 @@ public:
 
 	Map * loadMap(const char *);
 
+	void setTilesetFolder(const char *);
+	bool hasLoadedAllTilesets() const;
+	void loadNextTileset();
+
 private:
 	MapLoader();
 	~MapLoader();
@@ -21,6 +25,7 @@ private:
 
 	void populateMapInfo(Tag *, Map *);
 	std::vector<Tileset *> tilesets;
+	std::vector<std::string> tilesetFiles;
 };
 
 #endif

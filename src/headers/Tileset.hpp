@@ -8,12 +8,18 @@ class Tile;
 
 class Tileset {
 public: 
+	Tileset();
 	Tileset(const std::string &, 
 		const std::string &, 
 		int, 
 		int,
 		const std::vector<Tile *> &);
 	~Tileset();
+
+	void setDimensions(int, int);
+	void setName(const std::string &);
+	void setImage(const std::string &);
+	void addTile(Tile *);
 
 	Tile * getTile(unsigned int) const;
 	std::string getName() const;

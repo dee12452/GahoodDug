@@ -15,10 +15,12 @@ const uint8_t Constants::RENDER_LOOP_DELAY = 5;
 const uint8_t Constants::TARGET_FPS = 60;
 const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
 const char * const Constants::GAME_IMAGE_FOLDER = "../res/image/";
+const char * const Constants::GAME_TILESET_FOLDER = "../res/tileset/";
 
 /*
  * IMAGE IDS */
 const std::string Constants::IMAGE_ID_TEST = "sprite/test.png";
+const std::string Constants::IMAGE_TILESET_UNDERWATER = "tile/tileset_underwater.png";
 
 /*
  * SPRITE CONST */

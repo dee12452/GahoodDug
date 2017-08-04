@@ -9,13 +9,13 @@ class FileUtil {
 public:
     static std::vector<std::string> readFile(const std::string &);
     static std::vector<std::string> getWordsFromString(const std::string &);
-    static std::vector<std::string> getImageFiles(const char *);
+    static std::vector<std::string> getFiles(const char *);
 
 private:
 	static const uint8_t MAX_PATH_LENGTH;
 	static bool isDirectory(const char *);
 	static bool isFile(const char *);
-	static void recursiveSearchImages(std::vector<std::string> &, char *, char *subDir);
+	static void recursiveSearchFiles(std::vector<std::string> &, char *, char *subDir);
     FileUtil();
     ~FileUtil();
 };

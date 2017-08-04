@@ -7,23 +7,26 @@
 #include "../headers/Map.hpp"
 #include <SDL2/SDL_log.h>
 
-MapScreen::MapScreen() {}
+MapScreen::MapScreen() {
+	test = NULL;
+}
 
 MapScreen::~MapScreen() {}
 
-void MapScreen::onDraw(SDL_Renderer *) {
+void MapScreen::onDraw(SDL_Renderer *r) {
+	test->draw(r);
 }
 
 void MapScreen::onStart() {
-	addSprite(new Image(Constants::IMAGE_ID_TEST,
-		0, 0, 32, 32,
-		0, 0, 500, 500));
-	Map *temp = MapLoader::getInstance()->loadMap(Constants::MAP_FILE_TEST);
-	delete temp;
-	temp = NULL;
+	test = MapLoader::getInstance()->loadMap(Constants::MAP_FILE_TEST);
 }
 
-void MapScreen::onStop() {}
+void MapScreen::onStop() {
+	if (test != NULL) {
+		delete test;
+		test = NULL;
+	}
+}
 
 void MapScreen::onUpdate() {
 }

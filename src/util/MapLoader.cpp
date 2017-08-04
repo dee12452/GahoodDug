@@ -1,11 +1,14 @@
 #include "../headers/MapLoader.hpp"
 
 #include <string>
+#include <SDL2/SDL.h>
+#include "../headers/FileUtil.hpp"
 #include "../headers/XMLParser.hpp"
 #include "../headers/Map.hpp"
 #include "../headers/Tileset.hpp"
+#include "../headers/Tile.hpp"
 #include "../headers/Util.hpp"
-#include <SDL2/SDL_log.h>
+#include "../headers/Constants.hpp"
 
 MapLoader * MapLoader::instance = NULL;
 
@@ -33,11 +36,90 @@ MapLoader::~MapLoader() {
 		}
 	}
 	tilesets.clear();
+	tilesetFiles.clear();
+}
+
+void MapLoader::setTilesetFolder(const char *path) {
+	tilesetFiles = FileUtil::getFiles(path);
+}
+
+bool MapLoader::hasLoadedAllTilesets() const {
+	return tilesetFiles.size() == tilesets.size();
+}
+
+void MapLoader::loadNextTileset() {
+	XMLObject *obj = XMLParser::loadXML((Constants::GAME_TILESET_FOLDER + tilesetFiles[tilesets.size()]).c_str());
+	if (obj == NULL) {
+		Util::fatalError("Failed to load tileset");
+	}
+	Tileset *tileset = new Tileset();
+	int tileColumns = 0;
+	if (obj->tags.size() > 0) {
+		//Load the name and number of columns of the tileset
+		for (unsigned int i = 0; i < obj->tags[0]->attributes.size(); i++) {
+			if (obj->tags[0]->attributes[i].first == "name") {
+				tileset->setName(obj->tags[0]->attributes[i].second);
+			}
+			else if (obj->tags[0]->attributes[i].first == "columns") {
+				tileColumns = std::stoi(obj->tags[0]->attributes[i].second);
+			}
+		}
+		int row = 0, x = 0;
+
+		for (unsigned int i = 0; i < obj->tags[0]->subTags.size(); i++) {
+			Tag *tag = obj->tags[0]->subTags[i];
+
+			//Load the tileset image src
+			if (tag->id == "image") {
+				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
+					if (tag->attributes[j].first == "source") {
+						tileset->setImage(tag->attributes[j].second.substr(9));
+						break;
+					}
+				}
+			}
+			else if (tag->id == "tile") {
+				int id;
+				std::string type;
+				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
+					if (tag->attributes[j].first == "id") {
+						id = std::stoi(tag->attributes[j].second);
+					}
+					else if (tag->attributes[j].first == "type") {
+						type = tag->attributes[j].second;
+					}
+				}
+				if (id % tileColumns == 0) {
+					row++; x = 0;
+				}
+				tileset->addTile(new Tile(tileset->getImage(),
+					type,
+					id,
+					row * Constants::TILE_WIDTH,
+					x * Constants::TILE_HEIGHT,
+					true));
+				x++;
+			}
+			tag = NULL;
+		}
+	}
+	tilesets.push_back(tileset);
+	XMLParser::destroyXMLObject(obj);
+	obj = NULL;
 }
 
 Map * MapLoader::loadMap(const char *path) {
 	Map *map = new Map();
 	XMLObject *obj = XMLParser::loadXML(path);
+	int timeout = 0;
+	const int MAX_TIMEOUT = 1000;
+	while (!hasLoadedAllTilesets()) {
+		SDL_Delay(Constants::RENDER_LOOP_DELAY);
+		timeout++;
+		if (timeout > MAX_TIMEOUT) {
+			Util::fatalError("Timed out trying to load tilesets");
+		}
+	}
 	if (obj == NULL) {
 		Util::fatalError("Failed to load map");
 	}
@@ -66,7 +148,20 @@ void MapLoader::populateMapInfo(Tag *tag, Map *map) {
     
     //Find the corresponding tileset
 	else if (tag->id == "tileset") {
-
+		for (unsigned int i = 0; i < tag->attributes.size(); i++) {
+			if (tag->attributes[i].first == "source") {
+				std::string ts = tag->attributes[i].second;
+				for (unsigned int j = 0; j < tilesets.size(); j++) {
+					if ("../tileset/" + tilesets[j]->getName() + ".tsx" == ts) {
+						map->setTileset(tilesets[j]);
+					}
+				}
+				break;
+			}
+		}
+		if (map->getTileset() == NULL) {
+			Util::fatalError("Failed to find a tileset for the map");
+		}
 	}
 
     //Load width, height, and data for each layer

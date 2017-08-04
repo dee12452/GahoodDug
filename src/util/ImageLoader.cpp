@@ -40,7 +40,7 @@ void ImageLoader::deleteInstance() {
 }
 
 void ImageLoader::setImageFolder(const char *path) {
-    imageIds = FileUtil::getImageFiles(path);
+    imageIds = FileUtil::getFiles(path);
     for(unsigned int i = 0; i < imageIds.size(); i++) {
         images.insert(std::pair<std::string, SDL_Texture *> (imageIds[i], NULL));
     }

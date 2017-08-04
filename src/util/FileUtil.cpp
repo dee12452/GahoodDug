@@ -47,20 +47,20 @@ std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
     return words;
 }
 
-std::vector<std::string> FileUtil::getImageFiles(const char *path) {
+std::vector<std::string> FileUtil::getFiles(const char *path) {
     std::vector<std::string> files;
 	char *folderPath = new char[MAX_PATH_LENGTH];
 	strcpy(folderPath, path);
     char emptySubDir[1];
     emptySubDir[0] = '\0';
-	recursiveSearchImages(files, folderPath, emptySubDir);
-	SDL_Log("Finished searching for images\n");
+	recursiveSearchFiles(files, folderPath, emptySubDir);
+	SDL_Log("Finished searching for files\n");
 	delete[] folderPath;
 	folderPath = NULL;
     return files;
 }
 
-void FileUtil::recursiveSearchImages(std::vector<std::string> &imageFiles, char *path, char *subDir) {
+void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path, char *subDir) {
 	DIR *dir;
 	dir = opendir(path);
 	if (dir != NULL) {
@@ -76,14 +76,14 @@ void FileUtil::recursiveSearchImages(std::vector<std::string> &imageFiles, char 
 				strcpy(newSubDir, subDir);
 				strcat(newSubDir, fileName->d_name);
 				strcat(newSubDir, "/");
-				recursiveSearchImages(imageFiles, folderPath, newSubDir);
+				recursiveSearchFiles(files, folderPath, newSubDir);
 				delete[] folderPath;
 				folderPath = NULL;
 			}
 			else if(isFile(fileName->d_name)) {
 				//Found an image, push it into the files vector
-				SDL_Log("Found and pushed image: %s\n", fileName->d_name);
-				imageFiles.push_back(subDir + std::string(fileName->d_name));
+				SDL_Log("Found and pushed file: %s\n", fileName->d_name);
+				files.push_back(subDir + std::string(fileName->d_name));
 			}
 			fileName = readdir(dir);
 		}
