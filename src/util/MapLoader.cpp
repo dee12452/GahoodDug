@@ -89,16 +89,16 @@ void MapLoader::loadNextTileset() {
 						type = tag->attributes[j].second;
 					}
 				}
-				if (id % tileColumns == 0) {
-					row++; x = 0;
-				}
 				tileset->addTile(new Tile(tileset->getImage(),
 					type,
 					id,
-					row * Constants::TILE_WIDTH,
-					x * Constants::TILE_HEIGHT,
+					x * Constants::TILE_WIDTH,
+					row * Constants::TILE_HEIGHT,
 					true));
 				x++;
+				if (x % tileColumns == 0) {
+					row++; x = 0;
+				}
 			}
 			tag = NULL;
 		}

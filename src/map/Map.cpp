@@ -38,11 +38,11 @@ void Map::draw(SDL_Renderer *r) {
 	for (unsigned int layer = 0; layer < mapLayers.size(); layer++) {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				if (mapLayers[layer][j][i] - 1 <= 0) continue;
+				if (mapLayers[layer][j][i] - 1 < 0) continue;
 				Tile *currTile = tileset->getTile(mapLayers[layer][j][i] - 1);
 				SDL_Rect dst;
-				dst.x = i * Constants::TILE_WIDTH;
-				dst.y = j * Constants::TILE_HEIGHT;
+				dst.x = j * Constants::TILE_WIDTH;
+				dst.y = i * Constants::TILE_HEIGHT;
 				dst.w = Constants::TILE_WIDTH;
 				dst.h = Constants::TILE_HEIGHT;
 				currTile->setDestinationRect(dst);
