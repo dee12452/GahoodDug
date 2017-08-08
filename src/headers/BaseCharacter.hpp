@@ -8,7 +8,7 @@ enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT };
 class BaseCharacter : public Sprite {
 public:
 	BaseCharacter(const std::string &id, int, int, int, int);
-	virtual ~BaseCharacter();
+	virtual ~BaseCharacter() override;
 
 	CharacterDirection getFacingDirection() const;
 	bool isMoving() const;

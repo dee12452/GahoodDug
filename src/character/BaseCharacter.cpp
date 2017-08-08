@@ -2,12 +2,14 @@
 #include "../headers/Util.hpp"
 #include "../headers/Constants.hpp"
 
-const unsigned int BaseCharacter::updateTime = 100;
+const unsigned int BaseCharacter::updateTime = 25;
 
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: Sprite(id) {
 	setSourceRect(x, y, w, h);
+	setDestinationRect(0, 0, 0, 0);
 	setUpdateTimer(updateTime);
+	moving = false;
 }
 
 BaseCharacter::~BaseCharacter() {}

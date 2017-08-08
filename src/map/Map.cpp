@@ -7,12 +7,14 @@
 #include "../headers/Window.hpp"
 #include "../headers/Util.hpp"
 #include "../headers/ImageLoader.hpp"
+#include "../headers/PlayerCharacter.hpp"
 
 Map::Map() {
 	this->width = 0;
 	this->height = 0;
 	this->tileset = NULL;
 	this->mapTexture = NULL;
+	this->playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1, 0, 0, 32, 48, 0, 0, 32, 48);
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
@@ -21,6 +23,7 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 	this->tileset = tileset;
 	this->mapLayers = tileCoords;
 	this->mapTexture = NULL;
+	this->playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1, 0, 0, 32, 48, 0, 0, 32, 48);
 }
 
 Map::~Map() {
@@ -38,6 +41,10 @@ Map::~Map() {
 		SDL_DestroyTexture(mapTexture);
 		mapTexture = NULL;
 	}
+	if (playerCharacter != NULL) {
+		delete playerCharacter;
+		playerCharacter = NULL;
+	}
 	
 	//Map loader will handle deletion of tilesets
 	tileset = NULL;
@@ -49,6 +56,7 @@ void Map::draw(Window *win) {
 	}
 	else {
 		SDL_RenderCopy(win->getWindowRenderer(), mapTexture, NULL, NULL);
+		playerCharacter->draw(win);
 	}
 }
 
@@ -59,6 +67,9 @@ void Map::update() {
 		tile->update();
 		i++;
 		tile = tileset->getTile(i);
+	}
+	if (playerCharacter != NULL) {
+		playerCharacter->update();
 	}
 }
 
@@ -103,6 +114,7 @@ Tileset * Map::getTileset() const { return tileset; }
 int Map::getWidth() const { return width; }
 int Map::getHeight() const { return height; }
 std::vector<int **> Map::getLayers() const { return mapLayers; }
+BaseCharacter * Map::getPlayer() const { return playerCharacter; }
 
 void Map::setTileset(Tileset *ts) { this->tileset = ts; }
 void Map::setWidth(int w) { this->width = w; }

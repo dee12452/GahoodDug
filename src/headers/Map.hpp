@@ -5,6 +5,7 @@
 
 class Tileset;
 class Window;
+class BaseCharacter;
 struct SDL_Texture;
 
 class Map {
@@ -27,12 +28,15 @@ public:
 	void update();
 	void generate(Window *);
 
+	BaseCharacter * getPlayer() const;
+
 private:
 	int width;
 	int height;
 	std::vector<int **> mapLayers;
 	Tileset *tileset;
 	SDL_Texture *mapTexture;
+	BaseCharacter *playerCharacter;
 };
 
 #endif
