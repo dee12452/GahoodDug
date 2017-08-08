@@ -41,6 +41,7 @@ public:
      */
     static const std::string IMAGE_ID_TEST;
 	static const std::string IMAGE_TILESET_UNDERWATER;
+	static const std::string IMAGE_CHARACTER_1;
     
     /*
      **********************************

@@ -49,13 +49,14 @@ void Sprite::draw(SDL_Renderer *renderer) {
 }
 
 void Sprite::update() {
+	/*
+	 * Updating should NEVER happen if 
+	 * there is no timer set for the updating
+	 */
     if(timer != NULL) {
         if(timer->check()) {
             onUpdate();
         }
-    }
-    else {
-        onUpdate();
     }
 }
 

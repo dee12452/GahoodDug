@@ -21,6 +21,7 @@ const char * const Constants::GAME_TILESET_FOLDER = "../res/tileset/";
  * IMAGE IDS */
 const std::string Constants::IMAGE_ID_TEST = "sprite/test.png";
 const std::string Constants::IMAGE_TILESET_UNDERWATER = "tile/tileset_underwater.png";
+const std::string Constants::IMAGE_CHARACTER_1 = "sprite/character_1.png"
 
 /*
  * SPRITE CONST */
