@@ -12,6 +12,9 @@ public:
     ~Window();
 
     void render(BaseScreen *);
+	SDL_Window * getWindow() const;
+	SDL_Renderer * getWindowRenderer() const;
+	SDL_Texture * getWindowTexture() const;
 private:
     bool loadImages;
     SDL_Window *win;

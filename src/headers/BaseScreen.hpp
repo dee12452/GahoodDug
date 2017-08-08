@@ -5,6 +5,7 @@
 
 class Sprite;
 class Gahoodmon;
+class Window;
 struct SDL_Renderer;
 union SDL_Event;
 
@@ -16,12 +17,12 @@ public:
     void updateInBackground();
     void handleInput(Gahoodmon *, const SDL_Event &);
     std::vector<Sprite *> getSprites() const;
-	void draw(SDL_Renderer *);
+	void draw(Window *);
     void start();
     void stop();
 
 protected:
-	virtual void onDraw(SDL_Renderer *) = 0;
+	virtual void onDraw(Window *) = 0;
     virtual void onStart() = 0;
     virtual void onStop() = 0;
     virtual void onUpdate() = 0;

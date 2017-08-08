@@ -18,7 +18,7 @@ public:
 
 protected:
 	void onUpdate() override;
-	virtual void onMove(const CharacterDirection &, unsigned int, unsigned int) = 0;
+	virtual void onMove(const CharacterDirection &, __int64, __int64) = 0;
 	virtual void onArrive(const CharacterDirection &, int, int) = 0;
 	virtual void onChangeDirection(const CharacterDirection &) = 0;
 
@@ -26,7 +26,7 @@ private:
 	static const unsigned int updateTime;
 	CharacterDirection currentDirection;
 	bool moving;
-	unsigned int startMove, walkDuration;
+	__int64 startMove, walkDuration;
 	int prevX, prevY;
 };
 

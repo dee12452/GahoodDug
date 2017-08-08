@@ -65,11 +65,11 @@ std::vector<Sprite *> BaseScreen::getSprites() const {
     return sprites;
 }
 
-void BaseScreen::draw(SDL_Renderer *r) {
+void BaseScreen::draw(Window *win) {
 	for (unsigned int i = 0; i < sprites.size(); i++) {
 		if (sprites[i] != NULL) {
-			sprites[i]->draw(r);
+			sprites[i]->draw(win);
 		}
 	}
-	onDraw(r);
+	onDraw(win);
 }

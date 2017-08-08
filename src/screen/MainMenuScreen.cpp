@@ -5,7 +5,7 @@ MainMenuScreen::MainMenuScreen() {}
 
 MainMenuScreen::~MainMenuScreen() {}
 
-void MainMenuScreen::onDraw(SDL_Renderer *) {}
+void MainMenuScreen::onDraw(Window *) {}
 
 void MainMenuScreen::onStart() {}
 

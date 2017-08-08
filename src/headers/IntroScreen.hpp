@@ -9,7 +9,7 @@ public:
 	~IntroScreen() override;
 
 protected:
-	void onDraw(SDL_Renderer *) override;
+	void onDraw(Window *) override;
     void onStart() override;
     void onStop() override;
     void onUpdate() override;

@@ -6,7 +6,7 @@ IntroScreen::IntroScreen() : BaseScreen() {}
 
 IntroScreen::~IntroScreen() {}
 
-void IntroScreen::onDraw(SDL_Renderer *r) {}
+void IntroScreen::onDraw(Window *r) {}
 
 void IntroScreen::onStart() {
     addSprite(new Image(Constants::IMAGE_ID_TEST));

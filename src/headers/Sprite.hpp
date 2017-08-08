@@ -1,10 +1,11 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+class Timer;
+class Window;
 struct SDL_Renderer;
 struct SDL_Rect;
 struct SDL_Texture;
-class Timer;
 
 #include <string>
 #include <stdint.h>
@@ -16,7 +17,7 @@ public:
     Sprite(const std::string &id, const SDL_Rect &, const SDL_Rect &);
     virtual ~Sprite();
 
-    virtual void draw(SDL_Renderer *);
+    virtual void draw(Window *);
     void update();
     virtual void updateInBackground() {}
 

@@ -1,15 +1,18 @@
 #include "../headers/Map.hpp"
 
-#include <SDL2/SDL_rect.h>
-#include <SDL2/SDL_log.h>
+#include <SDL2/SDL.h>
 #include "../headers/Constants.hpp"
 #include "../headers/Tileset.hpp"
 #include "../headers/Tile.hpp"
+#include "../headers/Window.hpp"
+#include "../headers/Util.hpp"
+#include "../headers/ImageLoader.hpp"
 
 Map::Map() {
 	this->width = 0;
 	this->height = 0;
 	this->tileset = NULL;
+	this->mapTexture = NULL;
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
@@ -17,6 +20,7 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 	this->height = h;
 	this->tileset = tileset;
 	this->mapLayers = tileCoords;
+	this->mapTexture = NULL;
 }
 
 Map::~Map() {
@@ -29,26 +33,22 @@ Map::~Map() {
 		mapLayers[j] = NULL;
 	}
 	mapLayers.clear();
+
+	if (mapTexture != NULL) {
+		SDL_DestroyTexture(mapTexture);
+		mapTexture = NULL;
+	}
 	
 	//Map loader will handle deletion of tilesets
 	tileset = NULL;
 }
 
-void Map::draw(SDL_Renderer *r) {
-	for (unsigned int layer = 0; layer < mapLayers.size(); layer++) {
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				if (mapLayers[layer][j][i] - 1 < 0) continue;
-				Tile *currTile = tileset->getTile(mapLayers[layer][j][i] - 1);
-				SDL_Rect dst;
-				dst.x = j * Constants::TILE_WIDTH;
-				dst.y = i * Constants::TILE_HEIGHT;
-				dst.w = Constants::TILE_WIDTH;
-				dst.h = Constants::TILE_HEIGHT;
-				currTile->setDestinationRect(dst);
-				currTile->draw(r);
-			}
-		}
+void Map::draw(Window *win) {
+	if (mapTexture == NULL) {
+		generate(win);
+	}
+	else {
+		SDL_RenderCopy(win->getWindowRenderer(), mapTexture, NULL, NULL);
 	}
 }
 
@@ -59,6 +59,43 @@ void Map::update() {
 		tile->update();
 		i++;
 		tile = tileset->getTile(i);
+	}
+}
+
+void Map::generate(Window *win) {
+	if (mapTexture == NULL && ImageLoader::getInstance()->getImage(tileset->getImage()) != NULL) {
+		mapTexture = SDL_CreateTexture(win->getWindowRenderer(), 
+			SDL_PIXELFORMAT_RGBA8888, 
+			SDL_TEXTUREACCESS_TARGET, 
+			width * Constants::TILE_WIDTH, 
+			height * Constants::TILE_HEIGHT);
+		if (mapTexture == NULL) {
+			Util::fatalSDLError("Failed to initialize the map texture");
+		}
+		if (SDL_SetRenderTarget(win->getWindowRenderer(), mapTexture) != 0) {
+			Util::fatalSDLError("Failed to switch renderer to texture");
+		}
+		if (SDL_RenderClear(win->getWindowRenderer()) < 0) {
+			Util::fatalSDLError("Failed to clear the texture renderer");
+		}
+		for (unsigned int layer = 0; layer < mapLayers.size(); layer++) {
+			for (int i = 0; i < height; i++) {
+				for (int j = 0; j < width; j++) {
+					if (mapLayers[layer][j][i] - 1 < 0) continue;
+					Tile *currTile = tileset->getTile(mapLayers[layer][j][i] - 1);
+					SDL_Rect dst;
+					dst.x = j * Constants::TILE_WIDTH;
+					dst.y = i * Constants::TILE_HEIGHT;
+					dst.w = Constants::TILE_WIDTH;
+					dst.h = Constants::TILE_HEIGHT;
+					currTile->setDestinationRect(dst);
+					currTile->draw(win);
+				}
+			}
+		}
+		if (SDL_SetRenderTarget(win->getWindowRenderer(), win->getWindowTexture()) != 0) {
+			Util::fatalSDLError("Failed to switch renderer to texture");
+		}
 	}
 }
 

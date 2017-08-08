@@ -39,7 +39,7 @@ bool BaseCharacter::move(const CharacterDirection &direction, unsigned int durat
 
 void BaseCharacter::onUpdate() {
 	if (moving) {
-		unsigned int nextMove = Util::getCurrentTimeMillis();
+		__int64 nextMove = Util::getCurrentTimeMillis();
 		if (nextMove - startMove >= walkDuration) {
 			switch (currentDirection) {
 			case CH_UP:
@@ -64,22 +64,22 @@ void BaseCharacter::onUpdate() {
 			moving = false;
 		}
 		else {
-			float percentage = (nextMove - startMove) / (walkDuration);
+			float percentage = static_cast<float>(nextMove - startMove) / static_cast<float> (walkDuration);
 			switch (currentDirection) {
 			case CH_UP:
-				setY(prevY - (Constants::TILE_HEIGHT * percentage));
+				setY(prevY - static_cast<int>(Constants::TILE_HEIGHT * percentage));
 				onMove(CH_UP, nextMove - startMove, walkDuration);
 				break;
 			case CH_DOWN:
-				setY(prevY + (Constants::TILE_HEIGHT * percentage));
+				setY(prevY + static_cast<int>(Constants::TILE_HEIGHT * percentage));
 				onMove(CH_DOWN, nextMove - startMove, walkDuration);
 				break;
 			case CH_LEFT:
-				setX(prevX - (Constants::TILE_WIDTH * percentage));
+				setX(prevX - static_cast<int>(Constants::TILE_WIDTH * percentage));
 				onMove(CH_LEFT, nextMove - startMove, walkDuration);
 				break;
 			case CH_RIGHT:
-				setX(prevX + (Constants::TILE_WIDTH * percentage));
+				setX(prevX + static_cast<int>(Constants::TILE_WIDTH * percentage));
 				onMove(CH_RIGHT, nextMove - startMove, walkDuration);
 				break;
 			}

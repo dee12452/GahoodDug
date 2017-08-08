@@ -13,8 +13,8 @@ MapScreen::MapScreen() {
 
 MapScreen::~MapScreen() {}
 
-void MapScreen::onDraw(SDL_Renderer *r) {
-	test->draw(r);
+void MapScreen::onDraw(Window *win) {
+	test->draw(win);
 }
 
 void MapScreen::onStart() {

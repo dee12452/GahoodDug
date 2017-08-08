@@ -4,7 +4,8 @@
 #include <vector>
 
 class Tileset;
-struct SDL_Renderer;
+class Window;
+struct SDL_Texture;
 
 class Map {
 public:
@@ -22,14 +23,16 @@ public:
 	void setHeight(int);
 	void addLayer(int **);
 
-	void draw(SDL_Renderer *);
+	void draw(Window *);
 	void update();
+	void generate(Window *);
 
 private:
 	int width;
 	int height;
 	std::vector<int **> mapLayers;
 	Tileset *tileset;
+	SDL_Texture *mapTexture;
 };
 
 #endif

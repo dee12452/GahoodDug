@@ -78,7 +78,7 @@ void Window::render(BaseScreen *screen) {
 
     //Draw the screen to the texture here
 	if (screen != NULL) {
-		screen->draw(winRenderer);
+		screen->draw(this);
 	}
 
     //Clear the window from previous rendering and show the new frame
@@ -86,10 +86,14 @@ void Window::render(BaseScreen *screen) {
         Util::fatalSDLError("Failed to set the render target to the window");
     }
     if(SDL_RenderClear(winRenderer) < 0) {
-        Util::fatalSDLError("Failed to ");
+        Util::fatalSDLError("Failed to clear the window");
     }
     if(SDL_RenderCopy(winRenderer, winTexture, NULL, NULL) < 0) {
-        Util::fatalSDLError("Failed to ");
+        Util::fatalSDLError("Failed to draw the texure to window");
     }
     SDL_RenderPresent(winRenderer);
 }
+
+SDL_Window * Window::getWindow() const { return win; }
+SDL_Renderer * Window::getWindowRenderer() const { return winRenderer; }
+SDL_Texture * Window::getWindowTexture() const { return winTexture; }
