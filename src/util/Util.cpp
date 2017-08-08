@@ -17,6 +17,7 @@ void Util::log(const std::string &message) {
     SDL_Log("%s\n", message.c_str());
 }
 
-unsigned int Util::getCurrentTimeMillis() {
-	return std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch()).count;
+unsigned long Util::getCurrentTimeMillis() {
+	std::chrono::milliseconds currMS = std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
+	return static_cast<unsigned long> (currMS.count());
 }

@@ -8,7 +8,7 @@ public:
     static void fatalError(const char *);
     static void fatalSDLError(const char *);
     static void log(const std::string &);
-	static unsigned int getCurrentTimeMillis();
+	static unsigned long getCurrentTimeMillis();
 private:
     Util() {}
     ~Util() {}
