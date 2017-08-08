@@ -36,6 +36,7 @@ bool BaseCharacter::move(const CharacterDirection &direction, unsigned int durat
 	startMove = Util::getCurrentTimeMillis();
 	walkDuration = duration;
 	prevX = getX(); prevY = getY();
+	onMoveStart(direction);
 	return true;
 }
 
@@ -46,19 +47,19 @@ void BaseCharacter::onUpdate() {
 			switch (currentDirection) {
 			case CH_UP:
 				setY(prevY - Constants::TILE_HEIGHT);
-				onArrive(CH_UP, prevX, prevY - Constants::TILE_HEIGHT);
+				onMoveEnd(CH_UP, prevX, prevY - Constants::TILE_HEIGHT);
 				break;
 			case CH_DOWN:
 				setY(prevY + Constants::TILE_HEIGHT);
-				onArrive(CH_DOWN, prevX, prevY + Constants::TILE_HEIGHT);
+				onMoveEnd(CH_DOWN, prevX, prevY + Constants::TILE_HEIGHT);
 				break;
 			case CH_LEFT:
 				setX(prevX - Constants::TILE_WIDTH);
-				onArrive(CH_LEFT, prevX - Constants::TILE_WIDTH, prevY);
+				onMoveEnd(CH_LEFT, prevX - Constants::TILE_WIDTH, prevY);
 				break;
 			case CH_RIGHT:
 				setX(prevX + Constants::TILE_WIDTH);
-				onArrive(CH_RIGHT, prevX + Constants::TILE_WIDTH, prevY);
+				onMoveEnd(CH_RIGHT, prevX + Constants::TILE_WIDTH, prevY);
 				break;
 			}
 			startMove = 0;

@@ -11,7 +11,8 @@ public:
 
 protected:
 	void onMove(const CharacterDirection &, __int64, __int64) override;
-	void onArrive(const CharacterDirection &, int, int) override;
+	void onMoveEnd(const CharacterDirection &, int, int) override;
+	void onMoveStart(const CharacterDirection &) override;
 	void onChangeDirection(const CharacterDirection &) override;
 };
 

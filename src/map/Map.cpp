@@ -56,7 +56,6 @@ void Map::draw(Window *win) {
 	}
 	else {
 		SDL_RenderCopy(win->getWindowRenderer(), mapTexture, NULL, NULL);
-		playerCharacter->draw(win);
 	}
 }
 

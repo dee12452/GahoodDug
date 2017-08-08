@@ -23,7 +23,11 @@ void PlayerCharacter::onMove(const CharacterDirection &, __int64, __int64) {
 
 }
 
-void PlayerCharacter::onArrive(const CharacterDirection &, int, int) {
+void PlayerCharacter::onMoveEnd(const CharacterDirection &, int, int) {
+
+}
+
+void PlayerCharacter::onMoveStart(const CharacterDirection &) {
 
 }
 

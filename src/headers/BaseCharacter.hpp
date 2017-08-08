@@ -18,8 +18,9 @@ public:
 
 protected:
 	void onUpdate() override;
+	virtual void onMoveStart(const CharacterDirection &) = 0;
 	virtual void onMove(const CharacterDirection &, __int64, __int64) = 0;
-	virtual void onArrive(const CharacterDirection &, int, int) = 0;
+	virtual void onMoveEnd(const CharacterDirection &, int, int) = 0;
 	virtual void onChangeDirection(const CharacterDirection &) = 0;
 
 private:

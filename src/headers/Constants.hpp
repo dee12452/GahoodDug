@@ -48,8 +48,17 @@ public:
      * Sprite Constants
      **********************************
      */
+	//Alpha constants for the sprite
     static const uint8_t SPRITE_ALPHA_FULL;
     static const uint8_t SPRITE_ALPHA_NONE;
+	//Width of characters in the texture sheets
+	static const uint8_t SPRITE_CHARACTER_WIDTH;
+	static const uint8_t SPRITE_CHARACTER_HEIGHT;
+	//Character texture sheets rows of facing
+	static const uint8_t SPRITE_CHARACTER_FACE_DOWN;
+	static const uint8_t SPRITE_CHARACTER_FACE_UP;
+	static const uint8_t SPRITE_CHARACTER_FACE_LEFT;
+	static const uint8_t SPRITE_CHARACTER_FACE_RIGHT;
 
     /*
      **********************************
@@ -72,6 +81,8 @@ public:
 	**********************************
 	*/
 	static const uint8_t MAP_MAX_LAYERS;
+	static const uint8_t MAP_NUM_TILES_WIDTH;
+	static const uint8_t MAP_NUM_TILES_HEIGHT;
 
 private:
 	Constants() {}

@@ -27,6 +27,12 @@ const std::string Constants::IMAGE_CHARACTER_1 = "sprite/character_1.png";
  * SPRITE CONST */
 const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
+const uint8_t Constants::SPRITE_CHARACTER_WIDTH = 32;
+const uint8_t Constants::SPRITE_CHARACTER_HEIGHT = 48;
+const uint8_t SPRITE_CHARACTER_FACE_DOWN = 0;
+const uint8_t SPRITE_CHARACTER_FACE_UP = 3;
+const uint8_t SPRITE_CHARACTER_FACE_LEFT = 1;
+const uint8_t SPRITE_CHARACTER_FACE_RIGHT = 2;
 
 /*
  * TILE CONST */
@@ -37,3 +43,5 @@ const int Constants::TILE_HEIGHT = 32;
  * MAP CONST */
 const char * const Constants::MAP_FILE_TEST = "../res/map/test_map.tmx";
 const uint8_t Constants::MAP_MAX_LAYERS = 5;
+const uint8_t Constants::MAP_NUM_TILES_WIDTH = 10;
+const uint8_t Constants::MAP_NUM_TILES_HEIGHT = 9;
