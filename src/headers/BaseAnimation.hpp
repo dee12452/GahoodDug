@@ -14,8 +14,8 @@ public:
 
 protected:
     virtual void onFinish() = 0;
-    virtual void onCancel(unsigned int) = 0;
-    virtual void onAnimate(unsigned int) = 0;
+    virtual void onCancel(__int64) = 0;
+    virtual void onAnimate(__int64) = 0;
     int duration;
     Timer *elapsedTimer;
 };

@@ -26,16 +26,16 @@ FadeAnimation::~FadeAnimation() {
     sprite = NULL;
 }
 
-void FadeAnimation::onAnimate(unsigned int elapsedMs) {
+void FadeAnimation::onAnimate(__int64 elapsedMs) {
     if(fadeIn) {
-        sprite->setAlpha(Constants::SPRITE_ALPHA_FULL * elapsedMs / duration);
+        sprite->setAlpha(static_cast<uint8_t> (Constants::SPRITE_ALPHA_FULL * elapsedMs / duration));
     }
     else {
-        sprite->setAlpha(Constants::SPRITE_ALPHA_FULL - (Constants::SPRITE_ALPHA_FULL * elapsedMs / duration));
+        sprite->setAlpha(static_cast<uint8_t> (Constants::SPRITE_ALPHA_FULL - (Constants::SPRITE_ALPHA_FULL * elapsedMs / duration)));
     }
 }
 
-void FadeAnimation::onCancel(unsigned int) {
+void FadeAnimation::onCancel(__int64) {
     onFinish();
 }
 
