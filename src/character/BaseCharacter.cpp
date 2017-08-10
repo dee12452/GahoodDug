@@ -2,7 +2,8 @@
 #include "../headers/Util.hpp"
 #include "../headers/Constants.hpp"
 
-const unsigned int BaseCharacter::updateTime = 25;
+const unsigned int BaseCharacter::updateTime = 20;
+const unsigned int BaseCharacter::defaultMoveTime = 200;
 
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: Sprite(id) {
@@ -10,6 +11,7 @@ BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h)
 	setDestinationRect(0, 0, 0, 0);
 	setUpdateTimer(updateTime);
 	moving = false;
+	currentLayer = 0;
 }
 
 BaseCharacter::~BaseCharacter() {}
@@ -28,6 +30,12 @@ void BaseCharacter::changeFacingDirection(const CharacterDirection &direction) {
 bool BaseCharacter::isMoving() const {
 	return moving;
 }
+
+uint8_t BaseCharacter::getCurrentMapLayer() const { return currentLayer;  }
+
+void BaseCharacter::setCurrentMapLayer(uint8_t layer) { currentLayer = layer; }
+
+bool BaseCharacter::move(const CharacterDirection &direction) { return move(direction, defaultMoveTime); }
 
 bool BaseCharacter::move(const CharacterDirection &direction, unsigned int duration) {
 	if (moving) return false;

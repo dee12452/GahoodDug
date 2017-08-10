@@ -8,6 +8,7 @@ public:
     static void fatalError(const char *);
     static void fatalSDLError(const char *);
     static void log(const std::string &);
+	static void print(const std::string &);
 	static __int64 getCurrentTimeMillis();
 private:
     Util() {}

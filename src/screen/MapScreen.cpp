@@ -42,19 +42,19 @@ void MapScreen::onInput(Gahoodmon *, const SDL_Event &e) {
 	if (test != NULL) {
 		if (e.type == SDL_KEYDOWN) {
 			if (e.key.keysym.sym == SDLK_DOWN) {
-				if (!test->getPlayer()->move(CH_DOWN, 500)) {
+				if (!test->getPlayer()->move(CH_DOWN)) {
 				}
 			}
 			else if (e.key.keysym.sym == SDLK_UP) {
-				if (!test->getPlayer()->move(CH_UP, 500)) {
+				if (!test->getPlayer()->move(CH_UP)) {
 				}
 			}
 			else if (e.key.keysym.sym == SDLK_LEFT) {
-				if (!test->getPlayer()->move(CH_LEFT, 500)) {
+				if (!test->getPlayer()->move(CH_LEFT)) {
 				}
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT) {
-				if (!test->getPlayer()->move(CH_RIGHT, 500)) {
+				if (!test->getPlayer()->move(CH_RIGHT)) {
 				}
 			}
 		}

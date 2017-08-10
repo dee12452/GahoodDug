@@ -45,7 +45,7 @@ Sprite::~Sprite() {
 void Sprite::draw(Window *win) {
     SDL_Texture *texture = ImageLoader::getInstance()->getImage(id);
     SDL_SetTextureAlphaMod(texture, alpha);
-    SDL_RenderCopy(win->getWindowRenderer(), texture, src, dst);
+	win->drawTexture(texture, src, dst);
     texture = NULL;
 }
 

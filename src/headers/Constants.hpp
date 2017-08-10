@@ -42,6 +42,8 @@ public:
     static const std::string IMAGE_ID_TEST;
 	static const std::string IMAGE_TILESET_UNDERWATER;
 	static const std::string IMAGE_CHARACTER_1;
+	/******************
+	******************/
     
     /*
      **********************************
@@ -59,6 +61,8 @@ public:
 	static const uint8_t SPRITE_CHARACTER_FACE_UP;
 	static const uint8_t SPRITE_CHARACTER_FACE_LEFT;
 	static const uint8_t SPRITE_CHARACTER_FACE_RIGHT;
+	/******************
+	******************/
 
     /*
      **********************************
@@ -67,6 +71,8 @@ public:
      */
     static const int TILE_WIDTH;
     static const int TILE_HEIGHT;
+	/******************
+	******************/
 
 	/*
 	**********************************
@@ -74,6 +80,8 @@ public:
 	**********************************
 	*/
 	static const char * const MAP_FILE_TEST;
+	/******************
+	******************/
 	
 	/*
 	**********************************
@@ -83,6 +91,8 @@ public:
 	static const uint8_t MAP_MAX_LAYERS;
 	static const uint8_t MAP_NUM_TILES_WIDTH;
 	static const uint8_t MAP_NUM_TILES_HEIGHT;
+	/******************
+	******************/
 
 private:
 	Constants() {}

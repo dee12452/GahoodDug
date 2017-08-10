@@ -2,6 +2,7 @@
 #include <SDL2/SDL_log.h>
 #include <SDL2/SDL_error.h>
 #include <chrono>
+#include <iostream>
 
 void Util::fatalError(const char *message) {
     SDL_Log("Fatal Error: %s\n", message);
@@ -15,6 +16,10 @@ void Util::fatalSDLError(const char *message) {
 
 void Util::log(const std::string &message) {
     SDL_Log("%s\n", message.c_str());
+}
+
+void Util::print(const std::string &message) {
+	std::cout << message << std::endl;
 }
 
 __int64 Util::getCurrentTimeMillis() {

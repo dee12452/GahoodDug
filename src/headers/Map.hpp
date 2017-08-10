@@ -33,9 +33,9 @@ public:
 private:
 	int width;
 	int height;
-	std::vector<int **> mapLayers;
+	std::vector<int **> mapTiles;
+	std::vector<SDL_Texture *> mapLayers;
 	Tileset *tileset;
-	SDL_Texture *mapTexture;
 	BaseCharacter *playerCharacter;
 };
 

@@ -24,7 +24,9 @@ Window::Window() {
         Util::fatalSDLError("Failed to initialize the window renderer");
     }
     //Make default render color black and set the window to black
-    SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, 0);
+	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_FULL) != 0) {
+		Util::fatalSDLError("Failed to set the renderer draw color");
+	}
     if(SDL_RenderClear(winRenderer) < 0) {
         Util::fatalSDLError("Failed to initially clear the renderer");
     }
@@ -92,6 +94,53 @@ void Window::render(BaseScreen *screen) {
         Util::fatalSDLError("Failed to draw the texure to window");
     }
     SDL_RenderPresent(winRenderer);
+}
+
+void Window::setRenderTarget(SDL_Texture *t) const {
+	if (SDL_SetRenderTarget(winRenderer, t) < 0) {
+		Util::fatalSDLError("Failed to switch renderer to texture");
+	}
+}
+
+void Window::resetRenderTarget() const {
+	if (SDL_SetRenderTarget(winRenderer, winTexture) < 0) {
+		Util::fatalSDLError("Failed to switch renderer to texture");
+	}
+}
+
+void Window::drawTexture(SDL_Texture *t, SDL_Rect *s, SDL_Rect *d) const {
+	if (SDL_RenderCopy(winRenderer, t, s, d) < 0) {
+		Util::fatalSDLError("Failed to draw the texure to window");
+	}
+}
+
+SDL_Texture * Window::createTransparentTexture(int w, int h) const { 
+	SDL_Texture *t = SDL_CreateTexture(getWindowRenderer(),
+		SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_TARGET,
+		w,
+		h);
+	setRenderTarget(t);
+	if (SDL_SetRenderDrawBlendMode(winRenderer, SDL_BLENDMODE_BLEND) != 0) {
+		Util::fatalSDLError("Failed to change render blend mode");
+	}
+	if (SDL_SetTextureBlendMode(t, SDL_BLENDMODE_BLEND) != 0) {
+		Util::fatalSDLError("Failed to change texture blend mode");
+	}
+	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_NONE) != 0) {
+		Util::fatalSDLError("Failed to change texture blend mode");
+	}
+	if (SDL_RenderFillRect(winRenderer, NULL) != 0) {
+		Util::fatalSDLError("Failed to fill transparent texture");
+	}
+	resetRenderTarget();
+	if (SDL_SetRenderDrawBlendMode(winRenderer, SDL_BLENDMODE_NONE) != 0) {
+		Util::fatalSDLError("Failed to change render blend mode");
+	}
+	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_FULL) != 0) {
+		Util::fatalSDLError("Failed to reset render color");
+	}
+	return t;
 }
 
 SDL_Window * Window::getWindow() const { return win; }
