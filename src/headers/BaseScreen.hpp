@@ -2,6 +2,7 @@
 #define BASE_SCREEN_HPP
 
 #include <vector>
+#include <stdint.h>
 
 class Sprite;
 class Gahoodmon;
@@ -15,7 +16,7 @@ public:
     virtual ~BaseScreen();
     void update();
     void updateInBackground();
-    void handleInput(Gahoodmon *, const SDL_Event &);
+    void handleInput(Gahoodmon *);
     std::vector<Sprite *> getSprites() const;
 	void draw(Window *);
     void start();
@@ -27,6 +28,7 @@ protected:
     virtual void onStop() = 0;
     virtual void onUpdate() = 0;
     virtual void onInput(Gahoodmon *, const SDL_Event &) = 0;
+	virtual void handleKeyboard(const uint8_t *) {}
     virtual void onUpdateInBackground() = 0;
 
     void addSprite(Sprite *);

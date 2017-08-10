@@ -40,9 +40,17 @@ void BaseScreen::updateInBackground() {
     onUpdateInBackground();
 }
 
-void BaseScreen::handleInput(Gahoodmon *game, const SDL_Event &e) {
+void BaseScreen::handleInput(Gahoodmon *game) {
     //Gahoodmon handles quit event//
-    onInput(game, e);
+	SDL_Event e;
+	while (SDL_PollEvent(&e)) {
+		if (e.type == SDL_QUIT) {
+			game->quit();
+		}
+		onInput(game, e);
+	}
+	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
+	handleKeyboard(keyboard);
 }
 
 void BaseScreen::addSprite(Sprite *sprite) {

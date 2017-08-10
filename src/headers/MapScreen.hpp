@@ -16,6 +16,7 @@ protected:
     void onStop() override;
     void onUpdate() override;
     void onInput(Gahoodmon *, const SDL_Event &) override;
+	void handleKeyboard(const uint8_t *) override;
     void onUpdateInBackground() override;
 
 private:

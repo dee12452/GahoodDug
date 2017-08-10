@@ -64,10 +64,10 @@ void Gahoodmon::update() {
         if(e.type == SDL_QUIT) {
             running = false;
         }
-        else if(currentScreen != NULL) {
-            currentScreen->handleInput(this, e);
-        }
-    }
+	}
+	if (currentScreen != NULL) {
+		currentScreen->handleInput(this);
+	}
     Animator::getInstance()->animateAnimations();
     if(currentScreen != NULL) {
         if(fpsTimer->check()) {

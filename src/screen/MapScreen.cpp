@@ -39,22 +39,24 @@ void MapScreen::onUpdateInBackground() {
 }
 
 void MapScreen::onInput(Gahoodmon *, const SDL_Event &e) {
+}
+
+void MapScreen::handleKeyboard(const uint8_t *keyScanCodes) {
 	if (test != NULL) {
-		const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-		switch (e.type) {
-		case SDL_KEYDOWN:
-			if (e.key.keysym.sym == SDLK_DOWN) {
-				test->getPlayer()->move(CH_DOWN);
-			}
-			else if (e.key.keysym.sym == SDLK_UP) {
-				test->getPlayer()->move(CH_UP);
-			}
-			else if (e.key.keysym.sym == SDLK_LEFT) {
-				test->getPlayer()->move(CH_LEFT);
-			}
-			else if (e.key.keysym.sym == SDLK_RIGHT) {
-				test->getPlayer()->move(CH_RIGHT);
-			}
+		if (keyScanCodes[SDL_SCANCODE_DOWN]) {
+			test->getPlayer()->move(CH_DOWN);
+		}
+		else if (keyScanCodes[SDL_SCANCODE_UP]) {
+			test->getPlayer()->move(CH_UP);
+		}
+		else if (keyScanCodes[SDL_SCANCODE_LEFT]) {
+			test->getPlayer()->move(CH_LEFT);
+		}
+		else if (keyScanCodes[SDL_SCANCODE_RIGHT]) {
+			test->getPlayer()->move(CH_RIGHT);
+		}
+		else {
+			test->getPlayer()->cancelNextMove();
 		}
 	}
 }

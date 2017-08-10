@@ -26,13 +26,13 @@ PlayerCharacter::~PlayerCharacter() {}
 void PlayerCharacter::onMove(const CharacterDirection &dir, __int64 curr, __int64 total) {
 	float percentage = static_cast<float>(curr) / static_cast<float>(total) * 100;
 	SDL_Rect chSrc = *(getSourceRect());
-	if (percentage <= 25) {
+	if (percentage <= 35) {
 		chSrc.x = chSrc.w * 1;
 	}
-	else if (percentage <= 50) {
+	else if (percentage <= 65) {
 		chSrc.x = chSrc.w * 2;
 	}
-	else if (percentage <= 75) {
+	else if (percentage <= 80) {
 		chSrc.x = chSrc.w * 3;
 	}
 	setSourceRect(chSrc);

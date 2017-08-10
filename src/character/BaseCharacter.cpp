@@ -81,7 +81,7 @@ void BaseCharacter::onUpdate() {
 			walkDuration = 0;
 			moving = false;
 			if (nextDirection != CH_NONE) {
-				move(CH_NONE);
+				move(nextDirection);
 			}
 		}
 		else {
