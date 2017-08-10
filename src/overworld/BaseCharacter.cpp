@@ -5,7 +5,7 @@
 #include "../headers/Constants.hpp"
 
 const __int64 BaseCharacter::updateTime = 25;
-const __int64 BaseCharacter::defaultMoveTime = 500;
+const __int64 BaseCharacter::defaultMoveTime = 325;
 
 BaseCharacter::BaseCharacter(const std::string &id)
 	: BaseCharacter(id,
@@ -21,6 +21,7 @@ BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h)
 	setDestinationRect(0, 0, Constants::SPRITE_CHARACTER_WIDTH, Constants::SPRITE_CHARACTER_HEIGHT);
 	setUpdateTimer(updateTime);
 	moving = false;
+	walkLeft = false;
 	currentLayer = 0;
 	currentDirection = CH_NONE;
 	nextDirection = CH_NONE;
@@ -59,6 +60,7 @@ bool BaseCharacter::move(const CharacterDirection &direction, unsigned int durat
 		nextDirection = direction;
 		return false;
 	}
+	walkLeft = !walkLeft;
 	moving = true;
 	changeFacingDirection(direction);
 	startMove = Util::getCurrentTimeMillis();
@@ -126,14 +128,14 @@ void BaseCharacter::onUpdate() {
 void BaseCharacter::onMove(const CharacterDirection &dir, __int64 curr, __int64 total) {
 	float percentage = static_cast<float>(curr) / static_cast<float>(total) * 100;
 	SDL_Rect chSrc = *(getSourceRect());
-	if (percentage <= 35) {
-		chSrc.x = chSrc.w * 1;
-	}
-	else if (percentage <= 65) {
-		chSrc.x = chSrc.w * 2;
+	if (percentage <= 45) {
+		if(walkLeft)
+			chSrc.x = chSrc.w * 1;
+		else
+			chSrc.x = chSrc.w * 3;
 	}
 	else if (percentage <= 80) {
-		chSrc.x = chSrc.w * 3;
+		chSrc.x = chSrc.w * 2;
 	}
 	setSourceRect(chSrc);
 }

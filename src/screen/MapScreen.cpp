@@ -23,6 +23,7 @@ void MapScreen::onDraw(Window *win) {
 
 void MapScreen::onStart() {
 	test = MapLoader::getInstance()->loadMap(Constants::MAP_FILE_TEST);
+	test->placePlayer(288, 288);
 }
 
 void MapScreen::onStop() {

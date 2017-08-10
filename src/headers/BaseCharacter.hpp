@@ -32,7 +32,7 @@ protected:
 private:
 	static const __int64 updateTime, defaultMoveTime;
 	CharacterDirection currentDirection, nextDirection;
-	bool moving;
+	bool moving, walkLeft;
 	__int64 startMove, walkDuration;
 	int prevX, prevY;
 	uint8_t currentLayer;
