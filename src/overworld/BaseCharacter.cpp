@@ -2,8 +2,8 @@
 #include "../headers/Util.hpp"
 #include "../headers/Constants.hpp"
 
-const unsigned int BaseCharacter::updateTime = 20;
-const unsigned int BaseCharacter::defaultMoveTime = 400;
+const unsigned int BaseCharacter::updateTime = 25;
+const unsigned int BaseCharacter::defaultMoveTime = 500;
 
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: Sprite(id) {

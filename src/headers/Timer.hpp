@@ -12,13 +12,13 @@ public:
     bool check();
     
     void setTargetMs(unsigned int);
-    unsigned int getTargetMs() const;
-    unsigned int getElapsedMs();
+	__int64 getTargetMs() const;
+	__int64 getElapsedMs();
 private:
     std::chrono::milliseconds getCurrentMs() const;
     std::chrono::milliseconds start;
     std::chrono::milliseconds finish;
-    unsigned int targetMs;
+	__int64 targetMs;
 };
 
 #endif
