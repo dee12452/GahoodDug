@@ -11,7 +11,7 @@ public:
     void reset();
     bool check();
     
-    void setTargetMs(unsigned int);
+    void setTargetMs(__int64);
 	__int64 getTargetMs() const;
 	__int64 getElapsedMs();
 private:

@@ -23,7 +23,7 @@ bool Timer::check() {
     return false;
 }
 
-void Timer::setTargetMs(unsigned int ms) {
+void Timer::setTargetMs(__int64 ms) {
     targetMs = ms;
 }
 

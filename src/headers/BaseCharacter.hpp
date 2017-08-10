@@ -8,6 +8,7 @@ enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT, CH_NONE };
 class BaseCharacter : public Sprite {
 public:
 	BaseCharacter(const std::string &id, int, int, int, int);
+	BaseCharacter(const std::string &id, int, int, int, int, int, int, int, int);
 	virtual ~BaseCharacter() override;
 
 	CharacterDirection getFacingDirection() const;
@@ -22,13 +23,13 @@ public:
 
 protected:
 	void onUpdate() override;
-	virtual void onMoveStart(const CharacterDirection &) = 0;
-	virtual void onMove(const CharacterDirection &, __int64, __int64) = 0;
-	virtual void onMoveEnd(const CharacterDirection &, int, int) = 0;
-	virtual void onChangeDirection(const CharacterDirection &) = 0;
+	virtual void onMoveStart(const CharacterDirection &);
+	virtual void onMove(const CharacterDirection &, __int64, __int64);
+	virtual void onMoveEnd(const CharacterDirection &, int, int);
+	virtual void onChangeDirection(const CharacterDirection &);
 
 private:
-	static const unsigned int updateTime, defaultMoveTime;
+	static const __int64 updateTime, defaultMoveTime;
 	CharacterDirection currentDirection, nextDirection;
 	bool moving;
 	__int64 startMove, walkDuration;
