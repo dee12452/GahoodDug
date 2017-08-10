@@ -3,7 +3,7 @@
 #include "../headers/Constants.hpp"
 
 const unsigned int BaseCharacter::updateTime = 20;
-const unsigned int BaseCharacter::defaultMoveTime = 200;
+const unsigned int BaseCharacter::defaultMoveTime = 400;
 
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: Sprite(id) {
@@ -12,6 +12,8 @@ BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h)
 	setUpdateTimer(updateTime);
 	moving = false;
 	currentLayer = 0;
+	currentDirection = CH_NONE;
+	nextDirection = CH_NONE;
 }
 
 BaseCharacter::~BaseCharacter() {}
@@ -38,7 +40,10 @@ void BaseCharacter::setCurrentMapLayer(uint8_t layer) { currentLayer = layer; }
 bool BaseCharacter::move(const CharacterDirection &direction) { return move(direction, defaultMoveTime); }
 
 bool BaseCharacter::move(const CharacterDirection &direction, unsigned int duration) {
-	if (moving) return false;
+	if (moving || direction == CH_NONE) {
+		nextDirection = direction;
+		return false;
+	}
 	moving = true;
 	changeFacingDirection(direction);
 	startMove = Util::getCurrentTimeMillis();
@@ -47,6 +52,8 @@ bool BaseCharacter::move(const CharacterDirection &direction, unsigned int durat
 	onMoveStart(direction);
 	return true;
 }
+
+void BaseCharacter::cancelNextMove() { nextDirection = CH_NONE;  }
 
 void BaseCharacter::onUpdate() {
 	if (moving) {
@@ -73,6 +80,9 @@ void BaseCharacter::onUpdate() {
 			startMove = 0;
 			walkDuration = 0;
 			moving = false;
+			if (nextDirection != CH_NONE) {
+				move(CH_NONE);
+			}
 		}
 		else {
 			float percentage = static_cast<float>(nextMove - startMove) / static_cast<float> (walkDuration);

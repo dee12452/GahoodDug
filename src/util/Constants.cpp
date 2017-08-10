@@ -29,10 +29,10 @@ const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
 const uint8_t Constants::SPRITE_CHARACTER_WIDTH = 32;
 const uint8_t Constants::SPRITE_CHARACTER_HEIGHT = 48;
-const uint8_t SPRITE_CHARACTER_FACE_DOWN = 0;
-const uint8_t SPRITE_CHARACTER_FACE_UP = 3;
-const uint8_t SPRITE_CHARACTER_FACE_LEFT = 1;
-const uint8_t SPRITE_CHARACTER_FACE_RIGHT = 2;
+const uint8_t Constants::SPRITE_CHARACTER_FACE_DOWN = 0;
+const uint8_t Constants::SPRITE_CHARACTER_FACE_UP = 3;
+const uint8_t Constants::SPRITE_CHARACTER_FACE_LEFT = 1;
+const uint8_t Constants::SPRITE_CHARACTER_FACE_RIGHT = 2;
 
 /*
  * TILE CONST */

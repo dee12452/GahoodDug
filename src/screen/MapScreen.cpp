@@ -40,22 +40,20 @@ void MapScreen::onUpdateInBackground() {
 
 void MapScreen::onInput(Gahoodmon *, const SDL_Event &e) {
 	if (test != NULL) {
-		if (e.type == SDL_KEYDOWN) {
+		const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+		switch (e.type) {
+		case SDL_KEYDOWN:
 			if (e.key.keysym.sym == SDLK_DOWN) {
-				if (!test->getPlayer()->move(CH_DOWN)) {
-				}
+				test->getPlayer()->move(CH_DOWN);
 			}
 			else if (e.key.keysym.sym == SDLK_UP) {
-				if (!test->getPlayer()->move(CH_UP)) {
-				}
+				test->getPlayer()->move(CH_UP);
 			}
 			else if (e.key.keysym.sym == SDLK_LEFT) {
-				if (!test->getPlayer()->move(CH_LEFT)) {
-				}
+				test->getPlayer()->move(CH_LEFT);
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT) {
-				if (!test->getPlayer()->move(CH_RIGHT)) {
-				}
+				test->getPlayer()->move(CH_RIGHT);
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 
 #include "Sprite.hpp"
 
-enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT };
+enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT, CH_NONE };
 
 class BaseCharacter : public Sprite {
 public:
@@ -15,6 +15,7 @@ public:
 
 	bool move(const CharacterDirection &);
 	bool move(const CharacterDirection &, unsigned int);
+	void cancelNextMove();
 	void changeFacingDirection(const CharacterDirection &);
 	uint8_t getCurrentMapLayer() const;
 	void setCurrentMapLayer(uint8_t);
@@ -28,7 +29,7 @@ protected:
 
 private:
 	static const unsigned int updateTime, defaultMoveTime;
-	CharacterDirection currentDirection;
+	CharacterDirection currentDirection, nextDirection;
 	bool moving;
 	__int64 startMove, walkDuration;
 	int prevX, prevY;
