@@ -59,12 +59,6 @@ void Gahoodmon::init() {
 }
 
 void Gahoodmon::update() {
-    SDL_Event e;
-    while(SDL_PollEvent(&e)) {
-        if(e.type == SDL_QUIT) {
-            running = false;
-        }
-	}
 	if (currentScreen != NULL) {
 		currentScreen->handleInput(this);
 	}

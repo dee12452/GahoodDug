@@ -1,5 +1,9 @@
 #include "../headers/PlayerCharacter.hpp"
 
+PlayerCharacter::PlayerCharacter(const std::string &id) 
+	: BaseCharacter(id) {
+}
+
 PlayerCharacter::PlayerCharacter(const std::string &id, int x, int y, int w, int h) 
 	: BaseCharacter(id, x, y, w, h) {
 }

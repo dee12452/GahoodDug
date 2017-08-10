@@ -13,7 +13,7 @@ Map::Map() {
 	this->width = 0;
 	this->height = 0;
 	this->tileset = NULL;
-	this->playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1, 0, 0, 32, 48, 900, 900, 32, 48);
+	this->playerCharacter = NULL;
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
@@ -21,7 +21,7 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 	this->height = h;
 	this->tileset = tileset;
 	this->mapTiles = tileCoords;
-	this->playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1, 0, 0, 32, 48, 288, 288, 32, 48);
+	this->playerCharacter = NULL;
 }
 
 Map::~Map() {
@@ -43,6 +43,7 @@ Map::~Map() {
 	}
 	mapLayers.clear();
 
+	//Delete the overworld character
 	if (playerCharacter != NULL) {
 		delete playerCharacter;
 		playerCharacter = NULL;
@@ -53,10 +54,13 @@ Map::~Map() {
 }
 
 void Map::draw(Window *win) {
+	//The map has not been generated yet
 	if (mapLayers.size() < 1) {
 		generate(win);
 	}
-	else {
+
+	//draw the map in respect to the player
+	else if(playerCharacter != NULL) {
 		SDL_Texture *map = win->createTransparentTexture(width * Constants::TILE_WIDTH, 
 			height * Constants::TILE_HEIGHT);
 		win->setRenderTarget(map);
@@ -76,6 +80,21 @@ void Map::draw(Window *win) {
 		SDL_DestroyTexture(map);
 		map = NULL;
 	}
+
+	//since there is no player,
+	//draw the map in its entirety
+	else {
+		SDL_Texture *map = win->createTransparentTexture(width * Constants::TILE_WIDTH,
+			height * Constants::TILE_HEIGHT);
+		win->setRenderTarget(map);
+		for (unsigned int i = 0; i < mapLayers.size(); i++) {
+			win->drawTexture(mapLayers[i], NULL, NULL);
+		}
+		win->resetRenderTarget();
+		win->drawTexture(map, NULL, NULL);
+		SDL_DestroyTexture(map);
+		map = NULL;
+	}
 }
 
 void Map::update() {
@@ -92,7 +111,9 @@ void Map::update() {
 }
 
 void Map::generate(Window *win) {
+	//If there is already a map or the tileset image hasn't loaded, don't generate the map
 	if (mapLayers.size() > 0 || ImageLoader::getInstance()->getImage(tileset->getImage()) == NULL) return;
+	
 	for (unsigned int layer = 0; layer < mapTiles.size(); layer++) {
 		SDL_Texture *layerTexture = win->createTransparentTexture(
 			Constants::TILE_WIDTH * width,
@@ -115,6 +136,21 @@ void Map::generate(Window *win) {
 		mapLayers.push_back(layerTexture);
 	}
 	win->resetRenderTarget();
+}
+
+void Map::placePlayer(int x, int y) {
+	if (playerCharacter == NULL) {
+		playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1);
+	}
+	playerCharacter->setX(x);
+	playerCharacter->setY(y);
+}
+
+void Map::removePlayer() {
+	if (playerCharacter != NULL) {
+		delete playerCharacter;
+		playerCharacter = NULL;
+	}
 }
 
 Tileset * Map::getTileset() const { return tileset; }

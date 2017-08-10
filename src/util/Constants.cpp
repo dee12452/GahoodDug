@@ -45,3 +45,5 @@ const char * const Constants::MAP_FILE_TEST = "../res/map/test_map.tmx";
 const uint8_t Constants::MAP_MAX_LAYERS = 5;
 const uint8_t Constants::MAP_NUM_TILES_WIDTH = 10;
 const uint8_t Constants::MAP_NUM_TILES_HEIGHT = 9;
+const std::string Constants::TILE_TYPE_WALL = "wall";
+const std::string Constants::TILE_TYPE_FLOOR = "floor";

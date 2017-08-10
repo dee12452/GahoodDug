@@ -7,10 +7,18 @@
 const __int64 BaseCharacter::updateTime = 25;
 const __int64 BaseCharacter::defaultMoveTime = 500;
 
+BaseCharacter::BaseCharacter(const std::string &id)
+	: BaseCharacter(id,
+		0,
+		0,
+		Constants::SPRITE_CHARACTER_WIDTH,
+		Constants::SPRITE_CHARACTER_HEIGHT) {
+}
+
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: Sprite(id) {
 	setSourceRect(x, y, w, h);
-	setDestinationRect(0, 0, 0, 0);
+	setDestinationRect(0, 0, Constants::SPRITE_CHARACTER_WIDTH, Constants::SPRITE_CHARACTER_HEIGHT);
 	setUpdateTimer(updateTime);
 	moving = false;
 	currentLayer = 0;

@@ -1,4 +1,6 @@
 #include "../headers/MapScreen.hpp"
+
+#include "../headers/Gahoodmon.hpp"
 #include "../headers/Tile.hpp"
 #include "../headers/Constants.hpp"
 #include "../headers/Image.hpp"
@@ -6,6 +8,7 @@
 #include "../headers/MapLoader.hpp"
 #include "../headers/Map.hpp"
 #include "../headers/BaseCharacter.hpp"
+#include "../headers/Util.hpp"
 #include <SDL2/SDL.h>
 
 MapScreen::MapScreen() {
@@ -38,11 +41,11 @@ void MapScreen::onUpdate() {
 void MapScreen::onUpdateInBackground() {
 }
 
-void MapScreen::onInput(Gahoodmon *, const SDL_Event &e) {
+void MapScreen::onInput(Gahoodmon *game, const SDL_Event &e) {
 }
 
 void MapScreen::handleKeyboard(const uint8_t *keyScanCodes) {
-	if (test != NULL) {
+	if (test != NULL && test->getPlayer() != NULL) {
 		if (keyScanCodes[SDL_SCANCODE_DOWN]) {
 			test->getPlayer()->move(CH_DOWN);
 		}

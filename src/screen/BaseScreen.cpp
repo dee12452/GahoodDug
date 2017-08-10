@@ -47,7 +47,9 @@ void BaseScreen::handleInput(Gahoodmon *game) {
 		if (e.type == SDL_QUIT) {
 			game->quit();
 		}
-		onInput(game, e);
+		else {
+			onInput(game, e);
+		}
 	}
 	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
 	handleKeyboard(keyboard);

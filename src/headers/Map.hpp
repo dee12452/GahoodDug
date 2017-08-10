@@ -29,6 +29,8 @@ public:
 	void generate(Window *);
 
 	BaseCharacter * getPlayer() const;
+	void removePlayer();
+	void placePlayer(int, int);
 
 private:
 	int width;

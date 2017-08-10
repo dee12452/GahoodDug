@@ -7,6 +7,7 @@ enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT, CH_NONE };
 
 class BaseCharacter : public Sprite {
 public:
+	BaseCharacter(const std::string &id);
 	BaseCharacter(const std::string &id, int, int, int, int);
 	BaseCharacter(const std::string &id, int, int, int, int, int, int, int, int);
 	virtual ~BaseCharacter() override;

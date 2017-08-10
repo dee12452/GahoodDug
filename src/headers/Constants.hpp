@@ -88,9 +88,13 @@ public:
 	* Map Constants
 	**********************************
 	*/
+	//Layers
 	static const uint8_t MAP_MAX_LAYERS;
+	//Tile constants
 	static const uint8_t MAP_NUM_TILES_WIDTH;
 	static const uint8_t MAP_NUM_TILES_HEIGHT;
+	static const std::string TILE_TYPE_WALL;
+	static const std::string TILE_TYPE_FLOOR;
 	/******************
 	******************/
 
