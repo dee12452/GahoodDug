@@ -1,5 +1,6 @@
 #include "../headers/Tile.hpp"
 
+#include <SDL2/SDL_rect.h>
 #include "../headers/Constants.hpp"
 #include "../headers/Timer.hpp"
 
@@ -11,7 +12,7 @@ Tile::Tile(const std::string &id,
         bool isWalkable) : Sprite (id) {
 	tileId = tId;
 	tileType = type;
-    setSourceRect(x, y, Constants::TILE_WIDTH, Constants::TILE_HEIGHT);
+    setSourceRect(x, y, Constants::SPRITE_TILE_WIDTH, Constants::SPRITE_TILE_HEIGHT);
     animTimer = NULL;
     currentTexture = 0;
     walkable = isWalkable;
@@ -46,14 +47,15 @@ std::string Tile::getTileType() const { return this->tileType; }
 
 void Tile::onUpdate() {
     if(animTimer != NULL && textureCoordinates.size() > 1) {
-        if(animTimer->check()) {
+        if(animTimer->check() && getDestinationRect() != NULL) {
             currentTexture++;
             if(currentTexture == static_cast<int> (textureCoordinates.size())) {
                 currentTexture = 0;
             }
             setSourceRect(textureCoordinates[currentTexture].first,
                     textureCoordinates[currentTexture].second,
-                    getWidth(), getHeight());
+					getDestinationRect()->w, 
+					getDestinationRect()->h);
         }
     }
 }

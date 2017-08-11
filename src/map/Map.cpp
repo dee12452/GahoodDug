@@ -27,7 +27,7 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 Map::~Map() {
 	//Clear the map tiles
 	for (unsigned int j = 0; j < mapTiles.size(); j++) {
-		for (int i = 0; i < width / Constants::TILE_WIDTH; i++) {
+		for (int i = 0; i < width / Constants::SPRITE_TILE_WIDTH; i++) {
 			delete[] mapTiles[j][i];
 			mapTiles[j][i] = NULL;
 		}
@@ -61,39 +61,17 @@ void Map::draw(Window *win) {
 
 	//draw the map in respect to the player
 	else if(playerCharacter != NULL) {
-		SDL_Texture *map = win->createTransparentTexture(width * Constants::TILE_WIDTH, 
-			height * Constants::TILE_HEIGHT);
-		win->setRenderTarget(map);
 		for (unsigned int i = 0; i < mapLayers.size(); i++) {
 			win->drawTexture(mapLayers[i], NULL, NULL);
-			if (i == playerCharacter->getCurrentMapLayer()) {
-				playerCharacter->draw(win);
-			}
 		}
-		SDL_Rect mapSrc;
-		mapSrc.x = (playerCharacter->getX() + playerCharacter->getWidth() / 2) - ((Constants::MAP_NUM_TILES_WIDTH / 2) * Constants::TILE_WIDTH);
-		mapSrc.y = (playerCharacter->getY() + playerCharacter->getHeight() / 2) - ((Constants::MAP_NUM_TILES_HEIGHT / 2) * Constants::TILE_HEIGHT);
-		mapSrc.w = Constants::TILE_WIDTH * Constants::MAP_NUM_TILES_WIDTH;
-		mapSrc.h = Constants::TILE_HEIGHT * Constants::MAP_NUM_TILES_HEIGHT;
-		win->resetRenderTarget();
-		win->drawTexture(map, &mapSrc, NULL);
-		SDL_DestroyTexture(map);
-		map = NULL;
 	}
 
 	//since there is no player,
 	//draw the map in its entirety
 	else {
-		SDL_Texture *map = win->createTransparentTexture(width * Constants::TILE_WIDTH,
-			height * Constants::TILE_HEIGHT);
-		win->setRenderTarget(map);
 		for (unsigned int i = 0; i < mapLayers.size(); i++) {
 			win->drawTexture(mapLayers[i], NULL, NULL);
 		}
-		win->resetRenderTarget();
-		win->drawTexture(map, NULL, NULL);
-		SDL_DestroyTexture(map);
-		map = NULL;
 	}
 }
 
@@ -116,8 +94,8 @@ void Map::generate(Window *win) {
 	
 	for (unsigned int layer = 0; layer < mapTiles.size(); layer++) {
 		SDL_Texture *layerTexture = win->createTransparentTexture(
-			Constants::TILE_WIDTH * width,
-			Constants::TILE_HEIGHT * height
+			Constants::SPRITE_TILE_WIDTH * width,
+			Constants::SPRITE_TILE_HEIGHT * height
 		);
 		win->setRenderTarget(layerTexture);
 		for (int i = 0; i < height; i++) {
@@ -125,10 +103,10 @@ void Map::generate(Window *win) {
 				if (mapTiles[layer][j][i] - 1 < 0) continue;
 				Tile *currTile = tileset->getTile(mapTiles[layer][j][i] - 1);
 				SDL_Rect dst;
-				dst.x = j * Constants::TILE_WIDTH;
-				dst.y = i * Constants::TILE_HEIGHT;
-				dst.w = Constants::TILE_WIDTH;
-				dst.h = Constants::TILE_HEIGHT;
+				dst.x = j * Constants::SPRITE_TILE_WIDTH;
+				dst.y = i * Constants::SPRITE_TILE_HEIGHT;
+				dst.w = Constants::SPRITE_TILE_WIDTH;
+				dst.h = Constants::SPRITE_TILE_HEIGHT;
 				currTile->setDestinationRect(dst);
 				currTile->draw(win);
 			}
@@ -140,10 +118,7 @@ void Map::generate(Window *win) {
 
 void Map::placePlayer(int x, int y) {
 	if (playerCharacter == NULL) {
-		playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1);
 	}
-	playerCharacter->setX(x);
-	playerCharacter->setY(y);
 }
 
 void Map::removePlayer() {

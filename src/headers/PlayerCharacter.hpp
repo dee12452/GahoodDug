@@ -5,10 +5,10 @@
 
 class PlayerCharacter : public BaseCharacter {
 public:
-	PlayerCharacter(const std::string &id);
 	PlayerCharacter(const std::string &id, int, int, int, int);
-	PlayerCharacter(const std::string &id, int, int, int, int, int, int, int, int);
 	~PlayerCharacter() override;
+
+	std::string getObjectType() override;
 
 protected:
 	void onMove(const CharacterDirection &, __int64, __int64) override;

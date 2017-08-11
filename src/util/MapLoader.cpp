@@ -92,8 +92,8 @@ void MapLoader::loadNextTileset() {
 				tileset->addTile(new Tile(tileset->getImage(),
 					type,
 					id,
-					x * Constants::TILE_WIDTH,
-					row * Constants::TILE_HEIGHT,
+					x * Constants::SPRITE_TILE_WIDTH,
+					row * Constants::SPRITE_TILE_HEIGHT,
 					true));
 				x++;
 				if (x % tileColumns == 0) {

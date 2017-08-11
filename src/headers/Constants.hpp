@@ -53,24 +53,18 @@ public:
 	//Alpha constants for the sprite
     static const uint8_t SPRITE_ALPHA_FULL;
     static const uint8_t SPRITE_ALPHA_NONE;
-	//Width of characters in the texture sheets
-	static const uint8_t SPRITE_CHARACTER_WIDTH;
-	static const uint8_t SPRITE_CHARACTER_HEIGHT;
+	//Dimensions of sprites in the texture sheets
+	static const int SPRITE_TILE_WIDTH;
+	static const int SPRITE_TILE_HEIGHT;
+	static const int SPRITE_CHARACTER_WIDTH;
+	static const int SPRITE_CHARACTER_HEIGHT;
+	static const int SPRITE_CHARACTER_X;
+	static const int SPRITE_CHARACTER_Y;
 	//Character texture sheets rows of facing
 	static const uint8_t SPRITE_CHARACTER_FACE_DOWN;
 	static const uint8_t SPRITE_CHARACTER_FACE_UP;
 	static const uint8_t SPRITE_CHARACTER_FACE_LEFT;
 	static const uint8_t SPRITE_CHARACTER_FACE_RIGHT;
-	/******************
-	******************/
-
-    /*
-     **********************************
-     * Sprite Constants
-     **********************************
-     */
-    static const int TILE_WIDTH;
-    static const int TILE_HEIGHT;
 	/******************
 	******************/
 
@@ -95,6 +89,15 @@ public:
 	static const uint8_t MAP_NUM_TILES_HEIGHT;
 	static const std::string TILE_TYPE_WALL;
 	static const std::string TILE_TYPE_FLOOR;
+	/******************
+	******************/
+
+	/*
+	**********************************
+	* Game Object Types
+	**********************************
+	*/
+	static const std::string OBJECT_TYPE_PLAYER;
 	/******************
 	******************/
 

@@ -31,22 +31,14 @@ public:
     void setUpdateTimer(unsigned int);
     void setImageId(const std::string &);
     void setAlpha(uint8_t);
-    void setX(int);
-    void setY(int);
-    void setWidth(int);
-    void setHeight(int);
 
     std::string getImageId() const;
-    int getX() const;
-    int getY() const;
-    int getWidth() const;
-    int getHeight() const;
 
 protected:
     virtual void onUpdate() = 0;
 
 private:
-    Timer *timer;
+    Timer *updateTimer;
     std::string id;
     SDL_Rect *src;
     SDL_Rect *dst;

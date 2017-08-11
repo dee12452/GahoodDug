@@ -1,15 +1,13 @@
 #ifndef BASE_CHARACTER_HPP
 #define BASE_CHARACTER_HPP
 
-#include "Sprite.hpp"
+#include "BaseOverworldObject.hpp"
 
 enum CharacterDirection { CH_UP, CH_DOWN, CH_LEFT, CH_RIGHT, CH_NONE };
 
-class BaseCharacter : public Sprite {
+class BaseCharacter : public BaseOverworldObject {
 public:
-	BaseCharacter(const std::string &id);
 	BaseCharacter(const std::string &id, int, int, int, int);
-	BaseCharacter(const std::string &id, int, int, int, int, int, int, int, int);
 	virtual ~BaseCharacter() override;
 
 	CharacterDirection getFacingDirection() const;
@@ -34,7 +32,6 @@ private:
 	CharacterDirection currentDirection, nextDirection;
 	bool moving, walkLeft;
 	__int64 startMove, walkDuration;
-	int prevX, prevY;
 	uint8_t currentLayer;
 };
 
