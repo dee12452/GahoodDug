@@ -1,12 +1,18 @@
 #include "../headers/PlayerCharacter.hpp"
 
 #include "../headers/Constants.hpp"
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_log.h>
 
 PlayerCharacter::PlayerCharacter(const std::string &id, int x, int y, int w, int h) 
 	: BaseCharacter(id, x, y, w, h) {
+	getDestinationRect()->x = Constants::WINDOW_WIDTH / 2 - getDestinationRect()->w / 2;
+	getDestinationRect()->y = Constants::WINDOW_HEIGHT / 2 - getDestinationRect()->h / 2;
 }
 
-PlayerCharacter::~PlayerCharacter() {}
+PlayerCharacter::~PlayerCharacter() {
+	SDL_Log("%d, %d\n", getDestinationRect()->x, getDestinationRect()->y);
+}
 
 std::string PlayerCharacter::getObjectType() {
 	return Constants::OBJECT_TYPE_PLAYER;

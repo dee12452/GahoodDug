@@ -87,6 +87,7 @@ void Gahoodmon::deinit() {
         Util::log(message);
     }
 	if (currentScreen != NULL) {
+		currentScreen->stop();
 		delete currentScreen;
 		currentScreen = NULL;
 	}

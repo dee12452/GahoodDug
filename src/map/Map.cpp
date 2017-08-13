@@ -61,8 +61,16 @@ void Map::draw(Window *win) {
 
 	//draw the map in respect to the player
 	else if(playerCharacter != NULL) {
+		SDL_Rect mapSrc;
+		mapSrc.x = (playerCharacter->getMapX()) - ((Constants::MAP_NUM_TILES_WIDTH / 2) * Constants::SPRITE_TILE_WIDTH);
+		mapSrc.y = (playerCharacter->getMapY()) - ((Constants::MAP_NUM_TILES_HEIGHT / 2) * Constants::SPRITE_TILE_WIDTH);
+		mapSrc.w = Constants::SPRITE_TILE_WIDTH * Constants::MAP_NUM_TILES_WIDTH;
+		mapSrc.h = Constants::SPRITE_TILE_WIDTH * Constants::MAP_NUM_TILES_HEIGHT;
 		for (unsigned int i = 0; i < mapLayers.size(); i++) {
-			win->drawTexture(mapLayers[i], NULL, NULL);
+			win->drawTexture(mapLayers[i], &mapSrc, NULL);
+			if (i == playerCharacter->getCurrentMapLayer()) {
+				playerCharacter->draw(win);
+			}
 		}
 	}
 
@@ -118,7 +126,14 @@ void Map::generate(Window *win) {
 
 void Map::placePlayer(int x, int y) {
 	if (playerCharacter == NULL) {
+		playerCharacter = new PlayerCharacter(Constants::IMAGE_CHARACTER_1,
+			Constants::SPRITE_CHARACTER_X,
+			Constants::SPRITE_CHARACTER_Y,
+			Constants::SPRITE_CHARACTER_WIDTH,
+			Constants::SPRITE_CHARACTER_HEIGHT);
 	}
+	playerCharacter->setMapX(x);
+	playerCharacter->setMapY(y);
 }
 
 void Map::removePlayer() {

@@ -7,7 +7,7 @@ BaseOverworldObject::BaseOverworldObject(const std::string &id, int sX, int sY, 
 	: BaseGameObject(id, sX, sY, sW, sH, 0, 0, 0, 0) {
 	mapX = 0; mapY = 0;
 	prevMapX = 0; prevMapY = 0;
-	setVisible(false);
+	setVisible(true);
 	SDL_Rect drawDst;
 	drawDst.x = 0; drawDst.y = 0;
 	int tileW = Constants::WINDOW_WIDTH / Constants::MAP_NUM_TILES_WIDTH;
