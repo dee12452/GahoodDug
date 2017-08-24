@@ -4,8 +4,8 @@
 #include "../headers/Util.hpp"
 #include "../headers/Constants.hpp"
 
-const __int64 BaseCharacter::updateTime = 25;
-const __int64 BaseCharacter::defaultMoveTime = 325;
+const int64_t BaseCharacter::updateTime = 25;
+const int64_t BaseCharacter::defaultMoveTime = 325;
 
 BaseCharacter::BaseCharacter(const std::string &id)
 	: BaseCharacter(id,
@@ -74,7 +74,7 @@ void BaseCharacter::cancelNextMove() { nextDirection = CH_NONE;  }
 
 void BaseCharacter::onUpdate() {
 	if (moving) {
-		__int64 nextMove = Util::getCurrentTimeMillis();
+		int64_t nextMove = Util::getCurrentTimeMillis();
 		if (nextMove - startMove >= walkDuration) {
 			switch (currentDirection) {
 			case CH_UP:
@@ -93,6 +93,8 @@ void BaseCharacter::onUpdate() {
 				setX(prevX + Constants::TILE_WIDTH);
 				onMoveEnd(CH_RIGHT, prevX + Constants::TILE_WIDTH, prevY);
 				break;
+            default:
+                break;
 			}
 			startMove = 0;
 			walkDuration = 0;
@@ -120,12 +122,14 @@ void BaseCharacter::onUpdate() {
 				setX(prevX + static_cast<int>(Constants::TILE_WIDTH * percentage));
 				onMove(CH_RIGHT, nextMove - startMove, walkDuration);
 				break;
+            default:
+                break;
 			}
 		}
 	}
 }
 
-void BaseCharacter::onMove(const CharacterDirection &dir, __int64 curr, __int64 total) {
+void BaseCharacter::onMove(const CharacterDirection &dir, int64_t curr, int64_t total) {
 	float percentage = static_cast<float>(curr) / static_cast<float>(total) * 100;
 	SDL_Rect chSrc = *(getSourceRect());
 	if (percentage <= 45) {
@@ -161,6 +165,8 @@ void BaseCharacter::onMoveStart(const CharacterDirection &dir) {
 	case CH_RIGHT:
 		chSrc.y = chSrc.h * Constants::SPRITE_CHARACTER_FACE_RIGHT;
 		break;
+    default:
+        break;
 	}
 	setSourceRect(chSrc);
 }

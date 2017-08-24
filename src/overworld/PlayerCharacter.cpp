@@ -22,7 +22,7 @@ PlayerCharacter::PlayerCharacter(const std::string &id,
 
 PlayerCharacter::~PlayerCharacter() {}
 
-void PlayerCharacter::onMove(const CharacterDirection &dir, __int64 curr, __int64 total) {
+void PlayerCharacter::onMove(const CharacterDirection &dir, int64_t curr, int64_t total) {
 	BaseCharacter::onMove(dir, curr, total);
 }
 

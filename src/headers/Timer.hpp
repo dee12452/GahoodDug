@@ -11,14 +11,14 @@ public:
     void reset();
     bool check();
     
-    void setTargetMs(__int64);
-	__int64 getTargetMs() const;
-	__int64 getElapsedMs();
+    void setTargetMs(int64_t);
+    int64_t getTargetMs() const;
+	int64_t getElapsedMs();
 private:
     std::chrono::milliseconds getCurrentMs() const;
     std::chrono::milliseconds start;
     std::chrono::milliseconds finish;
-	__int64 targetMs;
+	int64_t targetMs;
 };
 
 #endif

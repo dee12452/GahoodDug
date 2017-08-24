@@ -25,15 +25,15 @@ public:
 protected:
 	void onUpdate() override;
 	virtual void onMoveStart(const CharacterDirection &);
-	virtual void onMove(const CharacterDirection &, __int64, __int64);
+	virtual void onMove(const CharacterDirection &, int64_t, int64_t);
 	virtual void onMoveEnd(const CharacterDirection &, int, int);
 	virtual void onChangeDirection(const CharacterDirection &);
 
 private:
-	static const __int64 updateTime, defaultMoveTime;
+	static const int64_t updateTime, defaultMoveTime;
 	CharacterDirection currentDirection, nextDirection;
 	bool moving, walkLeft;
-	__int64 startMove, walkDuration;
+	int64_t startMove, walkDuration;
 	int prevX, prevY;
 	uint8_t currentLayer;
 };

@@ -26,7 +26,7 @@ FadeAnimation::~FadeAnimation() {
     sprite = NULL;
 }
 
-void FadeAnimation::onAnimate(__int64 elapsedMs) {
+void FadeAnimation::onAnimate(int64_t elapsedMs) {
     if(fadeIn) {
         sprite->setAlpha(static_cast<uint8_t> (Constants::SPRITE_ALPHA_FULL * elapsedMs / duration));
     }
@@ -35,7 +35,7 @@ void FadeAnimation::onAnimate(__int64 elapsedMs) {
     }
 }
 
-void FadeAnimation::onCancel(__int64) {
+void FadeAnimation::onCancel(int64_t) {
     onFinish();
 }
 

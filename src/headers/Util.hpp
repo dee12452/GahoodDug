@@ -9,7 +9,7 @@ public:
     static void fatalSDLError(const char *);
     static void log(const std::string &);
 	static void print(const std::string &);
-	static __int64 getCurrentTimeMillis();
+	static int64_t getCurrentTimeMillis();
 private:
     Util() {}
     ~Util() {}

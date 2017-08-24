@@ -14,8 +14,8 @@ void Timer::reset() {
 
 bool Timer::check() {
     finish = getCurrentMs();
-    __int64 startMs = start.count();
-    __int64 finishMs = finish.count();
+    int64_t startMs = start.count();
+    int64_t finishMs = finish.count();
     if(finishMs - startMs >= targetMs) {
         reset();
         return true;
@@ -23,11 +23,11 @@ bool Timer::check() {
     return false;
 }
 
-void Timer::setTargetMs(__int64 ms) {
+void Timer::setTargetMs(int64_t ms) {
     targetMs = ms;
 }
 
-__int64 Timer::getTargetMs() const {
+int64_t Timer::getTargetMs() const {
     return targetMs;
 }
 
@@ -35,9 +35,9 @@ std::chrono::milliseconds Timer::getCurrentMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
 }
 
-__int64 Timer::getElapsedMs() {
+int64_t Timer::getElapsedMs() {
     finish = getCurrentMs();
-	__int64 finishMs = finish.count();
-	__int64 startMs = start.count();
+	int64_t finishMs = finish.count();
+	int64_t startMs = start.count();
     return finishMs - startMs;
 };

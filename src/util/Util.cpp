@@ -22,7 +22,7 @@ void Util::print(const std::string &message) {
 	std::cout << message << std::endl;
 }
 
-__int64 Util::getCurrentTimeMillis() {
+int64_t Util::getCurrentTimeMillis() {
 	std::chrono::milliseconds currMS = std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
 	return currMS.count();
 }
