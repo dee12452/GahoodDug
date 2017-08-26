@@ -2,6 +2,7 @@
 #define MAP_LOADER_HPP
 
 #include <vector>
+#include <string>
 
 class Tileset;
 class Map;

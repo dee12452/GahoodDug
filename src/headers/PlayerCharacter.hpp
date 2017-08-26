@@ -11,7 +11,7 @@ public:
 	std::string getObjectType() override;
 
 protected:
-	void onMove(const CharacterDirection &, __int64, __int64) override;
+	void onMove(const CharacterDirection &, int64_t, int64_t) override;
 	void onMoveEnd(const CharacterDirection &, int, int) override;
 	void onMoveStart(const CharacterDirection &) override;
 	void onChangeDirection(const CharacterDirection &) override;

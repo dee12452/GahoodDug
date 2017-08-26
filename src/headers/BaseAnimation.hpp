@@ -1,6 +1,8 @@
 #ifndef BASE_ANIMATION_HPP
 #define BASE_ANIMATION_HPP
 
+#include <cstdint>
+
 class Timer;
 
 class BaseAnimation {
@@ -14,8 +16,8 @@ public:
 
 protected:
     virtual void onFinish() = 0;
-    virtual void onCancel(__int64) = 0;
-    virtual void onAnimate(__int64) = 0;
+    virtual void onCancel(int64_t) = 0;
+    virtual void onAnimate(int64_t) = 0;
     int duration;
     Timer *elapsedTimer;
 };

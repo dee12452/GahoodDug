@@ -4,8 +4,8 @@
 #include "../headers/Util.hpp"
 #include "../headers/Constants.hpp"
 
-const __int64 BaseCharacter::updateTime = 25;
-const __int64 BaseCharacter::defaultMoveTime = 325;
+const int64_t BaseCharacter::updateTime = 25;
+const int64_t BaseCharacter::defaultMoveTime = 325;
 
 BaseCharacter::BaseCharacter(const std::string &id, int x, int y, int w, int h) 
 	: BaseOverworldObject(id, x, y, w, h) {

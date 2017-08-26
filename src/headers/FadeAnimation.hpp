@@ -12,8 +12,8 @@ public:
 
 protected:
     void onFinish() override;
-    void onCancel(__int64) override;
-    void onAnimate(__int64) override;
+    void onCancel(int64_t) override;
+    void onAnimate(int64_t) override;
     bool fadeIn;
     Sprite *sprite;
 };

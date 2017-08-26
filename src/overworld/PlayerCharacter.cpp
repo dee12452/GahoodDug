@@ -18,7 +18,7 @@ std::string PlayerCharacter::getObjectType() {
 	return Constants::OBJECT_TYPE_PLAYER;
 }
 
-void PlayerCharacter::onMove(const CharacterDirection &dir, __int64 curr, __int64 total) {
+void PlayerCharacter::onMove(const CharacterDirection &dir, int64_t curr, int64_t total) {
 	BaseCharacter::onMove(dir, curr, total);
 }
 
