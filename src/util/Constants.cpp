@@ -14,8 +14,15 @@ const uint8_t Constants::GAME_LOOP_DELAY = 5;
 const uint8_t Constants::RENDER_LOOP_DELAY = 5;
 const uint8_t Constants::TARGET_FPS = 60;
 const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
+const char * const Constants::GAME_RES_FOLDER = "../res";
 const char * const Constants::GAME_IMAGE_FOLDER = "../res/image/";
 const char * const Constants::GAME_TILESET_FOLDER = "../res/tileset/";
+
+/*
+ * FILE EXTENSIONS */
+const char * const Constants::IMAGE_FILE_EXTENSION = ".png";
+const char * const Constants::TILESET_FILE_EXTENSION = ".tsx";
+const char * const Constants::MAP_FILE_EXTENSION = ".tmx";
 
 /*
  * IMAGE IDS */

@@ -28,8 +28,21 @@ public:
     static const uint8_t RENDER_LOOP_DELAY;
     static const uint8_t TARGET_FPS;
     static const char * const GAME_THREAD_NAME;
+    static const char * const GAME_RES_FOLDER;
     static const char * const GAME_IMAGE_FOLDER;
 	static const char * const GAME_TILESET_FOLDER;
+    /******************
+     ******************/
+
+
+    /*
+     **********************************
+     * Game Constants
+     **********************************
+     */
+    static const char * const IMAGE_FILE_EXTENSION;
+    static const char * const TILESET_FILE_EXTENSION;
+    static const char * const MAP_FILE_EXTENSION;
     /******************
      ******************/
 

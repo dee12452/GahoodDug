@@ -13,20 +13,17 @@ public:
 	static MapLoader * getInstance();
 	static void deleteInstance();
 
-	Map * loadMap(const char *);
-
-	void setTilesetFolder(const char *);
-	bool hasLoadedAllTilesets() const;
-	void loadNextTileset();
+	Map * loadMap(const char *pathToMap);
+    void loadTilesets(const char *pathToRes);
 
 private:
 	MapLoader();
 	~MapLoader();
 	static MapLoader *instance;
 
-	void populateMapInfo(Tag *, Map *);
+	void loadNextTileset(const char *pathToTileset);
+	void populateMapInfo(Tag *tag, Map *map);
 	std::vector<Tileset *> tilesets;
-	std::vector<std::string> tilesetFiles;
 };
 
 #endif

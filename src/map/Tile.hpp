@@ -1,42 +1,22 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
-#include "Sprite.hpp"
-#include <vector>
+#include <string>
 
-class Timer;
-
-class Tile : public Sprite {
+class Tile {
 public:
-    Tile(const std::string &, 
-		const std::string &,
-		int, 
-		int, 
-		int, 
-		bool);
+    Tile(const std::string &tType, int tId, int row, int column);
 
-    Tile(const std::string &, 
-		const std::string &,
-		int,
-		const std::vector<std::pair<int, int>> &, 
-		unsigned int,
-		bool);
-
-    ~Tile() override;
+    ~Tile();
 
 	int getTileId() const;
 	std::string getTileType() const;
-
-protected:
-    void onUpdate() override;
+    int getTileRow() const;
+    int getTileColumn() const;
 
 private:
-	int tileId;
-    Timer *animTimer;
-    std::vector<std::pair<int, int>> textureCoordinates;
+	int tileId, tileRow, tileColumn;
 	std::string tileType;
-    int currentTexture;
-    bool walkable;
 };
 
 #endif

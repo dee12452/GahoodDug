@@ -2,10 +2,10 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include "FileUtil.hpp"
-#include "XMLParser.hpp"
-#include "Util.hpp"
-#include "Constants.hpp"
+#include "../util/FileUtil.hpp"
+#include "../util/XMLParser.hpp"
+#include "../util/Util.hpp"
+#include "../util/Constants.hpp"
 #include "../map/Map.hpp"
 #include "../map/Tileset.hpp"
 #include "../map/Tile.hpp"
@@ -36,19 +36,29 @@ MapLoader::~MapLoader() {
 		}
 	}
 	tilesets.clear();
-	tilesetFiles.clear();
 }
 
-void MapLoader::setTilesetFolder(const char *) {
-	//tilesetFiles = FileUtil::getFiles(path);
+void MapLoader::loadTilesets(const char *pathToResFolder) {
+    Util::log("Started loading tilesets");
+    std::vector<std::string> tilesetFiles = FileUtil::getFilesRecursively(pathToResFolder, Constants::TILESET_FILE_EXTENSION);
+    if(tilesetFiles.size() == 0) {
+        Util::print("Warning: Failed to find tilesets in given res folder");
+        return;
+    }
+    for(size_t i = 0; i < tilesetFiles.size(); i++) {
+        loadNextTileset(tilesetFiles[i].c_str());
+        Util::log("Successfully loaded tileset " + tilesetFiles[i]);
+    }
+    std::vector<std::string> maps = FileUtil::getFilesRecursively(pathToResFolder, Constants::MAP_FILE_EXTENSION);
+    for(size_t i = 0; i < tilesetFiles.size(); i++) {
+        loadMap(maps[i].c_str());
+        Util::log("Successfully loaded map " + maps[i]);
+    }
+    Util::log("Finished loading tilesets and maps");
 }
 
-bool MapLoader::hasLoadedAllTilesets() const {
-	return tilesetFiles.size() == tilesets.size();
-}
-
-void MapLoader::loadNextTileset() {
-	XMLObject *obj = XMLParser::loadXML((Constants::GAME_TILESET_FOLDER + tilesetFiles[tilesets.size()]).c_str());
+void MapLoader::loadNextTileset(const char *pathToTileset) {
+	XMLObject *obj = XMLParser::loadXML(pathToTileset);
 	if (obj == NULL) {
 		Util::fatalError("Failed to load tileset");
 	}
@@ -57,7 +67,7 @@ void MapLoader::loadNextTileset() {
 	if (obj->tags.size() > 0) {
 		//Load the name and number of columns of the tileset
 		for (unsigned int i = 0; i < obj->tags[0]->attributes.size(); i++) {
-			if (obj->tags[0]->attributes[i].first == "name") {
+            if (obj->tags[0]->attributes[i].first == "name") {
 				tileset->setName(obj->tags[0]->attributes[i].second);
 			}
 			else if (obj->tags[0]->attributes[i].first == "columns") {
@@ -73,7 +83,7 @@ void MapLoader::loadNextTileset() {
 			if (tag->id == "image") {
 				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
 					if (tag->attributes[j].first == "source") {
-						tileset->setImage(tag->attributes[j].second.substr(9));
+						tileset->setImageFile(tag->attributes[j].second.substr(9).c_str());
 						break;
 					}
 				}
@@ -89,12 +99,10 @@ void MapLoader::loadNextTileset() {
 						type = tag->attributes[j].second;
 					}
 				}
-				tileset->addTile(new Tile(tileset->getImage(),
-					type,
+                tileset->addTile(new Tile(type,
 					id,
 					x * Constants::SPRITE_TILE_WIDTH,
-					row * Constants::SPRITE_TILE_HEIGHT,
-					true));
+					row * Constants::SPRITE_TILE_HEIGHT));
 				x++;
 				if (x % tileColumns == 0) {
 					row++; x = 0;
@@ -111,15 +119,6 @@ void MapLoader::loadNextTileset() {
 Map * MapLoader::loadMap(const char *path) {
 	Map *map = new Map();
 	XMLObject *obj = XMLParser::loadXML(path);
-	int timeout = 0;
-	const int MAX_TIMEOUT = 1000;
-	while (!hasLoadedAllTilesets()) {
-		SDL_Delay(Constants::RENDER_LOOP_DELAY);
-		timeout++;
-		if (timeout > MAX_TIMEOUT) {
-			Util::fatalError("Timed out trying to load tilesets");
-		}
-	}
 	if (obj == NULL) {
 		Util::fatalError("Failed to load map");
 	}

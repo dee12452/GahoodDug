@@ -23,10 +23,6 @@ public:
 	void setHeight(int height);
 	void addLayer(int **layer);
 
-	void draw(Window *win);
-	void update();
-	void generate(Window *win);
-
 private:
 	int width;
 	int height;

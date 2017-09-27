@@ -35,8 +35,8 @@ private:
 	static void generateTags(Tag *, const std::string &, unsigned int &);
 
 public:
-	static XMLObject * loadXML(const char *);
-	static void destroyXMLObject(XMLObject *);
+	static XMLObject * loadXML(const char *pathToXmlFile);
+	static void destroyXMLObject(XMLObject *xmlObj);
 };
 
 #endif 

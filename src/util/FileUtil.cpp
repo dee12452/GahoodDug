@@ -49,7 +49,6 @@ std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
 
 std::vector<std::string> FileUtil::getFilesRecursively(const char *folderPath, const char *fileExtension) {
     std::vector<std::string> files;
-	if(!isDirectory(folderPath)) return files;
     char *path = new char[MAX_PATH_LENGTH];
     strcpy(path, folderPath);
 	recursiveSearchFiles(files, path, fileExtension);
@@ -85,7 +84,7 @@ void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path,
 		(void)closedir(dir);
 	}
 	else {
-		std::string message = "Failed to find images in path: ";
+		std::string message = "Failed to find files in path: ";
 		message += path;
 		Util::fatalError(message.c_str());
 	}
@@ -105,8 +104,9 @@ bool FileUtil::isCorrectExtension(char *file, const char *fileExtension) {
 
 bool FileUtil::isDirectory(const char *f) {
 	for (int i = 0; f[i] != '\0'; i++) {
-		if (f[i] == '.')
+		if (f[i] == '.') {
 			return false;
-	}
+        }
+    }
 	return true;
 }

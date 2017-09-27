@@ -7,6 +7,7 @@
 #include "../util/Timer.hpp"
 #include "../util/Util.hpp"
 #include "../screen/BaseScreen.hpp"
+#include "../map/MapLoader.hpp"
 
 static int runInBackgroundThread(void *gahoodmon);
 
@@ -35,6 +36,7 @@ void Gahoodmon::runInBackground() {
 }
 
 void Gahoodmon::init() {
+    Util::log("Started Initialization");
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     IMG_Init(IMG_INIT_PNG);
    
@@ -49,9 +51,12 @@ void Gahoodmon::init() {
     }
     //Start the first screen
     //requestNewScreen(new MapScreen());
+    MapLoader::getInstance()->loadTilesets(Constants::GAME_RES_FOLDER);
+    Util::log("Initialized game successfully");
 }
 
 void Gahoodmon::update() {
+    
     /* If current screen exists 
      * Have it handle input 
      * check to see if it needs to be drawn 
@@ -104,6 +109,7 @@ void Gahoodmon::deinit() {
         delete window;
         window = NULL;
     }
+    MapLoader::getInstance()->deleteInstance();
 
     IMG_Quit();
     SDL_Quit();

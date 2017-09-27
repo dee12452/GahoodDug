@@ -9,27 +9,27 @@ class Tile;
 class Tileset {
 public: 
 	Tileset();
-	Tileset(const std::string &, 
-		const std::string &, 
-		int, 
-		int,
-		const std::vector<Tile *> &);
+	Tileset(const std::string &name,
+        const char *imgPath, 
+		int w, 
+		int h,
+		const std::vector<Tile *> &tiles);
 	~Tileset();
 
-	void setDimensions(int, int);
-	void setName(const std::string &);
-	void setImage(const std::string &);
-	void addTile(Tile *);
+	void setDimensions(int w, int h);
+	void setImageFile(const char *imgPath);
+	void addTile(Tile *tile);
+    void setName(const std::string &name);
 
 	Tile * getTile(unsigned int) const;
-	std::string getName() const;
-	std::string getImage() const;
+	char * getImagePath() const;
 	int getWidth() const;
 	int getHeight() const;
+    std::string getName() const;
 
 private:
-	std::string name;
-	std::string tilesetImageId;
+    std::string tilesetName;
+    char *imageFilePath;
 	int width;
 	int height;
 	std::vector<Tile *> tiles;

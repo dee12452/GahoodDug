@@ -43,20 +43,10 @@ Map::~Map() {
 	tileset = NULL;
 }
 
-void Map::draw(Window *) {
-}
 
-void Map::update() {
-	int i = 0;
-	Tile *tile = tileset->getTile(i);
-	while (tile != NULL) {
-		i++;
-		tile = tileset->getTile(i);
-	}
-}
-
+/* 
+ * May need this laterm but this puts the map into a texture.
 void Map::generate(Window *) {	
-    /*
     //If there is already a map or the tileset image hasn't loaded, don't generate the map
 	if (mapLayers.size() > 0 || ImageLoader::getInstance()->getImage(tileset->getImage()) == NULL) return;
 	
@@ -82,8 +72,9 @@ void Map::generate(Window *) {
 		mapLayers.push_back(layerTexture);
 	}
 	win->resetRenderTarget();
-    */
 }
+*
+*/
 
 Tileset * Map::getTileset() const { return tileset; }
 int Map::getWidth() const { return width; }
