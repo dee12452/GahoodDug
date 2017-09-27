@@ -1,7 +1,7 @@
 /** Need this include here for port to Android **/
 #include <SDL2/SDL.h>
 #include <stdio.h>
-#include "headers/Gahoodmon.hpp"
+#include "game/Gahoodmon.hpp"
 
 void handleArgs(int, char **);
 

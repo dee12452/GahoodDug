@@ -15,7 +15,7 @@ public:
     void runInBackground();
     bool isRunning() const;
     void quit();
-    void requestNewScreen(BaseScreen *);
+    void requestNewScreen(BaseScreen *newScreen);
 
 private:
     //Member variables//

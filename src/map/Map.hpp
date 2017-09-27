@@ -5,13 +5,12 @@
 
 class Tileset;
 class Window;
-class BaseCharacter;
 struct SDL_Texture;
 
 class Map {
 public:
 	Map();
-	Map(int, int, std::vector<int **>, Tileset *);
+	Map(int width, int height, std::vector<int **> tileLayers, Tileset *tileset);
 	~Map();
 
 	Tileset * getTileset() const;
@@ -19,18 +18,14 @@ public:
 	int getHeight() const;
 	std::vector<int **> getLayers() const;
 
-	void setTileset(Tileset *);
-	void setWidth(int);
-	void setHeight(int);
-	void addLayer(int **);
+	void setTileset(Tileset *tileset);
+	void setWidth(int width);
+	void setHeight(int height);
+	void addLayer(int **layer);
 
-	void draw(Window *);
+	void draw(Window *win);
 	void update();
-	void generate(Window *);
-
-	BaseCharacter * getPlayer() const;
-	void removePlayer();
-	void placePlayer(int, int);
+	void generate(Window *win);
 
 private:
 	int width;
@@ -38,7 +33,6 @@ private:
 	std::vector<int **> mapTiles;
 	std::vector<SDL_Texture *> mapLayers;
 	Tileset *tileset;
-	BaseCharacter *playerCharacter;
 };
 
 #endif

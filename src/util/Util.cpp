@@ -1,4 +1,4 @@
-#include "../headers/Util.hpp"
+#include "Util.hpp"
 #include <SDL2/SDL_log.h>
 #include <SDL2/SDL_error.h>
 #include <chrono>

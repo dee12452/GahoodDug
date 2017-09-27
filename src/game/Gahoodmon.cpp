@@ -1,17 +1,14 @@
-#include "../headers/Gahoodmon.hpp"
+#include "Gahoodmon.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "../headers/Window.hpp"
-#include "../headers/Constants.hpp"
-#include "../headers/Timer.hpp"
-#include "../headers/Util.hpp"
-#include "../headers/ImageLoader.hpp"
-#include "../headers/MapLoader.hpp"
-#include "../headers/MapScreen.hpp"
-#include "../headers/Animator.hpp"
+#include "Window.hpp"
+#include "../util/Constants.hpp"
+#include "../util/Timer.hpp"
+#include "../util/Util.hpp"
+#include "../screen/BaseScreen.hpp"
 
-static int runInBackgroundThread(void *);
+static int runInBackgroundThread(void *gahoodmon);
 
 Gahoodmon::Gahoodmon() {
     window = NULL;
@@ -32,9 +29,6 @@ void Gahoodmon::run() {
 }
 
 void Gahoodmon::runInBackground() {
-	if (!MapLoader::getInstance()->hasLoadedAllTilesets()) {
-		MapLoader::getInstance()->loadNextTileset();
-	}
     if(currentScreen != NULL) {
         currentScreen->updateInBackground();
     }
@@ -47,22 +41,20 @@ void Gahoodmon::init() {
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
     window = new Window();
-	ImageLoader::getInstance()->setImageFolder(Constants::GAME_IMAGE_FOLDER);
-	MapLoader::getInstance()->setTilesetFolder(Constants::GAME_TILESET_FOLDER);
     running = true;
 
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
     if(backgroundThread == NULL) {
         Util::fatalSDLError("Could not create the background thread");
     }
-    requestNewScreen(new MapScreen());
+    //Start the first screen
+    //requestNewScreen(new MapScreen());
 }
 
 void Gahoodmon::update() {
 	if (currentScreen != NULL) {
 		currentScreen->handleInput(this);
 	}
-    Animator::getInstance()->animateAnimations();
     if(currentScreen != NULL) {
         if(fpsTimer->check()) {
             //Render to the window
@@ -99,9 +91,6 @@ void Gahoodmon::deinit() {
         delete window;
         window = NULL;
     }
-	Animator::deleteInstance();
-	ImageLoader::deleteInstance();
-	MapLoader::deleteInstance();
 
     IMG_Quit();
     SDL_Quit();
@@ -121,8 +110,8 @@ void Gahoodmon::requestNewScreen(BaseScreen *screen) {
 
 void Gahoodmon::quit() { running = false; }
 
-int runInBackgroundThread(void *data) {
-    Gahoodmon *game = static_cast<Gahoodmon *> (data);
+int runInBackgroundThread(void *gahoodmon) {
+    Gahoodmon *game = static_cast<Gahoodmon *> (gahoodmon);
     while(game->isRunning()) {
         game->runInBackground();
         SDL_Delay(Constants::GAME_LOOP_DELAY);

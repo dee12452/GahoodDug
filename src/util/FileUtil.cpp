@@ -1,15 +1,15 @@
-#include "../headers/FileUtil.hpp"
+#include "FileUtil.hpp"
 
 #include <SDL2/SDL.h>
 #include <sstream>
 #include <dirent.h>
-#include "../headers/Util.hpp"
+#include "Util.hpp"
 
 FileUtil::FileUtil() {}
 
 FileUtil::~FileUtil() {}
 
-const uint8_t FileUtil::MAX_PATH_LENGTH = 255;
+const uint16_t FileUtil::MAX_PATH_LENGTH = 2500;
 
 std::vector<std::string> FileUtil::readFile(const std::string &file) {
     std::vector<std::string> lines;
@@ -47,20 +47,18 @@ std::vector<std::string> FileUtil::getWordsFromString(const std::string &line) {
     return words;
 }
 
-std::vector<std::string> FileUtil::getFiles(const char *path) {
+std::vector<std::string> FileUtil::getFilesRecursively(const char *folderPath, const char *fileExtension) {
     std::vector<std::string> files;
-	char *folderPath = new char[MAX_PATH_LENGTH];
-	strcpy(folderPath, path);
-    char emptySubDir[1];
-    emptySubDir[0] = '\0';
-	recursiveSearchFiles(files, folderPath, emptySubDir);
-	SDL_Log("Finished searching for files\n");
-	delete[] folderPath;
-	folderPath = NULL;
+	if(!isDirectory(folderPath)) return files;
+    char *path = new char[MAX_PATH_LENGTH];
+    strcpy(path, folderPath);
+	recursiveSearchFiles(files, path, fileExtension);
+	delete[] path;
+    path = NULL;
     return files;
 }
 
-void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path, char *subDir) {
+void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path, const char *fileExtension) {
 	DIR *dir;
 	dir = opendir(path);
 	if (dir != NULL) {
@@ -68,23 +66,20 @@ void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path,
 		while (fileName != NULL) {
 			if (isDirectory(fileName->d_name)) {
 				//Recursive search into the directory
-				char *folderPath = new char[MAX_PATH_LENGTH];
-				strcpy(folderPath, path);
-				strcat(folderPath, fileName->d_name);
-				strcat(folderPath, "/");
-				char newSubDir[MAX_PATH_LENGTH];
-				strcpy(newSubDir, subDir);
-				strcat(newSubDir, fileName->d_name);
-				strcat(newSubDir, "/");
-				recursiveSearchFiles(files, folderPath, newSubDir);
-				delete[] folderPath;
-				folderPath = NULL;
+				char *newPath = new char[MAX_PATH_LENGTH];
+                strcpy(newPath, path);
+                strcat(newPath, "/");
+                strcat(newPath, fileName->d_name);
+				recursiveSearchFiles(files, newPath, fileExtension);
+                delete[] newPath;
 			}
-			else if(isFile(fileName->d_name)) {
-				//Found an image, push it into the files vector
-				SDL_Log("Found and pushed file: %s\n", fileName->d_name);
-				files.push_back(subDir + std::string(fileName->d_name));
-			}
+			else {
+				//Found a file matching the extension, push it into the files vector
+				if(isCorrectExtension(fileName->d_name, fileExtension)) {
+                    std::string filePath(path);
+                    files.push_back(filePath + "/" + std::string(fileName->d_name));
+			    }
+            }
 			fileName = readdir(dir);
 		}
 		(void)closedir(dir);
@@ -96,15 +91,22 @@ void FileUtil::recursiveSearchFiles(std::vector<std::string> &files, char *path,
 	}
 }
 
+bool FileUtil::isCorrectExtension(char *file, const char *fileExtension) {
+    int i = 0, j = 0;
+    while(file[i] != '.') i++;
+    while(file[i] == fileExtension[j]) {
+        i++; j++;
+        if(file[i] == '\0' || fileExtension[j] == '\0') {
+            break;
+        }
+    }
+    return file[i] == fileExtension[j];
+}
+
 bool FileUtil::isDirectory(const char *f) {
 	for (int i = 0; f[i] != '\0'; i++) {
 		if (f[i] == '.')
 			return false;
 	}
-	return true;
-}
-
-bool FileUtil::isFile(const char *f) {
-	if (f[0] == '\0' || f[0] == '.') return false;
 	return true;
 }

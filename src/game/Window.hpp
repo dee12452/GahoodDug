@@ -12,15 +12,15 @@ public:
     Window();
     ~Window();
 
-    void render(BaseScreen *);
+    void render(BaseScreen *currentScreen);
 	SDL_Window * getWindow() const;
 	SDL_Renderer * getWindowRenderer() const;
 	SDL_Texture * getWindowTexture() const;
 
-	void setRenderTarget(SDL_Texture *) const;
+	void setRenderTarget(SDL_Texture *targetTexture) const;
 	void resetRenderTarget() const;
-	void drawTexture(SDL_Texture *, SDL_Rect *, SDL_Rect *) const;
-	SDL_Texture * createTransparentTexture(int, int) const;
+	void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;
+	SDL_Texture * createTransparentTexture(int width, int height) const;
 private:
     bool loadImages;
     SDL_Window *win;
