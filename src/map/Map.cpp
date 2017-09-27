@@ -50,13 +50,12 @@ void Map::update() {
 	int i = 0;
 	Tile *tile = tileset->getTile(i);
 	while (tile != NULL) {
-		tile->update();
 		i++;
 		tile = tileset->getTile(i);
 	}
 }
 
-void Map::generate(Window *win) {	
+void Map::generate(Window *) {	
     /*
     //If there is already a map or the tileset image hasn't loaded, don't generate the map
 	if (mapLayers.size() > 0 || ImageLoader::getInstance()->getImage(tileset->getImage()) == NULL) return;

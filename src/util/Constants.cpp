@@ -1,4 +1,4 @@
-#include "../headers/Constants.hpp"
+#include "Constants.hpp"
 #include <SDL2/SDL.h>
 
 /*

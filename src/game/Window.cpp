@@ -5,7 +5,6 @@
 #include "../util/Util.hpp"
 #include "../util/DisplayUtil.hpp"
 #include "../screen/BaseScreen.hpp"
-#include "../sprite/Sprite.hpp"
 
 Window::Window() {
     win = SDL_CreateWindow(Constants::GAME_TITLE, 

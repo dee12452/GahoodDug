@@ -1,4 +1,4 @@
-#include "../headers/XMLParser.hpp"
+#include "XMLParser.hpp"
 
 #include <SDL2/SDL_log.h>
 #include <SDL2/SDL_rwops.h>

@@ -52,15 +52,28 @@ void Gahoodmon::init() {
 }
 
 void Gahoodmon::update() {
-	if (currentScreen != NULL) {
-		currentScreen->handleInput(this);
-	}
+    /* If current screen exists 
+     * Have it handle input 
+     * check to see if it needs to be drawn 
+     * and update the screen as well */
     if(currentScreen != NULL) {
+		currentScreen->handleInput(this);
         if(fpsTimer->check()) {
             //Render to the window
             window->render(currentScreen);
         }
         currentScreen->update();
+    }
+
+    /* If current screen does not exist
+     * handle the input of quitting
+     */
+    else {
+        SDL_Event e;
+        while(SDL_PollEvent(&e)) {
+            if(e.type == SDL_QUIT)
+                quit();
+        }
     }
 }
 

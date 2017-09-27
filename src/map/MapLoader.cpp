@@ -1,14 +1,14 @@
-#include "../headers/MapLoader.hpp"
+#include "MapLoader.hpp"
 
 #include <string>
 #include <SDL2/SDL.h>
-#include "../headers/FileUtil.hpp"
-#include "../headers/XMLParser.hpp"
-#include "../headers/Map.hpp"
-#include "../headers/Tileset.hpp"
-#include "../headers/Tile.hpp"
-#include "../headers/Util.hpp"
-#include "../headers/Constants.hpp"
+#include "FileUtil.hpp"
+#include "XMLParser.hpp"
+#include "Util.hpp"
+#include "Constants.hpp"
+#include "../map/Map.hpp"
+#include "../map/Tileset.hpp"
+#include "../map/Tile.hpp"
 
 MapLoader * MapLoader::instance = NULL;
 
@@ -39,8 +39,8 @@ MapLoader::~MapLoader() {
 	tilesetFiles.clear();
 }
 
-void MapLoader::setTilesetFolder(const char *path) {
-	tilesetFiles = FileUtil::getFiles(path);
+void MapLoader::setTilesetFolder(const char *) {
+	//tilesetFiles = FileUtil::getFiles(path);
 }
 
 bool MapLoader::hasLoadedAllTilesets() const {

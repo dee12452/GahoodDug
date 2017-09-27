@@ -1,4 +1,4 @@
-#include "../headers/Timer.hpp"
+#include "Timer.hpp"
 
 Timer::Timer(unsigned int ms) {
     setTargetMs(ms);

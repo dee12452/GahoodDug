@@ -1,7 +1,8 @@
-#include "../headers/BaseScreen.hpp"
+#include "BaseScreen.hpp"
 #include <SDL2/SDL.h>
-#include "../headers/Gahoodmon.hpp"
-#include "../headers/Sprite.hpp"
+#include "../game/Gahoodmon.hpp"
+#include "../game/Window.hpp"
+#include "../game/Sprite.hpp"
 
 BaseScreen::BaseScreen() {}
 
@@ -25,7 +26,7 @@ void BaseScreen::stop() {
 void BaseScreen::update() {
     for(unsigned int i = 0; i < sprites.size(); i++) {
         if(sprites[i] != NULL) {
-            sprites[i]->update();
+            //sprites[i]->update();
         }
     }
     onUpdate();
@@ -34,7 +35,7 @@ void BaseScreen::update() {
 void BaseScreen::updateInBackground() { 
     for(unsigned int i = 0; i < sprites.size(); i++) {
         if(sprites[i] != NULL) {
-            sprites[i]->updateInBackground();
+            //sprites[i]->updateInBackground();
         }
     }
     onUpdateInBackground();
@@ -78,7 +79,7 @@ std::vector<Sprite *> BaseScreen::getSprites() const {
 void BaseScreen::draw(Window *win) {
 	for (unsigned int i = 0; i < sprites.size(); i++) {
 		if (sprites[i] != NULL) {
-			sprites[i]->draw(win);
+			sprites[i]->draw(win->getWindowRenderer());
 		}
 	}
 	onDraw(win);
