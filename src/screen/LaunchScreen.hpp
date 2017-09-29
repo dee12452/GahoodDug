@@ -13,7 +13,7 @@ protected:
     void onStart() override;
     void onStop() override;
     void onUpdate() override;
-    void onInput(Gahoodmon *game, const SDL_Event &event) override;
+    void onInput(Game *game, const SDL_Event &event) override;
     void onKeyInput(const uint8_t *keys) override;
     void onUpdateInBackground() override;
 };

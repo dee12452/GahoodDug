@@ -1,6 +1,6 @@
 #include "LaunchScreen.hpp"
 
-#include "../game/Gahoodmon.hpp"
+#include "../game/Game.hpp"
 #include "../game/Window.hpp"
 
 LaunchScreen::LaunchScreen() {}
@@ -17,6 +17,6 @@ void LaunchScreen::onUpdate() {}
 
 void LaunchScreen::onUpdateInBackground() {}
 
-void LaunchScreen::onInput(Gahoodmon *, const SDL_Event &) {}
+void LaunchScreen::onInput(Game *, const SDL_Event &) {}
 
 void LaunchScreen::onKeyInput(const uint8_t *) {}

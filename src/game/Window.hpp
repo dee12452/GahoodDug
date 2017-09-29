@@ -6,11 +6,11 @@ struct SDL_Renderer;
 struct SDL_Texture;
 struct SDL_Rect;
 class BaseScreen;
-class Gahoodmon;
+class Game;
 
 class Window {
 public:
-    Window(Gahoodmon *game);
+    Window(Game *game);
     ~Window();
 
     void render(BaseScreen *currentScreen);

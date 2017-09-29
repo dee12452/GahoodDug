@@ -1,6 +1,6 @@
 #include "BaseScreen.hpp"
 #include <SDL2/SDL.h>
-#include "../game/Gahoodmon.hpp"
+#include "../game/Game.hpp"
 #include "../game/Window.hpp"
 #include "../game/Sprite.hpp"
 
@@ -24,8 +24,8 @@ void BaseScreen::updateInBackground() {
     onUpdateInBackground();
 }
 
-void BaseScreen::handleInput(Gahoodmon *game) {
-    //Gahoodmon handles quit event//
+void BaseScreen::handleInput(Game *game) {
+    //Game handles quit event//
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {

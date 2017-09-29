@@ -1,7 +1,7 @@
 /** Need this include here for port to Android **/
 #include <SDL2/SDL.h>
 #include <stdio.h>
-#include "game/Gahoodmon.hpp"
+#include "game/Game.hpp"
 
 void handleArgs(int, char **);
 
@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
     /** At this point we don't need the input args 
      * So just print them out and let the user know **/
     handleArgs(argc, argv);
-    Gahoodmon game;
+    Game game;
     game.run();
     return 0;
 }
