@@ -110,3 +110,17 @@ bool FileUtil::isDirectory(const char *f) {
     }
 	return true;
 }
+
+std::string FileUtil::getFileName(const char *pathToFile) {
+    std::string fileName = "";
+    int length = 0;
+    while(pathToFile[length] != '\0') length++;
+    length--;
+    while(pathToFile[length] != '/' 
+            && pathToFile[length] != '\\'
+            && length >= 0) {
+        fileName = pathToFile[length] + fileName;
+        length--;
+    }
+    return fileName;
+}

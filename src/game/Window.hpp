@@ -6,10 +6,11 @@ struct SDL_Renderer;
 struct SDL_Texture;
 struct SDL_Rect;
 class BaseScreen;
+class Gahoodmon;
 
 class Window {
 public:
-    Window();
+    Window(Gahoodmon *game);
     ~Window();
 
     void render(BaseScreen *currentScreen);
@@ -22,7 +23,6 @@ public:
 	void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;
 	SDL_Texture * createTransparentTexture(int width, int height) const;
 private:
-    bool loadImages;
     SDL_Window *win;
     SDL_Renderer *winRenderer;
     SDL_Texture *winTexture;

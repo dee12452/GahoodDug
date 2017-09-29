@@ -36,9 +36,16 @@ MapLoader::~MapLoader() {
 		}
 	}
 	tilesets.clear();
+
+    for(std::map<std::string, Map *>::const_iterator iterator = maps.begin(); iterator != maps.end(); ++iterator) {
+        if(iterator->second != NULL) {
+            delete iterator->second;
+        }
+    }
+    maps.clear();
 }
 
-void MapLoader::loadTilesets(const char *pathToResFolder) {
+void MapLoader::loadAll(const char *pathToResFolder) {
     Util::log("Started loading tilesets");
     std::vector<std::string> tilesetFiles = FileUtil::getFilesRecursively(pathToResFolder, Constants::TILESET_FILE_EXTENSION);
     if(tilesetFiles.size() == 0) {
@@ -46,7 +53,7 @@ void MapLoader::loadTilesets(const char *pathToResFolder) {
         return;
     }
     for(size_t i = 0; i < tilesetFiles.size(); i++) {
-        loadNextTileset(tilesetFiles[i].c_str());
+        loadTileset(tilesetFiles[i].c_str());
         Util::log("Successfully loaded tileset " + tilesetFiles[i]);
     }
     std::vector<std::string> maps = FileUtil::getFilesRecursively(pathToResFolder, Constants::MAP_FILE_EXTENSION);
@@ -57,7 +64,7 @@ void MapLoader::loadTilesets(const char *pathToResFolder) {
     Util::log("Finished loading tilesets and maps");
 }
 
-void MapLoader::loadNextTileset(const char *pathToTileset) {
+void MapLoader::loadTileset(const char *pathToTileset) {
 	XMLObject *obj = XMLParser::loadXML(pathToTileset);
 	if (obj == NULL) {
 		Util::fatalError("Failed to load tileset");
@@ -116,7 +123,7 @@ void MapLoader::loadNextTileset(const char *pathToTileset) {
 	obj = NULL;
 }
 
-Map * MapLoader::loadMap(const char *path) {
+void MapLoader::loadMap(const char *path) {
 	Map *map = new Map();
 	XMLObject *obj = XMLParser::loadXML(path);
 	if (obj == NULL) {
@@ -126,7 +133,7 @@ Map * MapLoader::loadMap(const char *path) {
 		populateMapInfo(obj->tags[i], map);
 	}
 	XMLParser::destroyXMLObject(obj);
-	return map;
+	maps.insert(std::pair<std::string, Map *> (FileUtil::getFileName(path), map));
 }
 
 void MapLoader::populateMapInfo(Tag *tag, Map *map) {

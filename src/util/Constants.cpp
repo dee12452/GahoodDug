@@ -25,7 +25,9 @@ const char * const Constants::TILESET_FILE_EXTENSION = ".tsx";
 const char * const Constants::MAP_FILE_EXTENSION = ".tmx";
 
 /*
- * IMAGE IDS */
+ * IMAGE CONSTANTS */
+const char * const Constants::IMAGES_FIRST_TO_LOAD[] = {  }; 
+const int Constants::IMAGES_FIRST_TO_LOAD_COUNT = 0;
 const std::string Constants::IMAGE_ID_TEST = "sprite/test.png";
 const std::string Constants::IMAGE_TILESET_UNDERWATER = "tile/tileset_underwater.png";
 const std::string Constants::IMAGE_CHARACTER_1 = "sprite/character_1.png";

@@ -17,25 +17,18 @@ public:
     void update();
     void updateInBackground();
     void handleInput(Gahoodmon *);
-    std::vector<Sprite *> getSprites() const;
 	void draw(Window *);
     void start();
     void stop();
 
 protected:
-	virtual void onDraw(Window *) = 0;
+	virtual void onDraw(Window *win) = 0;
     virtual void onStart() = 0;
     virtual void onStop() = 0;
     virtual void onUpdate() = 0;
-    virtual void onInput(Gahoodmon *, const SDL_Event &) = 0;
-	virtual void handleKeyboard(const uint8_t *) {}
+    virtual void onInput(Gahoodmon *game, const SDL_Event &event) = 0;
+	virtual void onKeyInput(const uint8_t *keys) = 0;
     virtual void onUpdateInBackground() = 0;
-
-    void addSprite(Sprite *);
-    void removeSprite(Sprite *);
-
-private:
-    std::vector<Sprite *> sprites;
 };
 
 #endif

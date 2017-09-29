@@ -13,31 +13,14 @@ void BaseScreen::start() {
 }
 
 void BaseScreen::stop() {
-	for (unsigned int i = 0; i < sprites.size(); i++) {
-		if (sprites[i] != NULL) {
-			delete sprites[i];
-			sprites[i] = NULL;
-		}
-	}
-	sprites.clear();
     onStop();
 }
 
 void BaseScreen::update() {
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] != NULL) {
-            //sprites[i]->update();
-        }
-    }
     onUpdate();
 }
 
 void BaseScreen::updateInBackground() { 
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] != NULL) {
-            //sprites[i]->updateInBackground();
-        }
-    }
     onUpdateInBackground();
 }
 
@@ -53,34 +36,9 @@ void BaseScreen::handleInput(Gahoodmon *game) {
 		}
 	}
 	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
-	handleKeyboard(keyboard);
-}
-
-void BaseScreen::addSprite(Sprite *sprite) {
-    sprites.push_back(sprite);
-}
-
-void BaseScreen::removeSprite(Sprite *sprite) {
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] == sprite) {
-            delete sprites[i];
-            sprites[i] = NULL;
-            std::swap(sprites[i], sprites[sprites.size() - 1]);
-            sprites.pop_back();
-            break;
-        }
-    }
-}
-
-std::vector<Sprite *> BaseScreen::getSprites() const {
-    return sprites;
+	onKeyInput(keyboard);
 }
 
 void BaseScreen::draw(Window *win) {
-	for (unsigned int i = 0; i < sprites.size(); i++) {
-		if (sprites[i] != NULL) {
-			sprites[i]->draw(win->getWindowRenderer());
-		}
-	}
 	onDraw(win);
 }

@@ -1,6 +1,7 @@
 #ifndef MAP_LOADER_HPP
 #define MAP_LOADER_HPP
 
+#include <map>
 #include <vector>
 #include <string>
 
@@ -13,17 +14,18 @@ public:
 	static MapLoader * getInstance();
 	static void deleteInstance();
 
-	Map * loadMap(const char *pathToMap);
-    void loadTilesets(const char *pathToRes);
+    void loadAll(const char *pathToRes);
 
 private:
 	MapLoader();
 	~MapLoader();
 	static MapLoader *instance;
 
-	void loadNextTileset(const char *pathToTileset);
-	void populateMapInfo(Tag *tag, Map *map);
+	void loadTileset(const char *pathToTileset);
+	void loadMap(const char *pathToMap);
+    void populateMapInfo(Tag *tag, Map *map);
 	std::vector<Tileset *> tilesets;
+    std::map<std::string, Map *> maps;
 };
 
 #endif

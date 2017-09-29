@@ -3,10 +3,12 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "Window.hpp"
+#include "SpriteSheet.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Timer.hpp"
 #include "../util/Util.hpp"
-#include "../screen/BaseScreen.hpp"
+#include "../util/FileUtil.hpp"
+#include "../screen/LaunchScreen.hpp"
 #include "../map/MapLoader.hpp"
 
 static int runInBackgroundThread(void *gahoodmon);
@@ -42,16 +44,19 @@ void Gahoodmon::init() {
    
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
-    window = new Window();
+    window = new Window(this);
     running = true;
 
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
     if(backgroundThread == NULL) {
         Util::fatalSDLError("Could not create the background thread");
     }
+    
     //Start the first screen
-    //requestNewScreen(new MapScreen());
-    MapLoader::getInstance()->loadTilesets(Constants::GAME_RES_FOLDER);
+    requestNewScreen(new LaunchScreen());
+    
+    //Load the tilesets and maps
+    MapLoader::getInstance()->loadAll(Constants::GAME_RES_FOLDER);
     Util::log("Initialized game successfully");
 }
 
@@ -74,6 +79,7 @@ void Gahoodmon::update() {
      * handle the input of quitting
      */
     else {
+        window->render(NULL);
         SDL_Event e;
         while(SDL_PollEvent(&e)) {
             if(e.type == SDL_QUIT)
@@ -84,6 +90,10 @@ void Gahoodmon::update() {
 
 bool Gahoodmon::isRunning() const {
     return running;
+}
+
+void Gahoodmon::loadSpriteSheet(const char *path) {
+    spriteSheets.insert(std::pair<std::string, SpriteSheet *>(FileUtil::getFileName(path), new SpriteSheet(window->getWindowRenderer(), path)));
 }
 
 void Gahoodmon::deinit() {
@@ -110,6 +120,12 @@ void Gahoodmon::deinit() {
         window = NULL;
     }
     MapLoader::getInstance()->deleteInstance();
+    for(std::map<std::string, SpriteSheet *>::const_iterator iterator = spriteSheets.begin(); iterator != spriteSheets.end(); ++iterator) {
+        if(iterator->second != NULL) {
+            delete iterator->second;
+        }
+    }
+    spriteSheets.clear();
 
     IMG_Quit();
     SDL_Quit();
