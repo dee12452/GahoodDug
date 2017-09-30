@@ -21,6 +21,7 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 }
 
 Map::~Map() {
+
 	//Clear the map tiles
 	for (unsigned int j = 0; j < mapTiles.size(); j++) {
 		for (int i = 0; i < width / tileset->getTile(0)->getWidth(); i++) {

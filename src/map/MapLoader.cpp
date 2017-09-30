@@ -29,20 +29,20 @@ void MapLoader::deleteInstance() {
 MapLoader::MapLoader() {}
 
 MapLoader::~MapLoader() {
-	for (unsigned int i = 0; i < tilesets.size(); i++) {
-		if (tilesets[i] != NULL) {
-			delete tilesets[i];
-			tilesets[i] = NULL;
-		}
-	}
-	tilesets.clear();
-
     for(std::map<std::string, Map *>::const_iterator iterator = maps.begin(); iterator != maps.end(); ++iterator) {
         if(iterator->second != NULL) {
             delete iterator->second;
         }
     }
     maps.clear();
+	
+    for (unsigned int i = 0; i < tilesets.size(); i++) {
+		if (tilesets[i] != NULL) {
+			delete tilesets[i];
+			tilesets[i] = NULL;
+		}
+	}
+	tilesets.clear();
 }
 
 void MapLoader::loadAll(const char *pathToResFolder) {
@@ -98,7 +98,7 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 			else if (tag->id == "tile") {
 				int id, width, height;
 				std::string type;
-				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
+                for (unsigned int j = 0; j < tag->attributes.size(); j++) {
 					if (tag->attributes[j].first == "id") {
 						id = std::stoi(tag->attributes[j].second);
 					}
