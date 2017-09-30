@@ -34,7 +34,7 @@ void Game::run() {
 
 void Game::runInBackground() {
     if(currentScreen != NULL) {
-        currentScreen->updateInBackground();
+        currentScreen->updateInBackground(this);
     }
 }
 
@@ -51,12 +51,14 @@ void Game::init() {
     if(TTF_Init() != 0) {
         Util::fatalSDLError("Failed to initialize SDL2 TTF");
     }
-   
+  
+    //Create the window
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
     window = new Window(this);
     running = true;
 
+    //Create the background thread
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
     if(backgroundThread == NULL) {
         Util::fatalSDLError("Could not create the background thread");
@@ -82,7 +84,7 @@ void Game::update() {
             //Render to the window
             window->render(currentScreen);
         }
-        currentScreen->update();
+        currentScreen->update(this);
     }
 
     /* If current screen does not exist

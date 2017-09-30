@@ -16,12 +16,12 @@ void BaseScreen::stop() {
     onStop();
 }
 
-void BaseScreen::update() {
-    onUpdate();
+void BaseScreen::update(Game *game) {
+    onUpdate(game);
 }
 
-void BaseScreen::updateInBackground() { 
-    onUpdateInBackground();
+void BaseScreen::updateInBackground(Game *game) { 
+    onUpdateInBackground(game);
 }
 
 void BaseScreen::handleInput(Game *game) {
@@ -36,7 +36,7 @@ void BaseScreen::handleInput(Game *game) {
 		}
 	}
 	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
-	onKeyInput(keyboard);
+	onKeyInput(game, keyboard);
 }
 
 void BaseScreen::draw(Window *win) {

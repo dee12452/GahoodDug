@@ -96,7 +96,7 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 				}
 			}
 			else if (tag->id == "tile") {
-				int id;
+				int id, width, height;
 				std::string type;
 				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
 					if (tag->attributes[j].first == "id") {
@@ -105,11 +105,19 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 					else if (tag->attributes[j].first == "type") {
 						type = tag->attributes[j].second;
 					}
+                    else if(tag->attributes[j].first == "tilewidth") {
+                        width = std::stoi(tag->attributes[j].second);
+                    }
+                    else if(tag->attributes[j].first == "tileheight") {
+                        height = std::stoi(tag->attributes[j].second);
+                    }
 				}
                 tileset->addTile(new Tile(type,
 					id,
-					x * Constants::SPRITE_TILE_WIDTH,
-					row * Constants::SPRITE_TILE_HEIGHT));
+					x,
+					row,
+                    width,
+                    height));
 				x++;
 				if (x % tileColumns == 0) {
 					row++; x = 0;

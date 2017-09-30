@@ -23,21 +23,13 @@ Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) {
 Map::~Map() {
 	//Clear the map tiles
 	for (unsigned int j = 0; j < mapTiles.size(); j++) {
-		for (int i = 0; i < width / Constants::SPRITE_TILE_WIDTH; i++) {
+		for (int i = 0; i < width / tileset->getTile(0)->getWidth(); i++) {
 			delete[] mapTiles[j][i];
 			mapTiles[j][i] = NULL;
 		}
 		delete[] mapTiles[j];
 		mapTiles[j] = NULL;
 	}
-	mapLayers.clear();
-
-	//Clear the map layers (textures)
-	for (unsigned int j = 0; j < mapLayers.size(); j++) {
-		SDL_DestroyTexture(mapLayers[j]);
-		mapLayers[j] = NULL;
-	}
-	mapLayers.clear();
 	
 	//Map loader will handle deletion of tilesets
 	tileset = NULL;

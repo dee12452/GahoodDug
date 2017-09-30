@@ -27,7 +27,6 @@ private:
 	int width;
 	int height;
 	std::vector<int **> mapTiles;
-	std::vector<SDL_Texture *> mapLayers;
 	Tileset *tileset;
 };
 
