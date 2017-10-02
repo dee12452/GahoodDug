@@ -17,13 +17,18 @@ const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
 const char * const Constants::GAME_RES_FOLDER = "../res";
 
 /*
- * FILE EXTENSIONS */
+ * FILE EXTENSIONS CONST */
 const char * const Constants::IMAGE_FILE_EXTENSION = ".png";
 const char * const Constants::TILESET_FILE_EXTENSION = ".tsx";
 const char * const Constants::MAP_FILE_EXTENSION = ".tmx";
+const char * const Constants::FONT_FILE_EXTENSION = ".ttf";
 
 /*
- * IMAGE CONSTANTS */
+ * FONT CONST */
+const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
+
+/*
+ * IMAGE CONST */
 const char * const Constants::IMAGES_FIRST_TO_LOAD[] = {  }; 
 const int Constants::IMAGES_FIRST_TO_LOAD_COUNT = 0;
 

@@ -8,8 +8,8 @@ BaseScreen::BaseScreen() {}
 
 BaseScreen::~BaseScreen() {}
 
-void BaseScreen::start() {
-    onStart();
+void BaseScreen::start(Game *game) {
+    onStart(game);
 }
 
 void BaseScreen::stop() {

@@ -7,7 +7,7 @@
 #include "../util/DisplayUtil.hpp"
 #include "../screen/BaseScreen.hpp"
 
-Window::Window(Game *game) {
+Window::Window() {
     win = SDL_CreateWindow(Constants::GAME_TITLE, 
 		DisplayUtil::getScreenWidth() / 2 - Constants::WINDOW_WIDTH / 2,
 		DisplayUtil::getScreenHeight() / 2 - Constants::WINDOW_HEIGHT / 2, 
@@ -38,10 +38,6 @@ Window::Window(Game *game) {
             Constants::WINDOW_HEIGHT);
     if(winTexture == NULL) {
         Util::fatalSDLError("Failed to initialize the window texture");
-    }
-
-    for(int i = 0; i < Constants::IMAGES_FIRST_TO_LOAD_COUNT; i++) {
-        game->loadSpriteSheet(Constants::IMAGES_FIRST_TO_LOAD[i]);
     }
 }
 

@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "Window.hpp"
 #include "SpriteSheet.hpp"
+#include "Font.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Timer.hpp"
 #include "../util/Util.hpp"
@@ -55,9 +56,29 @@ void Game::init() {
     //Create the window
     int msPerFrame = 1000 / Constants::TARGET_FPS;
     fpsTimer = new Timer(msPerFrame);
-    window = new Window(this);
+    window = new Window();
     running = true;
 
+    //Load the initial sprites
+    for(int i = 0; i < Constants::IMAGES_FIRST_TO_LOAD_COUNT; i++) {
+        loadSpriteSheet(Constants::IMAGES_FIRST_TO_LOAD[i]);
+    }
+
+    //Load the fonts
+    std::vector<std::string> fontFiles = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::FONT_FILE_EXTENSION);
+    Util::log("Loading fonts.");
+    for(size_t i = 0; i < fontFiles.size(); i++) {
+        Util::log("Loading font " + fontFiles[i]);
+        std::string fName = FileUtil::getFileName(fontFiles[i].c_str());
+        fonts.insert(std::pair<std::string, Font *> (fName, new Font(fontFiles[i].c_str())));
+    }
+    Util::log("Loaded all fonts!");
+    
+    //Load the tilesets and maps
+    Util::log("Loading maps and tilesets.");
+    MapLoader::getInstance()->loadAll(Constants::GAME_RES_FOLDER);
+    Util::log("Finished loading maps and tilesets!");
+    
     //Create the background thread
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
     if(backgroundThread == NULL) {
@@ -67,8 +88,6 @@ void Game::init() {
     //Start the first screen
     requestNewScreen(new LaunchScreen());
     
-    //Load the tilesets and maps
-    MapLoader::getInstance()->loadAll(Constants::GAME_RES_FOLDER);
     Util::log("Initialized game successfully");
 }
 
@@ -108,8 +127,41 @@ void Game::loadSpriteSheet(const char *path) {
     spriteSheets.insert(std::pair<std::string, SpriteSheet *>(FileUtil::getFileName(path), new SpriteSheet(window->getWindowRenderer(), path)));
 }
 
+SpriteSheet * Game::getSpriteSheet(const char *spriteSheetName) const {
+    SpriteSheet *sheet = NULL;
+    std::string fileName(spriteSheetName);
+    std::map<std::string, SpriteSheet *>::const_iterator iterator = spriteSheets.find(fileName);
+    if(iterator != spriteSheets.end()) {
+        sheet = iterator->second;
+    }
+    return sheet;
+}
+
+Font * Game::getFont(const char *fontName) const {
+    Font *font = NULL;
+    std::string fileName(fontName);
+    std::map<std::string, Font *>::const_iterator iterator = fonts.find(fileName);
+    if(iterator != fonts.end()) {
+        font = iterator->second;
+    }
+    return font;
+}
+
 void Game::deinit() {
+    Util::log("Exiting game.");
+	
+    //Stop the screen
+    Util::log("Stopping the current screen.");
+    if (currentScreen != NULL) {
+		currentScreen->stop();
+		delete currentScreen;
+		currentScreen = NULL;
+	}
+    Util::log("Successfully stopped the current screen!");
+    
+    //Stop background thread
     int threadRetVal;
+    Util::log("Stopping background thread.");
     SDL_WaitThread(backgroundThread, &threadRetVal);
     backgroundThread = NULL;
     if(threadRetVal != 0) {
@@ -118,30 +170,48 @@ void Game::deinit() {
         message += val;
         Util::log(message);
     }
-	if (currentScreen != NULL) {
-		currentScreen->stop();
-		delete currentScreen;
-		currentScreen = NULL;
-	}
+    Util::log("Successfully stopped background thread!");
+
+    //Free the fps timer
     if(fpsTimer != NULL) {
         delete fpsTimer;
         fpsTimer = NULL;
     }
+
+    //Destroy the window
+    Util::log("Closing the window.");
     if(window != NULL) {
         delete window;
         window = NULL;
     }
+    Util::log("Successfully closed the window!");
+    
+    //Delete the map loader and it's data
+    Util::log("Deleting maps and tilesets...");
     MapLoader::getInstance()->deleteInstance();
+    Util::log("Successfully deleted maps and tilesets");
+    
+    Util::log("Deleting fonts and sprites...");
+    //Delete all of the fonts
+    for(std::map<std::string, Font *>::const_iterator iterator = fonts.begin(); iterator != fonts.end(); ++iterator) {
+        if(iterator->second != NULL) {
+            delete iterator->second;
+        }
+    }
+
+    //Delete all of the spritesheets
     for(std::map<std::string, SpriteSheet *>::const_iterator iterator = spriteSheets.begin(); iterator != spriteSheets.end(); ++iterator) {
         if(iterator->second != NULL) {
             delete iterator->second;
         }
     }
     spriteSheets.clear();
+    Util::log("Successfully deleted sprites and fonts!");
 
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+    Util::log("Closing Game.");
 }
 
 void Game::requestNewScreen(BaseScreen *screen) {
@@ -153,7 +223,7 @@ void Game::requestNewScreen(BaseScreen *screen) {
         delete currentScreen;
         currentScreen = screen;
     }
-    currentScreen->start();
+    currentScreen->start(this);
 }
 
 void Game::quit() { running = false; }

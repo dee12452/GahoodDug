@@ -7,14 +7,14 @@
 #include "../util/FileUtil.hpp"
 #include "../util/Constants.hpp"
 
-LaunchScreen::LaunchScreen() : currentImageFile(0) {}
+LaunchScreen::LaunchScreen() : currentImageFile(0), disclaimer(NULL) {}
 
 LaunchScreen::~LaunchScreen() {}
 
 void LaunchScreen::onDraw(Window *) {
 }
 
-void LaunchScreen::onStart() {
+void LaunchScreen::onStart(Game *) {
     imageFilePaths = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION);
 }
 

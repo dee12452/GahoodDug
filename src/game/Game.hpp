@@ -9,6 +9,7 @@ class Window;
 class Timer;
 class SpriteSheet;
 class BaseScreen;
+class Font;
 
 class Game {
 public:
@@ -21,6 +22,9 @@ public:
     void quit();
     void requestNewScreen(BaseScreen *newScreen);
     void loadSpriteSheet(const char *path);
+
+    SpriteSheet * getSpriteSheet(const char *spriteSheetName) const;
+    Font * getFont(const char *fontName) const;
 
 private:
     //Member variables//
@@ -37,6 +41,7 @@ private:
     void deinit();
 
     std::map<std::string, SpriteSheet *> spriteSheets;
+    std::map<std::string, Font *> fonts;
 };
 
 #endif

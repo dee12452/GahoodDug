@@ -46,7 +46,6 @@ MapLoader::~MapLoader() {
 }
 
 void MapLoader::loadAll(const char *pathToResFolder) {
-    Util::log("Started loading tilesets");
     std::vector<std::string> tilesetFiles = FileUtil::getFilesRecursively(pathToResFolder, Constants::TILESET_FILE_EXTENSION);
     if(tilesetFiles.size() == 0) {
         Util::print("Warning: Failed to find tilesets in given res folder");
@@ -61,7 +60,6 @@ void MapLoader::loadAll(const char *pathToResFolder) {
         loadMap(maps[i].c_str());
         Util::log("Successfully loaded map " + maps[i]);
     }
-    Util::log("Finished loading tilesets and maps");
 }
 
 void MapLoader::loadTileset(const char *pathToTileset) {

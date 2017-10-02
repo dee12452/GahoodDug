@@ -35,12 +35,17 @@ public:
 
     /*
      **********************************
-     * Game Constants
+     * File Constants
      **********************************
      */
+    //File extensions
     static const char * const IMAGE_FILE_EXTENSION;
     static const char * const TILESET_FILE_EXTENSION;
     static const char * const MAP_FILE_EXTENSION;
+    static const char * const FONT_FILE_EXTENSION;
+    
+    //Font files
+    static const char * const FONT_JOYSTIX;
     /******************
      ******************/
 

@@ -10,10 +10,10 @@ class Game;
 
 class Window {
 public:
-    Window(Game *game);
+    Window();
     ~Window();
 
-    void render(BaseScreen *currentScreen);
+    void render(BaseScreen *screen);
 	SDL_Window * getWindow() const;
 	SDL_Renderer * getWindowRenderer() const;
 	SDL_Texture * getWindowTexture() const;

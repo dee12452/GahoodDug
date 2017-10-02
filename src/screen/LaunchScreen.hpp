@@ -4,6 +4,8 @@
 #include "BaseScreen.hpp"
 #include <string>
 
+class FontSprite;
+
 class LaunchScreen : public BaseScreen {
 public:
     LaunchScreen();
@@ -11,7 +13,7 @@ public:
 
 protected:
     void onDraw(Window *win) override;
-    void onStart() override;
+    void onStart(Game *game) override;
     void onStop() override;
     void onUpdate(Game *game) override;
     void onInput(Game *game, const SDL_Event &event) override;
@@ -24,6 +26,9 @@ private:
     //Used for loading the game images
     std::vector<std::string> imageFilePaths;
     size_t currentImageFile;
+
+    //Sprites
+    FontSprite *disclaimer;
 };
 
 #endif
