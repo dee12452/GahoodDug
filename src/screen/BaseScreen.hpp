@@ -2,11 +2,9 @@
 #define BASE_SCREEN_HPP
 
 #include <vector>
-#include <stdint.h>
+#include "../game/Game.hpp"
 
 class Sprite;
-class Game;
-class Window;
 struct SDL_Renderer;
 union SDL_Event;
 

@@ -15,6 +15,7 @@ public:
 	static void deleteInstance();
 
     void loadAll(const char *pathToRes);
+    Map * getMap(const std::string &mapId) const;
 
 private:
 	MapLoader();

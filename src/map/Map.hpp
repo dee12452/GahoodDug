@@ -7,6 +7,8 @@ class Tileset;
 class Window;
 struct SDL_Texture;
 
+typedef enum MapDirection { MAP_NORTH = 0, MAP_SOUTH = 1, MAP_EAST = 2, MAP_WEST = 3 } MapDirection;
+
 class Map {
 public:
 	Map();

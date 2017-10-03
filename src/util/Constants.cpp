@@ -42,3 +42,7 @@ const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
  * SPRITE CONST */
 const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
+
+/*
+ * MAP CONST */
+const char * const Constants::MAP_TEST = "test_map.tmx";

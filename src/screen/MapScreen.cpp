@@ -1,18 +1,18 @@
 #include "MapScreen.hpp"
 
-MapScreen::MapScreen() {}
+MapScreen::MapScreen() : currentMap(NULL) {}
 
 MapScreen::~MapScreen() {}
+
+void MapScreen::onStart(Game *) {}
+
+void MapScreen::onStop() {}
 
 void MapScreen::onDraw(Window *) {}
 
 void MapScreen::onUpdate(Game *) {}
 
 void MapScreen::onUpdateInBackground(Game *) {}
-
-void MapScreen::onStart(Game *) {}
-
-void MapScreen::onStop() {}
 
 void MapScreen::onInput(Game *, const SDL_Event &) {}
 

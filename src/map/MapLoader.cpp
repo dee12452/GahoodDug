@@ -2,13 +2,9 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include "../util/FileUtil.hpp"
+#include "Maps.hpp"
+#include "../util/Utils.hpp"
 #include "../util/XMLParser.hpp"
-#include "../util/Util.hpp"
-#include "../util/Constants.hpp"
-#include "../map/Map.hpp"
-#include "../map/Tileset.hpp"
-#include "../map/Tile.hpp"
 
 MapLoader * MapLoader::instance = NULL;
 
@@ -43,6 +39,15 @@ MapLoader::~MapLoader() {
 		}
 	}
 	tilesets.clear();
+}
+
+Map * MapLoader::getMap(const std::string &mapId) const {
+    std::map<std::string, Map *>::const_iterator iterator = maps.find(mapId);
+    Map *map = NULL;
+    if(iterator != maps.end()) {
+        map = iterator->second;
+    }
+    return map;
 }
 
 void MapLoader::loadAll(const char *pathToResFolder) {
@@ -88,7 +93,7 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 			if (tag->id == "image") {
 				for (unsigned int j = 0; j < tag->attributes.size(); j++) {
 					if (tag->attributes[j].first == "source") {
-						tileset->setImageFile(tag->attributes[j].second.substr(9).c_str());
+						tileset->setImageFile(FileUtil::getFileName(tag->attributes[j].second.substr(9).c_str()).c_str());
 						break;
 					}
 				}

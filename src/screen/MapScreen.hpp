@@ -3,6 +3,8 @@
 
 #include "BaseScreen.hpp"
 
+class Map;
+
 class MapScreen : public BaseScreen {
 public:
     MapScreen();
@@ -16,6 +18,9 @@ protected:
     void onUpdateInBackground(Game *game) override;
     void onInput(Game *game, const SDL_Event &event) override;
     void onKeyInput(Game *game, const uint8_t *keyboard) override;
+
+private:
+    Map *currentMap;
 };
 
 #endif

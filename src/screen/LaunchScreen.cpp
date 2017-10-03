@@ -2,14 +2,8 @@
 
 #include <SDL2/SDL_ttf.h>
 #include "MapScreen.hpp"
-#include "../game/Game.hpp"
-#include "../game/Window.hpp"
-#include "../util/Util.hpp"
-#include "../util/FileUtil.hpp"
-#include "../util/Constants.hpp"
-#include "../game/Font.hpp"
-#include "../game/FontSprite.hpp"
-#include "../game/Sprite.hpp"
+#include "../game/Sprites.hpp"
+#include "../util/Utils.hpp"
 
 LaunchScreen::LaunchScreen() : currentImageFile(0), loadingText(NULL) {}
 

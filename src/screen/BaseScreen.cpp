@@ -1,8 +1,5 @@
 #include "BaseScreen.hpp"
 #include <SDL2/SDL.h>
-#include "../game/Game.hpp"
-#include "../game/Window.hpp"
-#include "../game/Sprite.hpp"
 
 BaseScreen::BaseScreen() {}
 

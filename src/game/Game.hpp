@@ -3,9 +3,9 @@
 
 #include <map>
 #include <string>
+#include "Window.hpp"
 
 struct SDL_Thread;
-class Window;
 class Timer;
 class SpriteSheet;
 class BaseScreen;

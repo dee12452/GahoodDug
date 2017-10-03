@@ -77,6 +77,15 @@ public:
     static const uint8_t SPRITE_ALPHA_NONE;
 	/******************
 	******************/
+    
+    /*
+     **********************************
+     * Map Constants
+     **********************************
+     */
+	static const char * const MAP_TEST;
+    /******************
+	******************/
 
 private:
 	Constants() {}
