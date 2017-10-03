@@ -3,6 +3,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL.h>
 #include "Sprite.hpp"
+#include "../util/Constants.hpp"
+#include "../util/Util.hpp"
 
 FontSprite::FontSprite(SDL_Renderer *renderer, TTF_Font *targetFont, const std::string &newText, const SDL_Color &color) {
     font = targetFont;
@@ -37,22 +39,33 @@ void FontSprite::createNewFontTexture(SDL_Renderer *renderer) {
     if(texture != NULL) {
         SDL_DestroyTexture(texture);
     }
-    SDL_Surface *tempSurface = TTF_RenderUTF8_Solid(font, text.c_str(), *textColor);
+    SDL_Surface *tempSurface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), *textColor, Constants::WINDOW_WIDTH);
     texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
     SDL_FreeSurface(tempSurface);
     tempSurface = NULL;
     if(sprite != NULL) {
-        delete sprite;
-    } 
-    sprite = new Sprite(texture);
+        if(sprite->getDstRect() != NULL) {
+            SDL_Rect dstR = *sprite->getDstRect();
+            delete sprite;
+            sprite = new Sprite(texture);
+            sprite->setDstRect(dstR);
+        }
+        else {
+            delete sprite;
+            sprite = new Sprite(texture);
+        }
+    }
+    else {
+        sprite = new Sprite(texture);
+    }
 }
 
-void FontSprite::changeText(SDL_Renderer *renderer, const std::string &newText) {
+void FontSprite::setText(SDL_Renderer *renderer, const std::string &newText) {
     text = newText;
     createNewFontTexture(renderer);
 }
 
-void FontSprite::changeColor(SDL_Renderer *renderer, const SDL_Color &color) {
+void FontSprite::setColor(SDL_Renderer *renderer, const SDL_Color &color) {
     *textColor = color;
     createNewFontTexture(renderer);
 }

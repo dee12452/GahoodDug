@@ -22,3 +22,7 @@ FontSprite * Font::createFontSprite(SDL_Renderer *renderer, const std::string &t
     color.a = Constants::SPRITE_ALPHA_FULL;
     return new FontSprite(renderer, font, text, color);
 }
+
+FontSprite * Font::createFontSprite(SDL_Renderer *renderer, const std::string &text) const  {
+    return createFontSprite(renderer, text, DEFAULT_FONT_SIZE);
+}

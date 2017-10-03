@@ -14,8 +14,8 @@ public:
     FontSprite(SDL_Renderer *renderer, TTF_Font *targetFont, const std::string &newText, const SDL_Color &color);
     ~FontSprite();
 
-    void changeText(SDL_Renderer *renderer, const std::string &newText);
-    void changeColor(SDL_Renderer *renderer, const SDL_Color &color);
+    void setText(SDL_Renderer *renderer, const std::string &newText);
+    void setColor(SDL_Renderer *renderer, const SDL_Color &color);
     void draw(SDL_Renderer *renderer);
 
     std::string getText() const;

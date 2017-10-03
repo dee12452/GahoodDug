@@ -21,6 +21,8 @@ protected:
     void onUpdateInBackground(Game *game) override;
 
 private:
+    static const int IMAGE_LOAD_RATE = 50;
+    
     bool isLoading() const;
 
     //Used for loading the game images
@@ -28,7 +30,7 @@ private:
     size_t currentImageFile;
 
     //Sprites
-    FontSprite *disclaimer;
+    FontSprite *loadingText;
 };
 
 #endif

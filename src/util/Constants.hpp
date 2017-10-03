@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <string>
 
+struct SDL_Color;
+
 class Constants {
 public:
     /*
@@ -52,13 +54,17 @@ public:
     
     /*
      **********************************
-     * Image Constants
+     * Color Constants
      **********************************
      */
-    //First images to be loaded when the game launches
-    static const char * const IMAGES_FIRST_TO_LOAD[];
-    static const int IMAGES_FIRST_TO_LOAD_COUNT;
-	/******************
+	static const SDL_Color COLOR_BLACK;
+	static const SDL_Color COLOR_WHITE;
+	static const SDL_Color COLOR_GREY;
+	static const SDL_Color COLOR_RED;
+	static const SDL_Color COLOR_BLUE;
+	static const SDL_Color COLOR_GREEN;
+	static const SDL_Color COLOR_YELLOW;
+    /******************
 	******************/
     
     /*
@@ -75,6 +81,7 @@ public:
 private:
 	Constants() {}
 	~Constants() {}
+
 };
 
 #endif

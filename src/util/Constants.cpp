@@ -1,4 +1,5 @@
 #include "Constants.hpp"
+#include "Util.hpp"
 #include <SDL2/SDL.h>
 
 /*
@@ -24,13 +25,18 @@ const char * const Constants::MAP_FILE_EXTENSION = ".tmx";
 const char * const Constants::FONT_FILE_EXTENSION = ".ttf";
 
 /*
- * FONT CONST */
-const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
+ * COLOR CONST */
+const SDL_Color Constants::COLOR_WHITE = Util::createColor(255, 255, 255, 255);
+const SDL_Color Constants::COLOR_BLACK = Util::createColor(0, 0, 0, 255);
+const SDL_Color Constants::COLOR_RED = Util::createColor(255, 0, 0, 255);
+const SDL_Color Constants::COLOR_BLUE = Util::createColor(0, 0, 255, 255);
+const SDL_Color Constants::COLOR_GREY = Util::createColor(128, 128, 128, 255);
+const SDL_Color Constants::COLOR_GREEN = Util::createColor(0, 255, 0, 255);
+const SDL_Color Constants::COLOR_YELLOW = Util::createColor(255, 255, 0, 255);
 
 /*
- * IMAGE CONST */
-const char * const Constants::IMAGES_FIRST_TO_LOAD[] = {  }; 
-const int Constants::IMAGES_FIRST_TO_LOAD_COUNT = 0;
+ * FONT CONST */
+const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
 
 /*
  * SPRITE CONST */

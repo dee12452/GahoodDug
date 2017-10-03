@@ -8,38 +8,42 @@
 #include "../util/Constants.hpp"
 #include "../game/Font.hpp"
 #include "../game/FontSprite.hpp"
+#include "../game/Sprite.hpp"
 
-LaunchScreen::LaunchScreen() : currentImageFile(0), disclaimer(NULL) {}
+LaunchScreen::LaunchScreen() : currentImageFile(0), loadingText(NULL) {}
 
 LaunchScreen::~LaunchScreen() {}
 
 void LaunchScreen::onDraw(Window *win) {
-    disclaimer->draw(win->getWindowRenderer());
+    if(!isLoading() && loadingText->getText() != "Finished") {
+        loadingText->setText(win->getWindowRenderer(), "Finished");
+    }
+    else if(isLoading() && loadingText->getText() != "Loading " + imageFilePaths[currentImageFile]) {
+        loadingText->setText(win->getWindowRenderer(), "Loading " + imageFilePaths[currentImageFile]);
+    }
+    loadingText->draw(win->getWindowRenderer());
 }
 
 void LaunchScreen::onStart(Game *game) {
     imageFilePaths = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION);
-    disclaimer = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow()->getWindowRenderer(), "Test", 12);
-    SDL_Color white;
-    white.a = Constants::SPRITE_ALPHA_FULL;
-    white.r = Constants::SPRITE_ALPHA_FULL;
-    white.g = Constants::SPRITE_ALPHA_FULL;
-    white.b = Constants::SPRITE_ALPHA_FULL;
-    disclaimer->changeColor(game->getWindow()->getWindowRenderer(), white);
+    loadingText = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow()->getWindowRenderer(), "Loading");
+    loadingText->setColor(game->getWindow()->getWindowRenderer(), Constants::COLOR_WHITE);
+    loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
 }
 
 void LaunchScreen::onStop() {
-    if(disclaimer != NULL) {
-        delete disclaimer;
-        disclaimer = NULL;
+    if(loadingText != NULL) {
+        delete loadingText;
+        loadingText = NULL;
     }
 }
 
 void LaunchScreen::onUpdate(Game *game) {
     if(isLoading()) {
-        Util::log("Loading image " + imageFilePaths[currentImageFile]);
-        game->loadSpriteSheet(imageFilePaths[currentImageFile].c_str());
-        currentImageFile++;
+        for(int i = 0; isLoading() && i < LaunchScreen::IMAGE_LOAD_RATE; i++) {
+            game->loadSpriteSheet(imageFilePaths[currentImageFile].c_str());
+            currentImageFile++;
+        }
     }
 }
 

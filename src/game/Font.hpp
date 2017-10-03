@@ -8,7 +8,7 @@ struct SDL_Renderer;
 class FontSprite;
 
 #ifndef DEFAULT_FONT_SIZE
-#define DEFAULT_FONT_SIZE 12
+#define DEFAULT_FONT_SIZE 20
 #endif
 
 class Font {
@@ -17,6 +17,7 @@ public:
     ~Font();
 
     FontSprite * createFontSprite(SDL_Renderer *renderer, const std::string &text, int pointSize) const;
+    FontSprite * createFontSprite(SDL_Renderer *renderer, const std::string &text) const;
 
 private:
     std::string file;

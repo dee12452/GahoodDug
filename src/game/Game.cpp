@@ -59,11 +59,6 @@ void Game::init() {
     window = new Window();
     running = true;
 
-    //Load the initial sprites
-    for(int i = 0; i < Constants::IMAGES_FIRST_TO_LOAD_COUNT; i++) {
-        loadSpriteSheet(Constants::IMAGES_FIRST_TO_LOAD[i]);
-    }
-
     //Load the fonts
     std::vector<std::string> fontFiles = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::FONT_FILE_EXTENSION);
     Util::log("Loading fonts.");
