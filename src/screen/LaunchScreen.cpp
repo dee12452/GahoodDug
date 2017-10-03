@@ -1,6 +1,7 @@
 #include "LaunchScreen.hpp"
 
 #include <SDL2/SDL_ttf.h>
+#include "MapScreen.hpp"
 #include "../game/Game.hpp"
 #include "../game/Window.hpp"
 #include "../util/Util.hpp"
@@ -18,8 +19,8 @@ void LaunchScreen::onDraw(Window *win) {
     if(!isLoading() && loadingText->getText() != "Finished") {
         loadingText->setText(win->getWindowRenderer(), "Finished");
     }
-    else if(isLoading() && loadingText->getText() != "Loading " + imageFilePaths[currentImageFile]) {
-        loadingText->setText(win->getWindowRenderer(), "Loading " + imageFilePaths[currentImageFile]);
+    else if(isLoading() && loadingText->getText() != "Loading " + FileUtil::getFileName(imageFilePaths[currentImageFile].c_str())) {
+        loadingText->setText(win->getWindowRenderer(), "Loading " + FileUtil::getFileName(imageFilePaths[currentImageFile].c_str()));
     }
     loadingText->draw(win->getWindowRenderer());
 }
@@ -39,7 +40,10 @@ void LaunchScreen::onStop() {
 }
 
 void LaunchScreen::onUpdate(Game *game) {
-    if(isLoading()) {
+    if(!isLoading()) {
+        game->requestNewScreen(new MapScreen());
+    }
+    else {
         for(int i = 0; isLoading() && i < LaunchScreen::IMAGE_LOAD_RATE; i++) {
             game->loadSpriteSheet(imageFilePaths[currentImageFile].c_str());
             currentImageFile++;

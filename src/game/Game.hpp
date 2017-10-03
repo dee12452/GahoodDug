@@ -30,16 +30,16 @@ public:
 private:
     //Member variables//
     bool running;
-    bool newScreen;
     Window *window;
     Timer *fpsTimer;
     SDL_Thread *backgroundThread;
-    BaseScreen *currentScreen;
+    BaseScreen *currentScreen, *nextScreen;
 
     //Member functions//
     void init();
     void update();
     void deinit();
+    void changeScreens();
 
     std::map<std::string, SpriteSheet *> spriteSheets;
     std::map<std::string, Font *> fonts;

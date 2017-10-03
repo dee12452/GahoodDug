@@ -15,12 +15,13 @@
 
 static int runInBackgroundThread(void *gahoodmon);
 
-Game::Game() {
-    window = NULL;
-    fpsTimer = NULL;
-    backgroundThread = NULL;
-    currentScreen = NULL;
-}
+Game::Game() 
+    : running(false), 
+      window(NULL), 
+      fpsTimer(NULL), 
+      backgroundThread(NULL), 
+      currentScreen(NULL), 
+      nextScreen(NULL) {}
 
 Game::~Game() {}
 
@@ -87,7 +88,11 @@ void Game::init() {
 }
 
 void Game::update() {
-    
+   
+    /* Check to see if there's a screen change
+     * Will not change unless there was a request to */
+    changeScreens();
+
     /* If current screen exists 
      * Have it handle input 
      * check to see if it needs to be drawn 
@@ -112,6 +117,25 @@ void Game::update() {
                 quit();
         }
     }
+}
+
+void Game::changeScreens() {
+    if(nextScreen != NULL) {
+        if(currentScreen == NULL) {
+            currentScreen = nextScreen;
+        }
+        else {
+            currentScreen->stop();
+            delete currentScreen;
+            currentScreen = nextScreen;
+        }
+        currentScreen->start(this);
+        nextScreen = NULL;
+    }
+}
+
+void Game::requestNewScreen(BaseScreen *screen) {
+    nextScreen = screen;
 }
 
 bool Game::isRunning() const {
@@ -154,6 +178,10 @@ void Game::deinit() {
     if (currentScreen != NULL) {
 		currentScreen->stop();
 		delete currentScreen;
+		currentScreen = NULL;
+	}
+    if (nextScreen != NULL) {
+		delete nextScreen;
 		currentScreen = NULL;
 	}
     Util::log("Successfully stopped the current screen!");
@@ -211,18 +239,6 @@ void Game::deinit() {
     IMG_Quit();
     SDL_Quit();
     Util::log("Closing Game.");
-}
-
-void Game::requestNewScreen(BaseScreen *screen) {
-    if(currentScreen == NULL) {
-        currentScreen = screen;
-    }
-    else {
-        currentScreen->stop();
-        delete currentScreen;
-        currentScreen = screen;
-    }
-    currentScreen->start(this);
 }
 
 void Game::quit() { running = false; }
