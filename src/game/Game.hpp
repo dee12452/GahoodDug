@@ -23,6 +23,7 @@ public:
     void requestNewScreen(BaseScreen *newScreen);
     void loadSpriteSheet(const char *path);
 
+    Window * getWindow() const;
     SpriteSheet * getSpriteSheet(const char *spriteSheetName) const;
     Font * getFont(const char *fontName) const;
 

@@ -123,6 +123,10 @@ bool Game::isRunning() const {
     return running;
 }
 
+Window * Game::getWindow() const {
+    return window;
+}
+
 void Game::loadSpriteSheet(const char *path) {
     spriteSheets.insert(std::pair<std::string, SpriteSheet *>(FileUtil::getFileName(path), new SpriteSheet(window->getWindowRenderer(), path)));
 }
