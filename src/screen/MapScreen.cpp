@@ -1,16 +1,23 @@
 #include "MapScreen.hpp"
 
-MapScreen::MapScreen() : currentMap(NULL) {}
+#include "../world/World.hpp"
 
-MapScreen::~MapScreen() {}
+MapScreen::MapScreen(Game *game) : BaseScreen(game), world(new World(game)) {}
 
-void MapScreen::onStart(Game *) {}
+MapScreen::~MapScreen() {
+    if(world != NULL) {
+        delete world;
+        world = NULL;
+    }
+}
 
-void MapScreen::onStop() {}
+void MapScreen::onDraw(Window *win) {
+    world->draw(win);
+}
 
-void MapScreen::onDraw(Window *) {}
-
-void MapScreen::onUpdate(Game *) {}
+void MapScreen::onUpdate(Game *game) {
+    world->update(game);
+}
 
 void MapScreen::onUpdateInBackground(Game *) {}
 

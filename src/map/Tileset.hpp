@@ -13,6 +13,8 @@ public:
         const char *imgPath, 
 		int w, 
 		int h,
+        int tW,
+        int tH,
 		const std::vector<Tile *> &tiles);
 	~Tileset();
 
@@ -20,11 +22,15 @@ public:
 	void setImageFile(const char *imgPath);
 	void addTile(Tile *tile);
     void setName(const std::string &name);
+    void setTileWidth(int tW);
+    void setTileHeight(int tH);
 
 	Tile * getTile(unsigned int) const;
 	char * getImagePath() const;
 	int getWidth() const;
 	int getHeight() const;
+    int getTileWidth() const;
+    int getTileHeight() const;
     std::string getName() const;
 
 private:
@@ -32,7 +38,9 @@ private:
     char *imageFilePath;
 	int width;
 	int height;
-	std::vector<Tile *> tiles;
+	int tileWidth;
+    int tileHeight;
+    std::vector<Tile *> tiles;
 };
 
 #endif

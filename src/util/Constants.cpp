@@ -39,6 +39,10 @@ const SDL_Color Constants::COLOR_YELLOW = Util::createColor(255, 255, 0, 255);
 const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
 
 /*
+ * IMAGE CONST */
+const char * const Constants::IMAGE_TILESET_UNDERWATER = "tileset_underwater.png";
+
+/*
  * SPRITE CONST */
 const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
@@ -46,3 +50,8 @@ const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
 /*
  * MAP CONST */
 const char * const Constants::MAP_TEST = "test_map.tmx";
+
+/*
+ * WORLD CONST */
+const int Constants::WORLD_DRAW_WIDTH = 15;
+const int Constants::WORLD_DRAW_HEIGHT = 15;

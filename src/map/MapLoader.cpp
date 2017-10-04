@@ -75,6 +75,8 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 	Tileset *tileset = new Tileset();
 	int tileColumns = 0;
 	if (obj->tags.size() > 0) {
+        int width, height;
+
 		//Load the name and number of columns of the tileset
 		for (unsigned int i = 0; i < obj->tags[0]->attributes.size(); i++) {
             if (obj->tags[0]->attributes[i].first == "name") {
@@ -83,7 +85,15 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 			else if (obj->tags[0]->attributes[i].first == "columns") {
 				tileColumns = std::stoi(obj->tags[0]->attributes[i].second);
 			}
+            else if(obj->tags[0]->attributes[i].first == "tilewidth") {
+                width = std::stoi(obj->tags[0]->attributes[i].second);
+            }
+            else if(obj->tags[0]->attributes[i].first == "tileheight") {
+                height = std::stoi(obj->tags[0]->attributes[i].second);
+            }
 		}
+        tileset->setTileWidth(width);
+        tileset->setTileHeight(height);
 		int row = 0, x = 0;
 
 		for (unsigned int i = 0; i < obj->tags[0]->subTags.size(); i++) {
@@ -99,7 +109,7 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 				}
 			}
 			else if (tag->id == "tile") {
-				int id, width, height;
+				int id;
 				std::string type;
                 for (unsigned int j = 0; j < tag->attributes.size(); j++) {
 					if (tag->attributes[j].first == "id") {
@@ -108,19 +118,11 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 					else if (tag->attributes[j].first == "type") {
 						type = tag->attributes[j].second;
 					}
-                    else if(tag->attributes[j].first == "tilewidth") {
-                        width = std::stoi(tag->attributes[j].second);
-                    }
-                    else if(tag->attributes[j].first == "tileheight") {
-                        height = std::stoi(tag->attributes[j].second);
-                    }
 				}
                 tileset->addTile(new Tile(type,
 					id,
 					x,
-					row,
-                    width,
-                    height));
+					row));
 				x++;
 				if (x % tileColumns == 0) {
 					row++; x = 0;

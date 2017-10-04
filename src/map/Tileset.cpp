@@ -11,12 +11,11 @@ Tileset::Tileset(const std::string &name,
     const char *imgPath,
 	int w,
 	int h,
-	const std::vector<Tile *> &tiles) {
-    tilesetName = name;
+    int tW,
+    int tH,
+	const std::vector<Tile *> &tiles) 
+        : tilesetName(name), width(w), height(h), tileWidth(tW), tileHeight(tH), tiles(tiles) {
     setImageFile(imgPath);
-    width = w;
-	height = h;
-	this->tiles = tiles;
 }
 
 Tileset::~Tileset() {
@@ -43,9 +42,13 @@ void Tileset::setImageFile(const char *imgPath) {
     this->imageFilePath = new char[pathLength];
     strcpy(imageFilePath, imgPath);
 }
+void Tileset::setTileWidth(int tW) { tileWidth = tW; }
+void Tileset::setTileHeight(int tH) { tileHeight = tH; }
 
 char * Tileset::getImagePath() const { return imageFilePath; }
 Tile * Tileset::getTile(unsigned int index) const { return index >= tiles.size() ? NULL : tiles[index]; }
 int Tileset::getHeight() const { return height; }
 int Tileset::getWidth() const { return width; }
+int Tileset::getTileWidth() const { return tileWidth; }
+int Tileset::getTileHeight() const { return tileHeight; }
 std::string Tileset::getName() const { return tilesetName; }

@@ -62,6 +62,7 @@ public:
 
     SDL_Rect * getSrcRect() const;
     SDL_Rect * getDstRect() const;
+    SDL_Texture * getTexture() const;
 
     void setSrcRect(const SDL_Rect &srcRect);
     void setDstRect(const SDL_Rect &dstRect);

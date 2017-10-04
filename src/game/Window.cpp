@@ -113,17 +113,17 @@ SDL_Texture * Window::createTransparentTexture(int width, int height) const {
 		Util::fatalSDLError("Failed to change render blend mode");
 	}
 	if (SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND) != 0) {
-		Util::fatalSDLError("Failed to change texture blend mode");
+        Util::fatalSDLError("Failed to change texture blend mode");
 	}
 	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_NONE) != 0) {
-		Util::fatalSDLError("Failed to change texture blend mode");
+		Util::fatalSDLError("Failed to change render draw color");
 	}
 	if (SDL_RenderFillRect(winRenderer, NULL) != 0) {
 		Util::fatalSDLError("Failed to fill transparent texture");
 	}
 	resetRenderTarget();
 	if (SDL_SetRenderDrawBlendMode(winRenderer, SDL_BLENDMODE_NONE) != 0) {
-		Util::fatalSDLError("Failed to change render blend mode");
+		Util::fatalSDLError("Failed to change render blend mode back");
 	}
 	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_FULL) != 0) {
 		Util::fatalSDLError("Failed to reset render color");

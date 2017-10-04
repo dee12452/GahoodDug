@@ -18,7 +18,9 @@ public:
 	Tileset * getTileset() const;
 	int getWidth() const;
 	int getHeight() const;
-	std::vector<int **> getLayers() const;
+	int getTileWidth() const;
+    int getTileHeight() const;
+    std::vector<int **> getLayers() const;
 
 	void setTileset(Tileset *tileset);
 	void setWidth(int width);

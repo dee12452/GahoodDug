@@ -5,7 +5,7 @@
 
 class Tile {
 public:
-    Tile(const std::string &tType, int tId, int row, int column, int  width, int height);
+    Tile(const std::string &tType, int tId, int row, int column);
 
     ~Tile();
 
@@ -13,11 +13,9 @@ public:
 	std::string getTileType() const;
     int getRow() const;
     int getColumn() const;
-    int getWidth() const;
-    int getHeight() const;
 
 private:
-	int tileId, tileRow, tileColumn, tileWidth, tileHeight;
+	int tileId, tileRow, tileColumn;
 	std::string tileType;
 };
 

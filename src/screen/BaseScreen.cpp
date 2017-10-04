@@ -1,17 +1,9 @@
 #include "BaseScreen.hpp"
 #include <SDL2/SDL.h>
 
-BaseScreen::BaseScreen() {}
+BaseScreen::BaseScreen(Game *) {}
 
 BaseScreen::~BaseScreen() {}
-
-void BaseScreen::start(Game *game) {
-    onStart(game);
-}
-
-void BaseScreen::stop() {
-    onStop();
-}
 
 void BaseScreen::update(Game *game) {
     onUpdate(game);

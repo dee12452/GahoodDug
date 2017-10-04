@@ -82,7 +82,7 @@ void Game::init() {
     }
     
     //Start the first screen
-    requestNewScreen(new LaunchScreen());
+    requestNewScreen(new LaunchScreen(this));
     
     Util::log("Initialized game successfully");
 }
@@ -125,11 +125,9 @@ void Game::changeScreens() {
             currentScreen = nextScreen;
         }
         else {
-            currentScreen->stop();
             delete currentScreen;
             currentScreen = nextScreen;
         }
-        currentScreen->start(this);
         nextScreen = NULL;
     }
 }
@@ -176,7 +174,6 @@ void Game::deinit() {
     //Stop the screen
     Util::log("Stopping the current screen.");
     if (currentScreen != NULL) {
-		currentScreen->stop();
 		delete currentScreen;
 		currentScreen = NULL;
 	}

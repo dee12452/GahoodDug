@@ -57,6 +57,7 @@ int Sprite::getDstH() const { return destinationRect == NULL ? -1 : destinationR
 
 SDL_Rect * Sprite::getSrcRect() const { return sourceRect; }
 SDL_Rect * Sprite::getDstRect() const { return destinationRect; }
+SDL_Texture * Sprite::getTexture() const { return spriteSheet; }
 
 void Sprite::setSrcRect(const SDL_Rect &srcRect) {
     if(sourceRect == NULL) { sourceRect = new SDL_Rect; }

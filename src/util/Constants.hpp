@@ -48,6 +48,9 @@ public:
     
     //Font files
     static const char * const FONT_JOYSTIX;
+    
+    //Image files
+    static const char * const IMAGE_TILESET_UNDERWATER;
     /******************
      ******************/
 
@@ -83,7 +86,17 @@ public:
      * Map Constants
      **********************************
      */
-	static const char * const MAP_TEST;
+    static const char * const MAP_TEST;
+    /******************
+	******************/
+    
+    /*
+     **********************************
+     * World Constants
+     **********************************
+     */
+    static const int WORLD_DRAW_WIDTH;
+    static const int WORLD_DRAW_HEIGHT;
     /******************
 	******************/
 
