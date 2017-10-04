@@ -1,47 +1,20 @@
-#include "../headers/BaseScreen.hpp"
+#include "BaseScreen.hpp"
 #include <SDL2/SDL.h>
-#include "../headers/Gahoodmon.hpp"
-#include "../headers/Sprite.hpp"
 
-BaseScreen::BaseScreen() {}
+BaseScreen::BaseScreen(Game *) {}
 
 BaseScreen::~BaseScreen() {}
 
-void BaseScreen::start() {
-    onStart();
+void BaseScreen::update(Game *game) {
+    onUpdate(game);
 }
 
-void BaseScreen::stop() {
-	for (unsigned int i = 0; i < sprites.size(); i++) {
-		if (sprites[i] != NULL) {
-			delete sprites[i];
-			sprites[i] = NULL;
-		}
-	}
-	sprites.clear();
-    onStop();
+void BaseScreen::updateInBackground(Game *game) { 
+    onUpdateInBackground(game);
 }
 
-void BaseScreen::update() {
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] != NULL) {
-            sprites[i]->update();
-        }
-    }
-    onUpdate();
-}
-
-void BaseScreen::updateInBackground() { 
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] != NULL) {
-            sprites[i]->updateInBackground();
-        }
-    }
-    onUpdateInBackground();
-}
-
-void BaseScreen::handleInput(Gahoodmon *game) {
-    //Gahoodmon handles quit event//
+void BaseScreen::handleInput(Game *game) {
+    //Game handles quit event//
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
@@ -52,34 +25,9 @@ void BaseScreen::handleInput(Gahoodmon *game) {
 		}
 	}
 	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
-	handleKeyboard(keyboard);
-}
-
-void BaseScreen::addSprite(Sprite *sprite) {
-    sprites.push_back(sprite);
-}
-
-void BaseScreen::removeSprite(Sprite *sprite) {
-    for(unsigned int i = 0; i < sprites.size(); i++) {
-        if(sprites[i] == sprite) {
-            delete sprites[i];
-            sprites[i] = NULL;
-            std::swap(sprites[i], sprites[sprites.size() - 1]);
-            sprites.pop_back();
-            break;
-        }
-    }
-}
-
-std::vector<Sprite *> BaseScreen::getSprites() const {
-    return sprites;
+	onKeyInput(game, keyboard);
 }
 
 void BaseScreen::draw(Window *win) {
-	for (unsigned int i = 0; i < sprites.size(); i++) {
-		if (sprites[i] != NULL) {
-			sprites[i]->draw(win);
-		}
-	}
 	onDraw(win);
 }

@@ -1,7 +1,7 @@
-#include "../headers/DisplayUtil.hpp"
+#include "DisplayUtil.hpp"
 
 #include <SDL2/SDL.h>
-#include "../headers/Util.hpp"
+#include "Util.hpp"
 
 DisplayUtil::DisplayUtil() {}
 

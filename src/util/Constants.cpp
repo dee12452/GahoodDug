@@ -1,4 +1,5 @@
-#include "../headers/Constants.hpp"
+#include "Constants.hpp"
+#include "Util.hpp"
 #include <SDL2/SDL.h>
 
 /*
@@ -14,36 +15,43 @@ const uint8_t Constants::GAME_LOOP_DELAY = 5;
 const uint8_t Constants::RENDER_LOOP_DELAY = 5;
 const uint8_t Constants::TARGET_FPS = 60;
 const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
-const char * const Constants::GAME_IMAGE_FOLDER = "../res/image/";
-const char * const Constants::GAME_TILESET_FOLDER = "../res/tileset/";
+const char * const Constants::GAME_RES_FOLDER = "../res";
 
 /*
- * IMAGE IDS */
-const std::string Constants::IMAGE_ID_TEST = "sprite/test.png";
-const std::string Constants::IMAGE_TILESET_UNDERWATER = "tile/tileset_underwater.png";
-const std::string Constants::IMAGE_CHARACTER_1 = "sprite/character_1.png";
+ * FILE EXTENSIONS CONST */
+const char * const Constants::IMAGE_FILE_EXTENSION = ".png";
+const char * const Constants::TILESET_FILE_EXTENSION = ".tsx";
+const char * const Constants::MAP_FILE_EXTENSION = ".tmx";
+const char * const Constants::FONT_FILE_EXTENSION = ".ttf";
+
+/*
+ * COLOR CONST */
+const SDL_Color Constants::COLOR_WHITE = Util::createColor(255, 255, 255, 255);
+const SDL_Color Constants::COLOR_BLACK = Util::createColor(0, 0, 0, 255);
+const SDL_Color Constants::COLOR_RED = Util::createColor(255, 0, 0, 255);
+const SDL_Color Constants::COLOR_BLUE = Util::createColor(0, 0, 255, 255);
+const SDL_Color Constants::COLOR_GREY = Util::createColor(128, 128, 128, 255);
+const SDL_Color Constants::COLOR_GREEN = Util::createColor(0, 255, 0, 255);
+const SDL_Color Constants::COLOR_YELLOW = Util::createColor(255, 255, 0, 255);
+
+/*
+ * FONT CONST */
+const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
+
+/*
+ * IMAGE CONST */
+const char * const Constants::IMAGE_TILESET_UNDERWATER = "tileset_underwater.png";
 
 /*
  * SPRITE CONST */
 const uint8_t Constants::SPRITE_ALPHA_FULL = 255;
 const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
-const uint8_t Constants::SPRITE_CHARACTER_WIDTH = 32;
-const uint8_t Constants::SPRITE_CHARACTER_HEIGHT = 48;
-const uint8_t Constants::SPRITE_CHARACTER_FACE_DOWN = 0;
-const uint8_t Constants::SPRITE_CHARACTER_FACE_UP = 3;
-const uint8_t Constants::SPRITE_CHARACTER_FACE_LEFT = 1;
-const uint8_t Constants::SPRITE_CHARACTER_FACE_RIGHT = 2;
-
-/*
- * TILE CONST */
-const int Constants::TILE_WIDTH = 32;
-const int Constants::TILE_HEIGHT = 32;
 
 /*
  * MAP CONST */
-const char * const Constants::MAP_FILE_TEST = "../res/map/test_map.tmx";
-const uint8_t Constants::MAP_MAX_LAYERS = 5;
-const uint8_t Constants::MAP_NUM_TILES_WIDTH = 10;
-const uint8_t Constants::MAP_NUM_TILES_HEIGHT = 9;
-const std::string Constants::TILE_TYPE_WALL = "wall";
-const std::string Constants::TILE_TYPE_FLOOR = "floor";
+const char * const Constants::MAP_TEST = "test_map.tmx";
+
+/*
+ * WORLD CONST */
+const int Constants::WORLD_DRAW_WIDTH = 15;
+const int Constants::WORLD_DRAW_HEIGHT = 15;
