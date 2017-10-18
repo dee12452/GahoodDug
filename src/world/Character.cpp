@@ -22,7 +22,7 @@ Character::~Character() {
 }
 
 void Character::draw(Window *win) {
-    
+    getSprite()->draw(win->getWindowRenderer());
 }
 
 void Character::update(Game *) {
@@ -31,10 +31,10 @@ void Character::update(Game *) {
             movementTimer->check()) {
         switch(currentDirection) {
             case UP:
-                setPositionY(getPositionY() + Constants::CHARACTER_WALK_SPEED);
+                setPositionY(getPositionY() - Constants::CHARACTER_WALK_SPEED);
                 break;
             case DOWN:
-                setPositionY(getPositionY() - Constants::CHARACTER_WALK_SPEED);
+                setPositionY(getPositionY() + Constants::CHARACTER_WALK_SPEED);
                 break;
             case LEFT:
                 setPositionX(getPositionX() - Constants::CHARACTER_WALK_SPEED);
