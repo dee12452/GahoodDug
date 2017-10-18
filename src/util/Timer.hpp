@@ -5,7 +5,7 @@
 
 class Timer {
 public:
-    Timer(unsigned int);
+    Timer(int64_t);
     ~Timer();
 
     void reset();

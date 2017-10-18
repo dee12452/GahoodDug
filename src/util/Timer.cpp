@@ -1,6 +1,6 @@
 #include "Timer.hpp"
 
-Timer::Timer(unsigned int ms) {
+Timer::Timer(int64_t ms) {
     setTargetMs(ms);
     reset();
 }

@@ -5,6 +5,7 @@ class Game;
 class Map;
 class Window;
 class Sprite;
+class Character;
 
 class World {
 public:
@@ -17,6 +18,7 @@ public:
 private:
     Map *currentMap;
     Sprite *tilesetSprite;
+    Character *player;
 };
 
 #endif

@@ -12,7 +12,7 @@ public:
     virtual ~BaseWorldObject();
 
     virtual void update(Game *game) = 0;
-    virtual void draw(Window *window);
+    virtual void draw(Window *window) = 0;
 
     void setPositionX(int x);
     void setPositionY(int y);

@@ -6,10 +6,12 @@
 #include "../map/MapLoader.hpp"
 #include "../game/Sprites.hpp"
 #include "../util/Utils.hpp"
+#include "Character.hpp"
 
 World::World(Game *game) : 
     currentMap(MapLoader::getInstance()->getMap(Constants::MAP_TEST)),
-    tilesetSprite(game->getSpriteSheet(currentMap->getTileset()->getImagePath())->createSprite()) {
+    tilesetSprite(game->getSpriteSheet(currentMap->getTileset()->getImagePath())->createSprite()),
+    player(NULL) {
 }
 
 World::~World() { 
