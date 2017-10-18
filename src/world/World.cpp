@@ -30,14 +30,14 @@ void World::draw(Window *win) {
     SDL_Texture *mapTexture = SDL_CreateTexture(win->getWindowRenderer(), 
             SDL_PIXELFORMAT_RGBA8888, 
             SDL_TEXTUREACCESS_TARGET, 
-            Constants::WORLD_DRAW_WIDTH * currentMap->getTileWidth(),
-            Constants::WORLD_DRAW_HEIGHT * currentMap->getTileHeight());
+            (Constants::WORLD_DRAW_WIDTH + 2) * currentMap->getTileWidth(),
+            (Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight());
     win->setRenderTarget(mapTexture);
     int startDrawX = player->getPositionX() / currentMap->getTileWidth() - Constants::WORLD_DRAW_WIDTH / 2;
     int startDrawY = player->getPositionY() / currentMap->getTileHeight() - Constants::WORLD_DRAW_HEIGHT / 2;
     for(size_t layer = 0; layer < currentMap->getLayers().size(); layer++) {
-        for(int y = startDrawY; y - startDrawY < Constants::WORLD_DRAW_HEIGHT && y < currentMap->getHeight(); y++) {
-            for(int x = startDrawX; x - startDrawX < Constants::WORLD_DRAW_WIDTH && x < currentMap->getWidth(); x++) {
+        for(int y = startDrawY; y - startDrawY < Constants::WORLD_DRAW_HEIGHT + 2 && y < currentMap->getHeight(); y++) {
+            for(int x = startDrawX; x - startDrawX < Constants::WORLD_DRAW_WIDTH + 2 && x < currentMap->getWidth(); x++) {
                 if(y < 0 || x < 0 || currentMap->getLayers()[layer][x][y] - 1 < 0) continue;
                 Tile *currTile = currentMap->getTileset()->getTile(currentMap->getLayers()[layer][x][y] - 1);
                 SDL_Rect src = Util::createRect(currTile->getRow() * currentMap->getTileWidth(), 
@@ -55,11 +55,14 @@ void World::draw(Window *win) {
             }
         }
     }
+    SDL_Rect mapSrcRect = Util::createRect(currentMap->getTileWidth() + player->getPositionX() % currentMap->getTileWidth(),
+            currentMap->getTileHeight() + player->getPositionY() % currentMap->getTileHeight(),
+            Constants::WORLD_DRAW_WIDTH * currentMap->getTileWidth(),
+            Constants::WORLD_DRAW_HEIGHT * currentMap->getTileHeight());
     win->resetRenderTarget();
-    win->drawTexture(mapTexture, NULL, NULL);
+    win->drawTexture(mapTexture, &mapSrcRect, NULL);
     SDL_DestroyTexture(mapTexture);
     mapTexture = NULL;
-    player->move(DOWN);
 }
 
 void World::update(Game *game) { player->update(game); }
