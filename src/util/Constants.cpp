@@ -58,7 +58,7 @@ const int Constants::WORLD_DRAW_HEIGHT = 15;
 
 /*
  * CHARACTER CONST */
-const int Constants::CHARACTER_WALK_TIMER = 50;
+const int Constants::CHARACTER_WALK_TIMER = 25;
 const int Constants::CHARACTER_WIDTH = 32;
 const int Constants::CHARACTER_HEIGHT = 48;
 const int Constants::CHARACTER_WALK_SPEED = 2;

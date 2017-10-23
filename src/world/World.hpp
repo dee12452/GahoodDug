@@ -15,6 +15,8 @@ public:
     void update(Game *game);
     void draw(Window *win);
 
+    Character * getPlayer() const;
+
 private:
     Map *currentMap;
     Sprite *tilesetSprite;

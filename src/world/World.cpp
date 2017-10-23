@@ -33,6 +33,7 @@ void World::draw(Window *win) {
             (Constants::WORLD_DRAW_WIDTH + 2) * currentMap->getTileWidth(),
             (Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight());
     win->setRenderTarget(mapTexture);
+    win->clearRenderTartget();
     int startDrawX = player->getPositionX() / currentMap->getTileWidth() - Constants::WORLD_DRAW_WIDTH / 2;
     int startDrawY = player->getPositionY() / currentMap->getTileHeight() - Constants::WORLD_DRAW_HEIGHT / 2;
     for(size_t layer = 0; layer < currentMap->getLayers().size(); layer++) {
@@ -54,6 +55,11 @@ void World::draw(Window *win) {
                 currTile = NULL;
             }
         }
+        if(player->getLayer() == static_cast<int>(layer)) {
+            player->getSprite()->setDstX(100);
+            player->getSprite()->setDstY(100);
+            player->draw(win);
+        }
     }
     SDL_Rect mapSrcRect = Util::createRect(currentMap->getTileWidth() + player->getPositionX() % currentMap->getTileWidth(),
             currentMap->getTileHeight() + player->getPositionY() % currentMap->getTileHeight(),
@@ -66,3 +72,5 @@ void World::draw(Window *win) {
 }
 
 void World::update(Game *game) { player->update(game); }
+
+Character * World::getPlayer() const { return player; }

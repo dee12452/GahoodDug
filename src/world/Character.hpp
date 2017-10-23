@@ -21,6 +21,8 @@ public:
 
     bool isMoving() const;
     FacingDirection getCurrentDirection() const;
+    FacingDirection getNextDirection() const;
+
 private:
     int tileWidth, displacement;
     FacingDirection currentDirection, nextDirection;

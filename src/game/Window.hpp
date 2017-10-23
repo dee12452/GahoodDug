@@ -20,7 +20,8 @@ public:
 
 	void setRenderTarget(SDL_Texture *targetTexture) const;
 	void resetRenderTarget() const;
-	void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;
+	void clearRenderTartget() const;
+    void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;
 	SDL_Texture * createTransparentTexture(int width, int height) const;
 private:
     SDL_Window *win;

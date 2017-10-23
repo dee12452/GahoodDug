@@ -102,6 +102,12 @@ void Window::drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstR
 	}
 }
 
+void Window::clearRenderTartget() const {
+    if(SDL_RenderClear(winRenderer) < 0) {
+        Util::fatalSDLError("Failed to clear the window");
+    }
+}
+
 SDL_Texture * Window::createTransparentTexture(int width, int height) const { 
 	SDL_Texture *texture = SDL_CreateTexture(getWindowRenderer(),
 		SDL_PIXELFORMAT_RGBA8888,

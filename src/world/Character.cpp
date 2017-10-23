@@ -12,6 +12,8 @@ Character::Character(SpriteSheet *spriteSheet, int tileW)
     moving(false),
     walkLeft(true) {
     changeDirection(DOWN);
+    getSprite()->setDstW(Constants::CHARACTER_WIDTH);
+    getSprite()->setDstH(Constants::CHARACTER_HEIGHT);
 }
 
 Character::~Character() {
@@ -52,7 +54,12 @@ void Character::update(Game *) {
             displacement = 0;
             currentDirection = nextDirection;
             getSprite()->setSrcX(0);
-            if(currentDirection == NONE) moving = false;
+            moving = false;
+            if(currentDirection != NONE) {
+                changeDirection(currentDirection);
+                moving = true;
+            }
+            walkLeft = !walkLeft;
         }
 
         //Need to switch the sprite
@@ -70,6 +77,7 @@ void Character::update(Game *) {
 bool Character::isMoving() const { return moving; }
 
 FacingDirection Character::getCurrentDirection() const { return currentDirection; }
+FacingDirection Character::getNextDirection() const { return nextDirection; }
 
 void Character::move(FacingDirection direction) {
     if(moving) {
