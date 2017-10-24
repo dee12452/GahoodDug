@@ -34,8 +34,11 @@ void World::draw(Window *win) {
             (Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight());
     win->setRenderTarget(mapTexture);
     win->clearRenderTartget();
-    int startDrawX = player->getPositionX() / currentMap->getTileWidth() - Constants::WORLD_DRAW_WIDTH / 2;
-    int startDrawY = player->getPositionY() / currentMap->getTileHeight() - Constants::WORLD_DRAW_HEIGHT / 2;
+    Util::print(std::to_string(player->getPositionX()));
+    const int playerOffsetX = player->getPositionX() % currentMap->getTileWidth();
+    const int playerOffsetY = player->getPositionY() % currentMap->getTileHeight();
+    const int startDrawX = player->getPositionX() / currentMap->getTileWidth() - Constants::WORLD_DRAW_WIDTH / 2;
+    const int startDrawY = player->getPositionY() / currentMap->getTileHeight() - Constants::WORLD_DRAW_HEIGHT / 2;
     for(size_t layer = 0; layer < currentMap->getLayers().size(); layer++) {
         for(int y = startDrawY; y - startDrawY < Constants::WORLD_DRAW_HEIGHT + 2 && y < currentMap->getHeight(); y++) {
             for(int x = startDrawX; x - startDrawX < Constants::WORLD_DRAW_WIDTH + 2 && x < currentMap->getWidth(); x++) {
@@ -56,13 +59,13 @@ void World::draw(Window *win) {
             }
         }
         if(player->getLayer() == static_cast<int>(layer)) {
-            player->getSprite()->setDstX(100);
-            player->getSprite()->setDstY(100);
+            player->getSprite()->setDstX(((Constants::WORLD_DRAW_WIDTH + 2) * currentMap->getTileWidth()) / 2 + playerOffsetX + Constants::CHARACTER_TILE_OFFSET_X);
+            player->getSprite()->setDstY(((Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight()) / 2 + playerOffsetY + Constants::CHARACTER_TILE_OFFSET_Y);
             player->draw(win);
         }
     }
-    SDL_Rect mapSrcRect = Util::createRect(currentMap->getTileWidth() + player->getPositionX() % currentMap->getTileWidth(),
-            currentMap->getTileHeight() + player->getPositionY() % currentMap->getTileHeight(),
+    SDL_Rect mapSrcRect = Util::createRect(currentMap->getTileWidth() + playerOffsetX,
+            currentMap->getTileHeight() + playerOffsetY,
             Constants::WORLD_DRAW_WIDTH * currentMap->getTileWidth(),
             Constants::WORLD_DRAW_HEIGHT * currentMap->getTileHeight());
     win->resetRenderTarget();

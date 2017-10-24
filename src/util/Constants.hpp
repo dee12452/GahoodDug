@@ -108,6 +108,8 @@ public:
     static const int CHARACTER_WALK_TIMER;
     static const int CHARACTER_WIDTH;
     static const int CHARACTER_HEIGHT;
+    static const int CHARACTER_TILE_OFFSET_X;
+    static const int CHARACTER_TILE_OFFSET_Y;
     static const int CHARACTER_WALK_SPEED;
     static const int CHARACTER_RUN_SPEED;
     /******************
