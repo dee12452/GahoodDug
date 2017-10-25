@@ -34,7 +34,6 @@ void World::draw(Window *win) {
             (Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight());
     win->setRenderTarget(mapTexture);
     win->clearRenderTartget();
-    Util::print(std::to_string(player->getPositionX()));
     const int playerOffsetX = player->getPositionX() % currentMap->getTileWidth();
     const int playerOffsetY = player->getPositionY() % currentMap->getTileHeight();
     const int startDrawX = player->getPositionX() / currentMap->getTileWidth() - Constants::WORLD_DRAW_WIDTH / 2;
@@ -59,8 +58,8 @@ void World::draw(Window *win) {
             }
         }
         if(player->getLayer() == static_cast<int>(layer)) {
-            player->getSprite()->setDstX(((Constants::WORLD_DRAW_WIDTH + 2) * currentMap->getTileWidth()) / 2 + playerOffsetX + Constants::CHARACTER_TILE_OFFSET_X);
-            player->getSprite()->setDstY(((Constants::WORLD_DRAW_HEIGHT + 2)* currentMap->getTileHeight()) / 2 + playerOffsetY + Constants::CHARACTER_TILE_OFFSET_Y);
+            player->getSprite()->setDstX(((Constants::WORLD_DRAW_WIDTH) * currentMap->getTileWidth()) / 2 + playerOffsetX + Constants::CHARACTER_TILE_OFFSET_X);
+            player->getSprite()->setDstY(((Constants::WORLD_DRAW_HEIGHT)* currentMap->getTileHeight()) / 2 + playerOffsetY + Constants::CHARACTER_TILE_OFFSET_Y);
             player->draw(win);
         }
     }
