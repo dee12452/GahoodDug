@@ -13,7 +13,7 @@ public:
     static void fatalSDLError(const char *errMessage);
     static void log(const std::string &message);
 	static void print(const std::string &message);
-	static int64_t getCurrentTimeMillis();
+	static void sleep(int ms);
     
     static SDL_Rect createRect(int x, int y, int w, int h);
     static SDL_Rect createRectCentered(int w, int h);

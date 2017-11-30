@@ -5,20 +5,18 @@
 
 class Timer {
 public:
-    Timer(int64_t);
+    Timer(int);
     ~Timer();
 
     void reset();
     bool check();
     
-    void setTargetMs(int64_t);
-    int64_t getTargetMs() const;
-	int64_t getElapsedMs();
+    void setTargetMs(int);
+    int getTargetMs() const;
+	int getElapsedMs();
 private:
-    std::chrono::milliseconds getCurrentMs() const;
-    std::chrono::milliseconds start;
-    std::chrono::milliseconds finish;
-	int64_t targetMs;
+    std::chrono::high_resolution_clock::time_point start, finish;
+	int targetMs;
 };
 
 #endif

@@ -58,8 +58,8 @@ void World::draw(Window *win) {
                         currTile->getColumn() * currentMap->getTileHeight(), 
                         currentMap->getTileWidth(), 
                         currentMap->getTileHeight());
-                SDL_Rect dst = Util::createRect((x - startDrawX) * currentMap->getTileWidth(),
-                        (y - startDrawY) * currentMap->getTileHeight(),
+                SDL_Rect dst = Util::createRect((x - startDrawX) * currentMap->getTileWidth() - Constants::CHARACTER_TILE_OFFSET_X,
+                        (y - startDrawY) * currentMap->getTileHeight() - Constants::CHARACTER_TILE_OFFSET_Y,
                         currentMap->getTileWidth(),
                         currentMap->getTileHeight());
                 tilesetSprite->setSrcRect(src);
@@ -72,8 +72,8 @@ void World::draw(Window *win) {
         //If the player is on this layer, draw him
         //Adding the commented section draws the character on the correct tile but puts him not in the center of the screen 
         if(player->getLayer() == static_cast<int>(layer)) {
-            player->getSprite()->setDstX(((Constants::WORLD_DRAW_WIDTH) * currentMap->getTileWidth()) / 2 + playerOffsetX /*+ Constants::CHARACTER_TILE_OFFSET_X*/);
-            player->getSprite()->setDstY(((Constants::WORLD_DRAW_HEIGHT)* currentMap->getTileHeight()) / 2 + playerOffsetY /*+ Constants::CHARACTER_TILE_OFFSET_Y*/);
+            player->getSprite()->setDstX(((Constants::WORLD_DRAW_WIDTH) * currentMap->getTileWidth()) / 2 + playerOffsetX);
+            player->getSprite()->setDstY(((Constants::WORLD_DRAW_HEIGHT)* currentMap->getTileHeight()) / 2 + playerOffsetY);
             player->draw(win);
         }
     }

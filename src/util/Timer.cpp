@@ -1,6 +1,6 @@
 #include "Timer.hpp"
 
-Timer::Timer(int64_t ms) {
+Timer::Timer(int ms) {
     setTargetMs(ms);
     reset();
 }
@@ -8,36 +8,31 @@ Timer::Timer(int64_t ms) {
 Timer::~Timer() {}
 
 void Timer::reset() {
-    start = getCurrentMs();
-    finish = getCurrentMs();
+	start = std::chrono::high_resolution_clock::now();
+    finish = std::chrono::high_resolution_clock::now();
 }
 
 bool Timer::check() {
-    finish = getCurrentMs();
-    int64_t startMs = start.count();
-    int64_t finishMs = finish.count();
-    if(finishMs - startMs >= targetMs) {
+    finish = std::chrono::high_resolution_clock::now();
+	//elapsedTime is in seconds
+	double elapsedTime = std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count();
+    if(static_cast<int> (elapsedTime * 1000) >= targetMs) {
         reset();
         return true;
     }
     return false;
 }
 
-void Timer::setTargetMs(int64_t ms) {
+void Timer::setTargetMs(int ms) {
     targetMs = ms;
 }
 
-int64_t Timer::getTargetMs() const {
+int Timer::getTargetMs() const {
     return targetMs;
 }
 
-std::chrono::milliseconds Timer::getCurrentMs() const {
-    return std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
-}
-
-int64_t Timer::getElapsedMs() {
-    finish = getCurrentMs();
-	int64_t finishMs = finish.count();
-	int64_t startMs = start.count();
-    return finishMs - startMs;
+int Timer::getElapsedMs() {
+    finish = std::chrono::high_resolution_clock::now();
+	double elapsedTime = std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count();
+	return static_cast<int> (elapsedTime * 1000);
 };

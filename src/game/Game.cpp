@@ -29,7 +29,7 @@ void Game::run() {
     init();
     while(running) {
         update();
-        SDL_Delay(Constants::RENDER_LOOP_DELAY);
+        Util::sleep(Constants::RENDER_LOOP_DELAY);
     }
     deinit();
 }
@@ -244,7 +244,7 @@ int runInBackgroundThread(void *gahoodmon) {
     Game *game = static_cast<Game *> (gahoodmon);
     while(game->isRunning()) {
         game->runInBackground();
-        SDL_Delay(Constants::GAME_LOOP_DELAY);
+        Util::sleep(Constants::GAME_LOOP_DELAY);
     }
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "Util.hpp"
 #include <SDL2/SDL.h>
-#include <chrono>
+#include <thread>
 #include <iostream>
 #include "Constants.hpp"
 
@@ -22,9 +22,8 @@ void Util::print(const std::string &message) {
 	std::cout << message << std::endl;
 }
 
-int64_t Util::getCurrentTimeMillis() {
-	std::chrono::milliseconds currMS = std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now().time_since_epoch());
-	return currMS.count();
+void Util::sleep(int ms) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
 SDL_Color Util::createColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
