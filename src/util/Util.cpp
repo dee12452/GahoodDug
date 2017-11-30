@@ -1,25 +1,20 @@
 #include "Util.hpp"
-#include <SDL2/SDL.h>
 #include <thread>
-#include <iostream>
+#include <SDL2/SDL_rect.h>
 #include "Constants.hpp"
 
 void Util::fatalError(const char *message) {
-    SDL_Log("Fatal Error: %s\n", message);
+	log(SDL_LOG_PRIORITY_CRITICAL, message);
     exit(EXIT_FAILURE);
 }
 
 void Util::fatalSDLError(const char *message) {
-    SDL_Log("Fatal SDL Error: %s\n%s\n", message, SDL_GetError());
+	log(SDL_LOG_PRIORITY_CRITICAL, std::string(message) + SDL_GetError());
     exit(EXIT_FAILURE);
 }
 
-void Util::log(const std::string &message) {
-    SDL_Log("%s\n", message.c_str());
-}
-
-void Util::print(const std::string &message) {
-	std::cout << message << std::endl;
+void Util::log(const SDL_LogPriority &priority, const std::string &message) {
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, priority, message.c_str());
 }
 
 void Util::sleep(int ms) {

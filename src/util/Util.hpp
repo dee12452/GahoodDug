@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdint.h>
+#include <SDL2/SDL_log.h>
 
 struct SDL_Rect;
 struct SDL_Color;
@@ -11,8 +12,7 @@ class Util {
 public:
     static void fatalError(const char *errMessage);
     static void fatalSDLError(const char *errMessage);
-    static void log(const std::string &message);
-	static void print(const std::string &message);
+    static void log(const SDL_LogPriority &priority, const std::string &message);
 	static void sleep(int ms);
     
     static SDL_Rect createRect(int x, int y, int w, int h);

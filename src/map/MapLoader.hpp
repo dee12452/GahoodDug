@@ -7,6 +7,7 @@
 
 class Tileset;
 class Map;
+class Game;
 struct Tag;
 
 class MapLoader {
@@ -14,7 +15,7 @@ public:
 	static MapLoader * getInstance();
 	static void deleteInstance();
 
-    void loadAll(const char *pathToRes);
+    void loadAll(Game *game, const char *pathToRes);
     Map * getMap(const std::string &mapId) const;
 
 private:
@@ -23,7 +24,7 @@ private:
 	static MapLoader *instance;
 
 	void loadTileset(const char *pathToTileset);
-	void loadMap(const char *pathToMap);
+	void loadMap(Game *game, const char *pathToMap);
     void populateMapInfo(Tag *tag, Map *map);
 	std::vector<Tileset *> tilesets;
     std::map<std::string, Map *> maps;

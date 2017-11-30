@@ -50,20 +50,19 @@ Map * MapLoader::getMap(const std::string &mapId) const {
     return map;
 }
 
-void MapLoader::loadAll(const char *pathToResFolder) {
+void MapLoader::loadAll(Game *game, const char *pathToResFolder) {
     std::vector<std::string> tilesetFiles = FileUtil::getFilesRecursively(pathToResFolder, Constants::TILESET_FILE_EXTENSION);
-    if(tilesetFiles.size() == 0) {
-        Util::print("Warning: Failed to find tilesets in given res folder");
-        return;
-    }
+    if(tilesetFiles.size() == 0) { 
+		Util::fatalError("Warning: Failed to find tilesets in given res folder"); 
+	}
     for(size_t i = 0; i < tilesetFiles.size(); i++) {
         loadTileset(tilesetFiles[i].c_str());
-        Util::log("Successfully loaded tileset " + tilesetFiles[i]);
+        Util::log(SDL_LOG_PRIORITY_INFO, "Successfully loaded tileset " + tilesetFiles[i]);
     }
     std::vector<std::string> maps = FileUtil::getFilesRecursively(pathToResFolder, Constants::MAP_FILE_EXTENSION);
     for(size_t i = 0; i < tilesetFiles.size(); i++) {
-        loadMap(maps[i].c_str());
-        Util::log("Successfully loaded map " + maps[i]);
+        loadMap(game, maps[i].c_str());
+        Util::log(SDL_LOG_PRIORITY_INFO, "Successfully loaded map " + maps[i]);
     }
 }
 
@@ -136,7 +135,7 @@ void MapLoader::loadTileset(const char *pathToTileset) {
 	obj = NULL;
 }
 
-void MapLoader::loadMap(const char *path) {
+void MapLoader::loadMap(Game *game, const char *path) {
 	Map *map = new Map();
 	XMLObject *obj = XMLParser::loadXML(path);
 	if (obj == NULL) {
@@ -146,6 +145,7 @@ void MapLoader::loadMap(const char *path) {
 		populateMapInfo(obj->tags[i], map);
 	}
 	XMLParser::destroyXMLObject(obj);
+	map->generate(game);
 	maps.insert(std::pair<std::string, Map *> (FileUtil::getFileName(path), map));
 }
 

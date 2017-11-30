@@ -41,7 +41,6 @@ void Game::runInBackground() {
 }
 
 void Game::init() {
-    Util::log("Started Initialization");
     
     //Init SDL2
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
@@ -62,18 +61,11 @@ void Game::init() {
 
     //Load the fonts
     std::vector<std::string> fontFiles = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::FONT_FILE_EXTENSION);
-    Util::log("Loading fonts.");
     for(size_t i = 0; i < fontFiles.size(); i++) {
-        Util::log("Loading font " + fontFiles[i]);
         std::string fName = FileUtil::getFileName(fontFiles[i].c_str());
         fonts.insert(std::pair<std::string, Font *> (fName, new Font(fontFiles[i].c_str())));
     }
-    Util::log("Loaded all fonts!");
-    
-    //Load the tilesets and maps
-    Util::log("Loading maps and tilesets.");
-    MapLoader::getInstance()->loadAll(Constants::GAME_RES_FOLDER);
-    Util::log("Finished loading maps and tilesets!");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Loaded all fonts!");
     
     //Create the background thread
     backgroundThread = SDL_CreateThread(runInBackgroundThread, Constants::GAME_THREAD_NAME, this);
@@ -83,8 +75,6 @@ void Game::init() {
     
     //Start the first screen
     requestNewScreen(new LaunchScreen(this));
-    
-    Util::log("Initialized game successfully");
 }
 
 void Game::update() {
@@ -169,10 +159,8 @@ Font * Game::getFont(const char *fontName) const {
 }
 
 void Game::deinit() {
-    Util::log("Exiting game.");
 	
     //Stop the screen
-    Util::log("Stopping the current screen.");
     if (currentScreen != NULL) {
 		delete currentScreen;
 		currentScreen = NULL;
@@ -181,20 +169,19 @@ void Game::deinit() {
 		delete nextScreen;
 		currentScreen = NULL;
 	}
-    Util::log("Successfully stopped the current screen!");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully stopped the current screen!");
     
     //Stop background thread
     int threadRetVal;
-    Util::log("Stopping background thread.");
     SDL_WaitThread(backgroundThread, &threadRetVal);
     backgroundThread = NULL;
     if(threadRetVal != 0) {
         char val = '0' + threadRetVal;
         std::string message = "Warning: Background thread returned with an invalid value of ";
         message += val;
-        Util::log(message);
+        Util::log(SDL_LOG_PRIORITY_WARN, message);
     }
-    Util::log("Successfully stopped background thread!");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully stopped background thread!");
 
     //Free the fps timer
     if(fpsTimer != NULL) {
@@ -203,19 +190,16 @@ void Game::deinit() {
     }
 
     //Destroy the window
-    Util::log("Closing the window.");
     if(window != NULL) {
         delete window;
         window = NULL;
     }
-    Util::log("Successfully closed the window!");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully closed the window!");
     
     //Delete the map loader and it's data
-    Util::log("Deleting maps and tilesets...");
     MapLoader::getInstance()->deleteInstance();
-    Util::log("Successfully deleted maps and tilesets");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully deleted maps and tilesets");
     
-    Util::log("Deleting fonts and sprites...");
     //Delete all of the fonts
     for(std::map<std::string, Font *>::const_iterator iterator = fonts.begin(); iterator != fonts.end(); ++iterator) {
         if(iterator->second != NULL) {
@@ -230,12 +214,11 @@ void Game::deinit() {
         }
     }
     spriteSheets.clear();
-    Util::log("Successfully deleted sprites and fonts!");
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully deleted sprites and fonts!");
 
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
-    Util::log("Closing Game.");
 }
 
 void Game::quit() { running = false; }

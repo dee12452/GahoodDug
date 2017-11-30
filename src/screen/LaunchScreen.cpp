@@ -4,6 +4,7 @@
 #include "MapScreen.hpp"
 #include "../game/Sprites.hpp"
 #include "../util/Utils.hpp"
+#include "../map/MapLoader.hpp"
 
 LaunchScreen::LaunchScreen(Game *game) 
     : BaseScreen(game), 
@@ -33,6 +34,10 @@ void LaunchScreen::onDraw(Window *win) {
 
 void LaunchScreen::onUpdate(Game *game) {
     if(!isLoading()) {
+		//Load the tilesets and maps
+		MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
+		Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
+
         game->requestNewScreen(new MapScreen(game));
     }
     else {

@@ -114,6 +114,7 @@ SDL_Texture * Window::createTransparentTexture(int width, int height) const {
 		SDL_TEXTUREACCESS_TARGET,
 		width,
 		height);
+	if (texture == NULL) Util::fatalSDLError("Failed to create transparent texture");
 	setRenderTarget(texture);
 	if (SDL_SetRenderDrawBlendMode(winRenderer, SDL_BLENDMODE_BLEND) != 0) {
 		Util::fatalSDLError("Failed to change render blend mode");
