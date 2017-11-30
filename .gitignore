@@ -1,7 +1,11 @@
-game.out
+.vs/
 Debug/
-Gahoodmon.vcxproj
-Gahoodmon.vcxproj.filters
-Gahoodmon.vcxproj.user
+Release/
+include/
+CppProperties.json
+*.sln
+*.vcxproj
+*.filters
+*.user
 *.dll
 *.lib
