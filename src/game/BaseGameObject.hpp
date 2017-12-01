@@ -6,7 +6,7 @@ class Game;
 class BaseGameObject {
 public:
 	BaseGameObject();
-	~BaseGameObject();
+	virtual ~BaseGameObject();
 
 	void tick(Game *game);
 	void tickInBackground();

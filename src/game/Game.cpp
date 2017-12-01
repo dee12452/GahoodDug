@@ -3,9 +3,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include "../object/BaseGameObject.hpp"
-#include "../object/SpriteSheet.hpp"
-#include "../object/Font.hpp"
+#include "BaseGameObject.hpp"
+#include "../sprite/SpriteSheet.hpp"
+#include "../sprite/Font.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Timer.hpp"
 #include "../util/Util.hpp"

@@ -11,24 +11,19 @@ public:
     LaunchScreen(Game *game);
     ~LaunchScreen() override;
 
+	void drawScreen(Window *win) const override;
+
 protected:
-    void onDraw(Window *win) override;
-    void onUpdate(Game *game) override;
     void onInput(Game *game, const SDL_Event &event) override;
     void onKeyInput(Game *game, const uint8_t *keys) override;
-    void onUpdateInBackground(Game *game) override;
 
 private:
-    static const int IMAGE_LOAD_RATE = 50;
-    
-    bool isLoading() const;
+	//Class for loading sprites
+	class LaunchScreenLoader;
+	LaunchScreenLoader *loader;
 
-    //Used for loading the game images
-    std::vector<std::string> imageFilePaths;
-    size_t currentImageFile;
-
-    //Sprites
-    FontSprite *loadingText;
+	//Sprites
+	FontSprite *loadingText;
 };
 
 #endif

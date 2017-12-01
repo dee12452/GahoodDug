@@ -4,7 +4,7 @@
 #include "../game/Game.hpp"
 #include "../map/Maps.hpp"
 #include "../map/MapLoader.hpp"
-#include "../game/Sprites.hpp"
+#include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
 #include "Character.hpp"
 
@@ -26,12 +26,10 @@ World::~World() {
     }
 }
 
-void World::draw(Window *win) {
+void World::drawWorld(Window *win) {
 	for (unsigned int layer = 0; layer < currentMap->getNumberOfLayers(); layer++) {
 		win->drawTexture(currentMap->getLayer(layer), NULL, NULL);
 	}
 }
-
-void World::update(Game *game) { player->update(game); }
 
 Character * World::getPlayer() const { return player; }

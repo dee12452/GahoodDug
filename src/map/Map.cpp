@@ -7,7 +7,7 @@
 #include "../game/Window.hpp"
 #include "../game/Game.hpp"
 #include "../util/Util.hpp"
-#include "../game/Sprites.hpp"
+#include "../sprite/Sprites.hpp"
 
 Map::Map() :
 	width(0), height(0), tileset(NULL), generated(false) {

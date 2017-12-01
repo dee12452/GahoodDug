@@ -1,6 +1,6 @@
 #include "Character.hpp"
 #include "../util/Utils.hpp"
-#include "../game/Sprites.hpp"
+#include "../sprite/Sprites.hpp"
 #include "../game/Game.hpp"
 
 Character::Character(SpriteSheet *spriteSheet, int tileW) 
@@ -23,14 +23,10 @@ Character::~Character() {
     }
 }
 
-void Character::draw(Window *win) {
-    getSprite()->draw(win->getWindowRenderer());
-}
+void Character::onTickInBackground() {}
 
-void Character::update(Game *) {
-    if(moving && 
-            currentDirection != NONE &&
-            movementTimer->check()) {
+void Character::onTick(Game *) {
+    if(moving && currentDirection != NONE && movementTimer->check()) {
         switch(currentDirection) {
             case UP:
                 setPositionY(getPositionY() - Constants::CHARACTER_WALK_SPEED);

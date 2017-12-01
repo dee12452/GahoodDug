@@ -12,8 +12,8 @@ public:
     Character(SpriteSheet *sheet, int tileWidth);
     ~Character() override;
 
-    void update(Game *game) override;
-    void draw(Window *win) override;
+    void onTick (Game *game) override;
+	void onTickInBackground() override;
 
     void move(FacingDirection direction);
     void changeDirection(FacingDirection direction);

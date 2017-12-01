@@ -13,15 +13,9 @@ MapScreen::~MapScreen() {
     }
 }
 
-void MapScreen::onDraw(Window *win) {
-    world->draw(win);
+void MapScreen::drawScreen(Window *win) const {
+    world->drawWorld(win);
 }
-
-void MapScreen::onUpdate(Game *game) {
-    world->update(game);
-}
-
-void MapScreen::onUpdateInBackground(Game *) {}
 
 void MapScreen::onInput(Game *, const SDL_Event &) {
 }

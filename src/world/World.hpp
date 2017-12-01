@@ -12,9 +12,7 @@ public:
     World(Game *game);
     ~World();
 
-    void update(Game *game);
-    void draw(Window *win);
-
+    void drawWorld(Window *win);
     Character * getPlayer() const;
 
 private:

@@ -1,5 +1,5 @@
 #include "BaseWorldObject.hpp"
-#include "../game/Sprites.hpp"
+#include "../sprite/Sprites.hpp"
 
 BaseWorldObject::BaseWorldObject(SpriteSheet *spriteSheet) : 
     posX(0), 

@@ -1,6 +1,7 @@
 #ifndef GAHOODMON_HPP
 #define GAHOODMON_HPP
 
+#include <vector>
 #include <map>
 #include <string>
 #include "Window.hpp"

@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void handleArgs(int argc, char *argv[]) {
+void handleArgs(int argc, char **argv) {
     if(argc > 1) {
         printf("\nArguments will be ignored:\n");
         for(int i = 1; i < argc; i++) { printf("%s ", argv[i]); }

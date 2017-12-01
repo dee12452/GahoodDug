@@ -10,10 +10,9 @@ public:
     MapScreen(Game *game);
     ~MapScreen() override;
 
+	void drawScreen(Window *win) const override;
+
 protected:
-    void onDraw(Window *win) override;
-    void onUpdate(Game *game) override;
-    void onUpdateInBackground(Game *game) override;
     void onInput(Game *game, const SDL_Event &event) override;
     void onKeyInput(Game *game, const uint8_t *keyboard) override;
 

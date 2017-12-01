@@ -1,12 +1,14 @@
 #ifndef BASE_WORLD_OBJECT
 #define BASE_WORLD_OBJECT
 
+#include "../game/BaseGameObject.hpp"
+
 class Sprite;
 class SpriteSheet;
 class Game;
 class Window;
 
-class BaseWorldObject {
+class BaseWorldObject : public BaseGameObject {
 public:
     BaseWorldObject(SpriteSheet *spriteSheet);
     virtual ~BaseWorldObject();
