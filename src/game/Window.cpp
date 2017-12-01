@@ -68,7 +68,7 @@ void Window::render(BaseScreen *screen) {
 
     //Draw the screen to the texture here
 	if (screen != NULL) {
-		screen->draw(this);
+		screen->drawScreen(this);
 	}
 
     //Clear the window from previous rendering and show the new frame
@@ -135,6 +135,18 @@ SDL_Texture * Window::createTransparentTexture(int width, int height) const {
 	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_FULL) != 0) {
 		Util::fatalSDLError("Failed to reset render color");
 	}
+	return texture;
+}
+
+SDL_Texture * Window::createTexture(int width, int height) const {
+	SDL_Texture *texture = SDL_CreateTexture(winRenderer,
+		SDL_PIXELFORMAT_RGBA8888, 
+		SDL_TEXTUREACCESS_TARGET, 
+		width, 
+		height);
+	setRenderTarget(texture);
+	clearRenderTartget();
+	resetRenderTarget();
 	return texture;
 }
 

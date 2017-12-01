@@ -23,6 +23,7 @@ public:
 	void clearRenderTartget() const;
     void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;
 	SDL_Texture * createTransparentTexture(int width, int height) const;
+	SDL_Texture * createTexture(int width, int height) const;
 private:
     SDL_Window *win;
     SDL_Renderer *winRenderer;

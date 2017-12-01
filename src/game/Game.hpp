@@ -10,6 +10,7 @@ class Timer;
 class SpriteSheet;
 class BaseScreen;
 class Font;
+class BaseGameObject;
 
 class Game {
 public:
@@ -22,6 +23,8 @@ public:
     void quit();
     void requestNewScreen(BaseScreen *newScreen);
     void loadSpriteSheet(const char *path);
+	void registerGameObject(BaseGameObject *obj);
+	void unregisterGameObject(BaseGameObject *obj);
 
     Window * getWindow() const;
     SpriteSheet * getSpriteSheet(const char *spriteSheetName) const;
@@ -31,7 +34,7 @@ private:
     //Member variables//
     bool running;
     Window *window;
-    Timer *fpsTimer;
+    Timer *fpsTimer, *tickTimer;
     SDL_Thread *backgroundThread;
     BaseScreen *currentScreen, *nextScreen;
 
@@ -41,6 +44,7 @@ private:
     void deinit();
     void changeScreens();
 
+	std::vector<BaseGameObject *> updatables;
     std::map<std::string, SpriteSheet *> spriteSheets;
     std::map<std::string, Font *> fonts;
 };

@@ -5,14 +5,6 @@ BaseScreen::BaseScreen(Game *) {}
 
 BaseScreen::~BaseScreen() {}
 
-void BaseScreen::update(Game *game) {
-    onUpdate(game);
-}
-
-void BaseScreen::updateInBackground(Game *game) { 
-    onUpdateInBackground(game);
-}
-
 void BaseScreen::handleInput(Game *game) {
     //Game handles quit event//
 	SDL_Event e;
@@ -26,8 +18,4 @@ void BaseScreen::handleInput(Game *game) {
 	}
 	const Uint8 *keyboard = SDL_GetKeyboardState(NULL);
 	onKeyInput(game, keyboard);
-}
-
-void BaseScreen::draw(Window *win) {
-	onDraw(win);
 }

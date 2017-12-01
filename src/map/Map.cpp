@@ -51,14 +51,7 @@ void Map::generate(Game *game) {
 		
 		//Create a black texture on the bottom layer
 		if (layer == 0) {
-			layerTexture = SDL_CreateTexture(win->getWindowRenderer(), 
-				SDL_PIXELFORMAT_RGBA8888,
-				SDL_TEXTUREACCESS_TARGET, 
-				width * getTileWidth(), 
-				height * getTileHeight());
-			win->setRenderTarget(layerTexture);
-			win->clearRenderTartget();
-			win->resetRenderTarget();
+			layerTexture = win->createTexture(width * getTileWidth(), height * getTileHeight());
 		}
 
 		//Create a transparent texture for all other layers

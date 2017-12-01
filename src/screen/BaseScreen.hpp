@@ -12,17 +12,14 @@ class BaseScreen {
 public:
     BaseScreen(Game *game);
     virtual ~BaseScreen();
-    void update(Game *game);
-    void updateInBackground(Game *game);
-    void handleInput(Game *game);
-	void draw(Window *win);
+    
+	virtual void drawScreen(Window *win) const = 0;
+	void handleInput(Game *game);
 
 protected:
-	virtual void onDraw(Window *win) = 0;
-    virtual void onUpdate(Game *game) = 0;
+
     virtual void onInput(Game *game, const SDL_Event &event) = 0;
 	virtual void onKeyInput(Game *game, const uint8_t *keys) = 0;
-    virtual void onUpdateInBackground(Game *game) = 0;
 };
 
 #endif

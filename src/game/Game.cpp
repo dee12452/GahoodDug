@@ -3,9 +3,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include "Window.hpp"
-#include "SpriteSheet.hpp"
-#include "Font.hpp"
+#include "../object/BaseGameObject.hpp"
+#include "../object/SpriteSheet.hpp"
+#include "../object/Font.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Timer.hpp"
 #include "../util/Util.hpp"
@@ -35,9 +35,9 @@ void Game::run() {
 }
 
 void Game::runInBackground() {
-    if(currentScreen != NULL) {
-        currentScreen->updateInBackground(this);
-    }
+	for (unsigned int i = 0; i < updatables.size(); i++) {
+		updatables[i]->tickInBackground();
+	}
 }
 
 void Game::init() {
@@ -52,10 +52,15 @@ void Game::init() {
     if(TTF_Init() != 0) {
         Util::fatalSDLError("Failed to initialize SDL2 TTF");
     }
+
+	//Create the timers
+	const int MILLISECONDS_PER_SECOND = 1000;
+	int msPerFrame = MILLISECONDS_PER_SECOND / Constants::TARGET_FPS;
+	fpsTimer = new Timer(msPerFrame);
+	int msPerTick = MILLISECONDS_PER_SECOND / Constants::TARGET_TICKS_PER_SECOND;
+	tickTimer = new Timer(msPerTick);
   
     //Create the window
-    int msPerFrame = 1000 / Constants::TARGET_FPS;
-    fpsTimer = new Timer(msPerFrame);
     window = new Window();
     running = true;
 
@@ -83,6 +88,13 @@ void Game::update() {
      * Will not change unless there was a request to */
     changeScreens();
 
+	/* Update every registered game object */
+	if (tickTimer->check()) {
+		for (unsigned int i = 0; i < updatables.size(); i++) {
+			updatables[i]->tick(this);
+		}
+	}
+
     /* If current screen exists 
      * Have it handle input 
      * check to see if it needs to be drawn 
@@ -93,7 +105,6 @@ void Game::update() {
             //Render to the window
             window->render(currentScreen);
         }
-        currentScreen->update(this);
     }
 
     /* If current screen does not exist
@@ -107,6 +118,22 @@ void Game::update() {
                 quit();
         }
     }
+}
+
+void Game::registerGameObject(BaseGameObject *obj) {
+	if (obj != NULL) updatables.push_back(obj);
+}
+
+void Game::unregisterGameObject(BaseGameObject *obj) {
+	if (obj != NULL) {
+		for (unsigned int i = 0; i < updatables.size(); i++) {
+			//Remove the object from the list of updatables
+			if (updatables[i] == obj) {
+				updatables.erase(updatables.begin() + i);
+				break;
+			}
+		}
+	}
 }
 
 void Game::changeScreens() {
@@ -159,6 +186,14 @@ Font * Game::getFont(const char *fontName) const {
 }
 
 void Game::deinit() {
+
+	//All unregistered game objects will be destroyed here
+	for (unsigned int i = 0; i < updatables.size(); i++) {
+		if (updatables[i] == NULL) continue;
+		delete updatables[i];
+		updatables[i] = NULL;
+	}
+	updatables.clear();
 	
     //Stop the screen
     if (currentScreen != NULL) {
@@ -183,11 +218,15 @@ void Game::deinit() {
     }
     Util::log(SDL_LOG_PRIORITY_INFO, "Successfully stopped background thread!");
 
-    //Free the fps timer
+    //Free the timers
     if(fpsTimer != NULL) {
         delete fpsTimer;
         fpsTimer = NULL;
     }
+	if (tickTimer != NULL) {
+		delete tickTimer;
+		tickTimer = NULL;
+	}
 
     //Destroy the window
     if(window != NULL) {
@@ -216,6 +255,7 @@ void Game::deinit() {
     spriteSheets.clear();
     Util::log(SDL_LOG_PRIORITY_INFO, "Successfully deleted sprites and fonts!");
 
+	//Deinit SDL
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
@@ -227,7 +267,7 @@ int runInBackgroundThread(void *gahoodmon) {
     Game *game = static_cast<Game *> (gahoodmon);
     while(game->isRunning()) {
         game->runInBackground();
-        Util::sleep(Constants::GAME_LOOP_DELAY);
+        Util::sleep(Constants::GAME_BACKGROUND_LOOP_DELAY);
     }
     return 0;
 }

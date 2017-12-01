@@ -11,9 +11,6 @@ public:
     BaseWorldObject(SpriteSheet *spriteSheet);
     virtual ~BaseWorldObject();
 
-    virtual void update(Game *game) = 0;
-    virtual void draw(Window *window) = 0;
-
     void setPositionX(int x);
     void setPositionY(int y);
     void setLayer(int newLayer);
