@@ -4,7 +4,7 @@
 #include "../world/Character.hpp"
 #include <SDL2/SDL_events.h>
 
-MapScreen::MapScreen(Game *game) : BaseScreen(game), world(new World(game)) {}
+MapScreen::MapScreen() : BaseScreen(), world(NULL) {}
 
 MapScreen::~MapScreen() {
     if(world != NULL) {
@@ -12,6 +12,12 @@ MapScreen::~MapScreen() {
         world = NULL;
     }
 }
+
+void MapScreen::start(Game *game) {
+	world = new World(game);
+}
+
+void MapScreen::stop(Game *game) {}
 
 void MapScreen::drawScreen(Window *win) const {
     world->drawWorld(win);

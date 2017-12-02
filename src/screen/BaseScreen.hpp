@@ -10,10 +10,16 @@ union SDL_Event;
 
 class BaseScreen {
 public:
-    BaseScreen(Game *game);
+    BaseScreen();
     virtual ~BaseScreen();
     
+	//Screen Lifecycle
+	virtual void start(Game *game);
+	virtual void pause(Game *game);
+	virtual void resume(Game *game);
+	virtual void stop(Game *game);
 	virtual void drawScreen(Window *win) const = 0;
+
 	void handleInput(Game *game);
 
 protected:

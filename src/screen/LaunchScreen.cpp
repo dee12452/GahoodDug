@@ -7,12 +7,16 @@
 #include "../util/Utils.hpp"
 #include "../map/MapLoader.hpp"
 
+/* * * * *
+ * Class registered to the game to load each tick some Sprites to the game
+ * * * * */
 class LaunchScreen::LaunchScreenLoader : public BaseGameObject {
 public:
 	LaunchScreenLoader(Game *game) :
 		BaseGameObject(),
 		imageFilePaths(FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION)),
 		currentImageFile(0) {}
+
 	~LaunchScreenLoader() override {}
 
 	void onTick(Game *game) override {
@@ -21,8 +25,7 @@ public:
 			MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
 			Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
 
-			game->unregisterGameObject(this);
-			game->requestNewScreen(new MapScreen(game));
+			game->requestNewScreen(new MapScreen());
 		}
 		else {
 			for (int i = 0; isLoading() && i < IMAGE_LOAD_RATE; i++) {
@@ -31,13 +34,15 @@ public:
 			}
 		}
 	}
+
 	void onTickInBackground() override {}
+
 	bool isLoading() const { return currentImageFile < imageFilePaths.size(); }
+
 	std::string getCurrentImageFileName() const {
 		if (isLoading()) return imageFilePaths[currentImageFile];
 		else return "Finished";
 	}
-
 
 private:
 	static const int IMAGE_LOAD_RATE = 50;
@@ -46,15 +51,11 @@ private:
 	std::vector<std::string> imageFilePaths;
 	size_t currentImageFile;
 };
+/* * * * *
+ * End LaunchScreenLoader
+ * * * * */
 
-LaunchScreen::LaunchScreen(Game *game) : 
-	  BaseScreen(game), 
-      loadingText(game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow()->getWindowRenderer(), "Loading")),
-      loader(new LaunchScreenLoader(game)) {
-    loadingText->setColor(game->getWindow()->getWindowRenderer(), Constants::COLOR_WHITE);
-    loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
-	game->registerGameObject(loader);
-}
+LaunchScreen::LaunchScreen() : BaseScreen(), loadingText(NULL), loader(NULL) {}
 
 LaunchScreen::~LaunchScreen() {
 	if (loader != NULL) {
@@ -65,6 +66,20 @@ LaunchScreen::~LaunchScreen() {
         delete loadingText;
         loadingText = NULL;
     }
+}
+
+void LaunchScreen::start(Game *game) {
+	loadingText = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow()->getWindowRenderer(), "Loading");
+	loadingText->setColor(game->getWindow()->getWindowRenderer(), Constants::COLOR_WHITE);
+	loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
+
+	loader = new LaunchScreenLoader(game);
+	game->registerGameObject(loader);
+}
+
+void LaunchScreen::stop(Game *game) {
+	if(loader != NULL)
+		game->unregisterGameObject(loader);
 }
 
 void LaunchScreen::drawScreen(Window *win) const {

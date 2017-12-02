@@ -7,9 +7,11 @@ class World;
 
 class MapScreen : public BaseScreen {
 public:
-    MapScreen(Game *game);
+    MapScreen();
     ~MapScreen() override;
 
+	void start(Game *game) override;
+	void stop(Game *game) override;
 	void drawScreen(Window *win) const override;
 
 protected:

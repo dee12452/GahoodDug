@@ -79,7 +79,7 @@ void Game::init() {
     }
     
     //Start the first screen
-    requestNewScreen(new LaunchScreen(this));
+    requestNewScreen(new LaunchScreen());
 }
 
 void Game::update() {
@@ -142,10 +142,12 @@ void Game::changeScreens() {
             currentScreen = nextScreen;
         }
         else {
+			currentScreen->stop(this);
             delete currentScreen;
             currentScreen = nextScreen;
         }
         nextScreen = NULL;
+		currentScreen->start(this);
     }
 }
 
@@ -186,6 +188,18 @@ Font * Game::getFont(const char *fontName) const {
 }
 
 void Game::deinit() {
+	
+    //Stop the screen
+    if (currentScreen != NULL) {
+		currentScreen->stop(this);
+		delete currentScreen;
+		currentScreen = NULL;
+	}
+    if (nextScreen != NULL) {
+		delete nextScreen;
+		nextScreen = NULL;
+	}
+    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully stopped the current screen!");
 
 	//All unregistered game objects will be destroyed here
 	for (unsigned int i = 0; i < updatables.size(); i++) {
@@ -194,17 +208,6 @@ void Game::deinit() {
 		updatables[i] = NULL;
 	}
 	updatables.clear();
-	
-    //Stop the screen
-    if (currentScreen != NULL) {
-		delete currentScreen;
-		currentScreen = NULL;
-	}
-    if (nextScreen != NULL) {
-		delete nextScreen;
-		currentScreen = NULL;
-	}
-    Util::log(SDL_LOG_PRIORITY_INFO, "Successfully stopped the current screen!");
     
     //Stop background thread
     int threadRetVal;

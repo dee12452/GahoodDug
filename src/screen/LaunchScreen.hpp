@@ -8,9 +8,11 @@ class FontSprite;
 
 class LaunchScreen : public BaseScreen {
 public:
-    LaunchScreen(Game *game);
+    LaunchScreen();
     ~LaunchScreen() override;
 
+	void start(Game *game) override;
+	void stop(Game *game) override;
 	void drawScreen(Window *win) const override;
 
 protected:
