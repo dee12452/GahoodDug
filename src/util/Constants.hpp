@@ -27,7 +27,7 @@ public:
      **********************************
      */
     static const uint8_t GAME_BACKGROUND_LOOP_DELAY;
-    static const uint8_t RENDER_LOOP_DELAY;
+    static const uint8_t GAME_LOOP_DELAY;
 	static const uint16_t TARGET_TICKS_PER_SECOND;
     static const uint8_t TARGET_FPS;
     static const char * const GAME_THREAD_NAME;

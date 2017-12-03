@@ -12,9 +12,9 @@ const uint32_t Constants::WINDOW_FLAGS = SDL_WINDOW_OPENGL;
 /*
  * GAME CONST */
 const uint8_t Constants::GAME_BACKGROUND_LOOP_DELAY = 25;
-const uint8_t Constants::RENDER_LOOP_DELAY = 5;
-const uint16_t Constants::TARGET_TICKS_PER_SECOND = 100;
-const uint8_t Constants::TARGET_FPS = 60;
+const uint8_t Constants::GAME_LOOP_DELAY = 5;
+const uint16_t Constants::TARGET_TICKS_PER_SECOND = 120;
+const uint8_t Constants::TARGET_FPS = 65;
 const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
 const char * const Constants::GAME_RES_FOLDER = "../res";
 
@@ -59,7 +59,7 @@ const int Constants::WORLD_DRAW_HEIGHT = 15;
 
 /*
  * CHARACTER CONST */
-const int Constants::CHARACTER_WALK_TIMER = 18;
+const int Constants::CHARACTER_WALK_TIMER = 15;
 const int Constants::CHARACTER_WIDTH = 32;
 const int Constants::CHARACTER_HEIGHT = 48;
 const int Constants::CHARACTER_TILE_OFFSET_X = -16;

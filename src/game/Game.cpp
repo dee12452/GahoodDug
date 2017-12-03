@@ -29,7 +29,7 @@ void Game::run() {
     init();
     while(running) {
         update();
-        Util::sleep(Constants::RENDER_LOOP_DELAY);
+        Util::sleep(Constants::GAME_LOOP_DELAY);
     }
     deinit();
 }

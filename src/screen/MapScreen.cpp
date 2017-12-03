@@ -15,9 +15,12 @@ MapScreen::~MapScreen() {
 
 void MapScreen::start(Game *game) {
 	world = new World(game);
+	game->registerGameObject(world->getPlayer());
 }
 
-void MapScreen::stop(Game *game) {}
+void MapScreen::stop(Game *game) {
+	game->unregisterGameObject(world->getPlayer());
+}
 
 void MapScreen::drawScreen(Window *win) const {
     world->drawWorld(win);

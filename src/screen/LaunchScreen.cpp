@@ -25,6 +25,7 @@ public:
 			MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
 			Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
 
+			game->unregisterGameObject(this);
 			game->requestNewScreen(new MapScreen());
 		}
 		else {
@@ -78,8 +79,6 @@ void LaunchScreen::start(Game *game) {
 }
 
 void LaunchScreen::stop(Game *game) {
-	if(loader != NULL)
-		game->unregisterGameObject(loader);
 }
 
 void LaunchScreen::drawScreen(Window *win) const {
