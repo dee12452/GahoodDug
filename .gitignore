@@ -3,6 +3,7 @@ Debug/
 Release/
 include/
 CppProperties.json
+*.out
 *.sln
 *.vcxproj
 *.filters

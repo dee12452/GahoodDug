@@ -18,17 +18,34 @@ public:
     Game();
     ~Game();
 
+    /* NEVER CALL THESE FUNCTIONS */
     void run();
     void runInBackground();
-    bool isRunning() const;
-    void quit();
-    void requestNewScreen(BaseScreen *newScreen);
     void loadSpriteSheet(const char *path);
+    /* ************************** */
+
+    //Tells if the game is running or not
+    bool isRunning() const;
+
+    //Quit the game, begins the cleanup process before shutting down
+    void quit();
+
+    //Request a screen change
+    void requestNewScreen(BaseScreen *newScreen);
+
+    //Add a game object to the game to be ticked
 	void registerGameObject(BaseGameObject *obj);
+
+    //Remove a game object from the object tick list
 	void unregisterGameObject(BaseGameObject *obj);
 
+    //Get the game window
     Window * getWindow() const;
+
+    //Get a sprite sheet to make a sprite
     SpriteSheet * getSpriteSheet(const char *spriteSheetName) const;
+    
+    //Get a font to make a text sprite
     Font * getFont(const char *fontName) const;
 
 private:

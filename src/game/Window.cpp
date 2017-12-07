@@ -8,6 +8,8 @@
 #include "../screen/BaseScreen.hpp"
 
 Window::Window() {
+    
+    //Create the window
     win = SDL_CreateWindow(Constants::GAME_TITLE, 
 		DisplayUtil::getScreenWidth() / 2 - Constants::WINDOW_WIDTH / 2,
 		DisplayUtil::getScreenHeight() / 2 - Constants::WINDOW_HEIGHT / 2, 
@@ -18,6 +20,7 @@ Window::Window() {
         Util::fatalSDLError("Failed to initialize the window");
     }
 
+    //Create the renderer
     winRenderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
     if(winRenderer == NULL) {
         Util::fatalSDLError("Failed to initialize the window renderer");
@@ -31,6 +34,7 @@ Window::Window() {
     }
     SDL_RenderPresent(winRenderer);
 
+    //Create a texture to be drawn to prior to window drawing
     winTexture = SDL_CreateTexture(winRenderer,
             SDL_PIXELFORMAT_RGBA8888, 
             SDL_TEXTUREACCESS_TARGET, 

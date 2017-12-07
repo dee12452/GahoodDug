@@ -29,19 +29,19 @@ World::~World() {
 }
 
 void World::drawWorld(Window *win) {
-	SDL_Texture *mapTexture = win->createTexture(Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT);
+	SDL_Texture *mapTexture = win->createTexture(currentMap->getTileWidth() * Constants::WORLD_DRAW_WIDTH, 
+            currentMap->getTileHeight() * Constants::WORLD_DRAW_HEIGHT);
 	win->setRenderTarget(mapTexture);
 	
-	int srcX = player->getPositionX();
-	int srcY = player->getPositionY();
-	int srcW = currentMap->getTileWidth() * Constants::WORLD_DRAW_WIDTH;
-	int srcH = currentMap->getTileHeight() * Constants::WORLD_DRAW_HEIGHT;
-	
-	SDL_Rect mapSrcRect = Util::createRect(srcX, srcY, srcW, srcH);
+    //srcRect for the map
+	SDL_Rect mapSrcRect = Util::createRect(player->getPositionX(), 
+            player->getPositionY(), 
+            currentMap->getTileWidth() * Constants::WORLD_DRAW_WIDTH,
+            currentMap->getTileHeight() * Constants::WORLD_DRAW_HEIGHT);
 
 	for (unsigned int layer = 0; layer < currentMap->getNumberOfLayers(); layer++) {
 		win->drawTexture(currentMap->getLayer(layer), &mapSrcRect, NULL);
-		if (player->getLayer() == layer) {
+		if (player->getLayer() == static_cast<int>(layer)) {
 			player->getSprite()->draw(win->getWindowRenderer());
 		}
 	}
