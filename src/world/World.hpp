@@ -13,7 +13,10 @@ public:
     ~World();
 
     void drawWorld(Window *win);
+
     Character * getPlayer() const;
+	int getTileWidth() const;
+	int getTileHeight() const;
 
 private:
     Map *currentMap;

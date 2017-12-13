@@ -5,10 +5,10 @@
 
 class World;
 
-class MapScreen : public BaseScreen {
+class WorldScreen : public BaseScreen {
 public:
-    MapScreen();
-    ~MapScreen() override;
+	WorldScreen();
+    ~WorldScreen() override;
 
 	void start(Game *game) override;
 	void stop(Game *game) override;

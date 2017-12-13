@@ -13,6 +13,8 @@ void Util::fatalSDLError(const char *message) {
     exit(EXIT_FAILURE);
 }
 
+void Util::log(const std::string &message) { log(SDL_LOG_PRIORITY_INFO, message); }
+
 void Util::log(const SDL_LogPriority &priority, const std::string &message) {
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, priority, message.c_str());
 }

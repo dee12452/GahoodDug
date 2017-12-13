@@ -1,7 +1,7 @@
 #include "LaunchScreen.hpp"
 
 #include <SDL2/SDL_ttf.h>
-#include "MapScreen.hpp"
+#include "WorldScreen.hpp"
 #include "../game/BaseGameObject.hpp"
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
@@ -26,7 +26,7 @@ public:
 			Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
 
 			game->unregisterGameObject(this);
-			game->requestNewScreen(new MapScreen());
+			game->requestNewScreen(new WorldScreen());
 		}
 		else {
 			for (int i = 0; isLoading() && i < IMAGE_LOAD_RATE; i++) {

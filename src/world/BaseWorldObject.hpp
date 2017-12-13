@@ -7,6 +7,7 @@ class Sprite;
 class SpriteSheet;
 class Game;
 class Window;
+class World;
 
 class BaseWorldObject : public BaseGameObject {
 public:
@@ -17,6 +18,8 @@ public:
     void setPositionY(int y);
     void setLayer(int newLayer);
 
+	int getTileX(World *world) const;
+	int getTileY(World *world) const;
     int getPositionX() const;
     int getPositionY() const;
     int getLayer() const;

@@ -12,6 +12,7 @@ class Util {
 public:
     static void fatalError(const char *errMessage);
     static void fatalSDLError(const char *errMessage);
+	static void log(const std::string &message);
     static void log(const SDL_LogPriority &priority, const std::string &message);
 	static void sleep(int ms);
     

@@ -1,35 +1,35 @@
-#include "MapScreen.hpp"
+#include "WorldScreen.hpp"
 
 #include "../world/World.hpp"
 #include "../world/Character.hpp"
 #include <SDL2/SDL_events.h>
 
-MapScreen::MapScreen() : BaseScreen(), world(NULL) {}
+WorldScreen::WorldScreen() : BaseScreen(), world(NULL) {}
 
-MapScreen::~MapScreen() {
+WorldScreen::~WorldScreen() {
     if(world != NULL) {
         delete world;
         world = NULL;
     }
 }
 
-void MapScreen::start(Game *game) {
+void WorldScreen::start(Game *game) {
 	world = new World(game);
 	game->registerGameObject(world->getPlayer());
 }
 
-void MapScreen::stop(Game *game) {
+void WorldScreen::stop(Game *game) {
 	game->unregisterGameObject(world->getPlayer());
 }
 
-void MapScreen::drawScreen(Window *win) const {
+void WorldScreen::drawScreen(Window *win) const {
     world->drawWorld(win);
 }
 
-void MapScreen::onInput(Game *, const SDL_Event &) {
+void WorldScreen::onInput(Game *, const SDL_Event &) {
 }
 
-void MapScreen::onKeyInput(Game *, const uint8_t *keys) {
+void WorldScreen::onKeyInput(Game *, const uint8_t *keys) {
     bool movePlayer = false;
 
     if(keys[SDL_SCANCODE_UP]) {

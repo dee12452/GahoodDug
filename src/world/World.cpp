@@ -52,4 +52,6 @@ void World::drawWorld(Window *win) {
 	mapTexture = NULL;
 }
 
+int World::getTileWidth() const { return currentMap->getTileWidth(); }
+int World::getTileHeight() const { return currentMap->getTileHeight(); }
 Character * World::getPlayer() const { return player; }

@@ -1,7 +1,7 @@
 /** Need this include here for port to Android **/
 #include <SDL2/SDL.h>
-#include <stdio.h>
 #include "game/Game.hpp"
+#include "util/Util.hpp"
 
 void handleArgs(int, char **);
 
@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 
 void handleArgs(int argc, char **argv) {
     if(argc > 1) {
-        printf("\nArguments will be ignored:\n");
+        Util::log("\nArguments will be ignored:\n");
         for(int i = 1; i < argc; i++) { printf("%s ", argv[i]); }
     }
 }

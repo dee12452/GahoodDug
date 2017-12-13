@@ -9,11 +9,8 @@ typedef enum FacingDirection { NONE = 4, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 0 }
 
 class Character : public BaseWorldObject {
 public:
-    Character(SpriteSheet *sheet, int tileWidth);
+    Character(SpriteSheet *sheet);
     ~Character() override;
-
-    void onTick (Game *game) override;
-	void onTickInBackground() override;
 
     void move(FacingDirection direction);
     void changeDirection(FacingDirection direction);
@@ -23,8 +20,12 @@ public:
     FacingDirection getCurrentDirection() const;
     FacingDirection getNextDirection() const;
 
+protected:
+	void onTick(Game *game) override;
+	void onTickInBackground() override;
+
 private:
-    int tileWidth, displacement;
+    int displacement;
     FacingDirection currentDirection, nextDirection;
     Timer *movementTimer;
     bool moving, walkLeft;

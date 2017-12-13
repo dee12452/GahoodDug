@@ -1,11 +1,9 @@
 #include "Character.hpp"
 #include "../util/Utils.hpp"
 #include "../sprite/Sprites.hpp"
-#include "../game/Game.hpp"
 
-Character::Character(SpriteSheet *spriteSheet, int tileW) 
+Character::Character(SpriteSheet *spriteSheet) 
     : BaseWorldObject(spriteSheet),
-    tileWidth(tileW),
     displacement(0),
     nextDirection(NONE), 
     movementTimer(new Timer(Constants::CHARACTER_WALK_TIMER)), 
