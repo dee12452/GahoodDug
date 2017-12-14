@@ -9,10 +9,8 @@ typedef enum FacingDirection { NONE = 4, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 0 }
 
 class BaseMovementObject : public BaseWorldObject {
 public:
-	BaseMovementObject(SpriteSheet *spriteSheet, 
-		int tileW, int tileH, 
-		int movementUpdateTime, int movementSpeed);
-	~BaseMovementObject() override;
+	BaseMovementObject(Map *map, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed);
+	virtual ~BaseMovementObject() override;
 
 	void move(FacingDirection direction);
 	void changeDirection(FacingDirection direction);
@@ -23,12 +21,13 @@ public:
 	FacingDirection getNextDirection() const;
 
 protected:
+
+	bool isWalkingLeft() const;
 	void onTick(Game *game) override;
 
-	virtual void onMoveStart();
-	virtual void onMove();
-	virtual void onMoveEnd();
-	virtual void onChangeDirection(FacingDirection direction);
+	virtual void onMove(float percentToNextTile) = 0;
+	virtual void onMoveEnd(FacingDirection direction) = 0;
+	virtual void onChangeDirection(FacingDirection direction) = 0;
 
 private:
 	int displacement, moveSpeed;

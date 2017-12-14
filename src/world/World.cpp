@@ -1,5 +1,6 @@
 #include "World.hpp"
 
+#include <algorithm>
 #include <SDL2/SDL_render.h>
 #include "../game/Game.hpp"
 #include "../map/Maps.hpp"
@@ -11,7 +12,10 @@
 World::World(Game *game) : 
     currentMap(MapLoader::getInstance()->getMap(Constants::MAP_TEST)),
     tilesetSprite(game->getSpriteSheet(currentMap->getTileset()->getImagePath())->createSprite()),
-    player(new Character(game->getSpriteSheet("NPC 01.png"), currentMap->getTileWidth())) {
+    player(new Character(currentMap, 
+		game->getSpriteSheet("NPC 01.png"), 
+		Constants::CHARACTER_WALK_TIMER, 
+		Constants::CHARACTER_WALK_SPEED)) {
 	player->getSprite()->setDstX(Constants::WINDOW_WIDTH / 2 - player->getSprite()->getDstW() / 2);
 	player->getSprite()->setDstY(Constants::WINDOW_HEIGHT / 2 - player->getSprite()->getDstH() / 2);
 }
