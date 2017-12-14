@@ -5,11 +5,10 @@
 BaseWorldObject::BaseWorldObject(Map *map, SpriteSheet *spriteSheet) : 
     mapTileWidth(map->getTileWidth()),
 	mapTileHeight(map->getTileHeight()),
-	posX(0), 
-    posY(0), 
     layer(0), 
     objectSprite(spriteSheet->createSprite()) {
-
+	setTileX(0);
+	setTileY(0);
 }
 
 BaseWorldObject::~BaseWorldObject() {
@@ -21,11 +20,11 @@ BaseWorldObject::~BaseWorldObject() {
 
 void BaseWorldObject::setTileX(int x) { 
 	tileX = x; 
-	posX = tileX * mapTileWidth; 
+	if(tileX / mapTileWidth != posX) posX = tileX * mapTileWidth; 
 }
 void BaseWorldObject::setTileY(int y) { 
 	tileY = y; 
-	posY = tileY * mapTileHeight;
+	if(tileY / mapTileHeight != posY) posY = tileY * mapTileHeight;
 }
 void BaseWorldObject::setPositionX(int x) { 
 	posX = x; 
