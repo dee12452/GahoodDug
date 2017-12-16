@@ -33,7 +33,7 @@ private:
 	int displacement, moveSpeed;
 	FacingDirection currentDirection, nextDirection;
 	Timer *movementTimer;
-	bool moving, walkLeft;
+	bool moving, canMove, walkLeft;
 };
 
 #endif

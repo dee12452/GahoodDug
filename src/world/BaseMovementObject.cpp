@@ -10,6 +10,7 @@ BaseMovementObject::BaseMovementObject(Map *map, SpriteSheet *spriteSheet, int m
 	nextDirection(NONE),
 	movementTimer(new Timer(movementUpdateTime)),
 	moving(false),
+    canMove(false),
 	walkLeft(true) {}
 
 BaseMovementObject::~BaseMovementObject() {
@@ -29,24 +30,26 @@ void BaseMovementObject::move(FacingDirection direction) {
 	}
 }
 
-void BaseMovementObject::onTick(Game *game) {
+void BaseMovementObject::onTick(Game *) {
 	if (moving && currentDirection != FacingDirection::NONE && movementTimer->check()) {
-		switch (currentDirection) {
-		case FacingDirection::UP:
-			setPositionY(getPositionY() - moveSpeed);
-			break;
-		case FacingDirection::DOWN:
-			setPositionY(getPositionY() + moveSpeed);
-			break;
-		case FacingDirection::LEFT:
-			setPositionX(getPositionX() - moveSpeed);
-			break;
-		case FacingDirection::RIGHT:
-			setPositionX(getPositionX() + moveSpeed);
-			break;
-		default:
-			break;
-		}
+        if(canMove) {
+            switch (currentDirection) {
+            case FacingDirection::UP:
+                setPositionY(getPositionY() - moveSpeed);
+                break;
+            case FacingDirection::DOWN:
+                setPositionY(getPositionY() + moveSpeed);
+                break;
+            case FacingDirection::LEFT:
+                setPositionX(getPositionX() - moveSpeed);
+                break;
+            case FacingDirection::RIGHT:
+                setPositionX(getPositionX() + moveSpeed);
+                break;
+            default:
+                break;
+            }
+        }
 		displacement += moveSpeed;
 
 		//left or right

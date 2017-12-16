@@ -25,7 +25,7 @@ void Character::onMove(float percentToNextTile) {
 	}
 }
 
-void Character::onMoveEnd(FacingDirection direction) {
+void Character::onMoveEnd(FacingDirection) {
 	getSprite()->setSrcX(0);
 }
 

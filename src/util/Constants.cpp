@@ -63,6 +63,6 @@ const int Constants::CHARACTER_WALK_TIMER = 15;
 const int Constants::CHARACTER_WIDTH = 32;
 const int Constants::CHARACTER_HEIGHT = 48;
 const int Constants::CHARACTER_TILE_OFFSET_X = -16;
-const int Constants::CHARACTER_TILE_OFFSET_Y = -32;
+const int Constants::CHARACTER_TILE_OFFSET_Y = -16;
 const int Constants::CHARACTER_WALK_SPEED = 2;
 const int Constants::CHARACTER_RUN_SPEED = 4;

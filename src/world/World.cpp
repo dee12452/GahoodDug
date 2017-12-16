@@ -79,11 +79,12 @@ void World::drawWorld(Window *win) {
 		mapSrc.y = targetY;
 	}
 
+    //Draw the map
 	for (unsigned int i = 0; i < currentMap->getNumberOfLayers(); i++) {
 		win->drawTexture(currentMap->getLayer(i), &mapSrc, &mapDst);
 		if (i == static_cast<unsigned int> (player->getLayer())) {
 			player->getSprite()->setDstX(drawWidth - player->getSprite()->getDstW() / 2);
-			player->getSprite()->setDstY(drawHeight - player->getSprite()->getDstH() / 2);
+			player->getSprite()->setDstY(drawHeight - player->getSprite()->getDstH() / 2 + Constants::CHARACTER_TILE_OFFSET_Y);
 			player->getSprite()->draw(win->getWindowRenderer());
 		}
 	}
