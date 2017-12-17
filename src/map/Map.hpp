@@ -4,6 +4,7 @@
 #include <vector>
 
 class Tileset;
+class Tile;
 class Game;
 struct SDL_Texture;
 
@@ -16,7 +17,8 @@ public:
 	~Map();
 
 	Tileset * getTileset() const;
-	int getWidth() const;
+	Tile * getTile(unsigned int layer, int tileX, int tileY) const;
+    int getWidth() const;
 	int getHeight() const;
 	int getTileWidth() const;
     int getTileHeight() const;

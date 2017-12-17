@@ -16,6 +16,9 @@ protected:
 	void onMove(float percentToNextTile) override;
 	void onMoveEnd(FacingDirection direction) override;
 	void onChangeDirection(FacingDirection direction) override;
+
+private:
+    bool checkForObstacles(int tileX, int tileY) const;
 };
 
 #endif

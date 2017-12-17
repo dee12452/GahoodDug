@@ -16,8 +16,8 @@ World::World(Game *game) :
 		game->getSpriteSheet("NPC 01.png"), 
 		Constants::CHARACTER_WALK_TIMER, 
 		Constants::CHARACTER_WALK_SPEED)) {
-	player->setTileX(0);
-	player->setTileY(0);
+	player->setTileX(1);
+	player->setTileY(1);
 }
 
 World::~World() { 
@@ -82,7 +82,7 @@ void World::drawWorld(Window *win) {
     //Draw the map
 	for (unsigned int i = 0; i < currentMap->getNumberOfLayers(); i++) {
 		win->drawTexture(currentMap->getLayer(i), &mapSrc, &mapDst);
-		if (i == static_cast<unsigned int> (player->getLayer())) {
+		if (i == static_cast<unsigned int> (player->getLayer() + 1)) {
 			player->getSprite()->setDstX(drawWidth - player->getSprite()->getDstW() / 2);
 			player->getSprite()->setDstY(drawHeight - player->getSprite()->getDstH() / 2 + Constants::CHARACTER_TILE_OFFSET_Y);
 			player->getSprite()->draw(win->getWindowRenderer());

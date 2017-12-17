@@ -19,11 +19,11 @@ BaseWorldObject::~BaseWorldObject() {
 
 void BaseWorldObject::setTileX(int x) { 
 	tileX = x; 
-	if(tileX / map->getTileWidth() != posX) posX = tileX * map->getTileWidth(); 
+	posX = tileX * map->getTileWidth(); 
 }
 void BaseWorldObject::setTileY(int y) { 
 	tileY = y; 
-	if(tileY / map->getTileHeight() != posY) posY = tileY * map->getTileHeight();
+	posY = tileY * map->getTileHeight();
 }
 void BaseWorldObject::setPositionX(int x) { 
 	posX = x; 

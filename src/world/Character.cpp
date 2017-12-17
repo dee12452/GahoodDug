@@ -18,22 +18,24 @@ void Character::onTickInBackground() {}
 void Character::onMoveStart(FacingDirection direction) {
     switch(direction) {
         case FacingDirection::LEFT:
-            if(getPositionX() == 0) {
+            if(getPositionX() == 0 || checkForObstacles(getTileX() - 1, getTileY())) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::RIGHT:
-            if(getPositionX() == map->getTileWidth() * (map->getWidth() - 1)) {
+            if(getPositionX() == map->getTileWidth() * (map->getWidth() - 1) 
+                    || checkForObstacles(getTileX() + 1, getTileY())) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::UP:
-            if(getPositionY() == 0) {
+            if(getPositionY() == 0 || checkForObstacles(getTileX(), getTileY() - 1)) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::DOWN:
-            if(getPositionY() == map->getTileHeight() * (map->getHeight() - 1)) {
+            if(getPositionY() == map->getTileHeight() * (map->getHeight() - 1) 
+                    || checkForObstacles(getTileX(), getTileY() + 1)) {
                 stopNextMovement();
             }
             break;
@@ -62,4 +64,16 @@ void Character::onChangeDirection(FacingDirection direction) {
 		static_cast<int>(direction) * Constants::CHARACTER_HEIGHT,
 		Constants::CHARACTER_WIDTH,
 		Constants::CHARACTER_HEIGHT));
+}
+
+bool Character::checkForObstacles(int tileX, int tileY) const {
+    //Check for walls in the tiles first
+    for(unsigned int i = 0; i < map->getNumberOfLayers(); i++) {
+        Tile *tile = map->getTile(i, tileX, tileY);
+        if(tile != NULL && tile->getTileType() != Constants::TILE_TYPE_FLOOR) {
+            return true;
+        }
+    }
+
+    return false;
 }

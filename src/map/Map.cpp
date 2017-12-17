@@ -10,11 +10,11 @@
 #include "../sprite/Sprites.hpp"
 
 Map::Map() :
-	width(0), height(0), tileset(NULL), generated(false) {
+	width(0), height(0), generated(false), tileset(NULL) {
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) :
-	width(w), height(h), mapTiles(tileCoords), tileset(tileset), generated(false) {
+	width(w), height(h), generated(false), mapTiles(tileCoords), tileset(tileset) {
 }
 
 Map::~Map() {
@@ -93,6 +93,10 @@ void Map::generate(Game *game) {
 	tilesetSprite = NULL;
 }
 
+Tile * Map::getTile(unsigned int layer, int tileX, int tileY) const {
+    if(layer > getNumberOfLayers() || tileX > getWidth() || tileY > getHeight()) return NULL;
+    return getTileset()->getTile(mapTiles[layer][tileX][tileY] - 1); 
+}
 Tileset * Map::getTileset() const { return tileset; }
 unsigned int Map::getNumberOfLayers() const { return mapTextures.size(); }
 int Map::getWidth() const { return width; }
