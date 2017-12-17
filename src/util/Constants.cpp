@@ -42,6 +42,8 @@ const char * const Constants::FONT_JOYSTIX = "joystix_monospace.ttf";
 /*
  * IMAGE CONST */
 const char * const Constants::IMAGE_TILESET_UNDERWATER = "tileset_underwater.png";
+const char * const Constants::IMAGE_TILESET_BOAT = "tileset_boat.png";
+const char * const Constants::IMAGE_TILESET_OUTSIDE = "tileset_outside.png";
 
 /*
  * SPRITE CONST */
@@ -51,6 +53,8 @@ const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
 /*
  * MAP CONST */
 const char * const Constants::MAP_TEST = "test_map.tmx";
+const char * const Constants::MAP_TEST_2 = "test_map2.tmx";
+const char * const Constants::MAP_TEST_3 = "test_map3.tmx";
 const char * const Constants::TILE_TYPE_FLOOR = "floor";
 const char * const Constants::TILE_TYPE_WALL = "wall";
 

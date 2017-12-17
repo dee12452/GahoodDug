@@ -56,7 +56,7 @@ private:
  * End LaunchScreenLoader
  * * * * */
 
-LaunchScreen::LaunchScreen() : BaseScreen(), loadingText(NULL), loader(NULL) {}
+LaunchScreen::LaunchScreen() : BaseScreen(), loader(NULL), loadingText(NULL) {}
 
 LaunchScreen::~LaunchScreen() {
 	if (loader != NULL) {

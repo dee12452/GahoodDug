@@ -10,7 +10,7 @@
 #include "Character.hpp"
 
 World::World(Game *game) : 
-    currentMap(MapLoader::getInstance()->getMap(Constants::MAP_TEST)),
+    currentMap(MapLoader::getInstance()->getMap(Constants::MAP_TEST_3)),
     tilesetSprite(game->getSpriteSheet(currentMap->getTileset()->getImagePath())->createSprite()),
     player(new Character(currentMap, 
 		game->getSpriteSheet("NPC 01.png"), 

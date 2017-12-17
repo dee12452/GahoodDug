@@ -52,6 +52,8 @@ public:
     
     //Image files
     static const char * const IMAGE_TILESET_UNDERWATER;
+    static const char * const IMAGE_TILESET_BOAT;
+    static const char * const IMAGE_TILESET_OUTSIDE;
     /******************
      ******************/
 
@@ -88,6 +90,8 @@ public:
      **********************************
      */
     static const char * const MAP_TEST;
+    static const char * const MAP_TEST_2;
+    static const char * const MAP_TEST_3;
     static const char * const TILE_TYPE_FLOOR;
     static const char * const TILE_TYPE_WALL;
     /******************

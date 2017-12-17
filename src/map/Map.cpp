@@ -21,7 +21,7 @@ Map::~Map() {
 
 	//Clear the map tiles
 	for (unsigned int j = 0; j < mapTiles.size(); j++) {
-		for (int i = 0; i < width / tileset->getTileWidth(); i++) {
+		for (int i = 0; i < width; i++) {
 			delete[] mapTiles[j][i];
 			mapTiles[j][i] = NULL;
 		}
@@ -66,7 +66,8 @@ void Map::generate(Game *game) {
 			for (int x = 0; x < width; x++) {
 				if (mapTiles[layer][x][y] - 1 < 0) continue;
 				Tile *currTile = getTileset()->getTile(mapTiles[layer][x][y] - 1);
-				SDL_Rect src = Util::createRect(currTile->getRow() * getTileWidth(),
+                if(currTile == NULL) Util::fatalError("Current tile is null while generating map");
+                SDL_Rect src = Util::createRect(currTile->getRow() * getTileWidth(),
 					currTile->getColumn() * getTileHeight(),
 					getTileWidth(),
 					getTileHeight());
