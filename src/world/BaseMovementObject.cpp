@@ -1,4 +1,5 @@
 #include "BaseMovementObject.hpp"
+#include "../map/Map.hpp"
 #include "../util/Timer.hpp"
 #include "../sprite/Sprite.hpp"
 #include "../util/Utils.hpp"
@@ -10,7 +11,7 @@ BaseMovementObject::BaseMovementObject(Map *map, SpriteSheet *spriteSheet, int m
 	nextDirection(NONE),
 	movementTimer(new Timer(movementUpdateTime)),
 	moving(false),
-    canMove(false),
+    canMove(true),
 	walkLeft(true) {}
 
 BaseMovementObject::~BaseMovementObject() {
@@ -32,6 +33,7 @@ void BaseMovementObject::move(FacingDirection direction) {
 
 void BaseMovementObject::onTick(Game *) {
 	if (moving && currentDirection != FacingDirection::NONE && movementTimer->check()) {
+        if(displacement == 0) { onMoveStart(currentDirection); } 
         if(canMove) {
             switch (currentDirection) {
             case FacingDirection::UP:
@@ -55,11 +57,12 @@ void BaseMovementObject::onTick(Game *) {
 		//left or right
 		if (currentDirection == FacingDirection::LEFT || currentDirection == FacingDirection::RIGHT) {
 			//Finished moving to the next tile
-			if (displacement == mapTileWidth) {
+			if (displacement == map->getTileWidth()) {
 				displacement = 0;
 				onMoveEnd(currentDirection);
 				currentDirection = nextDirection;
 				moving = false;
+                canMove = true;
 				if (currentDirection != NONE) {
 					changeDirection(currentDirection);
 					moving = true;
@@ -69,18 +72,19 @@ void BaseMovementObject::onTick(Game *) {
 
 			//Need to switch the sprite
 			else {
-				onMove((float)displacement / (float)mapTileWidth);
+				onMove((float)displacement / (float)map->getTileWidth());
 			}
 		}
 
 		//up or down
 		else if (currentDirection == FacingDirection::UP || currentDirection == FacingDirection::DOWN) {
 			//Finished moving to the next tile
-			if (displacement == mapTileHeight) {
+			if (displacement == map->getTileHeight()) {
 				displacement = 0;
 				onMoveEnd(currentDirection);
 				currentDirection = nextDirection;
 				moving = false;
+                canMove = true;
 				if (currentDirection != NONE) {
 					changeDirection(currentDirection);
 					moving = true;
@@ -90,7 +94,7 @@ void BaseMovementObject::onTick(Game *) {
 
 			//Need to switch the sprite
 			else {
-				onMove((float)displacement / (float)mapTileHeight);
+				onMove((float)displacement / (float)map->getTileHeight());
 			}
 		}
 	}
@@ -106,5 +110,6 @@ void BaseMovementObject::changeDirection(FacingDirection direction) {
 
 bool BaseMovementObject::isWalkingLeft() const { return walkLeft; }
 bool BaseMovementObject::isMoving() const { return moving; }
+void BaseMovementObject::stopNextMovement() { canMove = false; }
 FacingDirection BaseMovementObject::getCurrentDirection() const { return currentDirection; }
 FacingDirection BaseMovementObject::getNextDirection() const { return nextDirection; }

@@ -3,8 +3,7 @@
 #include "../sprite/Sprites.hpp"
 
 BaseWorldObject::BaseWorldObject(Map *map, SpriteSheet *spriteSheet) : 
-    mapTileWidth(map->getTileWidth()),
-	mapTileHeight(map->getTileHeight()),
+    map(map),
     layer(0), 
     objectSprite(spriteSheet->createSprite()) {
 	setTileX(0);
@@ -20,21 +19,21 @@ BaseWorldObject::~BaseWorldObject() {
 
 void BaseWorldObject::setTileX(int x) { 
 	tileX = x; 
-	if(tileX / mapTileWidth != posX) posX = tileX * mapTileWidth; 
+	if(tileX / map->getTileWidth() != posX) posX = tileX * map->getTileWidth(); 
 }
 void BaseWorldObject::setTileY(int y) { 
 	tileY = y; 
-	if(tileY / mapTileHeight != posY) posY = tileY * mapTileHeight;
+	if(tileY / map->getTileHeight() != posY) posY = tileY * map->getTileHeight();
 }
 void BaseWorldObject::setPositionX(int x) { 
 	posX = x; 
-	if(posX == 0 || mapTileWidth == 0) setTileX(0);
-	else tileX = posX / mapTileWidth;
+	if(posX == 0 || map->getTileWidth() == 0) setTileX(0);
+	else tileX = posX / map->getTileWidth();
 }
 void BaseWorldObject::setPositionY(int y) { 
 	posY = y;
-	if (posY == 0 || mapTileHeight == 0) setTileY(0);
-	else tileY = posY / mapTileHeight;
+	if (posY == 0 || map->getTileHeight() == 0) setTileY(0);
+	else tileY = posY / map->getTileHeight();
 }
 void BaseWorldObject::setLayer(int newLayer) { layer = newLayer; }
 

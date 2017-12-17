@@ -88,6 +88,8 @@ public:
      **********************************
      */
     static const char * const MAP_TEST;
+    static const char * const TILE_TYPE_FLOOR;
+    static const char * const TILE_TYPE_WALL;
     /******************
 	******************/
     

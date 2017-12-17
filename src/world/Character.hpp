@@ -12,6 +12,7 @@ public:
 
 protected:
 	void onTickInBackground() override;
+	void onMoveStart(FacingDirection direction) override;
 	void onMove(float percentToNextTile) override;
 	void onMoveEnd(FacingDirection direction) override;
 	void onChangeDirection(FacingDirection direction) override;

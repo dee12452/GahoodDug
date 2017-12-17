@@ -17,15 +17,17 @@ public:
 	void cancelNextMove();
 
 	bool isMoving() const;
-	FacingDirection getCurrentDirection() const;
+    FacingDirection getCurrentDirection() const;
 	FacingDirection getNextDirection() const;
 
 protected:
 
-	bool isWalkingLeft() const;
+    void stopNextMovement();
+    bool isWalkingLeft() const;
 	void onTick(Game *game) override;
 
-	virtual void onMove(float percentToNextTile) = 0;
+	virtual void onMoveStart(FacingDirection direction) = 0;
+    virtual void onMove(float percentToNextTile) = 0;
 	virtual void onMoveEnd(FacingDirection direction) = 0;
 	virtual void onChangeDirection(FacingDirection direction) = 0;
 

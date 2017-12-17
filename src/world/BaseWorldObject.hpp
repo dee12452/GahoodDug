@@ -28,7 +28,7 @@ public:
     Sprite *getSprite() const;
 
 protected:
-	int mapTileWidth, mapTileHeight;
+    Map *map;
 
 private:
     int tileX, tileY, posX, posY, layer;
