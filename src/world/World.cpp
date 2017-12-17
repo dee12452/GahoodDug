@@ -9,34 +9,27 @@
 #include "../util/Utils.hpp"
 #include "Character.hpp"
 
-World::World(Game *game) : 
-    currentMap(MapLoader::getInstance()->getMap(Constants::MAP_TEST_3)),
-    tilesetSprite(game->getSpriteSheet(currentMap->getTileset()->getImagePath())->createSprite()),
-    player(new Character(currentMap, 
-		game->getSpriteSheet("NPC 01.png"), 
-		Constants::CHARACTER_WALK_TIMER, 
-		Constants::CHARACTER_WALK_SPEED)) {
-	player->setTileX(1);
-	player->setTileY(1);
-}
+World::World(Game *game) : currentMap(NULL), mapTexture(NULL), player(NULL) {
+    changeMap(game, Constants::MAP_TEST_3);
+} 
 
 World::~World() { 
     currentMap = NULL;
-    if(tilesetSprite != NULL) {
-        delete tilesetSprite;
-        tilesetSprite = NULL;
-    }
     if(player != NULL) {
         delete player;
         player = NULL;
+    }
+    if(mapTexture != NULL) {
+        SDL_DestroyTexture(mapTexture);
+        mapTexture = NULL;
     }
 }
 
 void World::drawWorld(Window *win) {
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * currentMap->getTileWidth();
 	int drawHeight = Constants::WORLD_DRAW_HEIGHT * currentMap->getTileHeight();
-	SDL_Texture *mapBg = win->createTexture(drawWidth * 2, drawHeight * 2);
-	win->setRenderTarget(mapBg);
+	win->setRenderTarget(mapTexture);
+    win->clearRenderTarget();
 
 	SDL_Rect mapSrc = Util::createRect(player->getPositionX(), player->getPositionY(),  drawWidth, drawHeight);
 	SDL_Rect mapDst = Util::createRect(drawWidth / 2, drawHeight / 2, drawWidth, drawHeight);
@@ -92,9 +85,17 @@ void World::drawWorld(Window *win) {
 	mapSrc = Util::createRect(drawWidth / 2, drawHeight / 2, drawWidth, drawHeight);
 
 	win->resetRenderTarget();
-	win->drawTexture(mapBg, &mapSrc, NULL);
-	SDL_DestroyTexture(mapBg);
-	mapBg = NULL;
+	win->drawTexture(mapTexture, &mapSrc, NULL);
+}
+
+void World::changeMap(Game *game, const char * const mapFile) {
+    currentMap = MapLoader::getInstance()->getMap(mapFile);
+    if(player != NULL) delete player;
+    player = new Character(currentMap, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+    if(mapTexture == NULL) SDL_DestroyTexture(mapTexture);
+	int drawWidth = Constants::WORLD_DRAW_WIDTH * currentMap->getTileWidth();
+	int drawHeight = Constants::WORLD_DRAW_HEIGHT * currentMap->getTileHeight();
+	mapTexture = game->getWindow()->createTexture(drawWidth * 2, drawHeight * 2);
 }
 
 int World::getTileWidth() const { return currentMap->getTileWidth(); }

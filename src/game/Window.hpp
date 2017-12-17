@@ -29,7 +29,7 @@ public:
     void resetRenderTarget() const;
 
     //Erase the current render target (paint it black)
-	void clearRenderTartget() const;
+	void clearRenderTarget() const;
 
     //Draw a texture to the current render target
     void drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstRect) const;

@@ -106,7 +106,7 @@ void Window::drawTexture(SDL_Texture *texture, SDL_Rect *srcRect, SDL_Rect *dstR
 	}
 }
 
-void Window::clearRenderTartget() const {
+void Window::clearRenderTarget() const {
     if(SDL_RenderClear(winRenderer) < 0) {
         Util::fatalSDLError("Failed to clear the window");
     }
@@ -149,7 +149,7 @@ SDL_Texture * Window::createTexture(int width, int height) const {
 		width, 
 		height);
 	setRenderTarget(texture);
-	clearRenderTartget();
+	clearRenderTarget();
 	resetRenderTarget();
 	return texture;
 }

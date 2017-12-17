@@ -6,6 +6,7 @@ class Map;
 class Window;
 class Sprite;
 class Character;
+struct SDL_Texture;
 
 class World {
 public:
@@ -18,9 +19,11 @@ public:
 	int getTileWidth() const;
 	int getTileHeight() const;
 
+    void changeMap(Game *game, const char * const mapFile);
+
 private:
     Map *currentMap;
-    Sprite *tilesetSprite;
+    SDL_Texture *mapTexture;
     Character *player;
 };
 

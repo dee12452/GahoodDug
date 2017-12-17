@@ -12,7 +12,7 @@
  * * * * */
 class LaunchScreen::LaunchScreenLoader : public BaseGameObject {
 public:
-	LaunchScreenLoader(Game *game) :
+	LaunchScreenLoader(Game *) :
 		BaseGameObject(),
 		imageFilePaths(FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION)),
 		currentImageFile(0) {}
@@ -79,6 +79,7 @@ void LaunchScreen::start(Game *game) {
 }
 
 void LaunchScreen::stop(Game *game) {
+    game->unregisterGameObject(loader);
 }
 
 void LaunchScreen::drawScreen(Window *win) const {
