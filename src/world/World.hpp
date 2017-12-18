@@ -26,6 +26,8 @@ private:
     Map *map;
     SDL_Texture *mapTexture;
     WorldCharacter *player;
+
+    void drawMap(Window *win);
 };
 
 #endif

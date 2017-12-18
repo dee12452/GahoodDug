@@ -26,6 +26,10 @@ World::~World() {
 }
 
 void World::drawWorld(Window *win) {
+    drawMap(win);
+}
+
+void World::drawMap(Window *win) {
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * map->getTileWidth();
 	int drawHeight = Constants::WORLD_DRAW_HEIGHT * map->getTileHeight();
 	win->setRenderTarget(mapTexture);

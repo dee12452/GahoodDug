@@ -20,7 +20,6 @@ public:
     //Getters for the SDL information if needed
 	SDL_Window * getWindow() const;
 	SDL_Renderer * getWindowRenderer() const;
-	SDL_Texture * getWindowTexture() const;
 
     //Set the render target to a different texture
 	void setRenderTarget(SDL_Texture *targetTexture) const;
@@ -43,7 +42,6 @@ public:
 private:
     SDL_Window *win;
     SDL_Renderer *winRenderer;
-    SDL_Texture *winTexture;
 };
 
 #endif

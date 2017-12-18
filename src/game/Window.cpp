@@ -33,23 +33,9 @@ Window::Window() {
         Util::fatalSDLError("Failed to initially clear the renderer");
     }
     SDL_RenderPresent(winRenderer);
-
-    //Create a texture to be drawn to prior to window drawing
-    winTexture = SDL_CreateTexture(winRenderer,
-            SDL_PIXELFORMAT_RGBA8888, 
-            SDL_TEXTUREACCESS_TARGET, 
-            Constants::WINDOW_WIDTH, 
-            Constants::WINDOW_HEIGHT);
-    if(winTexture == NULL) {
-        Util::fatalSDLError("Failed to initialize the window texture");
-    }
 }
 
 Window::~Window() {
-    if(winTexture != NULL) {
-        SDL_DestroyTexture(winTexture);
-        winTexture = NULL;
-    }
     if(winRenderer != NULL) {
         SDL_DestroyRenderer(winRenderer);
         winRenderer = NULL;
@@ -61,11 +47,6 @@ Window::~Window() {
 }
 
 void Window::render(BaseScreen *screen) {
-    
-    //Clear the texture from previous rendering
-    if(SDL_SetRenderTarget(winRenderer, winTexture) < 0) {
-        Util::fatalSDLError("Failed to switch renderer to texture");
-    }
     if(SDL_RenderClear(winRenderer) < 0) {
         Util::fatalSDLError("Failed to clear the texture renderer");
     }
@@ -75,16 +56,6 @@ void Window::render(BaseScreen *screen) {
 		screen->drawScreen(this);
 	}
 
-    //Clear the window from previous rendering and show the new frame
-    if(SDL_SetRenderTarget(winRenderer, NULL) < 0) {
-        Util::fatalSDLError("Failed to set the render target to the window");
-    }
-    if(SDL_RenderClear(winRenderer) < 0) {
-        Util::fatalSDLError("Failed to clear the window");
-    }
-    if(SDL_RenderCopy(winRenderer, winTexture, NULL, NULL) < 0) {
-        Util::fatalSDLError("Failed to draw the texure to window");
-    }
     SDL_RenderPresent(winRenderer);
 }
 
@@ -95,7 +66,7 @@ void Window::setRenderTarget(SDL_Texture *targetTexture) const {
 }
 
 void Window::resetRenderTarget() const {
-	if (SDL_SetRenderTarget(winRenderer, winTexture) < 0) {
+	if (SDL_SetRenderTarget(winRenderer, NULL) < 0) {
 		Util::fatalSDLError("Failed to switch renderer to texture");
 	}
 }
@@ -156,4 +127,3 @@ SDL_Texture * Window::createTexture(int width, int height) const {
 
 SDL_Window * Window::getWindow() const { return win; }
 SDL_Renderer * Window::getWindowRenderer() const { return winRenderer; }
-SDL_Texture * Window::getWindowTexture() const { return winTexture; }
