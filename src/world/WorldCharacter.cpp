@@ -1,21 +1,22 @@
-#include "Character.hpp"
+#include "WorldCharacter.hpp"
+#include "World.hpp"
 #include "../util/Utils.hpp"
 #include "../sprite/Sprites.hpp"
 #include "../map/Maps.hpp"
 
-Character::Character(Map *map, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed)
-    : BaseMovementObject(map, spriteSheet, movementUpdateTime, movementSpeed) {
+WorldCharacter::WorldCharacter(World *world, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed)
+    : BaseWorldMover(world, spriteSheet, movementUpdateTime, movementSpeed) {
     changeDirection(FacingDirection::DOWN);
     getSprite()->setDstW(Constants::CHARACTER_WIDTH);
     getSprite()->setDstH(Constants::CHARACTER_HEIGHT);
 }
 
-Character::~Character() {
+WorldCharacter::~WorldCharacter() {
 }
 
-void Character::onTickInBackground() {}
+void WorldCharacter::onTickInBackground() {}
 
-void Character::onMoveStart(FacingDirection direction) {
+void WorldCharacter::onMoveStart(FacingDirection direction) {
     switch(direction) {
         case FacingDirection::LEFT:
             if(getPositionX() == 0 || checkForObstacles(getTileX() - 1, getTileY())) {
@@ -23,7 +24,7 @@ void Character::onMoveStart(FacingDirection direction) {
             }
             break;
         case FacingDirection::RIGHT:
-            if(getPositionX() == map->getTileWidth() * (map->getWidth() - 1) 
+            if(getPositionX() == getWorld()->getMap()->getTileWidth() * (getWorld()->getMap()->getWidth() - 1) 
                     || checkForObstacles(getTileX() + 1, getTileY())) {
                 stopNextMovement();
             }
@@ -34,7 +35,7 @@ void Character::onMoveStart(FacingDirection direction) {
             }
             break;
         case FacingDirection::DOWN:
-            if(getPositionY() == map->getTileHeight() * (map->getHeight() - 1) 
+            if(getPositionY() == getWorld()->getMap()->getTileHeight() * (getWorld()->getMap()->getHeight() - 1) 
                     || checkForObstacles(getTileX(), getTileY() + 1)) {
                 stopNextMovement();
             }
@@ -44,7 +45,7 @@ void Character::onMoveStart(FacingDirection direction) {
     }
 }
 
-void Character::onMove(float percentToNextTile) {
+void WorldCharacter::onMove(float percentToNextTile) {
 	if (percentToNextTile < 0.5f) return;
 
 	if (isWalkingLeft()) {
@@ -55,21 +56,21 @@ void Character::onMove(float percentToNextTile) {
 	}
 }
 
-void Character::onMoveEnd(FacingDirection) {
+void WorldCharacter::onMoveEnd(FacingDirection) {
 	getSprite()->setSrcX(0);
 }
 
-void Character::onChangeDirection(FacingDirection direction) {
+void WorldCharacter::onChangeDirection(FacingDirection direction) {
 	getSprite()->setSrcRect(Util::createRect(0,
 		static_cast<int>(direction) * Constants::CHARACTER_HEIGHT,
 		Constants::CHARACTER_WIDTH,
 		Constants::CHARACTER_HEIGHT));
 }
 
-bool Character::checkForObstacles(int tileX, int tileY) const {
+bool WorldCharacter::checkForObstacles(int tileX, int tileY) const {
     //Check for walls in the tiles first
-    for(unsigned int i = 0; i < map->getNumberOfLayers(); i++) {
-        Tile *tile = map->getTile(i, tileX, tileY);
+    for(unsigned int i = 0; i < getWorld()->getMap()->getNumberOfLayers(); i++) {
+        Tile *tile = getWorld()->getMap()->getTile(i, tileX, tileY);
         if(tile != NULL && tile->getTileType() != Constants::TILE_TYPE_FLOOR) {
             return true;
         }

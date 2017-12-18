@@ -1,14 +1,14 @@
-#ifndef CHARACTER_HPP
-#define CHARACTER_HPP
+#ifndef WORLD_CHARACTER_HPP
+#define WORLD_CHARACTER_HPP
 
-#include "BaseMovementObject.hpp"
+#include "BaseWorldMover.hpp"
 
 class Timer;
 
-class Character : public BaseMovementObject {
+class WorldCharacter : public BaseWorldMover {
 public:
-    Character(Map *map, SpriteSheet *sheet, int movementUpdateTime, int movementSpeed);
-    ~Character() override;
+    WorldCharacter(World *world, SpriteSheet *sheet, int movementUpdateTime, int movementSpeed);
+    ~WorldCharacter() override;
 
 protected:
 	void onTickInBackground() override;

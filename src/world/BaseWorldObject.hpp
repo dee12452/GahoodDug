@@ -7,14 +7,16 @@ class Sprite;
 class SpriteSheet;
 class Game;
 class Window;
-class Map;
+class World;
 
 class BaseWorldObject : public BaseGameObject {
 public:
-    BaseWorldObject(Map *map, SpriteSheet *spriteSheet);
+    BaseWorldObject(World *world, SpriteSheet *spriteSheet);
     virtual ~BaseWorldObject();
 
-	void setTileX(int x);
+    World * getWorld() const;
+	
+    void setTileX(int x);
 	void setTileY(int y);
     void setPositionX(int x);
     void setPositionY(int y);
@@ -27,10 +29,8 @@ public:
     int getLayer() const;
     Sprite *getSprite() const;
 
-protected:
-    Map *map;
-
 private:
+    World *world;
     int tileX, tileY, posX, posY, layer;
     Sprite *objectSprite;
 };

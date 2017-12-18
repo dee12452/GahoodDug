@@ -1,8 +1,9 @@
 #include "WorldScreen.hpp"
 
-#include "../world/World.hpp"
-#include "../world/Character.hpp"
 #include <SDL2/SDL_events.h>
+#include "../world/World.hpp"
+#include "../world/WorldCharacter.hpp"
+#include "../util/Constants.hpp"
 
 WorldScreen::WorldScreen() : BaseScreen(), world(NULL) {}
 
@@ -32,6 +33,12 @@ void WorldScreen::onInput(Game *, const SDL_Event &) {
 void WorldScreen::onKeyInput(Game *, const uint8_t *keys) {
     bool movePlayer = false;
 
+    if(keys[SDL_SCANCODE_LSHIFT]) {
+        world->getPlayer()->setMoveSpeed(Constants::CHARACTER_RUN_SPEED);
+    }
+    else {
+        world->getPlayer()->setMoveSpeed(Constants::CHARACTER_WALK_SPEED);
+    }
     if(keys[SDL_SCANCODE_UP]) {
         world->getPlayer()->move(FacingDirection::UP);
         movePlayer = true;

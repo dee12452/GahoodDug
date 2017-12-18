@@ -1,27 +1,29 @@
-#include "BaseMovementObject.hpp"
+#include "BaseWorldMover.hpp"
+#include "World.hpp"
 #include "../map/Map.hpp"
 #include "../util/Timer.hpp"
 #include "../sprite/Sprite.hpp"
 #include "../util/Utils.hpp"
 
-BaseMovementObject::BaseMovementObject(Map *map, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed) 
-	: BaseWorldObject(map, spriteSheet),
+BaseWorldMover::BaseWorldMover(World *world, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed) 
+	: BaseWorldObject(world, spriteSheet),
 	displacement(0),
 	moveSpeed(movementSpeed),
+	nextMoveSpeed(movementSpeed),
 	nextDirection(NONE),
 	movementTimer(new Timer(movementUpdateTime)),
 	moving(false),
     canMove(true),
 	walkLeft(true) {}
 
-BaseMovementObject::~BaseMovementObject() {
+BaseWorldMover::~BaseWorldMover() {
 	if (movementTimer != NULL) {
 		delete movementTimer;
 		movementTimer = NULL;
 	}
 }
 
-void BaseMovementObject::move(FacingDirection direction) {
+void BaseWorldMover::move(FacingDirection direction) {
 	if (moving) {
 		nextDirection = direction;
 	}
@@ -31,7 +33,7 @@ void BaseMovementObject::move(FacingDirection direction) {
 	}
 }
 
-void BaseMovementObject::onTick(Game *) {
+void BaseWorldMover::onTick(Game *) {
 	if (moving && currentDirection != FacingDirection::NONE && movementTimer->check()) {
         if(displacement == 0) { onMoveStart(currentDirection); } 
         if(canMove) {
@@ -57,9 +59,10 @@ void BaseMovementObject::onTick(Game *) {
 		//left or right
 		if (currentDirection == FacingDirection::LEFT || currentDirection == FacingDirection::RIGHT) {
 			//Finished moving to the next tile
-			if (displacement == map->getTileWidth()) {
+			if (displacement == getWorld()->getMap()->getTileWidth()) {
 				displacement = 0;
-				onMoveEnd(currentDirection);
+				if(nextMoveSpeed != moveSpeed) moveSpeed = nextMoveSpeed;
+                onMoveEnd(currentDirection);
 				currentDirection = nextDirection;
 				moving = false;
                 canMove = true;
@@ -72,15 +75,16 @@ void BaseMovementObject::onTick(Game *) {
 
 			//Need to switch the sprite
 			else {
-				onMove((float)displacement / (float)map->getTileWidth());
+				onMove((float)displacement / (float)getWorld()->getMap()->getTileWidth());
 			}
 		}
 
 		//up or down
 		else if (currentDirection == FacingDirection::UP || currentDirection == FacingDirection::DOWN) {
 			//Finished moving to the next tile
-			if (displacement == map->getTileHeight()) {
+			if (displacement == getWorld()->getMap()->getTileHeight()) {
 				displacement = 0;
+				if(nextMoveSpeed != moveSpeed) moveSpeed = nextMoveSpeed;
 				onMoveEnd(currentDirection);
 				currentDirection = nextDirection;
 				moving = false;
@@ -94,22 +98,24 @@ void BaseMovementObject::onTick(Game *) {
 
 			//Need to switch the sprite
 			else {
-				onMove((float)displacement / (float)map->getTileHeight());
+				onMove((float)displacement / (float)getWorld()->getMap()->getTileHeight());
 			}
 		}
 	}
 }
 
-void BaseMovementObject::cancelNextMove() { nextDirection = NONE; }
+void BaseWorldMover::cancelNextMove() { nextDirection = NONE; }
 
-void BaseMovementObject::changeDirection(FacingDirection direction) {
+void BaseWorldMover::changeDirection(FacingDirection direction) {
 	if (direction == NONE || isMoving()) return;
 	currentDirection = direction;
 	onChangeDirection(direction);
 }
 
-bool BaseMovementObject::isWalkingLeft() const { return walkLeft; }
-bool BaseMovementObject::isMoving() const { return moving; }
-void BaseMovementObject::stopNextMovement() { canMove = false; }
-FacingDirection BaseMovementObject::getCurrentDirection() const { return currentDirection; }
-FacingDirection BaseMovementObject::getNextDirection() const { return nextDirection; }
+int BaseWorldMover::getMoveSpeed() const { return moveSpeed; }
+void BaseWorldMover::setMoveSpeed(int speed) { if(moving) nextMoveSpeed = speed; else moveSpeed = speed; }
+bool BaseWorldMover::isWalkingLeft() const { return walkLeft; }
+bool BaseWorldMover::isMoving() const { return moving; }
+void BaseWorldMover::stopNextMovement() { canMove = false; }
+FacingDirection BaseWorldMover::getCurrentDirection() const { return currentDirection; }
+FacingDirection BaseWorldMover::getNextDirection() const { return nextDirection; }

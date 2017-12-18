@@ -5,7 +5,7 @@ class Game;
 class Map;
 class Window;
 class Sprite;
-class Character;
+class WorldCharacter;
 struct SDL_Texture;
 
 class World {
@@ -15,16 +15,17 @@ public:
 
     void drawWorld(Window *win);
 
-    Character * getPlayer() const;
+    WorldCharacter * getPlayer() const;
+    Map * getMap() const;
 	int getTileWidth() const;
 	int getTileHeight() const;
 
     void changeMap(Game *game, const char * const mapFile);
 
 private:
-    Map *currentMap;
+    Map *map;
     SDL_Texture *mapTexture;
-    Character *player;
+    WorldCharacter *player;
 };
 
 #endif
