@@ -54,7 +54,7 @@ const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
  * MAP CONST */
 const char * const Constants::MAP_TEST = "test_map.tmx";
 const char * const Constants::MAP_TEST_2 = "test_map2.tmx";
-const char * const Constants::MAP_TEST_3 = "test_map3.tmx";
+const char * const Constants::MAP_PALLET_TOWN = "pallet_town.tmx";
 const char * const Constants::TILE_TYPE_FLOOR = "floor";
 const char * const Constants::TILE_TYPE_WALL = "wall";
 

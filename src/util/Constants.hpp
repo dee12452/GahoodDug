@@ -91,7 +91,7 @@ public:
      */
     static const char * const MAP_TEST;
     static const char * const MAP_TEST_2;
-    static const char * const MAP_TEST_3;
+    static const char * const MAP_PALLET_TOWN;
     static const char * const TILE_TYPE_FLOOR;
     static const char * const TILE_TYPE_WALL;
     /******************

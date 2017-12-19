@@ -10,7 +10,7 @@
 #include "WorldCharacter.hpp"
 
 World::World(Game *game) : map(NULL), mapTexture(NULL), player(NULL) {
-    changeMap(game, Constants::MAP_TEST_3);
+    changeMap(game, Constants::MAP_PALLET_TOWN);
 } 
 
 World::~World() { 
@@ -96,6 +96,7 @@ void World::changeMap(Game *game, const char * const mapFile) {
     map = MapLoader::getInstance()->getMap(mapFile);
     if(player != NULL) delete player;
     player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+	player->setTileX(6); player->setTileY(8);
     if(mapTexture == NULL) SDL_DestroyTexture(mapTexture);
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * map->getTileWidth();
 	int drawHeight = Constants::WORLD_DRAW_HEIGHT * map->getTileHeight();

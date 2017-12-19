@@ -9,7 +9,7 @@ void Util::fatalError(const char *message) {
 }
 
 void Util::fatalSDLError(const char *message) {
-	log(SDL_LOG_PRIORITY_CRITICAL, std::string(message) + SDL_GetError());
+	log(SDL_LOG_PRIORITY_CRITICAL, std::string(message) + "\n" + SDL_GetError());
     exit(EXIT_FAILURE);
 }
 
