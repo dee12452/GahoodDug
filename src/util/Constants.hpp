@@ -89,11 +89,20 @@ public:
      * Map Constants
      **********************************
      */
+	//Maps
     static const char * const MAP_TEST;
     static const char * const MAP_TEST_2;
     static const char * const MAP_PALLET_TOWN;
-    static const char * const TILE_TYPE_FLOOR;
-    static const char * const TILE_TYPE_WALL;
+	static const char * const MAP_ROUTE_1;
+	//Tile types
+    static const std::string TILE_TYPE_FLOOR;
+    static const std::string TILE_TYPE_WALL;
+	static const std::string TILE_TYPE_WATER;
+	static const std::string TILE_TYPE_GRASS;
+	static const std::string TILE_TYPE_FLOWER;
+	static const std::string TILE_TYPE_SIGN;
+	static const std::string TILE_TYPE_DOOR;
+	static const std::string TILE_TYPE_CLIFF;
     /******************
 	******************/
     

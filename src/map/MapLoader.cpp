@@ -183,6 +183,22 @@ void MapLoader::populateMapInfo(Tag *tag, Map *map) {
 		}
 	}
 
+	//Find the maps that border the map
+	else if (tag->id == "property") {
+		MapDirection dir;
+		const char *borderMap = "";
+		for (unsigned int i = 0; i < tag->attributes.size(); i++) {
+			if (tag->attributes[i].first == "name") {
+				if (tag->attributes[i].second == "north_border") { dir = MapDirection::MAP_NORTH; }
+				if (tag->attributes[i].second == "south_border") { dir = MapDirection::MAP_SOUTH; }
+				if (tag->attributes[i].second == "east_border") { dir = MapDirection::MAP_EAST; }
+				if (tag->attributes[i].second == "west_border") { dir = MapDirection::MAP_WEST; }
+			}
+			else if (tag->attributes[i].first == "value") { borderMap = tag->attributes[i].second.c_str(); }
+		}
+		map->setBorderingMap(dir, borderMap);
+	}
+
     //Load width, height, and data for each layer
 	else if (tag->id == "layer") {
         int **layer = NULL;

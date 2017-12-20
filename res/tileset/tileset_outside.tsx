@@ -7,8 +7,8 @@
  <tile id="3" type="floor"/>
  <tile id="4" type="floor"/>
  <tile id="5" type="floor"/>
- <tile id="6" type="floor"/>
- <tile id="7" type="floor"/>
+ <tile id="6" type="grass"/>
+ <tile id="7" type="grass"/>
  <tile id="8" type="floor"/>
  <tile id="9" type="floor"/>
  <tile id="10" type="floor"/>
@@ -16,7 +16,7 @@
  <tile id="12" type="floor"/>
  <tile id="13" type="floor"/>
  <tile id="14" type="floor"/>
- <tile id="15" type="floor"/>
+ <tile id="15" type="grass"/>
  <tile id="16" type="floor"/>
  <tile id="17" type="floor"/>
  <tile id="18" type="floor"/>
@@ -417,54 +417,54 @@
  <tile id="413" type="floor"/>
  <tile id="414" type="floor"/>
  <tile id="415" type="floor"/>
- <tile id="416" type="floor"/>
- <tile id="417" type="floor"/>
- <tile id="418" type="floor"/>
- <tile id="419" type="floor"/>
+ <tile id="416" type="wall"/>
+ <tile id="417" type="wall"/>
+ <tile id="418" type="wall"/>
+ <tile id="419" type="wall"/>
  <tile id="420" type="floor"/>
  <tile id="421" type="floor"/>
- <tile id="422" type="floor"/>
- <tile id="423" type="floor"/>
- <tile id="424" type="floor"/>
- <tile id="425" type="floor"/>
- <tile id="426" type="floor"/>
- <tile id="427" type="floor"/>
- <tile id="428" type="floor"/>
- <tile id="429" type="floor"/>
+ <tile id="422" type="wall"/>
+ <tile id="423" type="wall"/>
+ <tile id="424" type="wall"/>
+ <tile id="425" type="wall"/>
+ <tile id="426" type="wall"/>
+ <tile id="427" type="wall"/>
+ <tile id="428" type="wall"/>
+ <tile id="429" type="wall"/>
  <tile id="430" type="floor"/>
  <tile id="431" type="floor"/>
- <tile id="432" type="floor"/>
- <tile id="433" type="floor"/>
- <tile id="434" type="floor"/>
- <tile id="435" type="floor"/>
- <tile id="436" type="floor"/>
- <tile id="437" type="floor"/>
+ <tile id="432" type="wall"/>
+ <tile id="433" type="wall"/>
+ <tile id="434" type="wall"/>
+ <tile id="435" type="wall"/>
+ <tile id="436" type="wall"/>
+ <tile id="437" type="wall"/>
  <tile id="438" type="floor"/>
  <tile id="439" type="floor"/>
  <tile id="440" type="floor"/>
  <tile id="441" type="floor"/>
  <tile id="442" type="floor"/>
  <tile id="443" type="floor"/>
- <tile id="444" type="floor"/>
- <tile id="445" type="floor"/>
- <tile id="446" type="floor"/>
- <tile id="447" type="floor"/>
+ <tile id="444" type="wall"/>
+ <tile id="445" type="wall"/>
+ <tile id="446" type="wall"/>
+ <tile id="447" type="wall"/>
  <tile id="448" type="floor"/>
- <tile id="449" type="floor"/>
+ <tile id="449" type="wall"/>
  <tile id="450" type="floor"/>
  <tile id="451" type="floor"/>
- <tile id="452" type="floor"/>
+ <tile id="452" type="wall"/>
  <tile id="453" type="floor"/>
  <tile id="454" type="floor"/>
- <tile id="455" type="floor"/>
- <tile id="456" type="floor"/>
- <tile id="457" type="floor"/>
- <tile id="458" type="floor"/>
+ <tile id="455" type="wall"/>
+ <tile id="456" type="wall"/>
+ <tile id="457" type="wall"/>
+ <tile id="458" type="wall"/>
  <tile id="459" type="floor"/>
- <tile id="460" type="floor"/>
+ <tile id="460" type="wall"/>
  <tile id="461" type="floor"/>
  <tile id="462" type="floor"/>
- <tile id="463" type="floor"/>
+ <tile id="463" type="wall"/>
  <tile id="464" type="floor"/>
  <tile id="465" type="floor"/>
  <tile id="466" type="floor"/>
@@ -473,46 +473,46 @@
  <tile id="469" type="floor"/>
  <tile id="470" type="floor"/>
  <tile id="471" type="floor"/>
- <tile id="472" type="floor"/>
- <tile id="473" type="floor"/>
- <tile id="474" type="floor"/>
+ <tile id="472" type="wall"/>
+ <tile id="473" type="wall"/>
+ <tile id="474" type="wall"/>
  <tile id="475" type="floor"/>
  <tile id="476" type="floor"/>
  <tile id="477" type="floor"/>
- <tile id="478" type="floor"/>
+ <tile id="478" type="wall"/>
  <tile id="479" type="floor"/>
- <tile id="480" type="floor"/>
- <tile id="481" type="floor"/>
- <tile id="482" type="floor"/>
+ <tile id="480" type="wall"/>
+ <tile id="481" type="wall"/>
+ <tile id="482" type="wall"/>
  <tile id="483" type="floor"/>
  <tile id="484" type="floor"/>
  <tile id="485" type="floor"/>
- <tile id="486" type="floor"/>
- <tile id="487" type="floor"/>
- <tile id="488" type="floor"/>
- <tile id="489" type="floor"/>
- <tile id="490" type="floor"/>
+ <tile id="486" type="wall"/>
+ <tile id="487" type="wall"/>
+ <tile id="488" type="wall"/>
+ <tile id="489" type="wall"/>
+ <tile id="490" type="wall"/>
  <tile id="491" type="floor"/>
- <tile id="492" type="floor"/>
+ <tile id="492" type="wall"/>
  <tile id="493" type="floor"/>
  <tile id="494" type="floor"/>
- <tile id="495" type="floor"/>
- <tile id="496" type="floor"/>
- <tile id="497" type="floor"/>
- <tile id="498" type="floor"/>
- <tile id="499" type="floor"/>
- <tile id="500" type="floor"/>
- <tile id="501" type="floor"/>
- <tile id="502" type="floor"/>
- <tile id="503" type="floor"/>
- <tile id="504" type="floor"/>
- <tile id="505" type="floor"/>
- <tile id="506" type="floor"/>
- <tile id="507" type="floor"/>
- <tile id="508" type="floor"/>
- <tile id="509" type="floor"/>
- <tile id="510" type="floor"/>
- <tile id="511" type="floor"/>
+ <tile id="495" type="wall"/>
+ <tile id="496" type="wall"/>
+ <tile id="497" type="wall"/>
+ <tile id="498" type="wall"/>
+ <tile id="499" type="wall"/>
+ <tile id="500" type="wall"/>
+ <tile id="501" type="wall"/>
+ <tile id="502" type="wall"/>
+ <tile id="503" type="wall"/>
+ <tile id="504" type="wall"/>
+ <tile id="505" type="wall"/>
+ <tile id="506" type="wall"/>
+ <tile id="507" type="wall"/>
+ <tile id="508" type="wall"/>
+ <tile id="509" type="wall"/>
+ <tile id="510" type="wall"/>
+ <tile id="511" type="wall"/>
  <tile id="512" type="floor"/>
  <tile id="513" type="floor"/>
  <tile id="514" type="floor"/>
@@ -521,100 +521,100 @@
  <tile id="517" type="floor"/>
  <tile id="518" type="floor"/>
  <tile id="519" type="floor"/>
- <tile id="520" type="floor"/>
- <tile id="521" type="floor"/>
- <tile id="522" type="floor"/>
- <tile id="523" type="floor"/>
+ <tile id="520" type="wall"/>
+ <tile id="521" type="wall"/>
+ <tile id="522" type="wall"/>
+ <tile id="523" type="wall"/>
  <tile id="524" type="floor"/>
  <tile id="525" type="floor"/>
  <tile id="526" type="floor"/>
  <tile id="527" type="floor"/>
- <tile id="528" type="floor"/>
- <tile id="529" type="floor"/>
- <tile id="530" type="floor"/>
+ <tile id="528" type="wall"/>
+ <tile id="529" type="wall"/>
+ <tile id="530" type="wall"/>
  <tile id="531" type="floor"/>
  <tile id="532" type="floor"/>
  <tile id="533" type="floor"/>
  <tile id="534" type="floor"/>
  <tile id="535" type="floor"/>
- <tile id="536" type="floor"/>
- <tile id="537" type="floor"/>
- <tile id="538" type="floor"/>
+ <tile id="536" type="wall"/>
+ <tile id="537" type="wall"/>
+ <tile id="538" type="wall"/>
  <tile id="539" type="floor"/>
- <tile id="540" type="floor"/>
+ <tile id="540" type="wall"/>
  <tile id="541" type="floor"/>
  <tile id="542" type="floor"/>
  <tile id="543" type="floor"/>
- <tile id="544" type="floor"/>
- <tile id="545" type="floor"/>
- <tile id="546" type="floor"/>
- <tile id="547" type="floor"/>
- <tile id="548" type="floor"/>
- <tile id="549" type="floor"/>
+ <tile id="544" type="wall"/>
+ <tile id="545" type="wall"/>
+ <tile id="546" type="wall"/>
+ <tile id="547" type="wall"/>
+ <tile id="548" type="wall"/>
+ <tile id="549" type="wall"/>
  <tile id="550" type="floor"/>
  <tile id="551" type="floor"/>
- <tile id="552" type="floor"/>
- <tile id="553" type="floor"/>
- <tile id="554" type="floor"/>
- <tile id="555" type="floor"/>
- <tile id="556" type="floor"/>
- <tile id="557" type="floor"/>
+ <tile id="552" type="wall"/>
+ <tile id="553" type="wall"/>
+ <tile id="554" type="wall"/>
+ <tile id="555" type="wall"/>
+ <tile id="556" type="wall"/>
+ <tile id="557" type="wall"/>
  <tile id="558" type="floor"/>
  <tile id="559" type="floor"/>
- <tile id="560" type="floor"/>
- <tile id="561" type="floor"/>
- <tile id="562" type="floor"/>
+ <tile id="560" type="wall"/>
+ <tile id="561" type="wall"/>
+ <tile id="562" type="wall"/>
  <tile id="563" type="floor"/>
  <tile id="564" type="floor"/>
  <tile id="565" type="floor"/>
  <tile id="566" type="floor"/>
  <tile id="567" type="floor"/>
- <tile id="568" type="floor"/>
- <tile id="569" type="floor"/>
- <tile id="570" type="floor"/>
- <tile id="571" type="floor"/>
- <tile id="572" type="floor"/>
- <tile id="573" type="floor"/>
+ <tile id="568" type="wall"/>
+ <tile id="569" type="wall"/>
+ <tile id="570" type="wall"/>
+ <tile id="571" type="wall"/>
+ <tile id="572" type="wall"/>
+ <tile id="573" type="wall"/>
  <tile id="574" type="floor"/>
  <tile id="575" type="floor"/>
- <tile id="576" type="floor"/>
- <tile id="577" type="floor"/>
- <tile id="578" type="floor"/>
- <tile id="579" type="floor"/>
- <tile id="580" type="floor"/>
- <tile id="581" type="floor"/>
+ <tile id="576" type="wall"/>
+ <tile id="577" type="wall"/>
+ <tile id="578" type="wall"/>
+ <tile id="579" type="wall"/>
+ <tile id="580" type="wall"/>
+ <tile id="581" type="wall"/>
  <tile id="582" type="floor"/>
  <tile id="583" type="floor"/>
- <tile id="584" type="floor"/>
- <tile id="585" type="floor"/>
- <tile id="586" type="floor"/>
- <tile id="587" type="floor"/>
- <tile id="588" type="floor"/>
- <tile id="589" type="floor"/>
+ <tile id="584" type="wall"/>
+ <tile id="585" type="wall"/>
+ <tile id="586" type="wall"/>
+ <tile id="587" type="wall"/>
+ <tile id="588" type="wall"/>
+ <tile id="589" type="wall"/>
  <tile id="590" type="floor"/>
  <tile id="591" type="floor"/>
- <tile id="592" type="floor"/>
- <tile id="593" type="floor"/>
- <tile id="594" type="floor"/>
- <tile id="595" type="floor"/>
- <tile id="596" type="floor"/>
- <tile id="597" type="floor"/>
+ <tile id="592" type="wall"/>
+ <tile id="593" type="wall"/>
+ <tile id="594" type="wall"/>
+ <tile id="595" type="wall"/>
+ <tile id="596" type="wall"/>
+ <tile id="597" type="wall"/>
  <tile id="598" type="floor"/>
  <tile id="599" type="floor"/>
- <tile id="600" type="floor"/>
- <tile id="601" type="floor"/>
- <tile id="602" type="floor"/>
- <tile id="603" type="floor"/>
- <tile id="604" type="floor"/>
- <tile id="605" type="floor"/>
- <tile id="606" type="floor"/>
+ <tile id="600" type="wall"/>
+ <tile id="601" type="wall"/>
+ <tile id="602" type="wall"/>
+ <tile id="603" type="wall"/>
+ <tile id="604" type="wall"/>
+ <tile id="605" type="wall"/>
+ <tile id="606" type="wall"/>
  <tile id="607" type="floor"/>
- <tile id="608" type="floor"/>
- <tile id="609" type="floor"/>
- <tile id="610" type="floor"/>
- <tile id="611" type="floor"/>
- <tile id="612" type="floor"/>
- <tile id="613" type="floor"/>
+ <tile id="608" type="wall"/>
+ <tile id="609" type="wall"/>
+ <tile id="610" type="wall"/>
+ <tile id="611" type="wall"/>
+ <tile id="612" type="wall"/>
+ <tile id="613" type="wall"/>
  <tile id="614" type="floor"/>
  <tile id="615" type="floor"/>
  <tile id="616" type="floor"/>
@@ -665,67 +665,67 @@
  <tile id="661" type="floor"/>
  <tile id="662" type="floor"/>
  <tile id="663" type="floor"/>
- <tile id="664" type="floor"/>
- <tile id="665" type="floor"/>
- <tile id="666" type="floor"/>
+ <tile id="664" type="wall"/>
+ <tile id="665" type="wall"/>
+ <tile id="666" type="wall"/>
  <tile id="667" type="floor"/>
- <tile id="668" type="floor"/>
- <tile id="669" type="floor"/>
- <tile id="670" type="floor"/>
+ <tile id="668" type="wall"/>
+ <tile id="669" type="wall"/>
+ <tile id="670" type="wall"/>
  <tile id="671" type="floor"/>
- <tile id="672" type="floor"/>
+ <tile id="672" type="wall"/>
  <tile id="673" type="floor"/>
  <tile id="674" type="floor"/>
  <tile id="675" type="floor"/>
- <tile id="676" type="floor"/>
- <tile id="677" type="floor"/>
- <tile id="678" type="floor"/>
+ <tile id="676" type="wall"/>
+ <tile id="677" type="wall"/>
+ <tile id="678" type="wall"/>
  <tile id="679" type="floor"/>
- <tile id="680" type="floor"/>
- <tile id="681" type="floor"/>
- <tile id="682" type="floor"/>
- <tile id="683" type="floor"/>
- <tile id="684" type="floor"/>
- <tile id="685" type="floor"/>
- <tile id="686" type="floor"/>
- <tile id="687" type="floor"/>
- <tile id="688" type="floor"/>
+ <tile id="680" type="wall"/>
+ <tile id="681" type="sign"/>
+ <tile id="682" type="sign"/>
+ <tile id="683" type="sign"/>
+ <tile id="684" type="wall"/>
+ <tile id="685" type="wall"/>
+ <tile id="686" type="wall"/>
+ <tile id="687" type="wall"/>
+ <tile id="688" type="water"/>
  <tile id="689" type="floor"/>
- <tile id="690" type="floor"/>
- <tile id="691" type="floor"/>
- <tile id="692" type="floor"/>
- <tile id="693" type="floor"/>
- <tile id="694" type="floor"/>
- <tile id="695" type="floor"/>
- <tile id="696" type="floor"/>
+ <tile id="690" type="water"/>
+ <tile id="691" type="water"/>
+ <tile id="692" type="water"/>
+ <tile id="693" type="water"/>
+ <tile id="694" type="water"/>
+ <tile id="695" type="water"/>
+ <tile id="696" type="water"/>
  <tile id="697" type="floor"/>
- <tile id="698" type="floor"/>
- <tile id="699" type="floor"/>
- <tile id="700" type="floor"/>
- <tile id="701" type="floor"/>
- <tile id="702" type="floor"/>
- <tile id="703" type="floor"/>
- <tile id="704" type="floor"/>
- <tile id="705" type="floor"/>
- <tile id="706" type="floor"/>
- <tile id="707" type="floor"/>
- <tile id="708" type="floor"/>
- <tile id="709" type="floor"/>
- <tile id="710" type="floor"/>
- <tile id="711" type="floor"/>
- <tile id="712" type="floor"/>
- <tile id="713" type="floor"/>
- <tile id="714" type="floor"/>
- <tile id="715" type="floor"/>
- <tile id="716" type="floor"/>
+ <tile id="698" type="water"/>
+ <tile id="699" type="water"/>
+ <tile id="700" type="water"/>
+ <tile id="701" type="water"/>
+ <tile id="702" type="water"/>
+ <tile id="703" type="water"/>
+ <tile id="704" type="water"/>
+ <tile id="705" type="water"/>
+ <tile id="706" type="water"/>
+ <tile id="707" type="water"/>
+ <tile id="708" type="water"/>
+ <tile id="709" type="water"/>
+ <tile id="710" type="water"/>
+ <tile id="711" type="water"/>
+ <tile id="712" type="water"/>
+ <tile id="713" type="water"/>
+ <tile id="714" type="water"/>
+ <tile id="715" type="water"/>
+ <tile id="716" type="water"/>
  <tile id="717" type="floor"/>
  <tile id="718" type="floor"/>
  <tile id="719" type="floor"/>
- <tile id="720" type="floor"/>
+ <tile id="720" type="water"/>
  <tile id="721" type="floor"/>
- <tile id="722" type="floor"/>
- <tile id="723" type="floor"/>
- <tile id="724" type="floor"/>
+ <tile id="722" type="water"/>
+ <tile id="723" type="water"/>
+ <tile id="724" type="water"/>
  <tile id="725" type="floor"/>
  <tile id="726" type="floor"/>
  <tile id="727" type="floor"/>
@@ -785,166 +785,166 @@
  <tile id="781" type="floor"/>
  <tile id="782" type="floor"/>
  <tile id="783" type="floor"/>
- <tile id="784" type="floor"/>
+ <tile id="784" type="wall"/>
  <tile id="785" type="floor"/>
- <tile id="786" type="floor"/>
- <tile id="787" type="floor"/>
+ <tile id="786" type="wall"/>
+ <tile id="787" type="wall"/>
  <tile id="788" type="floor"/>
- <tile id="789" type="floor"/>
+ <tile id="789" type="wall"/>
  <tile id="790" type="floor"/>
  <tile id="791" type="floor"/>
- <tile id="792" type="floor"/>
+ <tile id="792" type="wall"/>
  <tile id="793" type="floor"/>
- <tile id="794" type="floor"/>
- <tile id="795" type="floor"/>
+ <tile id="794" type="wall"/>
+ <tile id="795" type="wall"/>
  <tile id="796" type="floor"/>
- <tile id="797" type="floor"/>
+ <tile id="797" type="wall"/>
  <tile id="798" type="floor"/>
  <tile id="799" type="floor"/>
- <tile id="800" type="floor"/>
- <tile id="801" type="floor"/>
- <tile id="802" type="floor"/>
- <tile id="803" type="floor"/>
- <tile id="804" type="floor"/>
- <tile id="805" type="floor"/>
+ <tile id="800" type="wall"/>
+ <tile id="801" type="wall"/>
+ <tile id="802" type="wall"/>
+ <tile id="803" type="wall"/>
+ <tile id="804" type="wall"/>
+ <tile id="805" type="wall"/>
  <tile id="806" type="floor"/>
  <tile id="807" type="floor"/>
- <tile id="808" type="floor"/>
- <tile id="809" type="floor"/>
- <tile id="810" type="floor"/>
- <tile id="811" type="floor"/>
+ <tile id="808" type="wall"/>
+ <tile id="809" type="wall"/>
+ <tile id="810" type="cliff"/>
+ <tile id="811" type="wall"/>
  <tile id="812" type="floor"/>
- <tile id="813" type="floor"/>
- <tile id="814" type="floor"/>
- <tile id="815" type="floor"/>
+ <tile id="813" type="wall"/>
+ <tile id="814" type="cliff"/>
+ <tile id="815" type="wall"/>
  <tile id="816" type="floor"/>
  <tile id="817" type="floor"/>
- <tile id="818" type="floor"/>
- <tile id="819" type="floor"/>
+ <tile id="818" type="wall"/>
+ <tile id="819" type="wall"/>
  <tile id="820" type="floor"/>
- <tile id="821" type="floor"/>
- <tile id="822" type="floor"/>
- <tile id="823" type="floor"/>
+ <tile id="821" type="wall"/>
+ <tile id="822" type="wall"/>
+ <tile id="823" type="wall"/>
  <tile id="824" type="floor"/>
  <tile id="825" type="floor"/>
- <tile id="826" type="floor"/>
- <tile id="827" type="floor"/>
- <tile id="828" type="floor"/>
- <tile id="829" type="floor"/>
- <tile id="830" type="floor"/>
- <tile id="831" type="floor"/>
+ <tile id="826" type="wall"/>
+ <tile id="827" type="wall"/>
+ <tile id="828" type="cliff"/>
+ <tile id="829" type="wall"/>
+ <tile id="830" type="wall"/>
+ <tile id="831" type="wall"/>
  <tile id="832" type="floor"/>
  <tile id="833" type="floor"/>
  <tile id="834" type="floor"/>
  <tile id="835" type="floor"/>
- <tile id="836" type="floor"/>
- <tile id="837" type="floor"/>
+ <tile id="836" type="wall"/>
+ <tile id="837" type="wall"/>
  <tile id="838" type="floor"/>
- <tile id="839" type="floor"/>
+ <tile id="839" type="wall"/>
  <tile id="840" type="floor"/>
  <tile id="841" type="floor"/>
  <tile id="842" type="floor"/>
  <tile id="843" type="floor"/>
- <tile id="844" type="floor"/>
- <tile id="845" type="floor"/>
+ <tile id="844" type="wall"/>
+ <tile id="845" type="wall"/>
  <tile id="846" type="floor"/>
- <tile id="847" type="floor"/>
+ <tile id="847" type="wall"/>
  <tile id="848" type="floor"/>
  <tile id="849" type="floor"/>
  <tile id="850" type="floor"/>
  <tile id="851" type="floor"/>
- <tile id="852" type="floor"/>
- <tile id="853" type="floor"/>
+ <tile id="852" type="wall"/>
+ <tile id="853" type="wall"/>
  <tile id="854" type="floor"/>
  <tile id="855" type="floor"/>
  <tile id="856" type="floor"/>
  <tile id="857" type="floor"/>
  <tile id="858" type="floor"/>
  <tile id="859" type="floor"/>
- <tile id="860" type="floor"/>
- <tile id="861" type="floor"/>
+ <tile id="860" type="wall"/>
+ <tile id="861" type="wall"/>
  <tile id="862" type="floor"/>
  <tile id="863" type="floor"/>
- <tile id="864" type="floor"/>
+ <tile id="864" type="wall"/>
  <tile id="865" type="floor"/>
- <tile id="866" type="floor"/>
- <tile id="867" type="floor"/>
+ <tile id="866" type="wall"/>
+ <tile id="867" type="wall"/>
  <tile id="868" type="floor"/>
- <tile id="869" type="floor"/>
+ <tile id="869" type="wall"/>
  <tile id="870" type="floor"/>
  <tile id="871" type="floor"/>
- <tile id="872" type="floor"/>
+ <tile id="872" type="wall"/>
  <tile id="873" type="floor"/>
- <tile id="874" type="floor"/>
- <tile id="875" type="floor"/>
+ <tile id="874" type="wall"/>
+ <tile id="875" type="wall"/>
  <tile id="876" type="floor"/>
- <tile id="877" type="floor"/>
+ <tile id="877" type="wall"/>
  <tile id="878" type="floor"/>
  <tile id="879" type="floor"/>
- <tile id="880" type="floor"/>
- <tile id="881" type="floor"/>
- <tile id="882" type="floor"/>
- <tile id="883" type="floor"/>
- <tile id="884" type="floor"/>
- <tile id="885" type="floor"/>
+ <tile id="880" type="wall"/>
+ <tile id="881" type="wall"/>
+ <tile id="882" type="wall"/>
+ <tile id="883" type="wall"/>
+ <tile id="884" type="wall"/>
+ <tile id="885" type="wall"/>
  <tile id="886" type="floor"/>
  <tile id="887" type="floor"/>
- <tile id="888" type="floor"/>
- <tile id="889" type="floor"/>
- <tile id="890" type="floor"/>
- <tile id="891" type="floor"/>
+ <tile id="888" type="wall"/>
+ <tile id="889" type="wall"/>
+ <tile id="890" type="cliff"/>
+ <tile id="891" type="wall"/>
  <tile id="892" type="floor"/>
- <tile id="893" type="floor"/>
- <tile id="894" type="floor"/>
- <tile id="895" type="floor"/>
+ <tile id="893" type="wall"/>
+ <tile id="894" type="cliff"/>
+ <tile id="895" type="wall"/>
  <tile id="896" type="floor"/>
  <tile id="897" type="floor"/>
- <tile id="898" type="floor"/>
- <tile id="899" type="floor"/>
+ <tile id="898" type="wall"/>
+ <tile id="899" type="wall"/>
  <tile id="900" type="floor"/>
- <tile id="901" type="floor"/>
- <tile id="902" type="floor"/>
- <tile id="903" type="floor"/>
+ <tile id="901" type="wall"/>
+ <tile id="902" type="wall"/>
+ <tile id="903" type="wall"/>
  <tile id="904" type="floor"/>
  <tile id="905" type="floor"/>
- <tile id="906" type="floor"/>
- <tile id="907" type="floor"/>
- <tile id="908" type="floor"/>
- <tile id="909" type="floor"/>
- <tile id="910" type="floor"/>
- <tile id="911" type="floor"/>
+ <tile id="906" type="wall"/>
+ <tile id="907" type="wall"/>
+ <tile id="908" type="cliff"/>
+ <tile id="909" type="wall"/>
+ <tile id="910" type="wall"/>
+ <tile id="911" type="wall"/>
  <tile id="912" type="floor"/>
  <tile id="913" type="floor"/>
  <tile id="914" type="floor"/>
  <tile id="915" type="floor"/>
- <tile id="916" type="floor"/>
- <tile id="917" type="floor"/>
+ <tile id="916" type="wall"/>
+ <tile id="917" type="wall"/>
  <tile id="918" type="floor"/>
- <tile id="919" type="floor"/>
+ <tile id="919" type="wall"/>
  <tile id="920" type="floor"/>
  <tile id="921" type="floor"/>
  <tile id="922" type="floor"/>
  <tile id="923" type="floor"/>
- <tile id="924" type="floor"/>
- <tile id="925" type="floor"/>
+ <tile id="924" type="wall"/>
+ <tile id="925" type="wall"/>
  <tile id="926" type="floor"/>
- <tile id="927" type="floor"/>
+ <tile id="927" type="wall"/>
  <tile id="928" type="floor"/>
  <tile id="929" type="floor"/>
  <tile id="930" type="floor"/>
  <tile id="931" type="floor"/>
- <tile id="932" type="floor"/>
- <tile id="933" type="floor"/>
+ <tile id="932" type="wall"/>
+ <tile id="933" type="wall"/>
  <tile id="934" type="floor"/>
  <tile id="935" type="floor"/>
  <tile id="936" type="floor"/>
  <tile id="937" type="floor"/>
  <tile id="938" type="floor"/>
  <tile id="939" type="floor"/>
- <tile id="940" type="floor"/>
- <tile id="941" type="floor"/>
+ <tile id="940" type="wall"/>
+ <tile id="941" type="wall"/>
  <tile id="942" type="floor"/>
- <tile id="943" type="floor"/>
+ <tile id="943" type="wall"/>
  <tile id="944" type="floor"/>
  <tile id="945" type="floor"/>
  <tile id="946" type="floor"/>
@@ -953,11 +953,11 @@
  <tile id="949" type="floor"/>
  <tile id="950" type="floor"/>
  <tile id="951" type="floor"/>
- <tile id="952" type="floor"/>
- <tile id="953" type="floor"/>
- <tile id="954" type="floor"/>
+ <tile id="952" type="sign"/>
+ <tile id="953" type="sign"/>
+ <tile id="954" type="sign"/>
  <tile id="955" type="floor"/>
- <tile id="956" type="floor"/>
+ <tile id="956" type="flower"/>
  <tile id="957" type="floor"/>
  <tile id="958" type="floor"/>
  <tile id="959" type="floor"/>
@@ -969,13 +969,13 @@
  <tile id="965" type="floor"/>
  <tile id="966" type="floor"/>
  <tile id="967" type="floor"/>
- <tile id="968" type="floor"/>
- <tile id="969" type="floor"/>
- <tile id="970" type="floor"/>
- <tile id="971" type="floor"/>
+ <tile id="968" type="sign"/>
+ <tile id="969" type="sign"/>
+ <tile id="970" type="sign"/>
+ <tile id="971" type="sign"/>
  <tile id="972" type="floor"/>
  <tile id="973" type="floor"/>
- <tile id="974" type="floor"/>
+ <tile id="974" type="sign"/>
  <tile id="975" type="floor"/>
  <tile id="976" type="floor"/>
  <tile id="977" type="floor"/>
@@ -985,166 +985,166 @@
  <tile id="981" type="floor"/>
  <tile id="982" type="floor"/>
  <tile id="983" type="floor"/>
- <tile id="984" type="floor"/>
- <tile id="985" type="floor"/>
- <tile id="986" type="floor"/>
- <tile id="987" type="floor"/>
- <tile id="988" type="floor"/>
- <tile id="989" type="floor"/>
- <tile id="990" type="floor"/>
- <tile id="991" type="floor"/>
- <tile id="992" type="floor"/>
- <tile id="993" type="floor"/>
- <tile id="994" type="floor"/>
- <tile id="995" type="floor"/>
- <tile id="996" type="floor"/>
- <tile id="997" type="floor"/>
- <tile id="998" type="floor"/>
- <tile id="999" type="floor"/>
- <tile id="1000" type="floor"/>
- <tile id="1001" type="floor"/>
- <tile id="1002" type="floor"/>
- <tile id="1003" type="floor"/>
- <tile id="1004" type="floor"/>
- <tile id="1005" type="floor"/>
- <tile id="1006" type="floor"/>
- <tile id="1007" type="floor"/>
- <tile id="1008" type="floor"/>
- <tile id="1009" type="floor"/>
- <tile id="1010" type="floor"/>
- <tile id="1011" type="floor"/>
- <tile id="1012" type="floor"/>
- <tile id="1013" type="floor"/>
- <tile id="1014" type="floor"/>
- <tile id="1015" type="floor"/>
- <tile id="1016" type="floor"/>
- <tile id="1017" type="floor"/>
- <tile id="1018" type="floor"/>
- <tile id="1019" type="floor"/>
- <tile id="1020" type="floor"/>
- <tile id="1021" type="floor"/>
- <tile id="1022" type="floor"/>
- <tile id="1023" type="floor"/>
- <tile id="1024" type="floor"/>
- <tile id="1025" type="floor"/>
+ <tile id="984" type="wall"/>
+ <tile id="985" type="wall"/>
+ <tile id="986" type="wall"/>
+ <tile id="987" type="wall"/>
+ <tile id="988" type="wall"/>
+ <tile id="989" type="wall"/>
+ <tile id="990" type="wall"/>
+ <tile id="991" type="wall"/>
+ <tile id="992" type="wall"/>
+ <tile id="993" type="wall"/>
+ <tile id="994" type="wall"/>
+ <tile id="995" type="wall"/>
+ <tile id="996" type="wall"/>
+ <tile id="997" type="wall"/>
+ <tile id="998" type="wall"/>
+ <tile id="999" type="wall"/>
+ <tile id="1000" type="wall"/>
+ <tile id="1001" type="wall"/>
+ <tile id="1002" type="wall"/>
+ <tile id="1003" type="wall"/>
+ <tile id="1004" type="wall"/>
+ <tile id="1005" type="wall"/>
+ <tile id="1006" type="wall"/>
+ <tile id="1007" type="wall"/>
+ <tile id="1008" type="wall"/>
+ <tile id="1009" type="wall"/>
+ <tile id="1010" type="wall"/>
+ <tile id="1011" type="wall"/>
+ <tile id="1012" type="wall"/>
+ <tile id="1013" type="wall"/>
+ <tile id="1014" type="wall"/>
+ <tile id="1015" type="wall"/>
+ <tile id="1016" type="wall"/>
+ <tile id="1017" type="wall"/>
+ <tile id="1018" type="wall"/>
+ <tile id="1019" type="wall"/>
+ <tile id="1020" type="wall"/>
+ <tile id="1021" type="wall"/>
+ <tile id="1022" type="wall"/>
+ <tile id="1023" type="wall"/>
+ <tile id="1024" type="wall"/>
+ <tile id="1025" type="wall"/>
  <tile id="1026" type="floor"/>
- <tile id="1027" type="floor"/>
- <tile id="1028" type="floor"/>
- <tile id="1029" type="floor"/>
- <tile id="1030" type="floor"/>
+ <tile id="1027" type="wall"/>
+ <tile id="1028" type="wall"/>
+ <tile id="1029" type="wall"/>
+ <tile id="1030" type="wall"/>
  <tile id="1031" type="floor"/>
- <tile id="1032" type="floor"/>
- <tile id="1033" type="floor"/>
+ <tile id="1032" type="wall"/>
+ <tile id="1033" type="wall"/>
  <tile id="1034" type="floor"/>
- <tile id="1035" type="floor"/>
- <tile id="1036" type="floor"/>
- <tile id="1037" type="floor"/>
- <tile id="1038" type="floor"/>
- <tile id="1039" type="floor"/>
+ <tile id="1035" type="wall"/>
+ <tile id="1036" type="wall"/>
+ <tile id="1037" type="wall"/>
+ <tile id="1038" type="wall"/>
+ <tile id="1039" type="wall"/>
  <tile id="1040" type="floor"/>
  <tile id="1041" type="floor"/>
  <tile id="1042" type="floor"/>
- <tile id="1043" type="floor"/>
- <tile id="1044" type="floor"/>
- <tile id="1045" type="floor"/>
+ <tile id="1043" type="wall"/>
+ <tile id="1044" type="wall"/>
+ <tile id="1045" type="wall"/>
  <tile id="1046" type="floor"/>
- <tile id="1047" type="floor"/>
- <tile id="1048" type="floor"/>
- <tile id="1049" type="floor"/>
- <tile id="1050" type="floor"/>
- <tile id="1051" type="floor"/>
- <tile id="1052" type="floor"/>
+ <tile id="1047" type="wall"/>
+ <tile id="1048" type="wall"/>
+ <tile id="1049" type="wall"/>
+ <tile id="1050" type="wall"/>
+ <tile id="1051" type="wall"/>
+ <tile id="1052" type="wall"/>
  <tile id="1053" type="floor"/>
  <tile id="1054" type="floor"/>
  <tile id="1055" type="floor"/>
- <tile id="1056" type="floor"/>
- <tile id="1057" type="floor"/>
- <tile id="1058" type="floor"/>
- <tile id="1059" type="floor"/>
- <tile id="1060" type="floor"/>
+ <tile id="1056" type="wall"/>
+ <tile id="1057" type="wall"/>
+ <tile id="1058" type="wall"/>
+ <tile id="1059" type="wall"/>
+ <tile id="1060" type="wall"/>
  <tile id="1061" type="floor"/>
- <tile id="1062" type="floor"/>
- <tile id="1063" type="floor"/>
- <tile id="1064" type="floor"/>
- <tile id="1065" type="floor"/>
- <tile id="1066" type="floor"/>
- <tile id="1067" type="floor"/>
- <tile id="1068" type="floor"/>
+ <tile id="1062" type="wall"/>
+ <tile id="1063" type="wall"/>
+ <tile id="1064" type="wall"/>
+ <tile id="1065" type="wall"/>
+ <tile id="1066" type="wall"/>
+ <tile id="1067" type="wall"/>
+ <tile id="1068" type="wall"/>
  <tile id="1069" type="floor"/>
- <tile id="1070" type="floor"/>
- <tile id="1071" type="floor"/>
- <tile id="1072" type="floor"/>
- <tile id="1073" type="floor"/>
- <tile id="1074" type="floor"/>
- <tile id="1075" type="floor"/>
- <tile id="1076" type="floor"/>
+ <tile id="1070" type="wall"/>
+ <tile id="1071" type="wall"/>
+ <tile id="1072" type="wall"/>
+ <tile id="1073" type="wall"/>
+ <tile id="1074" type="door"/>
+ <tile id="1075" type="wall"/>
+ <tile id="1076" type="wall"/>
  <tile id="1077" type="floor"/>
  <tile id="1078" type="floor"/>
  <tile id="1079" type="floor"/>
- <tile id="1080" type="floor"/>
- <tile id="1081" type="floor"/>
- <tile id="1082" type="floor"/>
- <tile id="1083" type="floor"/>
- <tile id="1084" type="floor"/>
+ <tile id="1080" type="wall"/>
+ <tile id="1081" type="wall"/>
+ <tile id="1082" type="wall"/>
+ <tile id="1083" type="wall"/>
+ <tile id="1084" type="wall"/>
  <tile id="1085" type="floor"/>
  <tile id="1086" type="floor"/>
  <tile id="1087" type="floor"/>
- <tile id="1088" type="floor"/>
- <tile id="1089" type="floor"/>
- <tile id="1090" type="floor"/>
- <tile id="1091" type="floor"/>
- <tile id="1092" type="floor"/>
+ <tile id="1088" type="wall"/>
+ <tile id="1089" type="wall"/>
+ <tile id="1090" type="wall"/>
+ <tile id="1091" type="wall"/>
+ <tile id="1092" type="wall"/>
  <tile id="1093" type="floor"/>
  <tile id="1094" type="floor"/>
  <tile id="1095" type="floor"/>
- <tile id="1096" type="floor"/>
- <tile id="1097" type="floor"/>
- <tile id="1098" type="floor"/>
- <tile id="1099" type="floor"/>
- <tile id="1100" type="floor"/>
+ <tile id="1096" type="wall"/>
+ <tile id="1097" type="wall"/>
+ <tile id="1098" type="wall"/>
+ <tile id="1099" type="wall"/>
+ <tile id="1100" type="wall"/>
  <tile id="1101" type="floor"/>
  <tile id="1102" type="floor"/>
  <tile id="1103" type="floor"/>
- <tile id="1104" type="floor"/>
- <tile id="1105" type="floor"/>
- <tile id="1106" type="floor"/>
- <tile id="1107" type="floor"/>
- <tile id="1108" type="floor"/>
+ <tile id="1104" type="wall"/>
+ <tile id="1105" type="wall"/>
+ <tile id="1106" type="door"/>
+ <tile id="1107" type="wall"/>
+ <tile id="1108" type="wall"/>
  <tile id="1109" type="floor"/>
  <tile id="1110" type="floor"/>
  <tile id="1111" type="floor"/>
- <tile id="1112" type="floor"/>
- <tile id="1113" type="floor"/>
- <tile id="1114" type="floor"/>
- <tile id="1115" type="floor"/>
- <tile id="1116" type="floor"/>
+ <tile id="1112" type="wall"/>
+ <tile id="1113" type="wall"/>
+ <tile id="1114" type="wall"/>
+ <tile id="1115" type="wall"/>
+ <tile id="1116" type="wall"/>
  <tile id="1117" type="floor"/>
- <tile id="1118" type="floor"/>
- <tile id="1119" type="floor"/>
- <tile id="1120" type="floor"/>
- <tile id="1121" type="floor"/>
- <tile id="1122" type="floor"/>
- <tile id="1123" type="floor"/>
- <tile id="1124" type="floor"/>
+ <tile id="1118" type="wall"/>
+ <tile id="1119" type="wall"/>
+ <tile id="1120" type="wall"/>
+ <tile id="1121" type="wall"/>
+ <tile id="1122" type="wall"/>
+ <tile id="1123" type="wall"/>
+ <tile id="1124" type="wall"/>
  <tile id="1125" type="floor"/>
- <tile id="1126" type="floor"/>
- <tile id="1127" type="floor"/>
- <tile id="1128" type="floor"/>
- <tile id="1129" type="floor"/>
- <tile id="1130" type="floor"/>
- <tile id="1131" type="floor"/>
- <tile id="1132" type="floor"/>
- <tile id="1133" type="floor"/>
- <tile id="1134" type="floor"/>
- <tile id="1135" type="floor"/>
- <tile id="1136" type="floor"/>
- <tile id="1137" type="floor"/>
- <tile id="1138" type="floor"/>
- <tile id="1139" type="floor"/>
- <tile id="1140" type="floor"/>
- <tile id="1141" type="floor"/>
- <tile id="1142" type="floor"/>
- <tile id="1143" type="floor"/>
+ <tile id="1126" type="wall"/>
+ <tile id="1127" type="wall"/>
+ <tile id="1128" type="wall"/>
+ <tile id="1129" type="wall"/>
+ <tile id="1130" type="wall"/>
+ <tile id="1131" type="wall"/>
+ <tile id="1132" type="wall"/>
+ <tile id="1133" type="wall"/>
+ <tile id="1134" type="wall"/>
+ <tile id="1135" type="wall"/>
+ <tile id="1136" type="wall"/>
+ <tile id="1137" type="door"/>
+ <tile id="1138" type="wall"/>
+ <tile id="1139" type="wall"/>
+ <tile id="1140" type="wall"/>
+ <tile id="1141" type="wall"/>
+ <tile id="1142" type="door"/>
+ <tile id="1143" type="wall"/>
  <tile id="1144" type="floor"/>
  <tile id="1145" type="floor"/>
  <tile id="1146" type="floor"/>
@@ -1153,27 +1153,27 @@
  <tile id="1149" type="floor"/>
  <tile id="1150" type="floor"/>
  <tile id="1151" type="floor"/>
- <tile id="1152" type="floor"/>
- <tile id="1153" type="floor"/>
- <tile id="1154" type="floor"/>
- <tile id="1155" type="floor"/>
- <tile id="1156" type="floor"/>
+ <tile id="1152" type="wall"/>
+ <tile id="1153" type="wall"/>
+ <tile id="1154" type="wall"/>
+ <tile id="1155" type="wall"/>
+ <tile id="1156" type="wall"/>
  <tile id="1157" type="floor"/>
  <tile id="1158" type="floor"/>
  <tile id="1159" type="floor"/>
- <tile id="1160" type="floor"/>
- <tile id="1161" type="floor"/>
- <tile id="1162" type="floor"/>
- <tile id="1163" type="floor"/>
- <tile id="1164" type="floor"/>
+ <tile id="1160" type="wall"/>
+ <tile id="1161" type="wall"/>
+ <tile id="1162" type="wall"/>
+ <tile id="1163" type="wall"/>
+ <tile id="1164" type="wall"/>
  <tile id="1165" type="floor"/>
  <tile id="1166" type="floor"/>
  <tile id="1167" type="floor"/>
- <tile id="1168" type="floor"/>
- <tile id="1169" type="floor"/>
- <tile id="1170" type="floor"/>
- <tile id="1171" type="floor"/>
- <tile id="1172" type="floor"/>
+ <tile id="1168" type="wall"/>
+ <tile id="1169" type="door"/>
+ <tile id="1170" type="wall"/>
+ <tile id="1171" type="wall"/>
+ <tile id="1172" type="wall"/>
  <tile id="1173" type="floor"/>
  <tile id="1174" type="floor"/>
  <tile id="1175" type="floor"/>
@@ -1188,27 +1188,27 @@
  <tile id="1184" type="floor"/>
  <tile id="1185" type="floor"/>
  <tile id="1186" type="floor"/>
- <tile id="1187" type="floor"/>
- <tile id="1188" type="floor"/>
- <tile id="1189" type="floor"/>
- <tile id="1190" type="floor"/>
- <tile id="1191" type="floor"/>
+ <tile id="1187" type="wall"/>
+ <tile id="1188" type="wall"/>
+ <tile id="1189" type="wall"/>
+ <tile id="1190" type="wall"/>
+ <tile id="1191" type="wall"/>
  <tile id="1192" type="floor"/>
  <tile id="1193" type="floor"/>
  <tile id="1194" type="floor"/>
- <tile id="1195" type="floor"/>
- <tile id="1196" type="floor"/>
- <tile id="1197" type="floor"/>
- <tile id="1198" type="floor"/>
- <tile id="1199" type="floor"/>
+ <tile id="1195" type="wall"/>
+ <tile id="1196" type="wall"/>
+ <tile id="1197" type="wall"/>
+ <tile id="1198" type="wall"/>
+ <tile id="1199" type="wall"/>
  <tile id="1200" type="floor"/>
  <tile id="1201" type="floor"/>
  <tile id="1202" type="floor"/>
- <tile id="1203" type="floor"/>
- <tile id="1204" type="floor"/>
- <tile id="1205" type="floor"/>
- <tile id="1206" type="floor"/>
- <tile id="1207" type="floor"/>
+ <tile id="1203" type="wall"/>
+ <tile id="1204" type="wall"/>
+ <tile id="1205" type="door"/>
+ <tile id="1206" type="wall"/>
+ <tile id="1207" type="wall"/>
  <tile id="1208" type="floor"/>
  <tile id="1209" type="floor"/>
  <tile id="1210" type="floor"/>
@@ -1217,38 +1217,38 @@
  <tile id="1213" type="floor"/>
  <tile id="1214" type="floor"/>
  <tile id="1215" type="floor"/>
- <tile id="1216" type="floor"/>
- <tile id="1217" type="floor"/>
- <tile id="1218" type="floor"/>
- <tile id="1219" type="floor"/>
- <tile id="1220" type="floor"/>
- <tile id="1221" type="floor"/>
+ <tile id="1216" type="wall"/>
+ <tile id="1217" type="wall"/>
+ <tile id="1218" type="wall"/>
+ <tile id="1219" type="wall"/>
+ <tile id="1220" type="wall"/>
+ <tile id="1221" type="wall"/>
  <tile id="1222" type="floor"/>
  <tile id="1223" type="floor"/>
- <tile id="1224" type="floor"/>
- <tile id="1225" type="floor"/>
- <tile id="1226" type="floor"/>
- <tile id="1227" type="floor"/>
- <tile id="1228" type="floor"/>
- <tile id="1229" type="floor"/>
- <tile id="1230" type="floor"/>
- <tile id="1231" type="floor"/>
- <tile id="1232" type="floor"/>
- <tile id="1233" type="floor"/>
- <tile id="1234" type="floor"/>
- <tile id="1235" type="floor"/>
- <tile id="1236" type="floor"/>
- <tile id="1237" type="floor"/>
- <tile id="1238" type="floor"/>
- <tile id="1239" type="floor"/>
- <tile id="1240" type="floor"/>
- <tile id="1241" type="floor"/>
- <tile id="1242" type="floor"/>
- <tile id="1243" type="floor"/>
+ <tile id="1224" type="wall"/>
+ <tile id="1225" type="wall"/>
+ <tile id="1226" type="wall"/>
+ <tile id="1227" type="wall"/>
+ <tile id="1228" type="wall"/>
+ <tile id="1229" type="wall"/>
+ <tile id="1230" type="wall"/>
+ <tile id="1231" type="wall"/>
+ <tile id="1232" type="wall"/>
+ <tile id="1233" type="wall"/>
+ <tile id="1234" type="door"/>
+ <tile id="1235" type="wall"/>
+ <tile id="1236" type="wall"/>
+ <tile id="1237" type="wall"/>
+ <tile id="1238" type="wall"/>
+ <tile id="1239" type="wall"/>
+ <tile id="1240" type="wall"/>
+ <tile id="1241" type="wall"/>
+ <tile id="1242" type="wall"/>
+ <tile id="1243" type="wall"/>
  <tile id="1244" type="floor"/>
- <tile id="1245" type="floor"/>
- <tile id="1246" type="floor"/>
- <tile id="1247" type="floor"/>
+ <tile id="1245" type="wall"/>
+ <tile id="1246" type="wall"/>
+ <tile id="1247" type="wall"/>
  <tile id="1248" type="floor"/>
  <tile id="1249" type="floor"/>
  <tile id="1250" type="floor"/>
@@ -1257,35 +1257,35 @@
  <tile id="1253" type="floor"/>
  <tile id="1254" type="floor"/>
  <tile id="1255" type="floor"/>
- <tile id="1256" type="floor"/>
- <tile id="1257" type="floor"/>
- <tile id="1258" type="floor"/>
- <tile id="1259" type="floor"/>
- <tile id="1260" type="floor"/>
+ <tile id="1256" type="wall"/>
+ <tile id="1257" type="wall"/>
+ <tile id="1258" type="wall"/>
+ <tile id="1259" type="wall"/>
+ <tile id="1260" type="wall"/>
  <tile id="1261" type="floor"/>
  <tile id="1262" type="floor"/>
  <tile id="1263" type="floor"/>
- <tile id="1264" type="floor"/>
- <tile id="1265" type="floor"/>
- <tile id="1266" type="floor"/>
- <tile id="1267" type="floor"/>
- <tile id="1268" type="floor"/>
+ <tile id="1264" type="wall"/>
+ <tile id="1265" type="wall"/>
+ <tile id="1266" type="wall"/>
+ <tile id="1267" type="wall"/>
+ <tile id="1268" type="wall"/>
  <tile id="1269" type="floor"/>
  <tile id="1270" type="floor"/>
  <tile id="1271" type="floor"/>
- <tile id="1272" type="floor"/>
- <tile id="1273" type="floor"/>
- <tile id="1274" type="floor"/>
- <tile id="1275" type="floor"/>
- <tile id="1276" type="floor"/>
+ <tile id="1272" type="wall"/>
+ <tile id="1273" type="wall"/>
+ <tile id="1274" type="wall"/>
+ <tile id="1275" type="wall"/>
+ <tile id="1276" type="wall"/>
  <tile id="1277" type="floor"/>
  <tile id="1278" type="floor"/>
  <tile id="1279" type="floor"/>
- <tile id="1280" type="floor"/>
- <tile id="1281" type="floor"/>
- <tile id="1282" type="floor"/>
- <tile id="1283" type="floor"/>
- <tile id="1284" type="floor"/>
+ <tile id="1280" type="wall"/>
+ <tile id="1281" type="wall"/>
+ <tile id="1282" type="door"/>
+ <tile id="1283" type="wall"/>
+ <tile id="1284" type="wall"/>
  <tile id="1285" type="floor"/>
  <tile id="1286" type="floor"/>
  <tile id="1287" type="floor"/>
@@ -1297,110 +1297,110 @@
  <tile id="1293" type="floor"/>
  <tile id="1294" type="floor"/>
  <tile id="1295" type="floor"/>
- <tile id="1296" type="floor"/>
- <tile id="1297" type="floor"/>
- <tile id="1298" type="floor"/>
- <tile id="1299" type="floor"/>
- <tile id="1300" type="floor"/>
- <tile id="1301" type="floor"/>
- <tile id="1302" type="floor"/>
- <tile id="1303" type="floor"/>
- <tile id="1304" type="floor"/>
- <tile id="1305" type="floor"/>
- <tile id="1306" type="floor"/>
- <tile id="1307" type="floor"/>
- <tile id="1308" type="floor"/>
- <tile id="1309" type="floor"/>
- <tile id="1310" type="floor"/>
- <tile id="1311" type="floor"/>
- <tile id="1312" type="floor"/>
- <tile id="1313" type="floor"/>
- <tile id="1314" type="floor"/>
- <tile id="1315" type="floor"/>
- <tile id="1316" type="floor"/>
- <tile id="1317" type="floor"/>
- <tile id="1318" type="floor"/>
- <tile id="1319" type="floor"/>
- <tile id="1320" type="floor"/>
- <tile id="1321" type="floor"/>
- <tile id="1322" type="floor"/>
- <tile id="1323" type="floor"/>
- <tile id="1324" type="floor"/>
+ <tile id="1296" type="wall"/>
+ <tile id="1297" type="wall"/>
+ <tile id="1298" type="wall"/>
+ <tile id="1299" type="wall"/>
+ <tile id="1300" type="wall"/>
+ <tile id="1301" type="wall"/>
+ <tile id="1302" type="wall"/>
+ <tile id="1303" type="wall"/>
+ <tile id="1304" type="wall"/>
+ <tile id="1305" type="wall"/>
+ <tile id="1306" type="wall"/>
+ <tile id="1307" type="wall"/>
+ <tile id="1308" type="wall"/>
+ <tile id="1309" type="wall"/>
+ <tile id="1310" type="wall"/>
+ <tile id="1311" type="wall"/>
+ <tile id="1312" type="wall"/>
+ <tile id="1313" type="wall"/>
+ <tile id="1314" type="wall"/>
+ <tile id="1315" type="wall"/>
+ <tile id="1316" type="wall"/>
+ <tile id="1317" type="wall"/>
+ <tile id="1318" type="wall"/>
+ <tile id="1319" type="wall"/>
+ <tile id="1320" type="wall"/>
+ <tile id="1321" type="door"/>
+ <tile id="1322" type="wall"/>
+ <tile id="1323" type="wall"/>
+ <tile id="1324" type="wall"/>
  <tile id="1325" type="floor"/>
  <tile id="1326" type="floor"/>
  <tile id="1327" type="floor"/>
- <tile id="1328" type="floor"/>
- <tile id="1329" type="floor"/>
- <tile id="1330" type="floor"/>
- <tile id="1331" type="floor"/>
- <tile id="1332" type="floor"/>
- <tile id="1333" type="floor"/>
- <tile id="1334" type="floor"/>
- <tile id="1335" type="floor"/>
- <tile id="1336" type="floor"/>
- <tile id="1337" type="floor"/>
+ <tile id="1328" type="wall"/>
+ <tile id="1329" type="wall"/>
+ <tile id="1330" type="wall"/>
+ <tile id="1331" type="wall"/>
+ <tile id="1332" type="wall"/>
+ <tile id="1333" type="wall"/>
+ <tile id="1334" type="wall"/>
+ <tile id="1335" type="wall"/>
+ <tile id="1336" type="wall"/>
+ <tile id="1337" type="wall"/>
  <tile id="1338" type="floor"/>
- <tile id="1339" type="floor"/>
- <tile id="1340" type="floor"/>
- <tile id="1341" type="floor"/>
- <tile id="1342" type="floor"/>
- <tile id="1343" type="floor"/>
- <tile id="1344" type="floor"/>
- <tile id="1345" type="floor"/>
- <tile id="1346" type="floor"/>
- <tile id="1347" type="floor"/>
- <tile id="1348" type="floor"/>
+ <tile id="1339" type="wall"/>
+ <tile id="1340" type="wall"/>
+ <tile id="1341" type="wall"/>
+ <tile id="1342" type="door"/>
+ <tile id="1343" type="wall"/>
+ <tile id="1344" type="wall"/>
+ <tile id="1345" type="wall"/>
+ <tile id="1346" type="wall"/>
+ <tile id="1347" type="wall"/>
+ <tile id="1348" type="wall"/>
  <tile id="1349" type="floor"/>
  <tile id="1350" type="floor"/>
  <tile id="1351" type="floor"/>
- <tile id="1352" type="floor"/>
- <tile id="1353" type="floor"/>
- <tile id="1354" type="floor"/>
- <tile id="1355" type="floor"/>
- <tile id="1356" type="floor"/>
+ <tile id="1352" type="wall"/>
+ <tile id="1353" type="wall"/>
+ <tile id="1354" type="door"/>
+ <tile id="1355" type="wall"/>
+ <tile id="1356" type="wall"/>
  <tile id="1357" type="floor"/>
  <tile id="1358" type="floor"/>
  <tile id="1359" type="floor"/>
- <tile id="1360" type="floor"/>
- <tile id="1361" type="floor"/>
- <tile id="1362" type="floor"/>
- <tile id="1363" type="floor"/>
- <tile id="1364" type="floor"/>
- <tile id="1365" type="floor"/>
- <tile id="1366" type="floor"/>
- <tile id="1367" type="floor"/>
- <tile id="1368" type="floor"/>
- <tile id="1369" type="floor"/>
- <tile id="1370" type="floor"/>
- <tile id="1371" type="floor"/>
- <tile id="1372" type="floor"/>
- <tile id="1373" type="floor"/>
- <tile id="1374" type="floor"/>
- <tile id="1375" type="floor"/>
- <tile id="1376" type="floor"/>
- <tile id="1377" type="floor"/>
- <tile id="1378" type="floor"/>
- <tile id="1379" type="floor"/>
- <tile id="1380" type="floor"/>
- <tile id="1381" type="floor"/>
- <tile id="1382" type="floor"/>
- <tile id="1383" type="floor"/>
- <tile id="1384" type="floor"/>
- <tile id="1385" type="floor"/>
- <tile id="1386" type="floor"/>
- <tile id="1387" type="floor"/>
- <tile id="1388" type="floor"/>
- <tile id="1389" type="floor"/>
- <tile id="1390" type="floor"/>
- <tile id="1391" type="floor"/>
- <tile id="1392" type="floor"/>
- <tile id="1393" type="floor"/>
- <tile id="1394" type="floor"/>
- <tile id="1395" type="floor"/>
- <tile id="1396" type="floor"/>
- <tile id="1397" type="floor"/>
- <tile id="1398" type="floor"/>
- <tile id="1399" type="floor"/>
+ <tile id="1360" type="wall"/>
+ <tile id="1361" type="wall"/>
+ <tile id="1362" type="wall"/>
+ <tile id="1363" type="wall"/>
+ <tile id="1364" type="wall"/>
+ <tile id="1365" type="wall"/>
+ <tile id="1366" type="wall"/>
+ <tile id="1367" type="wall"/>
+ <tile id="1368" type="wall"/>
+ <tile id="1369" type="wall"/>
+ <tile id="1370" type="wall"/>
+ <tile id="1371" type="wall"/>
+ <tile id="1372" type="wall"/>
+ <tile id="1373" type="wall"/>
+ <tile id="1374" type="wall"/>
+ <tile id="1375" type="wall"/>
+ <tile id="1376" type="wall"/>
+ <tile id="1377" type="wall"/>
+ <tile id="1378" type="wall"/>
+ <tile id="1379" type="wall"/>
+ <tile id="1380" type="wall"/>
+ <tile id="1381" type="wall"/>
+ <tile id="1382" type="wall"/>
+ <tile id="1383" type="wall"/>
+ <tile id="1384" type="wall"/>
+ <tile id="1385" type="wall"/>
+ <tile id="1386" type="wall"/>
+ <tile id="1387" type="wall"/>
+ <tile id="1388" type="wall"/>
+ <tile id="1389" type="wall"/>
+ <tile id="1390" type="wall"/>
+ <tile id="1391" type="wall"/>
+ <tile id="1392" type="wall"/>
+ <tile id="1393" type="door"/>
+ <tile id="1394" type="wall"/>
+ <tile id="1395" type="wall"/>
+ <tile id="1396" type="wall"/>
+ <tile id="1397" type="wall"/>
+ <tile id="1398" type="wall"/>
+ <tile id="1399" type="wall"/>
  <tile id="1400" type="floor"/>
  <tile id="1401" type="floor"/>
  <tile id="1402" type="floor"/>
@@ -1410,90 +1410,90 @@
  <tile id="1406" type="floor"/>
  <tile id="1407" type="floor"/>
  <tile id="1408" type="floor"/>
- <tile id="1409" type="floor"/>
- <tile id="1410" type="floor"/>
- <tile id="1411" type="floor"/>
- <tile id="1412" type="floor"/>
- <tile id="1413" type="floor"/>
+ <tile id="1409" type="wall"/>
+ <tile id="1410" type="wall"/>
+ <tile id="1411" type="wall"/>
+ <tile id="1412" type="wall"/>
+ <tile id="1413" type="wall"/>
  <tile id="1414" type="floor"/>
  <tile id="1415" type="floor"/>
  <tile id="1416" type="floor"/>
- <tile id="1417" type="floor"/>
- <tile id="1418" type="floor"/>
- <tile id="1419" type="floor"/>
- <tile id="1420" type="floor"/>
- <tile id="1421" type="floor"/>
+ <tile id="1417" type="wall"/>
+ <tile id="1418" type="wall"/>
+ <tile id="1419" type="wall"/>
+ <tile id="1420" type="wall"/>
+ <tile id="1421" type="wall"/>
  <tile id="1422" type="floor"/>
  <tile id="1423" type="floor"/>
- <tile id="1424" type="floor"/>
- <tile id="1425" type="floor"/>
- <tile id="1426" type="floor"/>
- <tile id="1427" type="floor"/>
- <tile id="1428" type="floor"/>
- <tile id="1429" type="floor"/>
- <tile id="1430" type="floor"/>
+ <tile id="1424" type="wall"/>
+ <tile id="1425" type="wall"/>
+ <tile id="1426" type="wall"/>
+ <tile id="1427" type="wall"/>
+ <tile id="1428" type="wall"/>
+ <tile id="1429" type="wall"/>
+ <tile id="1430" type="wall"/>
  <tile id="1431" type="floor"/>
- <tile id="1432" type="floor"/>
- <tile id="1433" type="floor"/>
- <tile id="1434" type="floor"/>
- <tile id="1435" type="floor"/>
- <tile id="1436" type="floor"/>
- <tile id="1437" type="floor"/>
- <tile id="1438" type="floor"/>
+ <tile id="1432" type="wall"/>
+ <tile id="1433" type="wall"/>
+ <tile id="1434" type="wall"/>
+ <tile id="1435" type="wall"/>
+ <tile id="1436" type="wall"/>
+ <tile id="1437" type="wall"/>
+ <tile id="1438" type="wall"/>
  <tile id="1439" type="floor"/>
  <tile id="1440" type="floor"/>
- <tile id="1441" type="floor"/>
- <tile id="1442" type="floor"/>
- <tile id="1443" type="floor"/>
- <tile id="1444" type="floor"/>
- <tile id="1445" type="floor"/>
+ <tile id="1441" type="wall"/>
+ <tile id="1442" type="wall"/>
+ <tile id="1443" type="wall"/>
+ <tile id="1444" type="wall"/>
+ <tile id="1445" type="wall"/>
  <tile id="1446" type="floor"/>
  <tile id="1447" type="floor"/>
  <tile id="1448" type="floor"/>
- <tile id="1449" type="floor"/>
- <tile id="1450" type="floor"/>
- <tile id="1451" type="floor"/>
- <tile id="1452" type="floor"/>
- <tile id="1453" type="floor"/>
+ <tile id="1449" type="wall"/>
+ <tile id="1450" type="wall"/>
+ <tile id="1451" type="wall"/>
+ <tile id="1452" type="wall"/>
+ <tile id="1453" type="wall"/>
  <tile id="1454" type="floor"/>
  <tile id="1455" type="floor"/>
  <tile id="1456" type="floor"/>
- <tile id="1457" type="floor"/>
- <tile id="1458" type="floor"/>
- <tile id="1459" type="floor"/>
- <tile id="1460" type="floor"/>
- <tile id="1461" type="floor"/>
+ <tile id="1457" type="wall"/>
+ <tile id="1458" type="wall"/>
+ <tile id="1459" type="wall"/>
+ <tile id="1460" type="wall"/>
+ <tile id="1461" type="wall"/>
  <tile id="1462" type="floor"/>
  <tile id="1463" type="floor"/>
- <tile id="1464" type="floor"/>
- <tile id="1465" type="floor"/>
- <tile id="1466" type="floor"/>
+ <tile id="1464" type="wall"/>
+ <tile id="1465" type="wall"/>
+ <tile id="1466" type="wall"/>
  <tile id="1467" type="floor"/>
  <tile id="1468" type="floor"/>
- <tile id="1469" type="floor"/>
- <tile id="1470" type="floor"/>
- <tile id="1471" type="floor"/>
- <tile id="1472" type="floor"/>
- <tile id="1473" type="floor"/>
- <tile id="1474" type="floor"/>
+ <tile id="1469" type="wall"/>
+ <tile id="1470" type="wall"/>
+ <tile id="1471" type="wall"/>
+ <tile id="1472" type="wall"/>
+ <tile id="1473" type="door"/>
+ <tile id="1474" type="wall"/>
  <tile id="1475" type="floor"/>
  <tile id="1476" type="floor"/>
- <tile id="1477" type="floor"/>
- <tile id="1478" type="floor"/>
- <tile id="1479" type="floor"/>
+ <tile id="1477" type="wall"/>
+ <tile id="1478" type="door"/>
+ <tile id="1479" type="wall"/>
  <tile id="1480" type="floor"/>
  <tile id="1481" type="floor"/>
- <tile id="1482" type="floor"/>
- <tile id="1483" type="floor"/>
- <tile id="1484" type="floor"/>
+ <tile id="1482" type="wall"/>
+ <tile id="1483" type="wall"/>
+ <tile id="1484" type="wall"/>
  <tile id="1485" type="floor"/>
  <tile id="1486" type="floor"/>
  <tile id="1487" type="floor"/>
  <tile id="1488" type="floor"/>
  <tile id="1489" type="floor"/>
- <tile id="1490" type="floor"/>
- <tile id="1491" type="floor"/>
- <tile id="1492" type="floor"/>
+ <tile id="1490" type="wall"/>
+ <tile id="1491" type="door"/>
+ <tile id="1492" type="wall"/>
  <tile id="1493" type="floor"/>
  <tile id="1494" type="floor"/>
  <tile id="1495" type="floor"/>
@@ -1505,30 +1505,30 @@
  <tile id="1501" type="floor"/>
  <tile id="1502" type="floor"/>
  <tile id="1503" type="floor"/>
- <tile id="1504" type="floor"/>
- <tile id="1505" type="floor"/>
- <tile id="1506" type="floor"/>
- <tile id="1507" type="floor"/>
- <tile id="1508" type="floor"/>
- <tile id="1509" type="floor"/>
- <tile id="1510" type="floor"/>
- <tile id="1511" type="floor"/>
- <tile id="1512" type="floor"/>
- <tile id="1513" type="floor"/>
- <tile id="1514" type="floor"/>
- <tile id="1515" type="floor"/>
- <tile id="1516" type="floor"/>
- <tile id="1517" type="floor"/>
- <tile id="1518" type="floor"/>
- <tile id="1519" type="floor"/>
- <tile id="1520" type="floor"/>
- <tile id="1521" type="floor"/>
- <tile id="1522" type="floor"/>
- <tile id="1523" type="floor"/>
- <tile id="1524" type="floor"/>
- <tile id="1525" type="floor"/>
- <tile id="1526" type="floor"/>
- <tile id="1527" type="floor"/>
+ <tile id="1504" type="wall"/>
+ <tile id="1505" type="wall"/>
+ <tile id="1506" type="wall"/>
+ <tile id="1507" type="wall"/>
+ <tile id="1508" type="wall"/>
+ <tile id="1509" type="wall"/>
+ <tile id="1510" type="wall"/>
+ <tile id="1511" type="wall"/>
+ <tile id="1512" type="wall"/>
+ <tile id="1513" type="wall"/>
+ <tile id="1514" type="wall"/>
+ <tile id="1515" type="wall"/>
+ <tile id="1516" type="wall"/>
+ <tile id="1517" type="wall"/>
+ <tile id="1518" type="wall"/>
+ <tile id="1519" type="wall"/>
+ <tile id="1520" type="wall"/>
+ <tile id="1521" type="door"/>
+ <tile id="1522" type="wall"/>
+ <tile id="1523" type="wall"/>
+ <tile id="1524" type="wall"/>
+ <tile id="1525" type="door"/>
+ <tile id="1526" type="wall"/>
+ <tile id="1527" type="wall"/>
  <tile id="1528" type="floor"/>
  <tile id="1529" type="floor"/>
  <tile id="1530" type="floor"/>
@@ -1537,252 +1537,252 @@
  <tile id="1533" type="floor"/>
  <tile id="1534" type="floor"/>
  <tile id="1535" type="floor"/>
- <tile id="1536" type="floor"/>
- <tile id="1537" type="floor"/>
- <tile id="1538" type="floor"/>
- <tile id="1539" type="floor"/>
+ <tile id="1536" type="wall"/>
+ <tile id="1537" type="wall"/>
+ <tile id="1538" type="wall"/>
+ <tile id="1539" type="wall"/>
  <tile id="1540" type="floor"/>
  <tile id="1541" type="floor"/>
  <tile id="1542" type="floor"/>
  <tile id="1543" type="floor"/>
- <tile id="1544" type="floor"/>
- <tile id="1545" type="floor"/>
- <tile id="1546" type="floor"/>
- <tile id="1547" type="floor"/>
- <tile id="1548" type="floor"/>
- <tile id="1549" type="floor"/>
- <tile id="1550" type="floor"/>
- <tile id="1551" type="floor"/>
- <tile id="1552" type="floor"/>
- <tile id="1553" type="floor"/>
- <tile id="1554" type="floor"/>
- <tile id="1555" type="floor"/>
- <tile id="1556" type="floor"/>
- <tile id="1557" type="floor"/>
- <tile id="1558" type="floor"/>
- <tile id="1559" type="floor"/>
- <tile id="1560" type="floor"/>
- <tile id="1561" type="floor"/>
- <tile id="1562" type="floor"/>
- <tile id="1563" type="floor"/>
- <tile id="1564" type="floor"/>
- <tile id="1565" type="floor"/>
- <tile id="1566" type="floor"/>
- <tile id="1567" type="floor"/>
- <tile id="1568" type="floor"/>
- <tile id="1569" type="floor"/>
- <tile id="1570" type="floor"/>
- <tile id="1571" type="floor"/>
- <tile id="1572" type="floor"/>
- <tile id="1573" type="floor"/>
- <tile id="1574" type="floor"/>
- <tile id="1575" type="floor"/>
+ <tile id="1544" type="wall"/>
+ <tile id="1545" type="wall"/>
+ <tile id="1546" type="wall"/>
+ <tile id="1547" type="wall"/>
+ <tile id="1548" type="wall"/>
+ <tile id="1549" type="wall"/>
+ <tile id="1550" type="wall"/>
+ <tile id="1551" type="wall"/>
+ <tile id="1552" type="wall"/>
+ <tile id="1553" type="door"/>
+ <tile id="1554" type="wall"/>
+ <tile id="1555" type="wall"/>
+ <tile id="1556" type="wall"/>
+ <tile id="1557" type="wall"/>
+ <tile id="1558" type="wall"/>
+ <tile id="1559" type="wall"/>
+ <tile id="1560" type="wall"/>
+ <tile id="1561" type="wall"/>
+ <tile id="1562" type="wall"/>
+ <tile id="1563" type="wall"/>
+ <tile id="1564" type="wall"/>
+ <tile id="1565" type="door"/>
+ <tile id="1566" type="wall"/>
+ <tile id="1567" type="wall"/>
+ <tile id="1568" type="wall"/>
+ <tile id="1569" type="wall"/>
+ <tile id="1570" type="door"/>
+ <tile id="1571" type="wall"/>
+ <tile id="1572" type="wall"/>
+ <tile id="1573" type="wall"/>
+ <tile id="1574" type="wall"/>
+ <tile id="1575" type="wall"/>
  <tile id="1576" type="floor"/>
  <tile id="1577" type="floor"/>
  <tile id="1578" type="floor"/>
  <tile id="1579" type="floor"/>
- <tile id="1580" type="floor"/>
- <tile id="1581" type="floor"/>
- <tile id="1582" type="floor"/>
- <tile id="1583" type="floor"/>
- <tile id="1584" type="floor"/>
- <tile id="1585" type="floor"/>
- <tile id="1586" type="floor"/>
- <tile id="1587" type="floor"/>
- <tile id="1588" type="floor"/>
+ <tile id="1580" type="wall"/>
+ <tile id="1581" type="wall"/>
+ <tile id="1582" type="wall"/>
+ <tile id="1583" type="wall"/>
+ <tile id="1584" type="wall"/>
+ <tile id="1585" type="wall"/>
+ <tile id="1586" type="wall"/>
+ <tile id="1587" type="wall"/>
+ <tile id="1588" type="wall"/>
  <tile id="1589" type="floor"/>
  <tile id="1590" type="floor"/>
  <tile id="1591" type="floor"/>
- <tile id="1592" type="floor"/>
- <tile id="1593" type="floor"/>
- <tile id="1594" type="floor"/>
- <tile id="1595" type="floor"/>
- <tile id="1596" type="floor"/>
- <tile id="1597" type="floor"/>
- <tile id="1598" type="floor"/>
- <tile id="1599" type="floor"/>
- <tile id="1600" type="floor"/>
- <tile id="1601" type="floor"/>
- <tile id="1602" type="floor"/>
- <tile id="1603" type="floor"/>
- <tile id="1604" type="floor"/>
- <tile id="1605" type="floor"/>
- <tile id="1606" type="floor"/>
- <tile id="1607" type="floor"/>
- <tile id="1608" type="floor"/>
- <tile id="1609" type="floor"/>
- <tile id="1610" type="floor"/>
- <tile id="1611" type="floor"/>
- <tile id="1612" type="floor"/>
- <tile id="1613" type="floor"/>
- <tile id="1614" type="floor"/>
- <tile id="1615" type="floor"/>
- <tile id="1616" type="floor"/>
- <tile id="1617" type="floor"/>
- <tile id="1618" type="floor"/>
- <tile id="1619" type="floor"/>
- <tile id="1620" type="floor"/>
+ <tile id="1592" type="wall"/>
+ <tile id="1593" type="wall"/>
+ <tile id="1594" type="wall"/>
+ <tile id="1595" type="wall"/>
+ <tile id="1596" type="wall"/>
+ <tile id="1597" type="wall"/>
+ <tile id="1598" type="wall"/>
+ <tile id="1599" type="wall"/>
+ <tile id="1600" type="wall"/>
+ <tile id="1601" type="wall"/>
+ <tile id="1602" type="wall"/>
+ <tile id="1603" type="wall"/>
+ <tile id="1604" type="wall"/>
+ <tile id="1605" type="wall"/>
+ <tile id="1606" type="wall"/>
+ <tile id="1607" type="wall"/>
+ <tile id="1608" type="wall"/>
+ <tile id="1609" type="wall"/>
+ <tile id="1610" type="wall"/>
+ <tile id="1611" type="wall"/>
+ <tile id="1612" type="wall"/>
+ <tile id="1613" type="wall"/>
+ <tile id="1614" type="wall"/>
+ <tile id="1615" type="wall"/>
+ <tile id="1616" type="wall"/>
+ <tile id="1617" type="wall"/>
+ <tile id="1618" type="wall"/>
+ <tile id="1619" type="wall"/>
+ <tile id="1620" type="wall"/>
  <tile id="1621" type="floor"/>
  <tile id="1622" type="floor"/>
  <tile id="1623" type="floor"/>
- <tile id="1624" type="floor"/>
- <tile id="1625" type="floor"/>
- <tile id="1626" type="floor"/>
- <tile id="1627" type="floor"/>
- <tile id="1628" type="floor"/>
- <tile id="1629" type="floor"/>
- <tile id="1630" type="floor"/>
- <tile id="1631" type="floor"/>
- <tile id="1632" type="floor"/>
- <tile id="1633" type="floor"/>
- <tile id="1634" type="floor"/>
- <tile id="1635" type="floor"/>
- <tile id="1636" type="floor"/>
+ <tile id="1624" type="wall"/>
+ <tile id="1625" type="door"/>
+ <tile id="1626" type="wall"/>
+ <tile id="1627" type="wall"/>
+ <tile id="1628" type="wall"/>
+ <tile id="1629" type="wall"/>
+ <tile id="1630" type="wall"/>
+ <tile id="1631" type="wall"/>
+ <tile id="1632" type="wall"/>
+ <tile id="1633" type="wall"/>
+ <tile id="1634" type="wall"/>
+ <tile id="1635" type="wall"/>
+ <tile id="1636" type="wall"/>
  <tile id="1637" type="floor"/>
  <tile id="1638" type="floor"/>
  <tile id="1639" type="floor"/>
- <tile id="1640" type="floor"/>
- <tile id="1641" type="floor"/>
- <tile id="1642" type="floor"/>
- <tile id="1643" type="floor"/>
- <tile id="1644" type="floor"/>
- <tile id="1645" type="floor"/>
- <tile id="1646" type="floor"/>
- <tile id="1647" type="floor"/>
- <tile id="1648" type="floor"/>
- <tile id="1649" type="floor"/>
- <tile id="1650" type="floor"/>
- <tile id="1651" type="floor"/>
- <tile id="1652" type="floor"/>
- <tile id="1653" type="floor"/>
- <tile id="1654" type="floor"/>
- <tile id="1655" type="floor"/>
- <tile id="1656" type="floor"/>
- <tile id="1657" type="floor"/>
- <tile id="1658" type="floor"/>
- <tile id="1659" type="floor"/>
- <tile id="1660" type="floor"/>
- <tile id="1661" type="floor"/>
- <tile id="1662" type="floor"/>
- <tile id="1663" type="floor"/>
- <tile id="1664" type="floor"/>
- <tile id="1665" type="floor"/>
- <tile id="1666" type="floor"/>
- <tile id="1667" type="floor"/>
- <tile id="1668" type="floor"/>
+ <tile id="1640" type="wall"/>
+ <tile id="1641" type="wall"/>
+ <tile id="1642" type="wall"/>
+ <tile id="1643" type="wall"/>
+ <tile id="1644" type="wall"/>
+ <tile id="1645" type="wall"/>
+ <tile id="1646" type="wall"/>
+ <tile id="1647" type="wall"/>
+ <tile id="1648" type="wall"/>
+ <tile id="1649" type="wall"/>
+ <tile id="1650" type="wall"/>
+ <tile id="1651" type="wall"/>
+ <tile id="1652" type="wall"/>
+ <tile id="1653" type="wall"/>
+ <tile id="1654" type="wall"/>
+ <tile id="1655" type="wall"/>
+ <tile id="1656" type="wall"/>
+ <tile id="1657" type="wall"/>
+ <tile id="1658" type="wall"/>
+ <tile id="1659" type="wall"/>
+ <tile id="1660" type="wall"/>
+ <tile id="1661" type="wall"/>
+ <tile id="1662" type="wall"/>
+ <tile id="1663" type="wall"/>
+ <tile id="1664" type="wall"/>
+ <tile id="1665" type="wall"/>
+ <tile id="1666" type="wall"/>
+ <tile id="1667" type="wall"/>
+ <tile id="1668" type="wall"/>
  <tile id="1669" type="floor"/>
  <tile id="1670" type="floor"/>
  <tile id="1671" type="floor"/>
- <tile id="1672" type="floor"/>
- <tile id="1673" type="floor"/>
- <tile id="1674" type="floor"/>
- <tile id="1675" type="floor"/>
- <tile id="1676" type="floor"/>
- <tile id="1677" type="floor"/>
- <tile id="1678" type="floor"/>
- <tile id="1679" type="floor"/>
+ <tile id="1672" type="wall"/>
+ <tile id="1673" type="wall"/>
+ <tile id="1674" type="wall"/>
+ <tile id="1675" type="door"/>
+ <tile id="1676" type="wall"/>
+ <tile id="1677" type="wall"/>
+ <tile id="1678" type="wall"/>
+ <tile id="1679" type="wall"/>
  <tile id="1680" type="floor"/>
  <tile id="1681" type="floor"/>
  <tile id="1682" type="floor"/>
- <tile id="1683" type="floor"/>
- <tile id="1684" type="floor"/>
- <tile id="1685" type="floor"/>
- <tile id="1686" type="floor"/>
- <tile id="1687" type="floor"/>
- <tile id="1688" type="floor"/>
- <tile id="1689" type="floor"/>
- <tile id="1690" type="floor"/>
- <tile id="1691" type="floor"/>
- <tile id="1692" type="floor"/>
- <tile id="1693" type="floor"/>
- <tile id="1694" type="floor"/>
- <tile id="1695" type="floor"/>
- <tile id="1696" type="floor"/>
- <tile id="1697" type="floor"/>
- <tile id="1698" type="floor"/>
- <tile id="1699" type="floor"/>
- <tile id="1700" type="floor"/>
- <tile id="1701" type="floor"/>
- <tile id="1702" type="floor"/>
- <tile id="1703" type="floor"/>
- <tile id="1704" type="floor"/>
- <tile id="1705" type="floor"/>
- <tile id="1706" type="floor"/>
- <tile id="1707" type="floor"/>
- <tile id="1708" type="floor"/>
- <tile id="1709" type="floor"/>
- <tile id="1710" type="floor"/>
- <tile id="1711" type="floor"/>
+ <tile id="1683" type="wall"/>
+ <tile id="1684" type="wall"/>
+ <tile id="1685" type="wall"/>
+ <tile id="1686" type="wall"/>
+ <tile id="1687" type="wall"/>
+ <tile id="1688" type="wall"/>
+ <tile id="1689" type="wall"/>
+ <tile id="1690" type="wall"/>
+ <tile id="1691" type="wall"/>
+ <tile id="1692" type="wall"/>
+ <tile id="1693" type="wall"/>
+ <tile id="1694" type="wall"/>
+ <tile id="1695" type="wall"/>
+ <tile id="1696" type="wall"/>
+ <tile id="1697" type="wall"/>
+ <tile id="1698" type="wall"/>
+ <tile id="1699" type="wall"/>
+ <tile id="1700" type="wall"/>
+ <tile id="1701" type="wall"/>
+ <tile id="1702" type="wall"/>
+ <tile id="1703" type="wall"/>
+ <tile id="1704" type="wall"/>
+ <tile id="1705" type="wall"/>
+ <tile id="1706" type="wall"/>
+ <tile id="1707" type="wall"/>
+ <tile id="1708" type="wall"/>
+ <tile id="1709" type="wall"/>
+ <tile id="1710" type="wall"/>
+ <tile id="1711" type="wall"/>
  <tile id="1712" type="floor"/>
  <tile id="1713" type="floor"/>
  <tile id="1714" type="floor"/>
- <tile id="1715" type="floor"/>
- <tile id="1716" type="floor"/>
- <tile id="1717" type="floor"/>
- <tile id="1718" type="floor"/>
- <tile id="1719" type="floor"/>
- <tile id="1720" type="floor"/>
- <tile id="1721" type="floor"/>
- <tile id="1722" type="floor"/>
- <tile id="1723" type="floor"/>
- <tile id="1724" type="floor"/>
- <tile id="1725" type="floor"/>
- <tile id="1726" type="floor"/>
- <tile id="1727" type="floor"/>
- <tile id="1728" type="floor"/>
- <tile id="1729" type="floor"/>
- <tile id="1730" type="floor"/>
- <tile id="1731" type="floor"/>
- <tile id="1732" type="floor"/>
- <tile id="1733" type="floor"/>
- <tile id="1734" type="floor"/>
- <tile id="1735" type="floor"/>
- <tile id="1736" type="floor"/>
- <tile id="1737" type="floor"/>
- <tile id="1738" type="floor"/>
+ <tile id="1715" type="wall"/>
+ <tile id="1716" type="wall"/>
+ <tile id="1717" type="wall"/>
+ <tile id="1718" type="wall"/>
+ <tile id="1719" type="wall"/>
+ <tile id="1720" type="wall"/>
+ <tile id="1721" type="wall"/>
+ <tile id="1722" type="wall"/>
+ <tile id="1723" type="wall"/>
+ <tile id="1724" type="door"/>
+ <tile id="1725" type="wall"/>
+ <tile id="1726" type="wall"/>
+ <tile id="1727" type="wall"/>
+ <tile id="1728" type="wall"/>
+ <tile id="1729" type="wall"/>
+ <tile id="1730" type="wall"/>
+ <tile id="1731" type="wall"/>
+ <tile id="1732" type="wall"/>
+ <tile id="1733" type="wall"/>
+ <tile id="1734" type="wall"/>
+ <tile id="1735" type="wall"/>
+ <tile id="1736" type="wall"/>
+ <tile id="1737" type="wall"/>
+ <tile id="1738" type="wall"/>
  <tile id="1739" type="floor"/>
- <tile id="1740" type="floor"/>
- <tile id="1741" type="floor"/>
+ <tile id="1740" type="wall"/>
+ <tile id="1741" type="wall"/>
  <tile id="1742" type="floor"/>
  <tile id="1743" type="floor"/>
- <tile id="1744" type="floor"/>
+ <tile id="1744" type="wall"/>
  <tile id="1745" type="floor"/>
  <tile id="1746" type="floor"/>
- <tile id="1747" type="floor"/>
- <tile id="1748" type="floor"/>
- <tile id="1749" type="floor"/>
- <tile id="1750" type="floor"/>
- <tile id="1751" type="floor"/>
- <tile id="1752" type="floor"/>
- <tile id="1753" type="floor"/>
+ <tile id="1747" type="wall"/>
+ <tile id="1748" type="wall"/>
+ <tile id="1749" type="wall"/>
+ <tile id="1750" type="wall"/>
+ <tile id="1751" type="wall"/>
+ <tile id="1752" type="wall"/>
+ <tile id="1753" type="wall"/>
  <tile id="1754" type="floor"/>
- <tile id="1755" type="floor"/>
- <tile id="1756" type="floor"/>
- <tile id="1757" type="floor"/>
- <tile id="1758" type="floor"/>
- <tile id="1759" type="floor"/>
+ <tile id="1755" type="wall"/>
+ <tile id="1756" type="wall"/>
+ <tile id="1757" type="wall"/>
+ <tile id="1758" type="wall"/>
+ <tile id="1759" type="wall"/>
  <tile id="1760" type="floor"/>
- <tile id="1761" type="floor"/>
+ <tile id="1761" type="wall"/>
  <tile id="1762" type="floor"/>
- <tile id="1763" type="floor"/>
- <tile id="1764" type="floor"/>
- <tile id="1765" type="floor"/>
- <tile id="1766" type="floor"/>
- <tile id="1767" type="floor"/>
+ <tile id="1763" type="wall"/>
+ <tile id="1764" type="door"/>
+ <tile id="1765" type="wall"/>
+ <tile id="1766" type="wall"/>
+ <tile id="1767" type="wall"/>
  <tile id="1768" type="floor"/>
- <tile id="1769" type="floor"/>
+ <tile id="1769" type="wall"/>
  <tile id="1770" type="floor"/>
- <tile id="1771" type="floor"/>
- <tile id="1772" type="floor"/>
- <tile id="1773" type="floor"/>
- <tile id="1774" type="floor"/>
- <tile id="1775" type="floor"/>
+ <tile id="1771" type="wall"/>
+ <tile id="1772" type="wall"/>
+ <tile id="1773" type="wall"/>
+ <tile id="1774" type="wall"/>
+ <tile id="1775" type="wall"/>
  <tile id="1776" type="floor"/>
  <tile id="1777" type="floor"/>
  <tile id="1778" type="floor"/>
  <tile id="1779" type="floor"/>
- <tile id="1780" type="floor"/>
- <tile id="1781" type="floor"/>
+ <tile id="1780" type="wall"/>
+ <tile id="1781" type="wall"/>
  <tile id="1782" type="floor"/>
  <tile id="1783" type="floor"/>
  <tile id="1784" type="floor"/>
@@ -1793,134 +1793,134 @@
  <tile id="1789" type="floor"/>
  <tile id="1790" type="floor"/>
  <tile id="1791" type="floor"/>
- <tile id="1792" type="floor"/>
- <tile id="1793" type="floor"/>
- <tile id="1794" type="floor"/>
- <tile id="1795" type="floor"/>
- <tile id="1796" type="floor"/>
- <tile id="1797" type="floor"/>
+ <tile id="1792" type="wall"/>
+ <tile id="1793" type="wall"/>
+ <tile id="1794" type="wall"/>
+ <tile id="1795" type="wall"/>
+ <tile id="1796" type="wall"/>
+ <tile id="1797" type="wall"/>
  <tile id="1798" type="floor"/>
- <tile id="1799" type="floor"/>
- <tile id="1800" type="floor"/>
- <tile id="1801" type="floor"/>
- <tile id="1802" type="floor"/>
- <tile id="1803" type="floor"/>
- <tile id="1804" type="floor"/>
- <tile id="1805" type="floor"/>
- <tile id="1806" type="floor"/>
+ <tile id="1799" type="wall"/>
+ <tile id="1800" type="wall"/>
+ <tile id="1801" type="wall"/>
+ <tile id="1802" type="wall"/>
+ <tile id="1803" type="wall"/>
+ <tile id="1804" type="wall"/>
+ <tile id="1805" type="wall"/>
+ <tile id="1806" type="wall"/>
  <tile id="1807" type="floor"/>
- <tile id="1808" type="floor"/>
- <tile id="1809" type="floor"/>
- <tile id="1810" type="floor"/>
- <tile id="1811" type="floor"/>
- <tile id="1812" type="floor"/>
+ <tile id="1808" type="wall"/>
+ <tile id="1809" type="wall"/>
+ <tile id="1810" type="wall"/>
+ <tile id="1811" type="wall"/>
+ <tile id="1812" type="wall"/>
  <tile id="1813" type="floor"/>
- <tile id="1814" type="floor"/>
- <tile id="1815" type="floor"/>
- <tile id="1816" type="floor"/>
- <tile id="1817" type="floor"/>
- <tile id="1818" type="floor"/>
- <tile id="1819" type="floor"/>
- <tile id="1820" type="floor"/>
- <tile id="1821" type="floor"/>
- <tile id="1822" type="floor"/>
- <tile id="1823" type="floor"/>
- <tile id="1824" type="floor"/>
- <tile id="1825" type="floor"/>
- <tile id="1826" type="floor"/>
- <tile id="1827" type="floor"/>
- <tile id="1828" type="floor"/>
- <tile id="1829" type="floor"/>
- <tile id="1830" type="floor"/>
- <tile id="1831" type="floor"/>
- <tile id="1832" type="floor"/>
- <tile id="1833" type="floor"/>
- <tile id="1834" type="floor"/>
- <tile id="1835" type="floor"/>
- <tile id="1836" type="floor"/>
- <tile id="1837" type="floor"/>
- <tile id="1838" type="floor"/>
- <tile id="1839" type="floor"/>
- <tile id="1840" type="floor"/>
- <tile id="1841" type="floor"/>
- <tile id="1842" type="floor"/>
- <tile id="1843" type="floor"/>
- <tile id="1844" type="floor"/>
- <tile id="1845" type="floor"/>
- <tile id="1846" type="floor"/>
- <tile id="1847" type="floor"/>
- <tile id="1848" type="floor"/>
- <tile id="1849" type="floor"/>
- <tile id="1850" type="floor"/>
- <tile id="1851" type="floor"/>
- <tile id="1852" type="floor"/>
- <tile id="1853" type="floor"/>
- <tile id="1854" type="floor"/>
- <tile id="1855" type="floor"/>
- <tile id="1856" type="floor"/>
- <tile id="1857" type="floor"/>
- <tile id="1858" type="floor"/>
- <tile id="1859" type="floor"/>
- <tile id="1860" type="floor"/>
- <tile id="1861" type="floor"/>
- <tile id="1862" type="floor"/>
- <tile id="1863" type="floor"/>
- <tile id="1864" type="floor"/>
- <tile id="1865" type="floor"/>
- <tile id="1866" type="floor"/>
- <tile id="1867" type="floor"/>
- <tile id="1868" type="floor"/>
- <tile id="1869" type="floor"/>
- <tile id="1870" type="floor"/>
- <tile id="1871" type="floor"/>
- <tile id="1872" type="floor"/>
- <tile id="1873" type="floor"/>
- <tile id="1874" type="floor"/>
- <tile id="1875" type="floor"/>
- <tile id="1876" type="floor"/>
- <tile id="1877" type="floor"/>
- <tile id="1878" type="floor"/>
- <tile id="1879" type="floor"/>
- <tile id="1880" type="floor"/>
- <tile id="1881" type="floor"/>
- <tile id="1882" type="floor"/>
- <tile id="1883" type="floor"/>
- <tile id="1884" type="floor"/>
- <tile id="1885" type="floor"/>
- <tile id="1886" type="floor"/>
- <tile id="1887" type="floor"/>
- <tile id="1888" type="floor"/>
- <tile id="1889" type="floor"/>
- <tile id="1890" type="floor"/>
- <tile id="1891" type="floor"/>
- <tile id="1892" type="floor"/>
- <tile id="1893" type="floor"/>
- <tile id="1894" type="floor"/>
- <tile id="1895" type="floor"/>
- <tile id="1896" type="floor"/>
- <tile id="1897" type="floor"/>
- <tile id="1898" type="floor"/>
- <tile id="1899" type="floor"/>
- <tile id="1900" type="floor"/>
- <tile id="1901" type="floor"/>
- <tile id="1902" type="floor"/>
- <tile id="1903" type="floor"/>
- <tile id="1904" type="floor"/>
- <tile id="1905" type="floor"/>
- <tile id="1906" type="floor"/>
- <tile id="1907" type="floor"/>
- <tile id="1908" type="floor"/>
- <tile id="1909" type="floor"/>
- <tile id="1910" type="floor"/>
- <tile id="1911" type="floor"/>
- <tile id="1912" type="floor"/>
- <tile id="1913" type="floor"/>
- <tile id="1914" type="floor"/>
- <tile id="1915" type="floor"/>
- <tile id="1916" type="floor"/>
- <tile id="1917" type="floor"/>
- <tile id="1918" type="floor"/>
- <tile id="1919" type="floor"/>
+ <tile id="1814" type="wall"/>
+ <tile id="1815" type="wall"/>
+ <tile id="1816" type="wall"/>
+ <tile id="1817" type="wall"/>
+ <tile id="1818" type="door"/>
+ <tile id="1819" type="wall"/>
+ <tile id="1820" type="wall"/>
+ <tile id="1821" type="wall"/>
+ <tile id="1822" type="wall"/>
+ <tile id="1823" type="wall"/>
+ <tile id="1824" type="wall"/>
+ <tile id="1825" type="wall"/>
+ <tile id="1826" type="wall"/>
+ <tile id="1827" type="wall"/>
+ <tile id="1828" type="wall"/>
+ <tile id="1829" type="wall"/>
+ <tile id="1830" type="wall"/>
+ <tile id="1831" type="wall"/>
+ <tile id="1832" type="wall"/>
+ <tile id="1833" type="wall"/>
+ <tile id="1834" type="wall"/>
+ <tile id="1835" type="wall"/>
+ <tile id="1836" type="wall"/>
+ <tile id="1837" type="wall"/>
+ <tile id="1838" type="wall"/>
+ <tile id="1839" type="wall"/>
+ <tile id="1840" type="wall"/>
+ <tile id="1841" type="wall"/>
+ <tile id="1842" type="wall"/>
+ <tile id="1843" type="wall"/>
+ <tile id="1844" type="wall"/>
+ <tile id="1845" type="wall"/>
+ <tile id="1846" type="wall"/>
+ <tile id="1847" type="wall"/>
+ <tile id="1848" type="wall"/>
+ <tile id="1849" type="wall"/>
+ <tile id="1850" type="door"/>
+ <tile id="1851" type="wall"/>
+ <tile id="1852" type="wall"/>
+ <tile id="1853" type="door"/>
+ <tile id="1854" type="wall"/>
+ <tile id="1855" type="wall"/>
+ <tile id="1856" type="wall"/>
+ <tile id="1857" type="wall"/>
+ <tile id="1858" type="wall"/>
+ <tile id="1859" type="wall"/>
+ <tile id="1860" type="wall"/>
+ <tile id="1861" type="wall"/>
+ <tile id="1862" type="wall"/>
+ <tile id="1863" type="wall"/>
+ <tile id="1864" type="wall"/>
+ <tile id="1865" type="wall"/>
+ <tile id="1866" type="wall"/>
+ <tile id="1867" type="wall"/>
+ <tile id="1868" type="wall"/>
+ <tile id="1869" type="wall"/>
+ <tile id="1870" type="wall"/>
+ <tile id="1871" type="wall"/>
+ <tile id="1872" type="wall"/>
+ <tile id="1873" type="wall"/>
+ <tile id="1874" type="wall"/>
+ <tile id="1875" type="wall"/>
+ <tile id="1876" type="wall"/>
+ <tile id="1877" type="wall"/>
+ <tile id="1878" type="wall"/>
+ <tile id="1879" type="wall"/>
+ <tile id="1880" type="wall"/>
+ <tile id="1881" type="wall"/>
+ <tile id="1882" type="door"/>
+ <tile id="1883" type="wall"/>
+ <tile id="1884" type="wall"/>
+ <tile id="1885" type="door"/>
+ <tile id="1886" type="wall"/>
+ <tile id="1887" type="wall"/>
+ <tile id="1888" type="wall"/>
+ <tile id="1889" type="wall"/>
+ <tile id="1890" type="wall"/>
+ <tile id="1891" type="wall"/>
+ <tile id="1892" type="wall"/>
+ <tile id="1893" type="wall"/>
+ <tile id="1894" type="wall"/>
+ <tile id="1895" type="wall"/>
+ <tile id="1896" type="wall"/>
+ <tile id="1897" type="wall"/>
+ <tile id="1898" type="wall"/>
+ <tile id="1899" type="wall"/>
+ <tile id="1900" type="wall"/>
+ <tile id="1901" type="wall"/>
+ <tile id="1902" type="wall"/>
+ <tile id="1903" type="wall"/>
+ <tile id="1904" type="wall"/>
+ <tile id="1905" type="wall"/>
+ <tile id="1906" type="wall"/>
+ <tile id="1907" type="wall"/>
+ <tile id="1908" type="wall"/>
+ <tile id="1909" type="wall"/>
+ <tile id="1910" type="wall"/>
+ <tile id="1911" type="wall"/>
+ <tile id="1912" type="wall"/>
+ <tile id="1913" type="wall"/>
+ <tile id="1914" type="door"/>
+ <tile id="1915" type="wall"/>
+ <tile id="1916" type="wall"/>
+ <tile id="1917" type="door"/>
+ <tile id="1918" type="wall"/>
+ <tile id="1919" type="wall"/>
  <tile id="1920" type="floor"/>
  <tile id="1921" type="floor"/>
  <tile id="1922" type="floor"/>
@@ -1929,45 +1929,45 @@
  <tile id="1925" type="floor"/>
  <tile id="1926" type="floor"/>
  <tile id="1927" type="floor"/>
- <tile id="1928" type="floor"/>
- <tile id="1929" type="floor"/>
- <tile id="1930" type="floor"/>
- <tile id="1931" type="floor"/>
- <tile id="1932" type="floor"/>
- <tile id="1933" type="floor"/>
- <tile id="1934" type="floor"/>
+ <tile id="1928" type="wall"/>
+ <tile id="1929" type="wall"/>
+ <tile id="1930" type="wall"/>
+ <tile id="1931" type="wall"/>
+ <tile id="1932" type="wall"/>
+ <tile id="1933" type="wall"/>
+ <tile id="1934" type="wall"/>
  <tile id="1935" type="floor"/>
- <tile id="1936" type="floor"/>
- <tile id="1937" type="floor"/>
- <tile id="1938" type="floor"/>
- <tile id="1939" type="floor"/>
- <tile id="1940" type="floor"/>
- <tile id="1941" type="floor"/>
- <tile id="1942" type="floor"/>
+ <tile id="1936" type="wall"/>
+ <tile id="1937" type="wall"/>
+ <tile id="1938" type="wall"/>
+ <tile id="1939" type="wall"/>
+ <tile id="1940" type="wall"/>
+ <tile id="1941" type="wall"/>
+ <tile id="1942" type="wall"/>
  <tile id="1943" type="floor"/>
- <tile id="1944" type="floor"/>
- <tile id="1945" type="floor"/>
- <tile id="1946" type="floor"/>
- <tile id="1947" type="floor"/>
- <tile id="1948" type="floor"/>
- <tile id="1949" type="floor"/>
- <tile id="1950" type="floor"/>
+ <tile id="1944" type="wall"/>
+ <tile id="1945" type="wall"/>
+ <tile id="1946" type="wall"/>
+ <tile id="1947" type="wall"/>
+ <tile id="1948" type="wall"/>
+ <tile id="1949" type="wall"/>
+ <tile id="1950" type="wall"/>
  <tile id="1951" type="floor"/>
- <tile id="1952" type="floor"/>
- <tile id="1953" type="floor"/>
- <tile id="1954" type="floor"/>
- <tile id="1955" type="floor"/>
- <tile id="1956" type="floor"/>
- <tile id="1957" type="floor"/>
- <tile id="1958" type="floor"/>
+ <tile id="1952" type="wall"/>
+ <tile id="1953" type="wall"/>
+ <tile id="1954" type="wall"/>
+ <tile id="1955" type="wall"/>
+ <tile id="1956" type="wall"/>
+ <tile id="1957" type="wall"/>
+ <tile id="1958" type="wall"/>
  <tile id="1959" type="floor"/>
- <tile id="1960" type="floor"/>
- <tile id="1961" type="floor"/>
- <tile id="1962" type="floor"/>
- <tile id="1963" type="floor"/>
- <tile id="1964" type="floor"/>
- <tile id="1965" type="floor"/>
- <tile id="1966" type="floor"/>
+ <tile id="1960" type="wall"/>
+ <tile id="1961" type="wall"/>
+ <tile id="1962" type="wall"/>
+ <tile id="1963" type="door"/>
+ <tile id="1964" type="wall"/>
+ <tile id="1965" type="wall"/>
+ <tile id="1966" type="wall"/>
  <tile id="1967" type="floor"/>
  <tile id="1968" type="floor"/>
  <tile id="1969" type="floor"/>
@@ -1977,59 +1977,59 @@
  <tile id="1973" type="floor"/>
  <tile id="1974" type="floor"/>
  <tile id="1975" type="floor"/>
- <tile id="1976" type="floor"/>
- <tile id="1977" type="floor"/>
- <tile id="1978" type="floor"/>
- <tile id="1979" type="floor"/>
- <tile id="1980" type="floor"/>
- <tile id="1981" type="floor"/>
- <tile id="1982" type="floor"/>
+ <tile id="1976" type="wall"/>
+ <tile id="1977" type="wall"/>
+ <tile id="1978" type="wall"/>
+ <tile id="1979" type="wall"/>
+ <tile id="1980" type="wall"/>
+ <tile id="1981" type="wall"/>
+ <tile id="1982" type="wall"/>
  <tile id="1983" type="floor"/>
- <tile id="1984" type="floor"/>
- <tile id="1985" type="floor"/>
- <tile id="1986" type="floor"/>
- <tile id="1987" type="floor"/>
- <tile id="1988" type="floor"/>
- <tile id="1989" type="floor"/>
- <tile id="1990" type="floor"/>
+ <tile id="1984" type="wall"/>
+ <tile id="1985" type="wall"/>
+ <tile id="1986" type="wall"/>
+ <tile id="1987" type="wall"/>
+ <tile id="1988" type="wall"/>
+ <tile id="1989" type="wall"/>
+ <tile id="1990" type="wall"/>
  <tile id="1991" type="floor"/>
- <tile id="1992" type="floor"/>
- <tile id="1993" type="floor"/>
- <tile id="1994" type="floor"/>
- <tile id="1995" type="floor"/>
- <tile id="1996" type="floor"/>
- <tile id="1997" type="floor"/>
- <tile id="1998" type="floor"/>
+ <tile id="1992" type="wall"/>
+ <tile id="1993" type="wall"/>
+ <tile id="1994" type="wall"/>
+ <tile id="1995" type="wall"/>
+ <tile id="1996" type="wall"/>
+ <tile id="1997" type="wall"/>
+ <tile id="1998" type="wall"/>
  <tile id="1999" type="floor"/>
- <tile id="2000" type="floor"/>
- <tile id="2001" type="floor"/>
- <tile id="2002" type="floor"/>
- <tile id="2003" type="floor"/>
- <tile id="2004" type="floor"/>
- <tile id="2005" type="floor"/>
- <tile id="2006" type="floor"/>
+ <tile id="2000" type="wall"/>
+ <tile id="2001" type="wall"/>
+ <tile id="2002" type="wall"/>
+ <tile id="2003" type="wall"/>
+ <tile id="2004" type="wall"/>
+ <tile id="2005" type="wall"/>
+ <tile id="2006" type="wall"/>
  <tile id="2007" type="floor"/>
  <tile id="2008" type="floor"/>
  <tile id="2009" type="floor"/>
  <tile id="2010" type="floor"/>
- <tile id="2011" type="floor"/>
+ <tile id="2011" type="door"/>
  <tile id="2012" type="floor"/>
  <tile id="2013" type="floor"/>
  <tile id="2014" type="floor"/>
  <tile id="2015" type="floor"/>
  <tile id="2016" type="floor"/>
  <tile id="2017" type="floor"/>
- <tile id="2018" type="floor"/>
+ <tile id="2018" type="wall"/>
  <tile id="2019" type="floor"/>
- <tile id="2020" type="floor"/>
- <tile id="2021" type="floor"/>
+ <tile id="2020" type="wall"/>
+ <tile id="2021" type="wall"/>
  <tile id="2022" type="floor"/>
  <tile id="2023" type="floor"/>
  <tile id="2024" type="floor"/>
  <tile id="2025" type="floor"/>
- <tile id="2026" type="floor"/>
+ <tile id="2026" type="wall"/>
  <tile id="2027" type="floor"/>
- <tile id="2028" type="floor"/>
+ <tile id="2028" type="wall"/>
  <tile id="2029" type="floor"/>
  <tile id="2030" type="floor"/>
  <tile id="2031" type="floor"/>

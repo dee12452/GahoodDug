@@ -52,11 +52,20 @@ const uint8_t Constants::SPRITE_ALPHA_NONE = 0;
 
 /*
  * MAP CONST */
+//maps
 const char * const Constants::MAP_TEST = "test_map.tmx";
 const char * const Constants::MAP_TEST_2 = "test_map2.tmx";
 const char * const Constants::MAP_PALLET_TOWN = "pallet_town.tmx";
-const char * const Constants::TILE_TYPE_FLOOR = "floor";
-const char * const Constants::TILE_TYPE_WALL = "wall";
+const char * const Constants::MAP_ROUTE_1 = "route_1.tmx";
+//tile types
+const std::string Constants::TILE_TYPE_FLOOR = "floor";
+const std::string Constants::TILE_TYPE_WALL = "wall";
+const std::string Constants::TILE_TYPE_WATER = "water";
+const std::string Constants::TILE_TYPE_GRASS = "grass";
+const std::string Constants::TILE_TYPE_FLOWER = "flower";
+const std::string Constants::TILE_TYPE_SIGN = "sign";
+const std::string Constants::TILE_TYPE_DOOR = "door";
+const std::string Constants::TILE_TYPE_CLIFF = "cliff";
 
 /*
  * WORLD CONST */

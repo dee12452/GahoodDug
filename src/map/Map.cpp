@@ -2,22 +2,26 @@
 #include "Tileset.hpp"
 #include "Tile.hpp"
 
-#include <SDL2/SDL.h>
 #include "../util/Constants.hpp"
-#include "../game/Window.hpp"
 #include "../game/Game.hpp"
 #include "../util/Util.hpp"
 #include "../sprite/Sprites.hpp"
+#include "MapLoader.hpp"
 
 Map::Map() :
 	width(0), height(0), generated(false), tileset(NULL) {
+	borderingMaps = new char *[4]{ NULL,NULL,NULL,NULL };
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) :
 	width(w), height(h), generated(false), mapTiles(tileCoords), tileset(tileset) {
+	borderingMaps = new char *[4]{ NULL,NULL,NULL,NULL };
 }
 
 Map::~Map() {
+	//Delete the bordering maps information
+	for (int i = 0; i < 0; i++) if (borderingMaps[i] != NULL) delete[] borderingMaps[i];
+	delete[] borderingMaps; borderingMaps = NULL;
 
 	//Clear the map tiles
 	for (unsigned int j = 0; j < mapTiles.size(); j++) {
@@ -111,3 +115,11 @@ void Map::setTileset(Tileset *ts) { this->tileset = ts; }
 void Map::setWidth(int w) { this->width = w; }
 void Map::setHeight(int h) { this->height = h; }
 void Map::addLayer(int **tiles) { this->mapTiles.push_back(tiles); }
+void Map::setBorderingMap(MapDirection direction, const char *map) {
+	int size = 0; while (map[size] != '\0') size++; int dir = static_cast<int>(direction);
+	borderingMaps[dir] = new char[size + 1];
+	strcpy(borderingMaps[dir], map);
+}
+Map * Map::getBorderingMap(MapDirection direction) const {
+	return borderingMaps[static_cast<int>(direction)] == NULL ? NULL : MapLoader::getInstance()->getMap(borderingMaps[static_cast<int>(direction)]);
+}

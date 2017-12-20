@@ -7,6 +7,8 @@ class Window;
 class Sprite;
 class WorldCharacter;
 struct SDL_Texture;
+struct SDL_Rect;
+enum MapDirection;
 
 class World {
 public:
@@ -28,6 +30,7 @@ private:
     WorldCharacter *player;
 
     void drawMap(Window *win);
+	void drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSrc, SDL_Rect mapDst);
 };
 
 #endif

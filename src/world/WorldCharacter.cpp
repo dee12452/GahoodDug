@@ -71,7 +71,10 @@ bool WorldCharacter::checkForObstacles(int tileX, int tileY) const {
     //Check for walls in the tiles first
     for(unsigned int i = 0; i < getWorld()->getMap()->getNumberOfLayers(); i++) {
         Tile *tile = getWorld()->getMap()->getTile(i, tileX, tileY);
-        if(tile != NULL && tile->getTileType() != Constants::TILE_TYPE_FLOOR) {
+        if(tile != NULL && 
+			tile->getTileType() != Constants::TILE_TYPE_FLOOR && 
+			tile->getTileType() != Constants::TILE_TYPE_FLOWER &&
+			tile->getTileType() != Constants::TILE_TYPE_GRASS) {
             return true;
         }
     }

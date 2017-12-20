@@ -30,11 +30,14 @@ public:
 	void setWidth(int width);
 	void setHeight(int height);
 	void addLayer(int **layer);
+	void setBorderingMap(MapDirection direction, const char *map);
+	Map * getBorderingMap(MapDirection direction) const;
 
 	//Generate the map from the information given to the map
 	void generate(Game *game);
 
 private:
+	char ** borderingMaps;
 	int width;
 	int height;
 	bool generated;
