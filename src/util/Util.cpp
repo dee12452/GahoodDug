@@ -1,6 +1,8 @@
 #include "Util.hpp"
 #include <thread>
 #include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_render.h>
+#include "../sprite/Sprite.hpp"
 #include "Constants.hpp"
 
 void Util::fatalError(const char *message) {
@@ -46,4 +48,10 @@ SDL_Rect Util::createRectCenteredVertically(int x, int w, int h) {
 
 SDL_Rect Util::createRectCenteredHorizontally(int y, int w, int h) {
     return createRect(Constants::WINDOW_WIDTH / 2 - w / 2, y, w, h);
+}
+
+void Util::querySpriteSourceImage(Sprite *sprite, int &w, int &h) {
+	if (SDL_QueryTexture(sprite->getTexture(), NULL, NULL, &w, &h) != 0) {
+		Util::fatalSDLError("Failed to query texture");
+	}
 }

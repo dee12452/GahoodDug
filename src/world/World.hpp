@@ -22,7 +22,8 @@ public:
 	int getTileWidth() const;
 	int getTileHeight() const;
 
-    void changeMap(Game *game, const char * const mapFile);
+    void changeMap(const char * const mapFile);
+	void changeMap(Map *newMap);
 
 private:
     Map *map;

@@ -113,6 +113,7 @@ public:
      */
     static const int WORLD_DRAW_WIDTH;
     static const int WORLD_DRAW_HEIGHT;
+	static const unsigned int WORLD_MAP_NAME_ANIM_TICK_TIME;
     /******************
 	******************/
     

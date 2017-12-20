@@ -184,19 +184,22 @@ void MapLoader::populateMapInfo(Tag *tag, Map *map) {
 	}
 
 	//Find the maps that border the map
-	else if (tag->id == "property") {
-		MapDirection dir;
-		const char *borderMap = "";
-		for (unsigned int i = 0; i < tag->attributes.size(); i++) {
-			if (tag->attributes[i].first == "name") {
-				if (tag->attributes[i].second == "north_border") { dir = MapDirection::MAP_NORTH; }
-				if (tag->attributes[i].second == "south_border") { dir = MapDirection::MAP_SOUTH; }
-				if (tag->attributes[i].second == "east_border") { dir = MapDirection::MAP_EAST; }
-				if (tag->attributes[i].second == "west_border") { dir = MapDirection::MAP_WEST; }
+	else if (tag->id == "property" && tag->attributes.size() > 1) {
+		if (tag->attributes[0].first == "name") {
+			if (tag->attributes[0].second == "map_name") {
+				map->setMapName(tag->attributes[1].second.c_str());
 			}
-			else if (tag->attributes[i].first == "value") { borderMap = tag->attributes[i].second.c_str(); }
+			else {
+				MapDirection dir;
+				const char *borderMap = "";
+				if (tag->attributes[0].second == "north_border") { dir = MapDirection::MAP_NORTH; }
+				if (tag->attributes[0].second == "south_border") { dir = MapDirection::MAP_SOUTH; }
+				if (tag->attributes[0].second == "east_border") { dir = MapDirection::MAP_EAST; }
+				if (tag->attributes[0].second == "west_border") { dir = MapDirection::MAP_WEST; }
+				borderMap = tag->attributes[1].second.c_str();
+				map->setBorderingMap(dir, borderMap);
+			}
 		}
-		map->setBorderingMap(dir, borderMap);
 	}
 
     //Load width, height, and data for each layer

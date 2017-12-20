@@ -4,11 +4,14 @@
 #include "BaseWorldMover.hpp"
 
 class Timer;
+class WorldCharacterMoveListener;
 
 class WorldCharacter : public BaseWorldMover {
 public:
     WorldCharacter(World *world, SpriteSheet *sheet, int movementUpdateTime, int movementSpeed);
     ~WorldCharacter() override;
+
+	void setOnMoveListener(WorldCharacterMoveListener *listener);
 
 protected:
 	void onTickInBackground() override;
@@ -19,6 +22,18 @@ protected:
 
 private:
     bool checkForObstacles(int tileX, int tileY) const;
+	WorldCharacterMoveListener *moveListener;
+};
+
+class WorldCharacterMoveListener {
+public:
+	WorldCharacterMoveListener() {}
+	virtual ~WorldCharacterMoveListener() {}
+
+	virtual void onMoveStart(FacingDirection direction, int tileX, int tileY) = 0;
+	virtual void onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) = 0;
+	virtual void onMoveEnd(FacingDirection direction, int tileX, int tileY) = 0;
+
 };
 
 #endif

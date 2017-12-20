@@ -16,11 +16,11 @@ WorldScreen::~WorldScreen() {
 
 void WorldScreen::start(Game *game) {
 	world = new World(game);
-	game->registerGameObject(world->getPlayer());
+	Game::registerObjectTick(world->getPlayer());
 }
 
 void WorldScreen::stop(Game *game) {
-	game->unregisterGameObject(world->getPlayer());
+	Game::unregisterObjectTick(world->getPlayer());
 }
 
 void WorldScreen::drawScreen(Window *win) const {

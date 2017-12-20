@@ -34,10 +34,10 @@ public:
     void requestNewScreen(BaseScreen *newScreen);
 
     //Add a game object to the game to be ticked
-	void registerGameObject(BaseGameObject *obj);
+	static void registerObjectTick(BaseGameObject *obj);
 
     //Remove a game object from the object tick list
-	void unregisterGameObject(BaseGameObject *obj);
+	static void unregisterObjectTick(BaseGameObject *obj);
 
     //Get the game window
     Window * getWindow() const;
@@ -62,7 +62,7 @@ private:
     void deinit();
     void changeScreens();
 
-	std::vector<BaseGameObject *> updatables;
+	static std::vector<BaseGameObject *> updatables;
     std::map<std::string, SpriteSheet *> spriteSheets;
     std::map<std::string, Font *> fonts;
 };

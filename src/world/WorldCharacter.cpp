@@ -9,34 +9,47 @@ WorldCharacter::WorldCharacter(World *world, SpriteSheet *spriteSheet, int movem
     changeDirection(FacingDirection::DOWN);
     getSprite()->setDstW(Constants::CHARACTER_WIDTH);
     getSprite()->setDstH(Constants::CHARACTER_HEIGHT);
+	moveListener = NULL;
 }
 
 WorldCharacter::~WorldCharacter() {
+	if (moveListener != NULL) {
+		delete moveListener;
+		moveListener = NULL;
+	}
 }
 
 void WorldCharacter::onTickInBackground() {}
 
+void WorldCharacter::setOnMoveListener(WorldCharacterMoveListener *listener) {
+	if (moveListener != NULL) delete moveListener;
+	moveListener = listener;
+}
+
 void WorldCharacter::onMoveStart(FacingDirection direction) {
+	if (moveListener != NULL) moveListener->onMoveStart(direction, getTileX(), getTileY());
+
+	//Removed checks for leaving the map, need to leave map to enter a new one often times
     switch(direction) {
         case FacingDirection::LEFT:
-            if(getPositionX() == 0 || checkForObstacles(getTileX() - 1, getTileY())) {
+            if(/* getPositionX() == 0 || */ checkForObstacles(getTileX() - 1, getTileY())) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::RIGHT:
-            if(getPositionX() == getWorld()->getMap()->getTileWidth() * (getWorld()->getMap()->getWidth() - 1) 
-                    || checkForObstacles(getTileX() + 1, getTileY())) {
+            if(/* getPositionX() == getWorld()->getMap()->getTileWidth() * (getWorld()->getMap()->getWidth() - 1) 
+                    || */ checkForObstacles(getTileX() + 1, getTileY())) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::UP:
-            if(getPositionY() == 0 || checkForObstacles(getTileX(), getTileY() - 1)) {
+            if(/* getPositionY() == 0 || */ checkForObstacles(getTileX(), getTileY() - 1)) {
                 stopNextMovement();
             }
             break;
         case FacingDirection::DOWN:
-            if(getPositionY() == getWorld()->getMap()->getTileHeight() * (getWorld()->getMap()->getHeight() - 1) 
-                    || checkForObstacles(getTileX(), getTileY() + 1)) {
+            if(/* getPositionY() == getWorld()->getMap()->getTileHeight() * (getWorld()->getMap()->getHeight() - 1) 
+                    || */ checkForObstacles(getTileX(), getTileY() + 1)) {
                 stopNextMovement();
             }
             break;
@@ -46,6 +59,8 @@ void WorldCharacter::onMoveStart(FacingDirection direction) {
 }
 
 void WorldCharacter::onMove(float percentToNextTile) {
+	if (moveListener != NULL) moveListener->onMove(getCurrentDirection(), percentToNextTile, getPositionX(), getPositionY());
+
 	if (percentToNextTile < 0.5f) return;
 
 	if (isWalkingLeft()) {
@@ -56,7 +71,8 @@ void WorldCharacter::onMove(float percentToNextTile) {
 	}
 }
 
-void WorldCharacter::onMoveEnd(FacingDirection) {
+void WorldCharacter::onMoveEnd(FacingDirection direction) {
+	if (moveListener != NULL) moveListener->onMoveEnd(direction, getTileX(), getTileY());
 	getSprite()->setSrcX(0);
 }
 

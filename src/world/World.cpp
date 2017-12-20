@@ -9,8 +9,27 @@
 #include "../util/Utils.hpp"
 #include "WorldCharacter.hpp"
 
-World::World(Game *game) : map(NULL), mapTexture(NULL), player(NULL) {
-	changeMap(game, Constants::MAP_ROUTE_1);
+/**
+* Move listener for the player
+*/
+class PlayerMoveListener : public WorldCharacterMoveListener {
+public:
+	PlayerMoveListener(World *w);
+	~PlayerMoveListener() override;
+
+	void onMoveStart(FacingDirection direction, int tileX, int tileY) override;
+	void onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) override;
+	void onMoveEnd(FacingDirection direction, int tileX, int tileY) override;
+
+private:
+	World *world;
+};
+
+World::World(Game *game) : map(NULL), mapTexture(NULL) {
+	changeMap(Constants::MAP_ROUTE_1);
+	player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+	player->setOnMoveListener(new PlayerMoveListener(this));
+	player->setTileX(9); player->setTileY(32);
 } 
 
 World::~World() { 
@@ -33,6 +52,9 @@ void World::drawMap(Window *win) {
 
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * map->getTileWidth();
 	int drawHeight = Constants::WORLD_DRAW_HEIGHT * map->getTileHeight();
+
+	if(mapTexture == NULL) mapTexture = win->createTexture(drawWidth * 2, drawHeight * 2);
+
 	win->setRenderTarget(mapTexture);
     win->clearRenderTarget();
 
@@ -136,18 +158,40 @@ void World::drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSr
 	}
 }
 
-void World::changeMap(Game *game, const char * const mapFile) {
-    map = MapLoader::getInstance()->getMap(mapFile);
-    if(player != NULL) delete player;
-    player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
-	player->setTileX(9); player->setTileY(32);
-    if(mapTexture == NULL) SDL_DestroyTexture(mapTexture);
-	int drawWidth = Constants::WORLD_DRAW_WIDTH * map->getTileWidth();
-	int drawHeight = Constants::WORLD_DRAW_HEIGHT * map->getTileHeight();
-	mapTexture = game->getWindow()->createTexture(drawWidth * 2, drawHeight * 2);
+void World::changeMap(const char * const mapFile) {
+	changeMap(MapLoader::getInstance()->getMap(mapFile));
+}
+
+void World::changeMap(Map *newMap) {
+	map = newMap;
+	if (mapTexture != NULL) SDL_DestroyTexture(mapTexture);
+	mapTexture = NULL;
 }
 
 Map * World::getMap() const { return map; }
 int World::getTileWidth() const { return map->getTileWidth(); }
 int World::getTileHeight() const { return map->getTileHeight(); }
 WorldCharacter * World::getPlayer() const { return player; }
+
+PlayerMoveListener::~PlayerMoveListener() { world = NULL; }
+PlayerMoveListener::PlayerMoveListener(World *w) : WorldCharacterMoveListener() { world = w; }
+void PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
+void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
+	if (direction == FacingDirection::DOWN && tileY >= world->getMap()->getHeight()) {
+		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_SOUTH));
+		world->getPlayer()->setTileY(0);
+	}
+	else if (direction == FacingDirection::UP && tileY < 0) {
+		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_NORTH));
+		world->getPlayer()->setTileY(world->getMap()->getHeight() - 1);
+	}
+	else if (direction == FacingDirection::RIGHT && tileX >= world->getMap()->getWidth()) {
+		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_EAST));
+		world->getPlayer()->setTileX(0);
+	}
+	else if (direction == FacingDirection::LEFT && tileX < 0) {
+		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_WEST));
+		world->getPlayer()->setTileX(world->getMap()->getWidth() - 1);
+	}
+}
+void PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}

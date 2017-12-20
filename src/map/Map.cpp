@@ -9,16 +9,21 @@
 #include "MapLoader.hpp"
 
 Map::Map() :
-	width(0), height(0), generated(false), tileset(NULL) {
+	mapName(NULL), width(0), height(0), generated(false), tileset(NULL) {
 	borderingMaps = new char *[4]{ NULL,NULL,NULL,NULL };
 }
 
 Map::Map(int w, int h, std::vector<int **>tileCoords, Tileset *tileset) :
-	width(w), height(h), generated(false), mapTiles(tileCoords), tileset(tileset) {
+	mapName(NULL), width(w), height(h), generated(false), mapTiles(tileCoords), tileset(tileset) {
 	borderingMaps = new char *[4]{ NULL,NULL,NULL,NULL };
 }
 
 Map::~Map() {
+	if (mapName != NULL) {
+		delete mapName;
+		mapName = NULL;
+	}
+
 	//Delete the bordering maps information
 	for (int i = 0; i < 0; i++) if (borderingMaps[i] != NULL) delete[] borderingMaps[i];
 	delete[] borderingMaps; borderingMaps = NULL;
@@ -117,9 +122,18 @@ void Map::setHeight(int h) { this->height = h; }
 void Map::addLayer(int **tiles) { this->mapTiles.push_back(tiles); }
 void Map::setBorderingMap(MapDirection direction, const char *map) {
 	int size = 0; while (map[size] != '\0') size++; int dir = static_cast<int>(direction);
+	if (borderingMaps[dir] != NULL) delete borderingMaps[dir];
 	borderingMaps[dir] = new char[size + 1];
 	strcpy(borderingMaps[dir], map);
 }
 Map * Map::getBorderingMap(MapDirection direction) const {
-	return borderingMaps[static_cast<int>(direction)] == NULL ? NULL : MapLoader::getInstance()->getMap(borderingMaps[static_cast<int>(direction)]);
+	return borderingMaps[static_cast<int>(direction)] == NULL ? 
+		NULL : MapLoader::getInstance()->getMap(borderingMaps[static_cast<int>(direction)]);
 }
+void Map::setMapName(const char *name) {
+	if (mapName != NULL) delete mapName;
+	int size = 0; while (name[size] != '\0') size++;
+	mapName = new char[size + 1];
+	strcpy(mapName, name);
+}
+std::string Map::getMapName() const { return std::string(mapName); }

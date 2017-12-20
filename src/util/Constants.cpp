@@ -71,6 +71,7 @@ const std::string Constants::TILE_TYPE_CLIFF = "cliff";
  * WORLD CONST */
 const int Constants::WORLD_DRAW_WIDTH = 15;
 const int Constants::WORLD_DRAW_HEIGHT = 15;
+const unsigned int Constants::WORLD_MAP_NAME_ANIM_TICK_TIME = 50;
 
 /*
  * CHARACTER CONST */

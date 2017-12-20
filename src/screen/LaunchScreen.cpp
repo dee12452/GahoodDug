@@ -25,7 +25,7 @@ public:
 			MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
 			Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
 
-			game->unregisterGameObject(this);
+			Game::unregisterObjectTick(this);
 			game->requestNewScreen(new WorldScreen());
 		}
 		else {
@@ -75,11 +75,11 @@ void LaunchScreen::start(Game *game) {
 	loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
 
 	loader = new LaunchScreenLoader(game);
-	game->registerGameObject(loader);
+	Game::registerObjectTick(loader);
 }
 
 void LaunchScreen::stop(Game *game) {
-    game->unregisterGameObject(loader);
+	Game::unregisterObjectTick(loader);
 }
 
 void LaunchScreen::drawScreen(Window *win) const {

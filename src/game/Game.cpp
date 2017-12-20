@@ -14,6 +14,7 @@
 #include "../map/MapLoader.hpp"
 
 static int runInBackgroundThread(void *gahoodmon);
+std::vector<BaseGameObject *> Game::updatables;
 
 Game::Game() 
     : running(false), 
@@ -120,11 +121,11 @@ void Game::update() {
     }
 }
 
-void Game::registerGameObject(BaseGameObject *obj) {
+void Game::registerObjectTick(BaseGameObject *obj) {
 	if (obj != NULL) updatables.push_back(obj);
 }
 
-void Game::unregisterGameObject(BaseGameObject *obj) {
+void Game::unregisterObjectTick(BaseGameObject *obj) {
 	if (obj != NULL) {
 		for (unsigned int i = 0; i < updatables.size(); i++) {
 			//Remove the object from the list of updatables

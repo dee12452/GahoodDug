@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="36" height="24" tilewidth="32" tileheight="32" nextobjectid="1">
  <properties>
+  <property name="map_name" value="Pallet Town"/>
   <property name="north_border" value="route_1.tmx"/>
  </properties>
  <tileset firstgid="1" source="../tileset/tileset_outside.tsx"/>
