@@ -11,7 +11,7 @@ class World;
 
 class BaseWorldObject : public BaseGameObject {
 public:
-    BaseWorldObject(World *world, SpriteSheet *spriteSheet);
+    BaseWorldObject(World *world, const char *imageFile);
     virtual ~BaseWorldObject();
 
     World * getWorld() const;

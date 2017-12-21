@@ -4,8 +4,8 @@
 #include "../sprite/Sprites.hpp"
 #include "../map/Maps.hpp"
 
-WorldCharacter::WorldCharacter(World *world, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed)
-    : BaseWorldMover(world, spriteSheet, movementUpdateTime, movementSpeed) {
+WorldCharacter::WorldCharacter(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed)
+    : BaseWorldMover(world, imageFile, movementUpdateTime, movementSpeed) {
     changeDirection(FacingDirection::DOWN);
     getSprite()->setDstW(Constants::CHARACTER_WIDTH);
     getSprite()->setDstH(Constants::CHARACTER_HEIGHT);

@@ -9,7 +9,7 @@ typedef enum FacingDirection { NONE = 4, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 0 }
 
 class BaseWorldMover : public BaseWorldObject {
 public:
-	BaseWorldMover(World *world, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed);
+	BaseWorldMover(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed);
 	virtual ~BaseWorldMover() override;
 
 	void move(FacingDirection direction);

@@ -1,12 +1,13 @@
 #include "BaseWorldObject.hpp"
 #include "World.hpp"
+#include "../game/Game.hpp"
 #include "../map/Map.hpp"
 #include "../sprite/Sprites.hpp"
 
-BaseWorldObject::BaseWorldObject(World *world, SpriteSheet *spriteSheet) : 
+BaseWorldObject::BaseWorldObject(World *world, const char *imageFile) : 
     world(world),
     layer(0), 
-    objectSprite(spriteSheet->createSprite()) {
+    objectSprite(Game::getSpriteSheet(imageFile)->createSprite()) {
 	setTileX(0);
 	setTileY(0);
 }

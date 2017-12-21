@@ -15,7 +15,7 @@ class Font;
 
 class WorldTextBox : public BaseGameObject {
 public:
-	WorldTextBox(World *w, SpriteSheet *textBoxSprite, Font *font, bool isDialogue);
+	WorldTextBox(World *w, const char *windowSkinImageFile, const char *fontFile, bool isDialogue);
 	~WorldTextBox() override;
 
 	void show();

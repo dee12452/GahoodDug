@@ -8,7 +8,7 @@ class WorldCharacterMoveListener;
 
 class WorldCharacter : public BaseWorldMover {
 public:
-    WorldCharacter(World *world, SpriteSheet *sheet, int movementUpdateTime, int movementSpeed);
+    WorldCharacter(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed);
     ~WorldCharacter() override;
 
 	void setOnMoveListener(WorldCharacterMoveListener *listener);

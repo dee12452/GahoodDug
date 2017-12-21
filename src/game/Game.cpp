@@ -14,7 +14,10 @@
 #include "../map/MapLoader.hpp"
 
 static int runInBackgroundThread(void *gahoodmon);
+
 std::vector<BaseGameObject *> Game::updatables;
+std::map<std::string, SpriteSheet *> Game::spriteSheets;
+std::map<std::string, Font *> Game::fonts;
 
 Game::Game() 
     : running(false), 
@@ -168,7 +171,7 @@ void Game::loadSpriteSheet(const char *path) {
     spriteSheets.insert(std::pair<std::string, SpriteSheet *>(FileUtil::getFileName(path), new SpriteSheet(window->getWindowRenderer(), path)));
 }
 
-SpriteSheet * Game::getSpriteSheet(const char *spriteSheetName) const {
+SpriteSheet * Game::getSpriteSheet(const char *spriteSheetName) {
     SpriteSheet *sheet = NULL;
     std::string fileName(spriteSheetName);
     std::map<std::string, SpriteSheet *>::const_iterator iterator = spriteSheets.find(fileName);
@@ -178,7 +181,7 @@ SpriteSheet * Game::getSpriteSheet(const char *spriteSheetName) const {
     return sheet;
 }
 
-Font * Game::getFont(const char *fontName) const {
+Font * Game::getFont(const char *fontName) {
     Font *font = NULL;
     std::string fileName(fontName);
     std::map<std::string, Font *>::const_iterator iterator = fonts.find(fileName);

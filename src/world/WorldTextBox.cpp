@@ -5,15 +5,15 @@
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
 
-WorldTextBox::WorldTextBox(World *w, SpriteSheet *textBoxSprite, Font *font, bool isDialogue)
+WorldTextBox::WorldTextBox(World *w, const char *windowSkinImageFile, const char *fontFile, bool isDialogue)
 	: dialogue(isDialogue), 
 	  animIn(false),
 	  message(""),
 	  world(w), 
 	  animTimer(new Timer(Constants::WORLD_MAP_NAME_ANIM_TICK_TIME)),
 	  dismissTimer(NULL),
-	  messageFont(font) {
-	boxSprite = textBoxSprite->createSprite();
+	  messageFont(Game::getFont(fontFile)) {
+	boxSprite = Game::getSpriteSheet(windowSkinImageFile)->createSprite();
 }
 
 WorldTextBox::~WorldTextBox() { 

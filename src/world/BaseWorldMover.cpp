@@ -5,8 +5,8 @@
 #include "../sprite/Sprite.hpp"
 #include "../util/Utils.hpp"
 
-BaseWorldMover::BaseWorldMover(World *world, SpriteSheet *spriteSheet, int movementUpdateTime, int movementSpeed) 
-	: BaseWorldObject(world, spriteSheet),
+BaseWorldMover::BaseWorldMover(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed) 
+	: BaseWorldObject(world, imageFile),
 	displacement(0),
 	moveSpeed(movementSpeed),
 	nextMoveSpeed(movementSpeed),

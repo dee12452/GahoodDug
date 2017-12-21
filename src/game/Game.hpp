@@ -43,10 +43,10 @@ public:
     Window * getWindow() const;
 
     //Get a sprite sheet to make a sprite
-    SpriteSheet * getSpriteSheet(const char *spriteSheetName) const;
+    static SpriteSheet * getSpriteSheet(const char *spriteSheetName);
     
     //Get a font to make a text sprite
-    Font * getFont(const char *fontName) const;
+    static Font * getFont(const char *fontName);
 
 private:
     //Member variables//
@@ -63,8 +63,8 @@ private:
     void changeScreens();
 
 	static std::vector<BaseGameObject *> updatables;
-    std::map<std::string, SpriteSheet *> spriteSheets;
-    std::map<std::string, Font *> fonts;
+    static std::map<std::string, SpriteSheet *> spriteSheets;
+    static std::map<std::string, Font *> fonts;
 };
 
 #endif

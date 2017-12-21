@@ -27,7 +27,7 @@ private:
 
 World::World(Game *game) : map(NULL), mapTexture(NULL) {
 	changeMap(Constants::MAP_ROUTE_1);
-	player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+	player = new WorldCharacter(this, "NPC 07.png", Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
 	player->setOnMoveListener(new PlayerMoveListener(this));
 	player->setTileX(9); player->setTileY(32);
 } 
