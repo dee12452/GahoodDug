@@ -70,8 +70,8 @@ LaunchScreen::~LaunchScreen() {
 }
 
 void LaunchScreen::start(Game *game) {
-	loadingText = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow()->getWindowRenderer(), "Loading");
-	loadingText->setColor(game->getWindow()->getWindowRenderer(), Constants::COLOR_WHITE);
+	loadingText = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow(), "Loading");
+	loadingText->setColor(game->getWindow(), Constants::COLOR_WHITE);
 	loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
 
 	loader = new LaunchScreenLoader(game);
@@ -84,9 +84,9 @@ void LaunchScreen::stop(Game *game) {
 
 void LaunchScreen::drawScreen(Window *win) const {
 	if (loader != NULL) {
-		loadingText->setText(win->getWindowRenderer(), loader->getCurrentImageFileName());
+		loadingText->setText(win, loader->getCurrentImageFileName());
 	}
-    loadingText->draw(win->getWindowRenderer());
+    loadingText->draw(win);
 }
 
 void LaunchScreen::onInput(Game *, const SDL_Event &) {}

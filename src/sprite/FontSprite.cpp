@@ -1,19 +1,19 @@
 #include "FontSprite.hpp"
 
 #include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL.h>
+#include "../game/Window.hpp"
 #include "Sprite.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Util.hpp"
 
-FontSprite::FontSprite(SDL_Renderer *renderer, TTF_Font *targetFont, const std::string &newText, const SDL_Color &color) {
+FontSprite::FontSprite(Window *win, TTF_Font *targetFont, const std::string &newText, const SDL_Color &color) {
     font = targetFont;
     text = newText;
     textColor = new SDL_Color;
     *textColor = color;
     texture = NULL;
     sprite = NULL;
-    createNewFontTexture(renderer);
+    createNewFontTexture(win);
 }
 
 FontSprite::~FontSprite() {
@@ -35,12 +35,12 @@ FontSprite::~FontSprite() {
     }
 }
 
-void FontSprite::createNewFontTexture(SDL_Renderer *renderer) {
+void FontSprite::createNewFontTexture(Window *win) {
     if(texture != NULL) {
         SDL_DestroyTexture(texture);
     }
     SDL_Surface *tempSurface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), *textColor, Constants::WINDOW_WIDTH);
-    texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+    texture = SDL_CreateTextureFromSurface(win->getWindowRenderer(), tempSurface);
     SDL_FreeSurface(tempSurface);
     tempSurface = NULL;
     if(sprite != NULL) {
@@ -60,19 +60,19 @@ void FontSprite::createNewFontTexture(SDL_Renderer *renderer) {
     }
 }
 
-void FontSprite::setText(SDL_Renderer *renderer, const std::string &newText) {
+void FontSprite::setText(Window *win, const std::string &newText) {
     text = newText;
-    createNewFontTexture(renderer);
+    createNewFontTexture(win);
 }
 
-void FontSprite::setColor(SDL_Renderer *renderer, const SDL_Color &color) {
+void FontSprite::setColor(Window *win, const SDL_Color &color) {
     *textColor = color;
-    createNewFontTexture(renderer);
+    createNewFontTexture(win);
 }
 
-void FontSprite::draw(SDL_Renderer *renderer) {
+void FontSprite::draw(Window *win) const {
     if(sprite != NULL) {
-        sprite->draw(renderer);
+        sprite->draw(win);
     }
 }
 

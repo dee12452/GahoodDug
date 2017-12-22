@@ -6,6 +6,7 @@ class Map;
 class Window;
 class Sprite;
 class WorldCharacter;
+class WorldTextBox;
 struct SDL_Texture;
 struct SDL_Rect;
 enum MapDirection;
@@ -29,6 +30,7 @@ private:
     Map *map;
     SDL_Texture *mapTexture;
     WorldCharacter *player;
+	WorldTextBox *routeTextBox;
 
     void drawMap(Window *win);
 	void drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSrc, SDL_Rect mapDst);

@@ -86,7 +86,7 @@ void Map::generate(Game *game) {
 					getTileHeight());
 				tilesetSprite->setSrcRect(src);
 				tilesetSprite->setDstRect(dst);
-				tilesetSprite->draw(win->getWindowRenderer());
+				tilesetSprite->draw(win);
 				currTile = NULL;
 			}
 		}

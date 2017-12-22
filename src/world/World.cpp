@@ -8,6 +8,7 @@
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
 #include "WorldCharacter.hpp"
+#include "WorldTextBox.hpp"
 
 /**
 * Move listener for the player
@@ -26,7 +27,9 @@ private:
 };
 
 World::World(Game *game) : map(NULL), mapTexture(NULL) {
+	routeTextBox = new WorldTextBox(this, "choice 1.png", Constants::FONT_JOYSTIX, false);
 	changeMap(Constants::MAP_ROUTE_1);
+
 	player = new WorldCharacter(this, "NPC 07.png", Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
 	player->setOnMoveListener(new PlayerMoveListener(this));
 	player->setTileX(9); player->setTileY(32);
@@ -34,18 +37,24 @@ World::World(Game *game) : map(NULL), mapTexture(NULL) {
 
 World::~World() { 
     map = NULL;
-    if(player != NULL) {
+	if (routeTextBox != NULL) {
+		routeTextBox->dismiss();
+		delete routeTextBox;
+		routeTextBox = NULL;
+	}
+	if(player != NULL) {
         delete player;
         player = NULL;
     }
-    if(mapTexture != NULL) {
-        SDL_DestroyTexture(mapTexture);
-        mapTexture = NULL;
-    }
+	if (mapTexture != NULL) {
+		SDL_DestroyTexture(mapTexture);
+		mapTexture = NULL;
+	}
 }
 
 void World::drawWorld(Window *win) {
     drawMap(win);
+	routeTextBox->drawTextBox(win);
 }
 
 void World::drawMap(Window *win) {
@@ -109,7 +118,7 @@ void World::drawMap(Window *win) {
 		if (i == static_cast<unsigned int> (player->getLayer() + 1)) {
 			player->getSprite()->setDstX(drawWidth - player->getSprite()->getDstW() / 2);
 			player->getSprite()->setDstY(drawHeight - player->getSprite()->getDstH() / 2 + Constants::CHARACTER_TILE_OFFSET_Y);
-			player->getSprite()->draw(win->getWindowRenderer());
+			player->getSprite()->draw(win);
 		}
 	}
 
@@ -166,11 +175,15 @@ void World::changeMap(Map *newMap) {
 	map = newMap;
 	if (mapTexture != NULL) SDL_DestroyTexture(mapTexture);
 	mapTexture = NULL;
+	routeTextBox->dismiss();
+	routeTextBox->show();
+	routeTextBox->dismissAfter(2000);
 }
 
 Map * World::getMap() const { return map; }
 int World::getTileWidth() const { return map->getTileWidth(); }
 int World::getTileHeight() const { return map->getTileHeight(); }
+
 WorldCharacter * World::getPlayer() const { return player; }
 
 PlayerMoveListener::~PlayerMoveListener() { world = NULL; }

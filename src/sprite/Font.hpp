@@ -4,7 +4,7 @@
 #include <string>
 #include <SDL2/SDL_ttf.h>
 
-struct SDL_Renderer;
+class Window;
 class FontSprite;
 
 #ifndef DEFAULT_FONT_SIZE
@@ -16,8 +16,8 @@ public:
     Font(const char *fontFile);
     ~Font();
 
-    FontSprite * createFontSprite(SDL_Renderer *renderer, const std::string &text, int pointSize) const;
-    FontSprite * createFontSprite(SDL_Renderer *renderer, const std::string &text) const;
+    FontSprite * createFontSprite(Window *win, const std::string &text, int pointSize) const;
+    FontSprite * createFontSprite(Window *win, const std::string &text) const;
 
 private:
     std::string file;

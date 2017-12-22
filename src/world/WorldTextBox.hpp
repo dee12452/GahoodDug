@@ -31,7 +31,7 @@ protected:
 	void onTickInBackground() override;
 
 private:
-	bool dialogue, animIn;
+	bool dialogue, animIn, changedText, changedFont, drawBox;
 	std::string message;
 	World *world;
 	Timer *animTimer;

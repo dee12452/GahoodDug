@@ -1,6 +1,7 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+class Window;
 struct SDL_Texture;
 struct SDL_Renderer;
 struct SDL_Rect;
@@ -33,7 +34,7 @@ public:
     ~Sprite();
 
     /* Draw the Sprite to the screen */
-    void draw(SDL_Renderer *renderer) const;
+    void draw(Window *win) const;
 
     /*
      * Getters and Setters for dimension rects

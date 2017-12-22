@@ -1,5 +1,6 @@
 #include "Sprite.hpp"
 
+#include "../game/Window.hpp"
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 
@@ -39,9 +40,9 @@ Sprite::~Sprite() {
     spriteSheet = NULL;
 }
 
-void Sprite::draw(SDL_Renderer *renderer) const {
-    if(renderer != NULL && spriteSheet != NULL) {
-        SDL_RenderCopy(renderer, spriteSheet, sourceRect, destinationRect);
+void Sprite::draw(Window *window) const {
+    if(window != NULL && spriteSheet != NULL) {
+		window->drawTexture(getTexture(), sourceRect, destinationRect);
     }
 }
 
