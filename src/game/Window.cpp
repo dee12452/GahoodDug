@@ -12,6 +12,7 @@ Window::Window() {
     
     //Create the window
 	SDL_Surface *gameIcon = IMG_Load(Constants::GAME_ICON);
+	if (gameIcon == NULL) Util::fatalSDLError("Failed to load the game icon");
     win = SDL_CreateWindow(Constants::GAME_TITLE, 
 		DisplayUtil::getScreenWidth() / 2 - Constants::WINDOW_WIDTH / 2,
 		DisplayUtil::getScreenHeight() / 2 - Constants::WINDOW_HEIGHT / 2, 

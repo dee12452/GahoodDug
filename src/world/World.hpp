@@ -27,7 +27,7 @@ public:
 private:
     Map *map;
     SDL_Texture *mapTexture;
-	BaseWorldObject *player;
+	BaseWorldObject *player, *routeTextBox;
 
     void drawMap(Window *win);
 	void drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSrc, SDL_Rect mapDst);

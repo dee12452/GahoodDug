@@ -25,7 +25,7 @@ public:
 	void onMoveEnd(FacingDirection direction, int tileX, int tileY) override;
 };
 
-World::World() : map(NULL), mapTexture(NULL), player(NULL) {}
+World::World() : map(NULL), mapTexture(NULL), player(NULL), routeTextBox(NULL) {}
 
 World::~World() { 
 	if(player != NULL) {
@@ -36,20 +36,27 @@ World::~World() {
 		SDL_DestroyTexture(mapTexture);
 		mapTexture = NULL;
 	}
+	if (routeTextBox != NULL) {
+		delete routeTextBox;
+		routeTextBox = NULL;
+	}
 	map = NULL;
 }
 
 void World::start(Game *game) {
 	changeMap(Constants::MAP_ROUTE_1);
 
+	routeTextBox = new WorldTextBox(this, game->getSpriteSheet("choice 1.png"), game->getFont(Constants::FONT_JOYSTIX), false);
 	player = new WorldCharacter(this, game->getSpriteSheet("NPC 01.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
 	static_cast<WorldCharacter *>(player)->setOnMoveListener(new PlayerMoveListener(this));
 	player->setTileX(9); player->setTileY(32);
 	game->schedule(player);
+	game->schedule(routeTextBox);
 }
 
 void World::stop(Game *game) {
 	game->unschedule(player);
+	game->unschedule(routeTextBox);
 }
 
 void World::render(Window *win) {
@@ -128,6 +135,8 @@ void World::drawMap(Window *win) {
 
 	win->resetRenderTarget();
 	win->drawTexture(mapTexture, &mapSrc, NULL);
+
+	if (routeTextBox != NULL) routeTextBox->draw(win);
 }
 
 /**
@@ -172,6 +181,9 @@ void World::drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSr
 	}
 }
 
+/**
+ *Change the current map
+ */
 void World::changeMap(const char * const mapFile) {
 	changeMap(MapLoader::getInstance()->getMap(mapFile));
 }
@@ -182,8 +194,18 @@ void World::changeMap(Map *newMap) {
 		SDL_DestroyTexture(mapTexture);
 		mapTexture = NULL;
 	}
+	if (routeTextBox != NULL) {
+		WorldTextBox *txtBox = static_cast<WorldTextBox *> (routeTextBox);
+		txtBox->dismiss();
+		txtBox->setText(map->getMapName());
+		txtBox->show();
+		txtBox->dismissAfter(5000);
+	}
 }
 
+/**
+ * Getters and setters
+ */
 Map * World::getMap() const { return map; }
 BaseWorldObject * World::getPlayer() const { return player; }
 

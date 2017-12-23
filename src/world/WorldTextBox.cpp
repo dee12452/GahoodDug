@@ -10,14 +10,16 @@ WorldTextBox::WorldTextBox(World *w, SpriteSheet *image, Font *font, bool isDial
 	  dialogue(isDialogue), 
 	  animIn(false),
 	  changedText(false),
-	  changedFont(false),
+	  changedFont(true),
 	  drawBox(false),
 	  message(""),
-	  dismissTimer(NULL) {
+	  dismissTimer(NULL),
+	  messageFont(font),
+	  messageSprite(NULL) {
 	int width, height;
 	getImageDimensions(width, height);
 	setSourceRect(Util::createRect(0, 0, width, height));
-	setDestinationRect(Util::createRect(0, -height, width, height));
+	setDestinationRect(Util::createRect(0, -height, width * 5, height * 2));
 }
 
 WorldTextBox::~WorldTextBox() { 
@@ -36,9 +38,19 @@ void WorldTextBox::onObjectTick(Game *) {
 	if (dismissTimer != NULL && dismissTimer->check()) {
 		dismiss();
 	}
-	else if(drawBox) {
+	else if(drawBox && animIn) {
 		if (getRawY() < 0) {
 			setRawY(getRawY() + 4);
+			if (messageSprite != NULL) {
+				SDL_Rect textRect = Util::createRect(getRawX() + getWidth() / 4,
+					getRawY() + getHeight() / 4,
+					getWidth() / 2, 
+					getHeight() / 2);
+				messageSprite->getSprite()->setDstRect(textRect);
+			}
+		}
+		else {
+			animIn = false;
 		}
 	}
 }
@@ -52,6 +64,7 @@ void WorldTextBox::setFont(Font *font) { messageFont = font; changedFont = true;
 void WorldTextBox::show() {
 	if (drawBox) return;
 	drawBox = true;
+	if (!dialogue) animIn = true;
 }
 
 void WorldTextBox::dismiss() {
@@ -69,11 +82,12 @@ void WorldTextBox::nextLine() {}
 
 void WorldTextBox::onDraw(Window *win) {
 	if (changedText) {
-		//TODO: change the text
+		if (messageSprite != NULL) messageSprite->setText(win, message);
 		changedText = false;
 	}
 	if (changedFont) {
-		//TODO: change the font
+		if (messageSprite != NULL) delete messageSprite;
+		messageSprite = messageFont->createFontSprite(win, message);
 		changedFont = false;
 	}
 	if (drawBox) {
@@ -83,6 +97,7 @@ void WorldTextBox::onDraw(Window *win) {
 		}
 		else {
 			BaseWorldObject::onDraw(win);
+			messageSprite->draw(win);
 		}
 	}
 }
