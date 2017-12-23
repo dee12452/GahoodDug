@@ -164,7 +164,9 @@ Window * Game::getWindow() const {
 }
 
 void Game::loadSpriteSheet(const char *path) {
-    spriteSheets.insert(std::pair<std::string, SpriteSheet *>(FileUtil::getFileName(path), new SpriteSheet(window->getWindowRenderer(), path)));
+	std::string fileName = FileUtil::getFileName(path);
+	if (spriteSheets.find(fileName) != spriteSheets.end()) return;
+    spriteSheets.insert(std::pair<std::string, SpriteSheet *>(fileName, new SpriteSheet(window->getWindowRenderer(), path)));
 }
 
 SpriteSheet * Game::getSpriteSheet(const char *spriteSheetName) {

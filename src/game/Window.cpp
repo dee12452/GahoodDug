@@ -1,6 +1,7 @@
 #include "Window.hpp"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include "Game.hpp"
 #include "../util/Constants.hpp"
 #include "../util/Util.hpp"
@@ -10,6 +11,7 @@
 Window::Window() {
     
     //Create the window
+	SDL_Surface *gameIcon = IMG_Load(Constants::GAME_ICON);
     win = SDL_CreateWindow(Constants::GAME_TITLE, 
 		DisplayUtil::getScreenWidth() / 2 - Constants::WINDOW_WIDTH / 2,
 		DisplayUtil::getScreenHeight() / 2 - Constants::WINDOW_HEIGHT / 2, 
@@ -19,12 +21,18 @@ Window::Window() {
     if(win == NULL) {
         Util::fatalSDLError("Failed to initialize the window");
     }
+	SDL_SetWindowTitle(win, Constants::GAME_TITLE);
+	SDL_SetWindowIcon(win, gameIcon);
+	SDL_FreeSurface(gameIcon);
 
     //Create the renderer
     winRenderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
     if(winRenderer == NULL) {
         Util::fatalSDLError("Failed to initialize the window renderer");
     }
+	if (SDL_RenderSetLogicalSize(winRenderer, Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT) != 0) {
+		Util::fatalSDLError("Failed to set the rendering logical size");
+	}
     //Make default render color black and set the window to black
 	if (SDL_SetRenderDrawColor(winRenderer, 0, 0, 0, Constants::SPRITE_ALPHA_FULL) != 0) {
 		Util::fatalSDLError("Failed to set the renderer draw color");

@@ -13,6 +13,7 @@ public:
      * Window Constants
      **********************************
      */
+	static const char * GAME_ICON;
     static const char * GAME_TITLE;
     static const int WINDOW_WIDTH;
     static const int WINDOW_HEIGHT;

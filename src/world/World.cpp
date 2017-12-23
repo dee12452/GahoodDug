@@ -10,22 +10,24 @@
 #include "WorldCharacter.hpp"
 #include "WorldTextBox.hpp"
 
-World::World(Game *game) : map(NULL), mapTexture(NULL) {
-	changeMap(Constants::MAP_ROUTE_1);
+/**
+* Move listener for the player
+*/
+class PlayerMoveListener : public WorldCharacterMoveListener {
+private:
+	World *world;
+public:
+	PlayerMoveListener(World *w) { world = w; }
+	~PlayerMoveListener() override { world = 0; }
 
-	routeTextBox = new WorldTextBox(this, game->getSpriteSheet("choice 1.png"), game->getFont(Constants::FONT_JOYSTIX), false);
-	player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
-	player->setOnMoveListener(new PlayerMoveListener(this));
-	player->setTileX(9); player->setTileY(32);
-} 
+	void onMoveStart(FacingDirection direction, int tileX, int tileY) override;
+	void onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) override;
+	void onMoveEnd(FacingDirection direction, int tileX, int tileY) override;
+};
+
+World::World() : map(NULL), mapTexture(NULL), player(NULL) {}
 
 World::~World() { 
-    map = NULL;
-	if (routeTextBox != NULL) {
-		routeTextBox->dismiss();
-		delete routeTextBox;
-		routeTextBox = NULL;
-	}
 	if(player != NULL) {
         delete player;
         player = NULL;
@@ -34,11 +36,24 @@ World::~World() {
 		SDL_DestroyTexture(mapTexture);
 		mapTexture = NULL;
 	}
+	map = NULL;
+}
+
+void World::start(Game *game) {
+	changeMap(Constants::MAP_ROUTE_1);
+
+	player = new WorldCharacter(this, game->getSpriteSheet("NPC 01.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+	static_cast<WorldCharacter *>(player)->setOnMoveListener(new PlayerMoveListener(this));
+	player->setTileX(9); player->setTileY(32);
+	game->schedule(player);
+}
+
+void World::stop(Game *game) {
+	game->unschedule(player);
 }
 
 void World::render(Window *win) {
     drawMap(win);
-	routeTextBox->draw(win);
 }
 
 /**
@@ -163,25 +178,20 @@ void World::changeMap(const char * const mapFile) {
 
 void World::changeMap(Map *newMap) {
 	map = newMap;
-	if (mapTexture != NULL) SDL_DestroyTexture(mapTexture);
-	mapTexture = NULL;
-	if (routeTextBox == NULL) return;
-	routeTextBox->dismiss();
-	routeTextBox->show();
-	routeTextBox->dismissAfter(2000);
+	if (mapTexture != NULL) {
+		SDL_DestroyTexture(mapTexture);
+		mapTexture = NULL;
+	}
 }
 
 Map * World::getMap() const { return map; }
-int World::getTileWidth() const { return map->getTileWidth(); }
-int World::getTileHeight() const { return map->getTileHeight(); }
-
-WorldCharacter * World::getPlayer() const { return player; }
+BaseWorldObject * World::getPlayer() const { return player; }
 
 /**
 * Move listener for the player
 */
-void World::PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
-void World::PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
+void PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
+void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
 	if (direction == FacingDirection::DOWN && tileY >= world->getMap()->getHeight()) {
 		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_SOUTH));
 		world->getPlayer()->setTileY(0);
@@ -199,4 +209,4 @@ void World::PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, 
 		world->getPlayer()->setTileX(world->getMap()->getWidth() - 1);
 	}
 }
-void World::PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}
+void PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}

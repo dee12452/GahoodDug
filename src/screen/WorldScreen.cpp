@@ -6,7 +6,7 @@
 #include "../world/WorldCharacter.hpp"
 #include "../util/Constants.hpp"
 
-WorldScreen::WorldScreen() : BaseScreen(), world(NULL) {}
+WorldScreen::WorldScreen() : BaseScreen(), world(new World()) {}
 
 WorldScreen::~WorldScreen() {
     if(world != NULL) {
@@ -15,47 +15,40 @@ WorldScreen::~WorldScreen() {
     }
 }
 
-void WorldScreen::start(Game *game) {
-	world = new World(game);
-	game->schedule(world->getPlayer());
-}
+void WorldScreen::start(Game *game) { world->start(game); }
 
-void WorldScreen::stop(Game *game) {
-	game->unschedule(world->getPlayer());
-}
+void WorldScreen::stop(Game *game) { world->stop(game); }
 
-void WorldScreen::render(Window *win) {
-    world->render(win);
-}
+void WorldScreen::render(Window *win) { world->render(win); }
 
-void WorldScreen::onInput(Game *, const SDL_Event &) {
-}
+void WorldScreen::onInput(Game *, const SDL_Event &) {}
 
 void WorldScreen::onKeyInput(Game *, const uint8_t *keys) {
+	WorldCharacter *player = static_cast<WorldCharacter *> (world->getPlayer());
     bool movePlayer = false;
 
     if(keys[SDL_SCANCODE_LSHIFT]) {
-        world->getPlayer()->setMoveSpeed(Constants::CHARACTER_RUN_SPEED);
+        player->setMoveSpeed(Constants::CHARACTER_RUN_SPEED);
     }
     else {
-        world->getPlayer()->setMoveSpeed(Constants::CHARACTER_WALK_SPEED);
+        player->setMoveSpeed(Constants::CHARACTER_WALK_SPEED);
     }
     if(keys[SDL_SCANCODE_UP]) {
-        world->getPlayer()->move(FacingDirection::UP);
+        player->move(FacingDirection::UP);
         movePlayer = true;
     }
     else if(keys[SDL_SCANCODE_DOWN]) {
-        world->getPlayer()->move(FacingDirection::DOWN);
+        player->move(FacingDirection::DOWN);
         movePlayer = true;
     }
     else if(keys[SDL_SCANCODE_RIGHT]) {
-        world->getPlayer()->move(FacingDirection::RIGHT);
+        player->move(FacingDirection::RIGHT);
         movePlayer = true;
     }
     else if(keys[SDL_SCANCODE_LEFT]) {
-        world->getPlayer()->move(FacingDirection::LEFT);
+        player->move(FacingDirection::LEFT);
         movePlayer = true;
     }
 
-    if(!movePlayer) world->getPlayer()->cancelNextMove();
+    if(!movePlayer) player->cancelNextMove();
 }

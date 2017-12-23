@@ -4,15 +4,16 @@
 
 /*
  * WINDOW CONST */
+const char * Constants::GAME_ICON = "../res/image/icon/game_icon.png";
 const char * Constants::GAME_TITLE = "Gahoodmon";
-const int Constants::WINDOW_WIDTH = 500;
-const int Constants::WINDOW_HEIGHT = 500;
+const int Constants::WINDOW_WIDTH = 640;
+const int Constants::WINDOW_HEIGHT = 480;
 const uint32_t Constants::WINDOW_FLAGS = SDL_WINDOW_OPENGL; 
 
 /*
  * GAME CONST */
 const uint8_t Constants::GAME_BACKGROUND_LOOP_DELAY = 25;
-const uint8_t Constants::GAME_LOOP_DELAY = 4;
+const uint8_t Constants::GAME_LOOP_DELAY = 5;
 const uint16_t Constants::TARGET_TICKS_PER_SECOND = 120;
 const uint8_t Constants::TARGET_FPS = 60;
 const char * const Constants::GAME_THREAD_NAME = "GahoodmonBackgroundThread";
