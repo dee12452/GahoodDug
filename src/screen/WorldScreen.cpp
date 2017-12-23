@@ -1,6 +1,7 @@
 #include "WorldScreen.hpp"
 
 #include <SDL2/SDL_events.h>
+#include "../game/Game.hpp"
 #include "../world/World.hpp"
 #include "../world/WorldCharacter.hpp"
 #include "../util/Constants.hpp"
@@ -16,15 +17,15 @@ WorldScreen::~WorldScreen() {
 
 void WorldScreen::start(Game *game) {
 	world = new World(game);
-	Game::registerObjectTick(world->getPlayer());
+	game->schedule(world->getPlayer());
 }
 
 void WorldScreen::stop(Game *game) {
-	Game::unregisterObjectTick(world->getPlayer());
+	game->unschedule(world->getPlayer());
 }
 
-void WorldScreen::drawScreen(Window *win) const {
-    world->drawWorld(win);
+void WorldScreen::render(Window *win) {
+    world->render(win);
 }
 
 void WorldScreen::onInput(Game *, const SDL_Event &) {

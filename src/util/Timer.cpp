@@ -1,6 +1,6 @@
 #include "Timer.hpp"
 
-Timer::Timer(int ms) {
+Timer::Timer(unsigned int ms) {
     setTargetMs(ms);
     reset();
 }
@@ -16,14 +16,14 @@ bool Timer::check() {
     finish = std::chrono::high_resolution_clock::now();
 	//elapsedTime is in seconds
 	double elapsedTime = std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count();
-    if(static_cast<int> (elapsedTime * 1000) >= targetMs) {
+    if(static_cast<unsigned int> (elapsedTime * 1000) >= targetMs) {
         reset();
         return true;
     }
     return false;
 }
 
-void Timer::setTargetMs(int ms) {
+void Timer::setTargetMs(unsigned int ms) {
     targetMs = ms;
 }
 

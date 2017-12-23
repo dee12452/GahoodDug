@@ -1,4 +1,5 @@
 #include "BaseScreen.hpp"
+#include "../game/Game.hpp"
 #include <SDL2/SDL.h>
 
 BaseScreen::BaseScreen() {}

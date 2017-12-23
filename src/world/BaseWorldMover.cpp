@@ -5,23 +5,17 @@
 #include "../sprite/Sprite.hpp"
 #include "../util/Utils.hpp"
 
-BaseWorldMover::BaseWorldMover(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed) 
-	: BaseWorldObject(world, imageFile),
+BaseWorldMover::BaseWorldMover(World *world, SpriteSheet *image, int movementUpdateTime, int movementSpeed) 
+	: BaseWorldObject(world, image, movementUpdateTime),
 	displacement(0),
 	moveSpeed(movementSpeed),
 	nextMoveSpeed(movementSpeed),
 	nextDirection(NONE),
-	movementTimer(new Timer(movementUpdateTime)),
 	moving(false),
     canMove(true),
 	walkLeft(true) {}
 
-BaseWorldMover::~BaseWorldMover() {
-	if (movementTimer != NULL) {
-		delete movementTimer;
-		movementTimer = NULL;
-	}
-}
+BaseWorldMover::~BaseWorldMover() {}
 
 void BaseWorldMover::move(FacingDirection direction) {
 	if (moving) {
@@ -33,8 +27,8 @@ void BaseWorldMover::move(FacingDirection direction) {
 	}
 }
 
-void BaseWorldMover::onTick(Game *) {
-	if (moving && currentDirection != FacingDirection::NONE && movementTimer->check()) {
+void BaseWorldMover::onObjectTick(Game *) {
+	if (moving && currentDirection != FacingDirection::NONE) {
         if(displacement == 0) { onMoveStart(currentDirection); } 
         if(canMove) {
             switch (currentDirection) {

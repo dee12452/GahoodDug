@@ -33,20 +33,20 @@ public:
     //Request a screen change
     void requestNewScreen(BaseScreen *newScreen);
 
-    //Add a game object to the game to be ticked
-	static void registerObjectTick(BaseGameObject *obj);
+    //Add a game object to the game to be scheduled to tick
+	void schedule(BaseGameObject *obj);
 
     //Remove a game object from the object tick list
-	static void unregisterObjectTick(BaseGameObject *obj);
+	void unschedule(BaseGameObject *obj);
 
     //Get the game window
     Window * getWindow() const;
 
     //Get a sprite sheet to make a sprite
-    static SpriteSheet * getSpriteSheet(const char *spriteSheetName);
+    SpriteSheet * getSpriteSheet(const char *spriteSheetName);
     
     //Get a font to make a text sprite
-    static Font * getFont(const char *fontName);
+    Font * getFont(const char *fontName);
 
 private:
     //Member variables//
@@ -62,9 +62,9 @@ private:
     void deinit();
     void changeScreens();
 
-	static std::vector<BaseGameObject *> updatables;
-    static std::map<std::string, SpriteSheet *> spriteSheets;
-    static std::map<std::string, Font *> fonts;
+	std::vector<BaseGameObject *> updatables;
+    std::map<std::string, SpriteSheet *> spriteSheets;
+    std::map<std::string, Font *> fonts;
 };
 
 #endif

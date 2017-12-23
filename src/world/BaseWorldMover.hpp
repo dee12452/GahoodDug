@@ -3,13 +3,11 @@
 
 #include "BaseWorldObject.hpp"
 
-class Timer;
-
 typedef enum FacingDirection { NONE = 4, LEFT = 1, RIGHT = 2, UP = 3, DOWN = 0 } FacingDirection;
 
 class BaseWorldMover : public BaseWorldObject {
 public:
-	BaseWorldMover(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed);
+	BaseWorldMover(World *world, SpriteSheet *image, int movementUpdateTime, int movementSpeed);
 	virtual ~BaseWorldMover() override;
 
 	void move(FacingDirection direction);
@@ -26,7 +24,7 @@ protected:
 
     void stopNextMovement();
     bool isWalkingLeft() const;
-	void onTick(Game *game) override;
+	void onObjectTick(Game *game) override;
 
 	virtual void onMoveStart(FacingDirection direction) = 0;
     virtual void onMove(float percentToNextTile) = 0;
@@ -36,7 +34,6 @@ protected:
 private:
 	int displacement, moveSpeed, nextMoveSpeed;
 	FacingDirection currentDirection, nextDirection;
-	Timer *movementTimer;
 	bool moving, canMove, walkLeft;
 };
 

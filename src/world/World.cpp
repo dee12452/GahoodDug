@@ -10,27 +10,11 @@
 #include "WorldCharacter.hpp"
 #include "WorldTextBox.hpp"
 
-/**
-* Move listener for the player
-*/
-class PlayerMoveListener : public WorldCharacterMoveListener {
-public:
-	PlayerMoveListener(World *w);
-	~PlayerMoveListener() override;
-
-	void onMoveStart(FacingDirection direction, int tileX, int tileY) override;
-	void onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) override;
-	void onMoveEnd(FacingDirection direction, int tileX, int tileY) override;
-
-private:
-	World *world;
-};
-
 World::World(Game *game) : map(NULL), mapTexture(NULL) {
-	routeTextBox = new WorldTextBox(this, "choice 1.png", Constants::FONT_JOYSTIX, false);
 	changeMap(Constants::MAP_ROUTE_1);
 
-	player = new WorldCharacter(this, "NPC 07.png", Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
+	routeTextBox = new WorldTextBox(this, game->getSpriteSheet("choice 1.png"), game->getFont(Constants::FONT_JOYSTIX), false);
+	player = new WorldCharacter(this, game->getSpriteSheet("NPC 07.png"), Constants::CHARACTER_WALK_TIMER, Constants::CHARACTER_WALK_SPEED);
 	player->setOnMoveListener(new PlayerMoveListener(this));
 	player->setTileX(9); player->setTileY(32);
 } 
@@ -52,11 +36,14 @@ World::~World() {
 	}
 }
 
-void World::drawWorld(Window *win) {
+void World::render(Window *win) {
     drawMap(win);
-	routeTextBox->drawTextBox(win);
+	routeTextBox->draw(win);
 }
 
+/**
+ * Draw the current map to the window
+*/
 void World::drawMap(Window *win) {
 
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * map->getTileWidth();
@@ -116,9 +103,9 @@ void World::drawMap(Window *win) {
 	for (unsigned int i = 0; i < map->getNumberOfLayers(); i++) {
 		win->drawTexture(map->getLayer(i), &mapSrc, &mapDst);
 		if (i == static_cast<unsigned int> (player->getLayer() + 1)) {
-			player->getSprite()->setDstX(drawWidth - player->getSprite()->getDstW() / 2);
-			player->getSprite()->setDstY(drawHeight - player->getSprite()->getDstH() / 2 + Constants::CHARACTER_TILE_OFFSET_Y);
-			player->getSprite()->draw(win);
+			player->setRawX(drawWidth - player->getWidth() / 2);
+			player->setRawY(drawHeight - player->getHeight() / 2 + Constants::CHARACTER_TILE_OFFSET_Y);
+			player->draw(win);
 		}
 	}
 
@@ -128,6 +115,9 @@ void World::drawMap(Window *win) {
 	win->drawTexture(mapTexture, &mapSrc, NULL);
 }
 
+/**
+ * Draw any bordering map
+ */
 void World::drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSrc, SDL_Rect mapDst) {
 	Map *borderMap = map->getBorderingMap(direction);
 	if (borderMap == NULL) return;
@@ -175,6 +165,7 @@ void World::changeMap(Map *newMap) {
 	map = newMap;
 	if (mapTexture != NULL) SDL_DestroyTexture(mapTexture);
 	mapTexture = NULL;
+	if (routeTextBox == NULL) return;
 	routeTextBox->dismiss();
 	routeTextBox->show();
 	routeTextBox->dismissAfter(2000);
@@ -186,10 +177,11 @@ int World::getTileHeight() const { return map->getTileHeight(); }
 
 WorldCharacter * World::getPlayer() const { return player; }
 
-PlayerMoveListener::~PlayerMoveListener() { world = NULL; }
-PlayerMoveListener::PlayerMoveListener(World *w) : WorldCharacterMoveListener() { world = w; }
-void PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
-void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
+/**
+* Move listener for the player
+*/
+void World::PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
+void World::PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
 	if (direction == FacingDirection::DOWN && tileY >= world->getMap()->getHeight()) {
 		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_SOUTH));
 		world->getPlayer()->setTileY(0);
@@ -207,4 +199,4 @@ void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int til
 		world->getPlayer()->setTileX(world->getMap()->getWidth() - 1);
 	}
 }
-void PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}
+void World::PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}

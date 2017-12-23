@@ -4,11 +4,11 @@
 #include "../sprite/Sprites.hpp"
 #include "../map/Maps.hpp"
 
-WorldCharacter::WorldCharacter(World *world, const char *imageFile, int movementUpdateTime, int movementSpeed)
-    : BaseWorldMover(world, imageFile, movementUpdateTime, movementSpeed) {
+WorldCharacter::WorldCharacter(World *world, SpriteSheet *image, int movementUpdateTime, int movementSpeed)
+    : BaseWorldMover(world, image, movementUpdateTime, movementSpeed) {
     changeDirection(FacingDirection::DOWN);
-    getSprite()->setDstW(Constants::CHARACTER_WIDTH);
-    getSprite()->setDstH(Constants::CHARACTER_HEIGHT);
+    setWidth(Constants::CHARACTER_WIDTH);
+    setHeight(Constants::CHARACTER_HEIGHT);
 	moveListener = NULL;
 }
 
@@ -64,20 +64,26 @@ void WorldCharacter::onMove(float percentToNextTile) {
 	if (percentToNextTile < 0.5f) return;
 
 	if (isWalkingLeft()) {
-		getSprite()->setSrcX(Constants::CHARACTER_WIDTH);
+		SDL_Rect src = getSourceRect();
+		src.x = Constants::CHARACTER_WIDTH;
+		setSourceRect(src);
 	}
 	else {
-		getSprite()->setSrcX(Constants::CHARACTER_WIDTH * 3);
+		SDL_Rect src = getSourceRect();
+		src.x = Constants::CHARACTER_WIDTH * 3;
+		setSourceRect(src);
 	}
 }
 
 void WorldCharacter::onMoveEnd(FacingDirection direction) {
 	if (moveListener != NULL) moveListener->onMoveEnd(direction, getTileX(), getTileY());
-	getSprite()->setSrcX(0);
+	SDL_Rect src = getSourceRect();
+	src.x = 0;
+	setSourceRect(src);
 }
 
 void WorldCharacter::onChangeDirection(FacingDirection direction) {
-	getSprite()->setSrcRect(Util::createRect(0,
+	setSourceRect(Util::createRect(0,
 		static_cast<int>(direction) * Constants::CHARACTER_HEIGHT,
 		Constants::CHARACTER_WIDTH,
 		Constants::CHARACTER_HEIGHT));

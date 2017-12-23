@@ -5,38 +5,26 @@
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
 
-WorldTextBox::WorldTextBox(World *w, const char *windowSkinImageFile, const char *fontFile, bool isDialogue)
-	: dialogue(isDialogue), 
+WorldTextBox::WorldTextBox(World *w, SpriteSheet *image, Font *font, bool isDialogue) : 
+	  BaseWorldObject(w, image, Constants::WORLD_MAP_NAME_ANIM_TICK_TIME),
+	  dialogue(isDialogue), 
 	  animIn(false),
 	  changedText(false),
 	  changedFont(false),
 	  drawBox(false),
 	  message(""),
-	  world(w), 
-	  animTimer(new Timer(Constants::WORLD_MAP_NAME_ANIM_TICK_TIME)),
-	  dismissTimer(NULL),
-	  messageFont(Game::getFont(fontFile)) {
-	boxSprite = Game::getSpriteSheet(windowSkinImageFile)->createSprite();
+	  dismissTimer(NULL) {
 	int width, height;
-	Util::querySpriteSourceImage(boxSprite, width, height);
-	boxSprite->setSrcRect(Util::createRect(0, 0, width, height));
-	boxSprite->setDstRect(Util::createRect(0, 0, width, height));
+	getImageDimensions(width, height);
+	setSourceRect(Util::createRect(0, 0, width, height));
+	setDestinationRect(Util::createRect(0, -height, width, height));
 }
 
 WorldTextBox::~WorldTextBox() { 
-	world = NULL; 
 	messageFont = NULL;
 	if (dismissTimer != NULL) {
 		delete dismissTimer;
 		dismissTimer = NULL;
-	}
-	if (animTimer != NULL) {
-		delete animTimer;
-		animTimer = NULL;
-	}
-	if (boxSprite != NULL) {
-		delete boxSprite;
-		boxSprite = NULL;
 	}
 	if (messageSprite != NULL) {
 		delete messageSprite;
@@ -44,13 +32,13 @@ WorldTextBox::~WorldTextBox() {
 	}
 }
 
-void WorldTextBox::onTick(Game *) {
+void WorldTextBox::onObjectTick(Game *) {
 	if (dismissTimer != NULL && dismissTimer->check()) {
 		dismiss();
 	}
 	else if(drawBox) {
-		if (boxSprite->getDstY() < boxSprite->getDstH()) {
-			boxSprite->setDstY(boxSprite->getDstY() + 1);
+		if (getRawY() < 0) {
+			setRawY(getRawY() + 4);
 		}
 	}
 }
@@ -63,15 +51,13 @@ void WorldTextBox::setFont(Font *font) { messageFont = font; changedFont = true;
 
 void WorldTextBox::show() {
 	if (drawBox) return;
-	Game::registerObjectTick(this);
 	drawBox = true;
 }
 
 void WorldTextBox::dismiss() {
 	if (!drawBox) return;
-	Game::unregisterObjectTick(this);
 	drawBox = false;
-	boxSprite->setDstY(0);
+	setRawY(-getHeight());
 }
 
 void WorldTextBox::dismissAfter(unsigned int ms) {
@@ -81,7 +67,7 @@ void WorldTextBox::dismissAfter(unsigned int ms) {
 
 void WorldTextBox::nextLine() {}
 
-void WorldTextBox::drawTextBox(Window *win) {
+void WorldTextBox::onDraw(Window *win) {
 	if (changedText) {
 		//TODO: change the text
 		changedText = false;
@@ -96,7 +82,7 @@ void WorldTextBox::drawTextBox(Window *win) {
 
 		}
 		else {
-			boxSprite->draw(win);
+			BaseWorldObject::onDraw(win);
 		}
 	}
 }

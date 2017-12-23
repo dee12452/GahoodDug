@@ -2,67 +2,14 @@
 
 #include <SDL2/SDL_ttf.h>
 #include "WorldScreen.hpp"
-#include "../game/BaseGameObject.hpp"
+#include "../game/Game.hpp"
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
 #include "../map/MapLoader.hpp"
 
-/* * * * *
- * Class registered to the game to load each tick some Sprites to the game
- * * * * */
-class LaunchScreen::LaunchScreenLoader : public BaseGameObject {
-public:
-	LaunchScreenLoader(Game *) :
-		BaseGameObject(),
-		imageFilePaths(FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION)),
-		currentImageFile(0) {}
-
-	~LaunchScreenLoader() override {}
-
-	void onTick(Game *game) override {
-		if (!isLoading()) {
-			//Load the tilesets and maps
-			MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
-			Util::log(SDL_LOG_PRIORITY_INFO, "Loaded maps and tilesets!");
-
-			Game::unregisterObjectTick(this);
-			game->requestNewScreen(new WorldScreen());
-		}
-		else {
-			for (int i = 0; isLoading() && i < IMAGE_LOAD_RATE; i++) {
-				game->loadSpriteSheet(imageFilePaths[currentImageFile].c_str());
-				currentImageFile++;
-			}
-		}
-	}
-
-	void onTickInBackground() override {}
-
-	bool isLoading() const { return currentImageFile < imageFilePaths.size(); }
-
-	std::string getCurrentImageFileName() const {
-		if (isLoading()) return imageFilePaths[currentImageFile];
-		else return "Finished";
-	}
-
-private:
-	static const int IMAGE_LOAD_RATE = 50;
-
-	//Used for loading the game images
-	std::vector<std::string> imageFilePaths;
-	size_t currentImageFile;
-};
-/* * * * *
- * End LaunchScreenLoader
- * * * * */
-
-LaunchScreen::LaunchScreen() : BaseScreen(), loader(NULL), loadingText(NULL) {}
+LaunchScreen::LaunchScreen() : BaseScreen(), loadingText(NULL), hasDrawn(false) {}
 
 LaunchScreen::~LaunchScreen() {
-	if (loader != NULL) {
-		delete loader;
-		loader = NULL;
-	}
     if(loadingText != NULL) {
         delete loadingText;
         loadingText = NULL;
@@ -70,25 +17,30 @@ LaunchScreen::~LaunchScreen() {
 }
 
 void LaunchScreen::start(Game *game) {
+	game->schedule(this);
 	loadingText = game->getFont(Constants::FONT_JOYSTIX)->createFontSprite(game->getWindow(), "Loading");
 	loadingText->setColor(game->getWindow(), Constants::COLOR_WHITE);
 	loadingText->getSprite()->setDstRect(Util::createRectCenteredHorizontally(450, 150, 25));
-
-	loader = new LaunchScreenLoader(game);
-	Game::registerObjectTick(loader);
 }
 
 void LaunchScreen::stop(Game *game) {
-	Game::unregisterObjectTick(loader);
+	game->unschedule(this);
 }
 
-void LaunchScreen::drawScreen(Window *win) const {
-	if (loader != NULL) {
-		loadingText->setText(win, loader->getCurrentImageFileName());
-	}
+void LaunchScreen::render(Window *win) {
     loadingText->draw(win);
+	hasDrawn = true;
 }
 
 void LaunchScreen::onInput(Game *, const SDL_Event &) {}
 
 void LaunchScreen::onKeyInput(Game *, const uint8_t *) {}
+
+void LaunchScreen::onGameTick(Game *game) {
+	if (!hasDrawn) return;
+	std::vector<std::string> imageFiles = FileUtil::getFilesRecursively(Constants::GAME_RES_FOLDER, Constants::IMAGE_FILE_EXTENSION);
+	for (unsigned int i = 0; i < imageFiles.size(); i++) game->loadSpriteSheet(imageFiles[i].c_str());
+	MapLoader::getInstance()->loadAll(game, Constants::GAME_RES_FOLDER);
+	game->unschedule(this);
+	game->requestNewScreen(new WorldScreen());
+}

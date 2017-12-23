@@ -12,7 +12,7 @@ public:
 
 	void start(Game *game) override;
 	void stop(Game *game) override;
-	void drawScreen(Window *win) const override;
+	void render(Window *win) override;
 
 protected:
     void onInput(Game *game, const SDL_Event &event) override;

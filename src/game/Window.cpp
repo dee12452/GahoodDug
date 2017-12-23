@@ -53,7 +53,7 @@ void Window::render(BaseScreen *screen) {
 
     //Draw the screen to the texture here
 	if (screen != NULL) {
-		screen->drawScreen(this);
+		screen->render(this);
 	}
 
     SDL_RenderPresent(winRenderer);

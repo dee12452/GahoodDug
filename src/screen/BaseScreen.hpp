@@ -2,8 +2,9 @@
 #define BASE_SCREEN_HPP
 
 #include <vector>
-#include "../game/Game.hpp"
 
+class Game;
+class Window;
 class Sprite;
 struct SDL_Renderer;
 union SDL_Event;
@@ -18,7 +19,7 @@ public:
 	virtual void pause(Game *game);
 	virtual void resume(Game *game);
 	virtual void stop(Game *game);
-	virtual void drawScreen(Window *win) const = 0;
+	virtual void render(Window *win) = 0;
 
 	void handleInput(Game *game);
 

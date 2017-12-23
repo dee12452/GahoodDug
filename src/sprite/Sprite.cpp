@@ -46,15 +46,15 @@ void Sprite::draw(Window *window) const {
     }
 }
 
-int Sprite::getSrcX() const { return sourceRect == NULL ? -1 : sourceRect->x; }
-int Sprite::getSrcY() const { return sourceRect == NULL ? -1 : sourceRect->y; }
-int Sprite::getSrcW() const { return sourceRect == NULL ? -1 : sourceRect->w; }
-int Sprite::getSrcH() const { return sourceRect == NULL ? -1 : sourceRect->h; }
+int Sprite::getSrcX() const { return sourceRect == NULL ? 0 : sourceRect->x; }
+int Sprite::getSrcY() const { return sourceRect == NULL ? 0 : sourceRect->y; }
+int Sprite::getSrcW() const { return sourceRect == NULL ? 0 : sourceRect->w; }
+int Sprite::getSrcH() const { return sourceRect == NULL ? 0 : sourceRect->h; }
 
-int Sprite::getDstX() const { return destinationRect == NULL ? -1 : destinationRect->x; }
-int Sprite::getDstY() const { return destinationRect == NULL ? -1 : destinationRect->y; }
-int Sprite::getDstW() const { return destinationRect == NULL ? -1 : destinationRect->w; }
-int Sprite::getDstH() const { return destinationRect == NULL ? -1 : destinationRect->h; }
+int Sprite::getDstX() const { return destinationRect == NULL ? 0 : destinationRect->x; }
+int Sprite::getDstY() const { return destinationRect == NULL ? 0 : destinationRect->y; }
+int Sprite::getDstW() const { return destinationRect == NULL ? 0 : destinationRect->w; }
+int Sprite::getDstH() const { return destinationRect == NULL ? 0 : destinationRect->h; }
 
 SDL_Rect * Sprite::getSrcRect() const { return sourceRect; }
 SDL_Rect * Sprite::getDstRect() const { return destinationRect; }
