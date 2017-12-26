@@ -1,13 +1,14 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
+#include "../map/Map.hpp"
+
 class Game;
 class Window;
 class Map;
 class BaseWorldObject;
 struct SDL_Texture;
 struct SDL_Rect;
-enum MapDirection;
 
 class World {
 public:

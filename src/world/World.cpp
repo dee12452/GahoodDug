@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <SDL2/SDL_render.h>
 #include "../game/Game.hpp"
-#include "../map/Maps.hpp"
 #include "../map/MapLoader.hpp"
 #include "../sprite/Sprites.hpp"
 #include "../util/Utils.hpp"
@@ -142,7 +141,7 @@ void World::drawMap(Window *win) {
 /**
  * Draw any bordering map
  */
-void World::drawBorderingMap(Window *win, MapDirection direction, SDL_Rect mapSrc, SDL_Rect mapDst) {
+void World::drawBorderingMap(Window *win, MapDirection direction, SDL_Rect, SDL_Rect mapDst) {
 	Map *borderMap = map->getBorderingMap(direction);
 	if (borderMap == NULL) return;
 	int drawWidth = Constants::WORLD_DRAW_WIDTH * borderMap->getTileWidth();
@@ -212,7 +211,7 @@ BaseWorldObject * World::getPlayer() const { return player; }
 /**
 * Move listener for the player
 */
-void PlayerMoveListener::onMove(FacingDirection direction, float percentToNextTile, int positionX, int positionY) {}
+void PlayerMoveListener::onMove(FacingDirection, float, int, int) {}
 void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int tileY) {
 	if (direction == FacingDirection::DOWN && tileY >= world->getMap()->getHeight()) {
 		world->changeMap(world->getMap()->getBorderingMap(MapDirection::MAP_SOUTH));
@@ -231,4 +230,4 @@ void PlayerMoveListener::onMoveEnd(FacingDirection direction, int tileX, int til
 		world->getPlayer()->setTileX(world->getMap()->getWidth() - 1);
 	}
 }
-void PlayerMoveListener::onMoveStart(FacingDirection direction, int tileX, int tileY) {}
+void PlayerMoveListener::onMoveStart(FacingDirection, int, int) {}

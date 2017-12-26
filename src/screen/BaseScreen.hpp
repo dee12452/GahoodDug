@@ -2,6 +2,7 @@
 #define BASE_SCREEN_HPP
 
 #include <vector>
+#include <stdint.h>
 
 class Game;
 class Window;
